@@ -1,0 +1,11 @@
+[
+  { "id": "nayeon", "name": "Nayeon", "primaryGroupId": "twice", "gender": "f", "nationality": "kr", "portrait": "assets/idols/nayeon/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Nayeon_(TWICE)", "notes": null },
+  { "id": "jeongyeon", "name": "Jeongyeon", "primaryGroupId": "twice", "gender": "f", "nationality": "kr", "portrait": "assets/idols/jeongyeon/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Jeongyeon_(TWICE)", "notes": null },
+  { "id": "momo", "name": "Momo", "primaryGroupId": "twice", "gender": "f", "nationality": "jp", "portrait": "assets/idols/momo/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Momo", "notes": null },
+  { "id": "sana", "name": "Sana", "primaryGroupId": "twice", "gender": "f", "nationality": "jp", "portrait": "assets/idols/sana/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Sana", "notes": null },
+  { "id": "jihyo", "name": "Jihyo", "primaryGroupId": "twice", "gender": "f", "nationality": "kr", "portrait": "assets/idols/jihyo/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Jihyo_(TWICE)", "notes": null },
+  { "id": "mina", "name": "Mina", "primaryGroupId": "twice", "gender": "f", "nationality": "jp", "portrait": "assets/idols/mina/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Mina_(TWICE)", "notes": null },
+  { "id": "dahyun", "name": "Dahyun", "primaryGroupId": "twice", "gender": "f", "nationality": "kr", "portrait": "assets/idols/dahyun/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Dahyun_(TWICE)", "notes": null },
+  { "id": "chaeyoung", "name": "Chaeyoung", "primaryGroupId": "twice", "gender": "f", "nationality": "kr", "portrait": "assets/idols/chaeyoung/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Chaeyoung_(TWICE)", "notes": null },
+  { "id": "tzuyu", "name": "Tzuyu", "primaryGroupId": "twice", "gender": "f", "nationality": "tw", "portrait": "assets/idols/tzuyu/portrait.webp", "fandomUrl": "https://kpop.fandom.com/wiki/Tzuyu", "notes": null }
+]

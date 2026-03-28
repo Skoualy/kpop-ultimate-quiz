@@ -1,0 +1,116 @@
+{
+  "folders": [
+    {
+      "name": "kpop-ultimate-quiz",
+      "path": ".",
+    },
+  ],
+  "settings": {
+    // ─── Formatter ────────────────────────────────────────────
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+
+    // ─── TypeScript ───────────────────────────────────────────
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+
+    // ─── Explorer ─────────────────────────────────────────────
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js, ${capture}.d.ts",
+      "*.tsx": "${capture}.js",
+      "tsconfig.json": "tsconfig.*.json",
+      "package.json": "package-lock.json, .prettierrc, .prettierignore, .gitignore, vite.config.*",
+    },
+
+    // ─── Editor ───────────────────────────────────────────────
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.rulers": [100],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.stickyScroll.enabled": true,
+
+    // ─── Files ────────────────────────────────────────────────
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+      "node_modules": true,
+      "dist": true,
+      ".vite": true,
+    },
+    "search.exclude": {
+      "node_modules": true,
+      "dist": true,
+    },
+
+    // ─── Git ──────────────────────────────────────────────────
+    "git.openRepositoryInParentFolders": "always",
+    "githubPullRequests.defaultMergeMethod": "squash",
+  },
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+      "dsznajder.es7-react-js-snippets",
+      "ms-vscode.vscode-typescript-next",
+      "GitHub.vscode-pull-request-github",
+      "eamodio.gitlens",
+      "usernamehw.errorlens",
+    ],
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Dev (Chrome)",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/src",
+      },
+    ],
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "dev",
+        "type": "npm",
+        "script": "dev",
+        "group": "build",
+        "isBackground": true,
+        "problemMatcher": [],
+      },
+      {
+        "label": "format",
+        "type": "npm",
+        "script": "format",
+        "group": "none",
+      },
+      {
+        "label": "build",
+        "type": "npm",
+        "script": "build",
+        "group": {
+          "kind": "build",
+          "isDefault": true,
+        },
+      },
+    ],
+  },
+}
