@@ -16,9 +16,13 @@ export function GroupsPage() {
 
   const filtered = useMemo(() => {
     return groups.filter((g) => {
-      if (search && !g.name.toLowerCase().includes(search.toLowerCase())
-        && !g.company.toLowerCase().includes(search.toLowerCase())
-        && !(g.fandomName?.toLowerCase().includes(search.toLowerCase()))) return false;
+      if (
+        search &&
+        !g.name.toLowerCase().includes(search.toLowerCase()) &&
+        !g.company.toLowerCase().includes(search.toLowerCase()) &&
+        !g.fandomName?.toLowerCase().includes(search.toLowerCase())
+      )
+        return false;
       if (genFilter !== 'all' && g.generation !== genFilter) return false;
       if (catFilter === 'girlGroup' && g.category !== 'girlGroup') return false;
       if (catFilter === 'boyGroup' && g.category !== 'boyGroup') return false;
@@ -56,11 +60,7 @@ export function GroupsPage() {
       <div className="groups-filters">
         <div className="groups-filter-row">
           {(['all', 'girlGroup', 'boyGroup', 'soloist'] as const).map((c) => (
-            <button
-              key={c}
-              className={`pill pill--filter${catFilter === c ? ' selected' : ''}`}
-              onClick={() => setCatFilter(c)}
-            >
+            <button key={c} className={`pill pill--filter${catFilter === c ? ' selected' : ''}`} onClick={() => setCatFilter(c)}>
               {c === 'all' ? 'Tous' : c === 'girlGroup' ? '♀ Girl groups' : c === 'boyGroup' ? '♂ Boy groups' : 'Soloistes'}
             </button>
           ))}
@@ -111,8 +111,7 @@ export function GroupsPage() {
 }
 
 function GroupCard({ group: g, onEdit }: { group: Group; onEdit: () => void }) {
-  const catCls = g.category === 'girlGroup' ? 'badge--girl'
-    : g.category === 'boyGroup' ? 'badge--boy' : 'badge--soloist';
+  const catCls = g.category === 'girlGroup' ? 'badge--girl' : g.category === 'boyGroup' ? 'badge--boy' : 'badge--soloist';
 
   return (
     <div className="group-card">
@@ -126,7 +125,9 @@ function GroupCard({ group: g, onEdit }: { group: Group; onEdit: () => void }) {
       </div>
 
       <div className="group-card__meta">
-        <span>📅 {g.debutYear} · Gen {g.generation}</span>
+        <span>
+          📅 {g.debutYear} · Gen {g.generation}
+        </span>
         <span>🏢 {g.company}</span>
       </div>
 

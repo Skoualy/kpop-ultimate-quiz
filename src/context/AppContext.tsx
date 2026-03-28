@@ -27,7 +27,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       const saved = localStorage.getItem('kpopquiz-config');
       if (saved) return { ...DEFAULT_GAME_CONFIG, ...JSON.parse(saved) };
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     return DEFAULT_GAME_CONFIG;
   });
 
@@ -38,7 +40,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const setConfig = useCallback((update: Partial<GameConfig>) => {
     setConfigState((prev) => {
       const next = { ...prev, ...update };
-      try { localStorage.setItem('kpopquiz-config', JSON.stringify(next)); } catch { /* ignore */ }
+      try {
+        localStorage.setItem('kpopquiz-config', JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
       return next;
     });
   }, []);
@@ -65,11 +71,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{
-      config, setConfig, resetConfig,
-      groups, idols, labels,
-      addGroup, updateGroup, addOrUpdateIdols,
-    }}>
+    <AppContext.Provider
+      value={{
+        config,
+        setConfig,
+        resetConfig,
+        groups,
+        idols,
+        labels,
+        addGroup,
+        updateGroup,
+        addOrUpdateIdols,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

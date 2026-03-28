@@ -21,13 +21,35 @@
   ],
   "discography": {
     "titles": [
-      { "id": "like-oooh-ahh", "title": "Like OOH-AHH", "youtubeUrl": "https://www.youtube.com/watch?v=0rtV5esQT6I", "isDebutSong": true },
-      { "id": "feel-special", "title": "Feel Special", "youtubeUrl": "https://www.youtube.com/watch?v=3ymwOvzhwHs" },
-      { "id": "the-feels-en", "title": "The Feels", "youtubeUrl": "https://www.youtube.com/watch?v=f5_wn8mexmM", "language": "en" }
+      {
+        "id": "like-oooh-ahh",
+        "title": "Like OOH-AHH",
+        "youtubeUrl": "https://www.youtube.com/watch?v=0rtV5esQT6I",
+        "isDebutSong": true
+      },
+      {
+        "id": "feel-special",
+        "title": "Feel Special",
+        "youtubeUrl": "https://www.youtube.com/watch?v=3ymwOvzhwHs"
+      },
+      {
+        "id": "the-feels-en",
+        "title": "The Feels",
+        "youtubeUrl": "https://www.youtube.com/watch?v=f5_wn8mexmM",
+        "language": "en"
+      }
     ],
     "bSides": [
-      { "id": "icon", "title": "ICON", "youtubeUrl": "https://www.youtube.com/watch?v=wfXETdOzYos" },
-      { "id": "espresso", "title": "Espresso", "youtubeUrl": "https://www.youtube.com/watch?v=kFudXy6hma8" }
+      {
+        "id": "icon",
+        "title": "ICON",
+        "youtubeUrl": "https://www.youtube.com/watch?v=wfXETdOzYos"
+      },
+      {
+        "id": "espresso",
+        "title": "Espresso",
+        "youtubeUrl": "https://www.youtube.com/watch?v=kFudXy6hma8"
+      }
     ]
   },
   "fandomName": "ONCE",

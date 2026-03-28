@@ -31,12 +31,18 @@ import type { GroupCategory, GroupStatus } from '../types';
 import { getCategoryLabel } from '../services/dataService';
 
 export function CategoryBadge({ category }: { category: GroupCategory }) {
-  const cls = ['girlGroup', 'femaleSoloist'].includes(category) ? 'badge--girl'
-    : ['boyGroup', 'maleSoloist'].includes(category) ? 'badge--boy'
-    : 'badge--soloist';
+  const cls = ['girlGroup', 'femaleSoloist'].includes(category)
+    ? 'badge--girl'
+    : ['boyGroup', 'maleSoloist'].includes(category)
+      ? 'badge--boy'
+      : 'badge--soloist';
   const isSolo = category === 'femaleSoloist' || category === 'maleSoloist';
   const icon = ['girlGroup', 'femaleSoloist'].includes(category) ? '♀' : '♂';
-  return <span className={`badge ${cls} ${isSolo ? 'badge--soloist' : ''}`}>{icon} {getCategoryLabel(category)}</span>;
+  return (
+    <span className={`badge ${cls} ${isSolo ? 'badge--soloist' : ''}`}>
+      {icon} {getCategoryLabel(category)}
+    </span>
+  );
 }
 
 export function StatusBadge({ status }: { status: GroupStatus }) {

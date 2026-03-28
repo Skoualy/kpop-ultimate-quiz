@@ -15,12 +15,33 @@
   ],
   "discography": {
     "titles": [
-      { "id": "do-not-touch-jp", "title": "Do not touch", "youtubeUrl": "https://www.youtube.com/watch?v=woKq2sD8xho", "language": "jp", "isDebutSong": true },
-      { "id": "new-look-jp", "title": "NEW LOOK", "youtubeUrl": "https://www.youtube.com/watch?v=FiNQt25Vq4M", "language": "jp" }
+      {
+        "id": "do-not-touch-jp",
+        "title": "Do not touch",
+        "youtubeUrl": "https://www.youtube.com/watch?v=woKq2sD8xho",
+        "language": "jp",
+        "isDebutSong": true
+      },
+      {
+        "id": "new-look-jp",
+        "title": "NEW LOOK",
+        "youtubeUrl": "https://www.youtube.com/watch?v=FiNQt25Vq4M",
+        "language": "jp"
+      }
     ],
     "bSides": [
-      { "id": "funny-valentine-jp", "title": "Funny Valentine", "youtubeUrl": "https://www.youtube.com/watch?v=1X6L8P4G8rE", "language": "jp" },
-      { "id": "marshmallow-jp", "title": "Marshmallow", "youtubeUrl": "https://www.youtube.com/watch?v=KfM6J5b2HMA", "language": "jp" }
+      {
+        "id": "funny-valentine-jp",
+        "title": "Funny Valentine",
+        "youtubeUrl": "https://www.youtube.com/watch?v=1X6L8P4G8rE",
+        "language": "jp"
+      },
+      {
+        "id": "marshmallow-jp",
+        "title": "Marshmallow",
+        "youtubeUrl": "https://www.youtube.com/watch?v=KfM6J5b2HMA",
+        "language": "jp"
+      }
     ]
   },
   "fandomName": null,

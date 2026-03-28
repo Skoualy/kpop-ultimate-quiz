@@ -23,11 +23,7 @@ import labelsData from '../data/labels.json';
 
 // ─── Raw data ─────────────────────────────────────────────────────────────────
 
-export const ALL_GROUPS: Group[] = [
-  twiceData as Group,
-  misamoData as Group,
-  nayeonData as Group,
-];
+export const ALL_GROUPS: Group[] = [twiceData as Group, misamoData as Group, nayeonData as Group];
 
 export const ALL_IDOLS: Idol[] = idolsData as Idol[];
 export const ALL_LABELS: Label[] = (labelsData as { labels: Label[] }).labels;
@@ -116,10 +112,7 @@ export function generateIdolId(name: string, existingIdols: Idol[]): string {
 
 // ─── Song pool builder ────────────────────────────────────────────────────────
 
-export function buildSongPool(
-  groups: Group[],
-  songType: GameConfig['songType']
-): SongGameItem[] {
+export function buildSongPool(groups: Group[], songType: GameConfig['songType']): SongGameItem[] {
   const items: SongGameItem[] = [];
   for (const group of groups) {
     const songs: SongEntry[] = [];
@@ -134,16 +127,10 @@ export function buildSongPool(
 
 // ─── Idol pool builder ────────────────────────────────────────────────────────
 
-export function buildIdolPool(
-  groups: Group[],
-  idolMap: Map<string, Idol>,
-  config: GameConfig
-): IdolGameItem[] {
+export function buildIdolPool(groups: Group[], idolMap: Map<string, Idol>, config: GameConfig): IdolGameItem[] {
   const seen = new Set<string>();
   const items: IdolGameItem[] = [];
-  const performanceRoles: MemberRole[] = [
-    'mainVocal', 'vocal', 'mainDancer', 'dancer', 'mainRapper', 'rapper',
-  ];
+  const performanceRoles: MemberRole[] = ['mainVocal', 'vocal', 'mainDancer', 'dancer', 'mainRapper', 'rapper'];
 
   for (const group of groups) {
     for (const member of group.members) {

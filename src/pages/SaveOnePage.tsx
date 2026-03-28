@@ -1,16 +1,18 @@
 import { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import {
-  buildGamePool, getYouTubeId, getYouTubeThumbnail, shuffle,
-  buildIdolMap,
-} from '../services/dataService';
+import { buildGamePool, getYouTubeId, getYouTubeThumbnail, shuffle, buildIdolMap } from '../services/dataService';
 import type { GameItem, IdolGameItem, SongGameItem, SaveOneCriterion } from '../types';
 import { StatusPill, TimerBar, useCountdown } from '../components/shared';
 
 const CRITERION_LABELS: Record<SaveOneCriterion, string> = {
-  all: 'Tous', beauty: 'Beauté', personality: 'Personnalité',
-  voice: 'Voix', performance: 'Performance', leadership: 'Leadership', random: 'Aléatoire',
+  all: 'Tous',
+  beauty: 'Beauté',
+  personality: 'Personnalité',
+  voice: 'Voix',
+  performance: 'Performance',
+  leadership: 'Leadership',
+  random: 'Aléatoire',
 };
 
 export function SaveOnePage() {
@@ -43,32 +45,38 @@ export function SaveOnePage() {
 
   // Timer
   const timerRunning = config.timerEnabled && chosen === null;
-  const { remaining: timerRemaining, pct: timerPct, reset: timerReset } = useCountdown(
-    config.timerSeconds,
-    timerRunning,
-    () => { if (chosen === null) handlePick(null); }
+  const {
+    remaining: timerRemaining,
+    pct: timerPct,
+    reset: timerReset,
+  } = useCountdown(config.timerSeconds, timerRunning, () => {
+    if (chosen === null) handlePick(null);
+  });
+
+  const handlePick = useCallback(
+    (idx: number | null) => {
+      if (chosen !== null) return;
+      setChosen(idx ?? -1);
+      if (idx !== null) setScore((s) => s + 1);
+      setTimeout(() => {
+        if (roundIdx + 1 >= rounds.length) {
+          setGameOver(true);
+        } else {
+          setRoundIdx((r) => r + 1);
+          setChosen(null);
+          setCurrentSongIdx(0);
+          setIframeKey((k) => k + 1);
+          timerReset();
+        }
+      }, 1200);
+    },
+    [chosen, roundIdx, rounds.length, timerReset]
   );
 
-  const handlePick = useCallback((idx: number | null) => {
-    if (chosen !== null) return;
-    setChosen(idx ?? -1);
-    if (idx !== null) setScore((s) => s + 1);
-    setTimeout(() => {
-      if (roundIdx + 1 >= rounds.length) {
-        setGameOver(true);
-      } else {
-        setRoundIdx((r) => r + 1);
-        setChosen(null);
-        setCurrentSongIdx(0);
-        setIframeKey((k) => k + 1);
-        timerReset();
-      }
-    }, 1200);
-  }, [chosen, roundIdx, rounds.length, timerReset]);
-
-  const effectiveCriterion: SaveOneCriterion = config.criterion === 'random'
-    ? (['beauty', 'personality', 'voice', 'performance'] as SaveOneCriterion[])[Math.floor(Math.random() * 4)]
-    : config.criterion;
+  const effectiveCriterion: SaveOneCriterion =
+    config.criterion === 'random'
+      ? (['beauty', 'personality', 'voice', 'performance'] as SaveOneCriterion[])[Math.floor(Math.random() * 4)]
+      : config.criterion;
 
   if (pool.length === 0 || rounds.length === 0) {
     return (
@@ -76,7 +84,8 @@ export function SaveOnePage() {
         <div className="empty-state">
           <div className="empty-state__icon">⚠️</div>
           <div className="empty-state__text">
-            Pas assez d'éléments disponibles avec la configuration actuelle.<br />
+            Pas assez d'éléments disponibles avec la configuration actuelle.
+            <br />
             Essaie d'ajouter plus de groupes ou de changer les filtres.
           </div>
           <button className="btn btn--primary" style={{ marginTop: 12 }} onClick={() => navigate('/')}>
@@ -98,15 +107,28 @@ export function SaveOnePage() {
           <div className="round-end" style={{ maxWidth: 420 }}>
             <div style={{ fontSize: 48 }}>🏆</div>
             <div style={{ fontSize: 22, fontWeight: 700 }}>Partie terminée !</div>
-            <div className="round-end__score">{score}/{rounds.length}</div>
+            <div className="round-end__score">
+              {score}/{rounds.length}
+            </div>
             <div style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
               {score === rounds.length ? 'Parfait 🔥' : `${rounds.length - score} passage${rounds.length - score > 1 ? 's' : ''}`}
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
-              <button className="btn btn--primary" onClick={() => { setRoundIdx(0); setScore(0); setChosen(null); setGameOver(false); setIframeKey((k) => k + 1); }}>
+              <button
+                className="btn btn--primary"
+                onClick={() => {
+                  setRoundIdx(0);
+                  setScore(0);
+                  setChosen(null);
+                  setGameOver(false);
+                  setIframeKey((k) => k + 1);
+                }}
+              >
                 🔄 Rejouer
               </button>
-              <button className="btn btn--secondary" onClick={() => navigate('/')}>← Config</button>
+              <button className="btn btn--secondary" onClick={() => navigate('/')}>
+                ← Config
+              </button>
             </div>
           </div>
         </div>
@@ -130,7 +152,9 @@ export function SaveOnePage() {
         <StatusPill label="Timer" value={config.timerEnabled ? `${timerRemaining}s` : 'Off'} />
         <StatusPill label="Score" value={`${score}/${roundIdx}`} />
         <div style={{ marginLeft: 'auto' }}>
-          <button className="btn btn--ghost btn--sm" onClick={() => navigate('/')}>← Config</button>
+          <button className="btn btn--ghost btn--sm" onClick={() => navigate('/')}>
+            ← Config
+          </button>
         </div>
       </div>
 
@@ -146,17 +170,11 @@ export function SaveOnePage() {
           )}
         </div>
         <div className="game-subtitle">
-          {isIdolMode
-            ? 'Clique sur le choix à garder — les autres sont éliminés.'
-            : 'Clique sur la chanson à garder.'}
+          {isIdolMode ? 'Clique sur le choix à garder — les autres sont éliminés.' : 'Clique sur la chanson à garder.'}
         </div>
 
         {isIdolMode ? (
-          <IdolRound
-            items={currentRound as IdolGameItem[]}
-            chosen={chosen}
-            onPick={handlePick}
-          />
+          <IdolRound items={currentRound as IdolGameItem[]} chosen={chosen} onPick={handlePick} />
         ) : (
           <SongRound
             items={currentRound as SongGameItem[]}
@@ -180,11 +198,7 @@ export function SaveOnePage() {
 }
 
 // ─── Idol round ─────────────────────────────────────────────────────────────────
-function IdolRound({ items, chosen, onPick }: {
-  items: IdolGameItem[];
-  chosen: number | null;
-  onPick: (idx: number) => void;
-}) {
+function IdolRound({ items, chosen, onPick }: { items: IdolGameItem[]; chosen: number | null; onPick: (idx: number) => void }) {
   return (
     <div className="save-one-cards">
       {items.map((item, idx) => {
@@ -205,8 +219,13 @@ function IdolRound({ items, chosen, onPick }: {
           >
             <div className="idol-card__image">
               {item.idol.portrait ? (
-                <img src={item.idol.portrait} alt={item.idol.name}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                <img
+                  src={item.idol.portrait}
+                  alt={item.idol.name}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
               ) : (
                 <div className="idol-card__image-placeholder">👤</div>
               )}
@@ -228,7 +247,15 @@ function IdolRound({ items, chosen, onPick }: {
 }
 
 // ─── Song round ─────────────────────────────────────────────────────────────────
-function SongRound({ items, chosen, onPick, currentSongIdx, setCurrentSongIdx, iframeKey, setIframeKey }: {
+function SongRound({
+  items,
+  chosen,
+  onPick,
+  currentSongIdx,
+  setCurrentSongIdx,
+  iframeKey,
+  setIframeKey,
+}: {
   items: SongGameItem[];
   chosen: number | null;
   onPick: (idx: number) => void;
@@ -239,9 +266,7 @@ function SongRound({ items, chosen, onPick, currentSongIdx, setCurrentSongIdx, i
 }) {
   const current = items[currentSongIdx];
   const videoId = current ? getYouTubeId(current.song.youtubeUrl) : null;
-  const embedUrl = videoId
-    ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`
-    : null;
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1` : null;
 
   const handleCardClick = (idx: number) => {
     if (chosen !== null) return;
@@ -265,24 +290,27 @@ function SongRound({ items, chosen, onPick, currentSongIdx, setCurrentSongIdx, i
       {/* Video */}
       <div className="save-one-video">
         {embedUrl ? (
-          <iframe
-            key={iframeKey}
-            src={embedUrl}
-            title="YouTube"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
+          <iframe key={iframeKey} src={embedUrl} title="YouTube" allow="autoplay; encrypted-media" allowFullScreen />
         ) : (
-          <div className="flex-center" style={{ height: '100%', color: 'var(--text-muted)', fontSize: 36 }}>🎵</div>
+          <div className="flex-center" style={{ height: '100%', color: 'var(--text-muted)', fontSize: 36 }}>
+            🎵
+          </div>
         )}
       </div>
 
       {/* Controls */}
       <div className="save-one-song-controls">
-        <span className="save-one-song-counter">{currentSongIdx + 1} / {items.length}</span>
+        <span className="save-one-song-counter">
+          {currentSongIdx + 1} / {items.length}
+        </span>
         {items.length > 1 && (
-          <button className="btn btn--ghost btn--sm"
-            onClick={() => { setCurrentSongIdx((currentSongIdx + 1) % items.length); setIframeKey((k) => k + 1); }}>
+          <button
+            className="btn btn--ghost btn--sm"
+            onClick={() => {
+              setCurrentSongIdx((currentSongIdx + 1) % items.length);
+              setIframeKey((k) => k + 1);
+            }}
+          >
             ⏭ Suivant
           </button>
         )}
@@ -309,19 +337,13 @@ function SongRound({ items, chosen, onPick, currentSongIdx, setCurrentSongIdx, i
               onClick={() => handleCardClick(idx)}
             >
               <div className="song-card__thumb">
-                {thumb ? (
-                  <img src={thumb} alt={item.song.title} />
-                ) : (
-                  <div className="song-card__thumb-placeholder">🎵</div>
-                )}
+                {thumb ? <img src={thumb} alt={item.song.title} /> : <div className="song-card__thumb-placeholder">🎵</div>}
               </div>
               <div className="song-card__info">
                 <div className="song-card__title">{item.song.title}</div>
                 <div className="song-card__group">{item.group.name}</div>
               </div>
-              <div className="song-card__replay">
-                ↺ {isActive ? 'En cours' : 'Écouter'}
-              </div>
+              <div className="song-card__replay">↺ {isActive ? 'En cours' : 'Écouter'}</div>
             </div>
           );
         })}
