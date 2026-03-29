@@ -1,4 +1,4 @@
-# K-Pop Quiz — v0.7 MVP (React / TypeScript)
+# K-Pop Ultimate Quiz — v0.5.5 MVP (React / TypeScript)
 
 ## Prérequis
 

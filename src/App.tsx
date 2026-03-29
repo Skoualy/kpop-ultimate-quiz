@@ -10,12 +10,12 @@ type Theme = 'dark' | 'light';
 
 function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem('kpopquiz-theme') as Theme) ?? 'dark';
+    return (localStorage.getItem('kpopultimatequiz-theme') as Theme) ?? 'dark';
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
-    localStorage.setItem('kpopquiz-theme', theme);
+    localStorage.setItem('kpopultimatequiz-theme', theme);
   }, [theme]);
 
   const toggle = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
@@ -32,8 +32,8 @@ export function App() {
       {!isGamePage && (
         <header className="app-header">
           <div className="app-header__title">
-            <span className="app-header__name">🎵 K-Pop Quiz</span>
-            <span className="app-header__subtitle">© Skoualy — v0.7</span>
+            <span className="app-header__name">🎵 K-Pop Ultimate Quiz</span>
+            <span className="app-header__subtitle">© Skoualy — v0.5.5</span>
           </div>
           <nav className="app-header__nav">
             <NavLink to="/" end>

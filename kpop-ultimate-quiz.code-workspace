@@ -39,7 +39,7 @@
     // ─── Editor ───────────────────────────────────────────────
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.rulers": [100],
+    "editor.rulers": [130],
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.stickyScroll.enabled": true,
@@ -65,11 +65,8 @@
     "recommendations": [
       "esbenp.prettier-vscode",
       "dbaeumer.vscode-eslint",
-      "bradlc.vscode-tailwindcss",
       "dsznajder.es7-react-js-snippets",
       "ms-vscode.vscode-typescript-next",
-      "GitHub.vscode-pull-request-github",
-      "eamodio.gitlens",
       "usernamehw.errorlens",
     ],
   },

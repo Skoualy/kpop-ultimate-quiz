@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import type {
@@ -16,6 +16,7 @@ import type {
   SongEntry,
 } from '../types';
 import { slugify, generateIdolId, getYouTubeThumbnail, getCategoryGender } from '../services/dataService';
+import { ImagePicker } from '../components/ImagePicker';
 import { useToast } from '../components/shared';
 
 // ─── Constants ─────────────────────────────────────────────────────────────────
@@ -57,13 +58,23 @@ interface GroupForm {
   name: string;
   category: GroupCategory;
   parentGroupId: string;
-  generation: Generation;
+  generation: Generation | '';
   debutYear: string;
   status: GroupStatus;
   company: string;
+  coverImage: string;
   fandomName: string;
   fandomUrl: string;
   notes: string;
+}
+
+// Génération suggérée depuis l'année de début
+function guessGeneration(year: number): Generation {
+  if (year < 2000) return '1';
+  if (year < 2012) return '2';
+  if (year < 2018) return '3';
+  if (year < 2023) return '4';
+  return '5';
 }
 
 interface EditableSong {
@@ -81,10 +92,11 @@ function emptyForm(): GroupForm {
     name: '',
     category: 'girlGroup',
     parentGroupId: '',
-    generation: '4',
-    debutYear: String(new Date().getFullYear()),
+    generation: '',
+    debutYear: '',
     status: 'active',
     company: '',
+    coverImage: '',
     fandomName: '',
     fandomUrl: '',
     notes: '',
@@ -115,7 +127,7 @@ function emptySong(): EditableSong {
 export function ContributorPage() {
   const navigate = useNavigate();
   const { groupId } = useParams<{ groupId?: string }>();
-  const { groups, idols, addGroup, updateGroup, addOrUpdateIdols } = useApp();
+  const { groups, idols, labels, addGroup, updateGroup, addOrUpdateIdols, addOrUpdateLabels } = useApp();
   const { showToast, ToastEl } = useToast();
 
   const editGroup = groupId ? groups.find((g) => g.id === groupId) : null;
@@ -133,6 +145,7 @@ export function ContributorPage() {
           debutYear: String(editGroup.debutYear),
           status: editGroup.status,
           company: editGroup.company,
+          coverImage: editGroup.coverImage ?? '',
           fandomName: editGroup.fandomName ?? '',
           fandomUrl: editGroup.fandomUrl ?? '',
           notes: editGroup.notes ?? '',
@@ -247,11 +260,11 @@ export function ContributorPage() {
       name: form.name,
       category: form.category,
       parentGroupId: form.parentGroupId || null,
-      generation: form.generation,
+      generation: (form.generation || '4') as Generation,
       debutYear: parseInt(form.debutYear) || new Date().getFullYear(),
       status: form.status,
       company: form.company,
-      coverImage: null,
+      coverImage: form.coverImage || null,
       members: members.map((m, i) => ({
         idolId: bundleIdols[i].id,
         status: m.membership.status,
@@ -275,6 +288,18 @@ export function ContributorPage() {
 
   function handleGenerateJson() {
     const bundle = generateBundle();
+    // Ajouter le label s'il est nouveau
+    const existingLabel = labels.find((l) => l.name.toLowerCase() === form.company.toLowerCase());
+    if (!existingLabel && form.company) {
+      addOrUpdateLabels([
+        {
+          id: slugify(form.company),
+          name: form.company,
+          country: 'kr', // défaut, modifiable manuellement ensuite
+          logo: null,
+        },
+      ]);
+    }
     setExportJson(JSON.stringify(bundle, null, 2));
     addOrUpdateIdols(bundle.idols);
     if (isEdit) updateGroup(bundle.group);
@@ -343,7 +368,9 @@ export function ContributorPage() {
       </div>
 
       {/* Step 1: Group info */}
-      {step === 0 && <GroupInfoStep form={form} setForm={setForm} topLevelGroups={topLevelGroups} isEdit={isEdit} />}
+      {step === 0 && (
+        <GroupInfoStep form={form} setForm={setForm} topLevelGroups={topLevelGroups} labels={labels} isEdit={isEdit} />
+      )}
 
       {/* Step 2: Members */}
       {step === 1 && <MembersStep members={members} setMembers={setMembers} getIdolMatches={getIdolMatches} idols={idols} />}
@@ -385,66 +412,252 @@ function GroupInfoStep({
   form,
   setForm,
   topLevelGroups,
+  labels,
   isEdit,
 }: {
   form: GroupForm;
   setForm: React.Dispatch<React.SetStateAction<GroupForm>>;
   topLevelGroups: Group[];
+  labels: import('../types').Label[];
   isEdit: boolean;
 }) {
   const upd = (k: keyof GroupForm, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
+  // ─── Génération auto depuis l'année ───────────────────────────────────────────
+  // genManual = true dès que l'utilisateur touche au select génération manuellement
+  const [genManual, setGenManual] = useState(isEdit);
+
+  useEffect(() => {
+    if (genManual) return;
+    const year = parseInt(form.debutYear);
+    if (!isNaN(year) && year > 1990) {
+      upd('generation', guessGeneration(year));
+    }
+  }, [form.debutYear, genManual]);
+
+  // ─── Label autocomplete ───────────────────────────────────────────────────────
+  const [showLabelSuggestions, setShowLabelSuggestions] = useState(false);
+  const labelRef = useRef<HTMLDivElement>(null);
+
+  const labelSuggestions = useMemo(() => {
+    if (!form.company || form.company.length < 1) return [];
+    return labels.filter((l) => l.name.toLowerCase().includes(form.company.toLowerCase())).slice(0, 6);
+  }, [form.company, labels]);
+
+  const isNewLabel = form.company.length > 0 && !labels.find((l) => l.name.toLowerCase() === form.company.toLowerCase());
+
+  // Fermer suggestions au clic extérieur
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (labelRef.current && !labelRef.current.contains(e.target as Node)) {
+        setShowLabelSuggestions(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
   return (
     <div className="contributor-step">
       <div className="card">
-        <div className="card__title" style={{ fontSize: 18, marginBottom: 16 }}>
+        <div className="card__title" style={{ fontSize: 18, marginBottom: 20 }}>
           Informations générales
         </div>
-        <div className="form-grid-2">
-          <div className="form-field">
-            <label className="form-label">
-              Nom du groupe <span>*</span>
-            </label>
-            <input className="input" value={form.name} onChange={(e) => upd('name', e.target.value)} placeholder="Ex: TWICE" />
+
+        {/* ── Ligne 1 : Nom + Statut (col gauche) | Cover image (col droite) ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '0.97fr 180px', gap: 40, marginBottom: 16, alignItems: 'start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {/* Nom du groupe */}
+            <div className="form-field">
+              <label className="form-label">
+                Nom du groupe <span>*</span>
+              </label>
+              <input className="input" value={form.name} onChange={(e) => upd('name', e.target.value)} placeholder="Ex: TWICE" />
+              {form.id && (
+                <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'DM Mono, monospace', marginTop: 3 }}>
+                  id : {form.id}
+                </span>
+              )}
+            </div>
+            {/* Statut */}
+            <div className="form-field">
+              <label className="form-label">
+                Statut <span>*</span>
+              </label>
+              <select className="select" value={form.status} onChange={(e) => upd('status', e.target.value)}>
+                <option value="active">Actif</option>
+                <option value="inactive">Inactif</option>
+              </select>
+            </div>
+            <div className="form-field">
+              <label className="form-label">
+                Sub-unit de
+                <span style={{ color: 'var(--text-muted)', fontWeight: 400, marginLeft: 6 }}>
+                  — laisser vide si groupe indépendant
+                </span>
+              </label>
+              <select className="select" value={form.parentGroupId} onChange={(e) => upd('parentGroupId', e.target.value)}>
+                <option value="">— Aucun (groupe indépendant)</option>
+                {topLevelGroups.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.name}
+                  </option>
+                ))}
+              </select>
+              {form.parentGroupId && (
+                <span style={{ fontSize: 11, color: 'var(--accent-teal)', marginTop: 4, display: 'block' }}>
+                  ✦ Catégorie forcée depuis le groupe parent
+                </span>
+              )}
+            </div>
           </div>
+
+          {/* Cover image */}
+          <ImagePicker
+            value={form.coverImage}
+            onChange={(v) => upd('coverImage', v)}
+            label="Cover du groupe"
+            placeholder="assets/groups/.../cover.webp"
+            aspectRatio="1/1"
+            hint="600×600 px recommandé · webp"
+            emptyIcon="🎵"
+          />
+        </div>
+
+        {/* ── Ligne 2 : Année de début | Génération ── */}
+        <div className="form-grid-2" style={{ marginBottom: 16 }}>
           <div className="form-field">
             <label className="form-label">
-              Statut <span>*</span>
+              Année de début <span>*</span>
             </label>
-            <select className="select" value={form.status} onChange={(e) => upd('status', e.target.value)}>
-              <option value="active">Actif</option>
-              <option value="inactive">Inactif</option>
-            </select>
+            <input
+              className="input"
+              type="number"
+              min={1990}
+              max={new Date().getFullYear()}
+              value={form.debutYear}
+              onChange={(e) => upd('debutYear', e.target.value)}
+              placeholder="Ex: 2015"
+            />
           </div>
           <div className="form-field">
             <label className="form-label">
               Génération <span>*</span>
+              {!genManual && form.generation && (
+                <span style={{ color: 'var(--accent-teal)', fontWeight: 400, marginLeft: 6, fontSize: 11 }}>✦ auto</span>
+              )}
             </label>
-            <select className="select" value={form.generation} onChange={(e) => upd('generation', e.target.value)}>
+            <select
+              className="select"
+              value={form.generation}
+              onChange={(e) => {
+                setGenManual(true);
+                upd('generation', e.target.value);
+              }}
+            >
+              <option value="">— Sélectionner</option>
               {(['1', '2', '3', '4', '5'] as Generation[]).map((g) => (
                 <option key={g} value={g}>
-                  {g}ème génération
+                  Gen {g}
                 </option>
               ))}
             </select>
           </div>
-          <div className="form-field">
+        </div>
+
+        {/* ── Ligne 3 : Label / Agence | Catégorie ── */}
+        <div className="form-grid-2" style={{ marginBottom: 16 }}>
+          {/* Label avec autocomplete */}
+          <div className="form-field" style={{ position: 'relative' }} ref={labelRef}>
             <label className="form-label">
               Label / Agence <span>*</span>
             </label>
             <input
               className="input"
               value={form.company}
-              onChange={(e) => upd('company', e.target.value)}
+              onChange={(e) => {
+                upd('company', e.target.value);
+                setShowLabelSuggestions(true);
+              }}
+              onFocus={() => setShowLabelSuggestions(true)}
               placeholder="Ex: JYP Entertainment"
+              autoComplete="off"
             />
+            {/* Suggestions dropdown */}
+            {showLabelSuggestions && labelSuggestions.length > 0 && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  right: 0,
+                  zIndex: 50,
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-sm)',
+                  marginTop: 2,
+                  overflow: 'hidden',
+                  boxShadow: 'var(--shadow-card)',
+                }}
+              >
+                {labelSuggestions.map((l) => (
+                  <button
+                    key={l.id}
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '9px 12px',
+                      background: 'none',
+                      border: 'none',
+                      borderBottom: '1px solid var(--border)',
+                      color: 'var(--text-primary)',
+                      fontSize: 13,
+                      cursor: 'pointer',
+                    }}
+                    onMouseDown={() => {
+                      upd('company', l.name);
+                      setShowLabelSuggestions(false);
+                    }}
+                  >
+                    {l.name}
+                    <span style={{ color: 'var(--text-muted)', marginLeft: 8, fontSize: 11 }}>{l.country.toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+            {/* Badge nouveau label */}
+            {isNewLabel && form.company && (
+              <span
+                style={{
+                  fontSize: 11,
+                  color: '#fbbf24',
+                  marginTop: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                }}
+              >
+                ✦ Nouveau label — sera ajouté automatiquement à la soumission
+              </span>
+            )}
           </div>
+
+          {/* Catégorie */}
           <div className="form-field">
             <label className="form-label">
-              Année de début <span>*</span>
+              Catégorie <span>*</span>
             </label>
-            <input className="input" type="number" value={form.debutYear} onChange={(e) => upd('debutYear', e.target.value)} />
+            <select className="select" value={form.category} onChange={(e) => upd('category', e.target.value)}>
+              <option value="girlGroup">Girls group</option>
+              <option value="boyGroup">Boys group</option>
+              <option value="femaleSoloist">Soloiste (F)</option>
+              <option value="maleSoloist">Soloiste (M)</option>
+            </select>
           </div>
+        </div>
+
+        {/* ── Ligne 4 : Nom fandom | URL fandom ── */}
+        <div className="form-grid-2" style={{ marginBottom: 16 }}>
           <div className="form-field">
             <label className="form-label">Nom de la fandom</label>
             <input
@@ -453,17 +666,6 @@ function GroupInfoStep({
               onChange={(e) => upd('fandomName', e.target.value)}
               placeholder="Ex: ONCE"
             />
-          </div>
-          <div className="form-field">
-            <label className="form-label">
-              Genre <span>*</span>
-            </label>
-            <select className="select" value={form.category} onChange={(e) => upd('category', e.target.value)}>
-              <option value="girlGroup">Girl group</option>
-              <option value="boyGroup">Boy group</option>
-              <option value="femaleSoloist">Soliste (F)</option>
-              <option value="maleSoloist">Soliste (H)</option>
-            </select>
           </div>
           <div className="form-field">
             <label className="form-label">Lien Fandom wiki</label>
@@ -475,35 +677,6 @@ function GroupInfoStep({
             />
           </div>
         </div>
-
-        <div className="form-field" style={{ marginTop: 16 }}>
-          <label className="form-label">
-            Sub-unit de (parentGroupId)
-            <span style={{ color: 'var(--text-muted)', fontWeight: 400, marginLeft: 6 }}>
-              — uniquement si ce groupe est une sub-unit
-            </span>
-          </label>
-          <select className="select" value={form.parentGroupId} onChange={(e) => upd('parentGroupId', e.target.value)}>
-            <option value="">— Aucun (groupe indépendant)</option>
-            {topLevelGroups.map((g) => (
-              <option key={g.id} value={g.id}>
-                {g.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {!isEdit && (
-          <div className="form-field" style={{ marginTop: 12 }}>
-            <label className="form-label">ID généré</label>
-            <input
-              className="input"
-              value={form.id}
-              readOnly
-              style={{ opacity: 0.6, fontFamily: 'DM Mono, monospace', fontSize: 13 }}
-            />
-          </div>
-        )}
       </div>
     </div>
   );
@@ -678,10 +851,7 @@ function MemberRowEditor({
                 className="idol-match-btn"
                 style={{ marginTop: 4, color: 'var(--text-muted)' }}
                 onClick={() =>
-                  onUpdate((m) => ({
-                    ...m,
-                    idolResolution: { mode: 'new', selectedExistingId: null, resolvedId: null },
-                  }))
+                  onUpdate((m) => ({ ...m, idolResolution: { mode: 'new', selectedExistingId: null, resolvedId: null } }))
                 }
               >
                 Non, c'est un(e) autre artiste →
@@ -691,15 +861,7 @@ function MemberRowEditor({
         )}
 
         {member.idolResolution.mode === 'existing' && (
-          <div
-            style={{
-              fontSize: 12,
-              color: 'var(--accent-teal)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}
-          >
+          <div style={{ fontSize: 12, color: 'var(--accent-teal)', display: 'flex', alignItems: 'center', gap: 8 }}>
             ✓ Idole existante liée : <strong>{member.idolResolution.selectedExistingId}</strong>
             <button className="btn btn--ghost btn--sm" onClick={clearExisting}>
               Changer
@@ -722,12 +884,7 @@ function MemberRowEditor({
             <select
               className="select"
               value={member.idol.nationality}
-              onChange={(e) =>
-                onUpdate((m) => ({
-                  ...m,
-                  idol: { ...m.idol, nationality: e.target.value as NationalityCode },
-                }))
-              }
+              onChange={(e) => onUpdate((m) => ({ ...m, idol: { ...m.idol, nationality: e.target.value as NationalityCode } }))}
             >
               {NATIONALITIES.map((n) => (
                 <option key={n.code} value={n.code}>

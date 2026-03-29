@@ -12,6 +12,7 @@ interface DatasetState {
   addGroup: (group: Group) => void;
   updateGroup: (group: Group) => void;
   addOrUpdateIdols: (idols: Idol[]) => void;
+  addOrUpdateLabels: (labels: Label[]) => void;
 }
 
 interface AppContextValue extends DatasetState {
@@ -25,7 +26,7 @@ const AppContext = createContext<AppContextValue | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [config, setConfigState] = useState<GameConfig>(() => {
     try {
-      const saved = localStorage.getItem('kpopquiz-config');
+      const saved = localStorage.getItem('kpopultimatequiz-config');
       if (saved) return { ...DEFAULT_GAME_CONFIG, ...JSON.parse(saved) };
     } catch {
       /* ignore */
@@ -35,13 +36,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [groups, setGroups] = useState<Group[]>(ALL_GROUPS);
   const [idols, setIdols] = useState<Idol[]>(ALL_IDOLS);
-  const labels = ALL_LABELS;
+  const [labels, setLabels] = useState<Label[]>(ALL_LABELS);
 
   const setConfig = useCallback((update: Partial<GameConfig>) => {
     setConfigState((prev) => {
       const next = { ...prev, ...update };
       try {
-        localStorage.setItem('kpopquiz-config', JSON.stringify(next));
+        localStorage.setItem('kpopultimatequiz-config', JSON.stringify(next));
       } catch {
         /* ignore */
       }
@@ -51,7 +52,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const resetConfig = useCallback(() => {
     setConfigState(DEFAULT_GAME_CONFIG);
-    localStorage.removeItem('kpopquiz-config');
+    localStorage.removeItem('kpopultimatequiz-config');
   }, []);
 
   const addGroup = useCallback((group: Group) => {
@@ -60,6 +61,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateGroup = useCallback((group: Group) => {
     setGroups((prev) => prev.map((g) => (g.id === group.id ? group : g)));
+  }, []);
+
+  const addOrUpdateLabels = useCallback((newLabels: Label[]) => {
+    setLabels((prev) => {
+      const map = new Map(prev.map((l) => [l.id, l]));
+      for (const label of newLabels) map.set(label.id, label);
+      return Array.from(map.values());
+    });
   }, []);
 
   const addOrUpdateIdols = useCallback((newIdols: Idol[]) => {
@@ -82,6 +91,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         addGroup,
         updateGroup,
         addOrUpdateIdols,
+        addOrUpdateLabels,
       }}
     >
       {children}
