@@ -1,0 +1,28 @@
+{
+  "id": "nayeon",
+  "name": "NAYEON",
+  "category": "femaleSoloist",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2022,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": "assets/groups/nayeon/cover.webp",
+  "members": [{ "idolId": "nayeon", "status": "current", "roles": ["mainVocal"] }],
+  "discography": {
+    "titles": [
+      {
+        "id": "pop",
+        "title": "POP!",
+        "youtubeUrl": "https://www.youtube.com/watch?v=GezCHwKQBiU",
+        "isDebutSong": true
+      },
+      { "id": "abcd", "title": "ABCD", "youtubeUrl": "https://www.youtube.com/watch?v=_Ev2wqFdxBE" }
+    ],
+    "bSides": [
+      { "id": "no-problem", "title": "No Problem", "youtubeUrl": "https://www.youtube.com/watch?v=tVA1n8SFQEM" }
+    ]
+  },
+  "fandomName": "ONCE",
+  "notes": null
+}

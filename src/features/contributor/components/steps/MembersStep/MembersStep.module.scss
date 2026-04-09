@@ -1,0 +1,128 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.requiredNote {
+  font-size: 11px;
+  color: var(--accent-pink);
+  font-weight: 400;
+}
+
+// ─── MemberCard ───────────────────────────────────────────────────────────────
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-columns: 0.1fr 0.9fr 0.1fr;
+  gap: 20px;
+  align-items: start;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardPortrait {
+  flex-shrink: 0;
+}
+
+.cardRight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardDeleteRow {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 130px;
+}
+
+// ─── Champ ────────────────────────────────────────────────────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 12px;
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.required {
+  color: var(--accent-pink);
+}
+.requiredSmall {
+  font-size: 11px;
+  color: var(--accent-pink);
+  font-weight: 400;
+}
+
+// ─── Feedback réutilisation idol ─────────────────────────────────────────────
+.reuseBox {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.reuseActions {
+  display: flex;
+  gap: 8px;
+}
+
+// ─── Sub-unit picker ─────────────────────────────────────────────────────────
+.subunitPicker {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+.subunitTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.subunitHint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}

@@ -1,0 +1,68 @@
+{
+  "id": "twice",
+  "name": "TWICE",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": "assets/groups/twice/cover.webp",
+  "members": [
+    { "idolId": "jihyo", "status": "current", "roles": ["leader", "mainVocal"] },
+    { "idolId": "nayeon", "status": "current", "roles": ["vocal"] },
+    { "idolId": "jeongyeon", "status": "current", "roles": ["vocal"] },
+    { "idolId": "momo", "status": "current", "roles": ["mainDancer", "dancer", "rapper"] },
+    { "idolId": "sana", "status": "current", "roles": ["vocal", "dancer"] },
+    { "idolId": "mina", "status": "current", "roles": ["mainDancer", "vocal"] },
+    { "idolId": "dahyun", "status": "current", "roles": ["rapper", "dancer"] },
+    { "idolId": "chaeyoung", "status": "current", "roles": ["mainRapper", "vocal"] },
+    { "idolId": "tzuyu", "status": "current", "roles": ["dancer", "visual", "maknae"] }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "like-oooh-ahh",
+        "title": "Like OOH-AHH",
+        "youtubeUrl": "https://www.youtube.com/watch?v=0rtV5esQT6I",
+        "isDebutSong": true
+      },
+      { "id": "cheer-up", "title": "CHEER UP", "youtubeUrl": "https://www.youtube.com/watch?v=c_P-zcKSBkA" },
+      { "id": "tt", "title": "TT", "youtubeUrl": "https://www.youtube.com/watch?v=ePpPVE-GGJw" },
+      { "id": "likey", "title": "LIKEY", "youtubeUrl": "https://www.youtube.com/watch?v=V2hlQkVJZhE" },
+      { "id": "what-is-love", "title": "What is Love?", "youtubeUrl": "https://www.youtube.com/watch?v=5pTQCOPCMjI" },
+      {
+        "id": "dance-the-night-away",
+        "title": "Dance the Night Away",
+        "youtubeUrl": "https://www.youtube.com/watch?v=mK_An2JWNKM"
+      },
+      { "id": "yes-or-yes", "title": "YES or YES", "youtubeUrl": "https://www.youtube.com/watch?v=sQdNE2FYDSA" },
+      { "id": "fancy", "title": "FANCY", "youtubeUrl": "https://www.youtube.com/watch?v=kOHB85vDuow" },
+      { "id": "feel-special", "title": "Feel Special", "youtubeUrl": "https://www.youtube.com/watch?v=3ymwOvzhwHs" },
+      { "id": "more-and-more", "title": "MORE & MORE", "youtubeUrl": "https://www.youtube.com/watch?v=c1dg5OiD1LI" },
+      {
+        "id": "i-cant-stop-me",
+        "title": "I CAN'T STOP ME",
+        "youtubeUrl": "https://www.youtube.com/watch?v=cNuc7RcM4Ks"
+      },
+      { "id": "cry-for-me", "title": "Cry For Me", "youtubeUrl": "https://www.youtube.com/watch?v=Y6lMqHxeDZ0" },
+      { "id": "alcohol-free", "title": "Alcohol-Free", "youtubeUrl": "https://www.youtube.com/watch?v=pCo-cH93N6E" },
+      { "id": "the-feels", "title": "The Feels", "youtubeUrl": "https://www.youtube.com/watch?v=8yQBHWKQBTo" },
+      { "id": "scientist", "title": "SCIENTIST", "youtubeUrl": "https://www.youtube.com/watch?v=5lO_pPclMqc" },
+      {
+        "id": "talk-that-talk",
+        "title": "Talk that Talk",
+        "youtubeUrl": "https://www.youtube.com/watch?v=OiHOBBuCmbU"
+      },
+      { "id": "set-me-free", "title": "SET ME FREE", "youtubeUrl": "https://www.youtube.com/watch?v=xWE5LQr7B4k" },
+      { "id": "rush", "title": "RUSH", "youtubeUrl": "https://www.youtube.com/watch?v=0T8Hs_mHyNs" }
+    ],
+    "bSides": [
+      { "id": "icon", "title": "ICON", "youtubeUrl": "https://www.youtube.com/watch?v=wfXETdOzYos" },
+      { "id": "knock-knock", "title": "KNOCK KNOCK", "youtubeUrl": "https://www.youtube.com/watch?v=8A2t3l7o41s" },
+      { "id": "signal", "title": "SIGNAL", "youtubeUrl": "https://www.youtube.com/watch?v=OpiCFrV5PsY" }
+    ]
+  },
+  "fandomName": "ONCE",
+  "notes": null
+}

@@ -23,10 +23,6 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
 
-    // ─── TypeScript ───────────────────────────────────────────
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-
     // ─── Explorer ─────────────────────────────────────────────
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {

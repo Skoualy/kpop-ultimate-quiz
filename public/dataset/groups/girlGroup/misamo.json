@@ -1,0 +1,30 @@
+{
+  "id": "misamo",
+  "name": "MISAMO",
+  "category": "girlGroup",
+  "parentGroupId": "twice",
+  "generation": "3",
+  "debutYear": 2023,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": "assets/groups/misamo/cover.webp",
+  "members": [
+    { "idolId": "mina", "status": "current", "roles": ["mainDancer", "vocal"] },
+    { "idolId": "sana", "status": "current", "roles": ["vocal", "dancer"] },
+    { "idolId": "momo", "status": "current", "roles": ["mainDancer", "dancer", "rapper"] }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "do-not-touch",
+        "title": "Do not touch",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Zz0lYLDMoao",
+        "isDebutSong": true
+      },
+      { "id": "marshmallow", "title": "Marshmallow", "youtubeUrl": "https://www.youtube.com/watch?v=Q0sJOoUBMi4" }
+    ],
+    "bSides": []
+  },
+  "fandomName": "ONCE",
+  "notes": null
+}

@@ -1,0 +1,29 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  background: var(--bg-pill);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.label {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.value {
+  font-weight: 700;
+  color: var(--text-primary);
+}

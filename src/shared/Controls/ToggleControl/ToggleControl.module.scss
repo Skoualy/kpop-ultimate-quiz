@@ -1,0 +1,61 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+// ─── Track ────────────────────────────────────────────────────────────────────
+.track {
+  position: relative;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+
+  &.checked {
+    background: var(--accent-purple);
+  }
+}
+
+.trackMd { width: 40px; height: 22px; }
+.trackSm { width: 32px; height: 18px; }
+
+// ─── Thumb ────────────────────────────────────────────────────────────────────
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: left 0.2s ease;
+}
+
+.thumbMd {
+  width: 16px;
+  height: 16px;
+  left: 3px;
+
+  .checked & { left: 21px; }
+}
+
+.thumbSm {
+  width: 12px;
+  height: 12px;
+  left: 3px;
+
+  .checked & { left: 17px; }
+}

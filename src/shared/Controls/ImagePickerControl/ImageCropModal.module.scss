@@ -1,0 +1,126 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  max-width: 95vw;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modalTitle    { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+.modalSubtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.closeBtn {
+  background: var(--bg-pill);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  &:hover { color: var(--text-primary); }
+}
+
+// ─── Corps ───────────────────────────────────────────────────────────────────
+.body {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+// ─── Zone de crop ─────────────────────────────────────────────────────────────
+.cropArea {
+  position: relative;
+  user-select: none;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: crosshair;
+  flex-shrink: 0;
+}
+
+.cropImg { display: block; object-fit: fill; }
+
+.overlayTop, .overlayBottom, .overlayLeft, .overlayRight {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+.overlayTop    { top: 0; left: 0; right: 0; }
+.overlayBottom { left: 0; right: 0; bottom: 0; }
+.overlayLeft   { left: 0; }
+.overlayRight  { right: 0; }
+
+// ─── Crop box ─────────────────────────────────────────────────────────────────
+.cropBox {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.thirdV { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.25); }
+.thirdH { position: absolute; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.25); }
+
+.corner {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-color: white; border-style: solid;
+}
+.cornerTL { top: 0; left: 0;    border-width: 2px 0 0 2px; }
+.cornerTR { top: 0; right: 0;   border-width: 2px 2px 0 0; }
+.cornerBL { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.cornerBR { bottom: 0; right: 0;border-width: 0 2px 2px 0; }
+
+// ─── Slider zoom vertical ─────────────────────────────────────────────────────
+.zoomPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+}
+
+.zoomLabel { font-size: 14px; }
+
+.zoomSlider {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  height: 160px;
+  cursor: pointer;
+  accent-color: var(--accent-purple);
+}
+
+.zoomValue {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
+
+// ─── Actions ─────────────────────────────────────────────────────────────────
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "jihyo",
+    "name": "Jihyo",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "assets/idols/jihyo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "nayeon",
+    "name": "Nayeon",
+    "primaryGroupId": "nayeon",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "assets/idols/nayeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jeongyeon",
+    "name": "Jeongyeon",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "assets/idols/jeongyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "momo",
+    "name": "Momo",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "assets/idols/momo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sana",
+    "name": "Sana",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "assets/idols/sana/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mina",
+    "name": "Mina",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "assets/idols/mina/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dahyun",
+    "name": "Dahyun",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "assets/idols/dahyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chaeyoung",
+    "name": "Chaeyoung",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "assets/idols/chaeyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "tzuyu",
+    "name": "Tzuyu",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "tw",
+    "portrait": "assets/idols/tzuyu/portrait.webp",
+    "notes": null
+  }
+]

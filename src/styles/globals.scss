@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ─── Thème sombre (défaut) ────────────────────────────────────────────────────
+:root {
+  // Fonds
+  --bg-base:        #13152a;
+  --bg-surface:     #1a1d35;
+  --bg-card:        #1e2138;
+  --bg-card-hover:  #242748;
+  --bg-input:       #161828;
+  --bg-pill:        rgba(255, 255, 255, 0.07);
+
+  // Bordures
+  --border:         rgba(255, 255, 255, 0.09);
+  --border-strong:  rgba(255, 255, 255, 0.16);
+
+  // Texte
+  --text-primary:   #f0f2ff;
+  --text-secondary: rgba(220, 225, 255, 0.7);
+  --text-muted:     rgba(180, 190, 230, 0.45);
+
+  // Accents
+  --accent-pink:    #e91e8c;
+  --accent-purple:  #7c3aed;
+  --accent-teal:    #06b6d4;
+
+  // Gradients
+  --gradient-primary: linear-gradient(135deg, #e91e8c 0%, #7c3aed 100%);
+  --gradient-timer:   linear-gradient(90deg, #f59e0b 0%, #ef4444 40%, #e91e8c 70%, #7c3aed 100%);
+
+  // Radius
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+
+  // Ombres
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow-pink: 0 0 20px rgba(233, 30, 140, 0.25);
+
+  // États
+  --color-success: #10b981;
+  --color-danger:  #ef4444;
+  --color-warning: #f59e0b;
+}
+
+// ─── Thème clair pastel ───────────────────────────────────────────────────────
+:root[data-theme='light'] {
+  --bg-base:        #f3effb;
+  --bg-surface:     #ece7f6;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f8f5ff;
+  --bg-input:       #ede8f8;
+  --bg-pill:        rgba(124, 58, 237, 0.07);
+  --border:         rgba(124, 58, 237, 0.13);
+  --border-strong:  rgba(124, 58, 237, 0.22);
+  --text-primary:   #1a1240;
+  --text-secondary: #5a4d7a;
+  --text-muted:     #9d8ec0;
+  --accent-pink:    #d4188a;
+  --accent-purple:  #6d28d9;
+  --accent-teal:    #0891b2;
+  --gradient-primary: linear-gradient(135deg, #d4188a 0%, #6d28d9 100%);
+  --gradient-timer:   linear-gradient(90deg, #f59e0b 0%, #ef4444 40%, #d4188a 70%, #6d28d9 100%);
+  --shadow-card:      0 2px 16px rgba(107, 70, 193, 0.1);
+  --shadow-glow-pink: 0 0 16px rgba(212, 24, 138, 0.15);
+}
+
+// ─── Reset & base ─────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+// ─── Scrollbar ────────────────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+  &:hover { background: var(--accent-purple); }
+}
+
+// ─── Focus ────────────────────────────────────────────────────────────────────
+:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+// ─── Animation d'entrée de page ───────────────────────────────────────────────
+.page-enter {
+  animation: fadeUp 0.18s ease-out both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─── Ajustements thème clair ─────────────────────────────────────────────────
+:root[data-theme='light'] {
+  .select option { background: #fff; color: #1a1240; }
+}
+
+// ─── Classes utilitaires globales (partagées entre pages) ─────────────────────
+// Ces classes sont utilisées directement dans les pages sans CSS Modules
+// pour coller au pattern du legacy et simplifier les formulaires rapides.
+
+.input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: var(--accent-purple); }
+  &::placeholder { color: var(--text-muted); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.select {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 32px 10px 12px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' viewBox='0 0 12 8'%3E%3Cpath stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: var(--accent-purple); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  option { background: var(--bg-card); color: var(--text-primary); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:active:not(:disabled) { transform: scale(0.97); }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.btn--primary {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow-pink);
+  &:hover:not(:disabled) { opacity: 0.88; }
+}
+
+.btn--secondary {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  &:hover:not(:disabled) { background: rgba(255, 255, 255, 0.12); }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+  &:hover:not(:disabled) { background: var(--bg-pill); color: var(--text-primary); }
+}
+
+.btn--danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.25);
+  &:hover:not(:disabled) { background: rgba(239, 68, 68, 0.2); }
+}
+
+.btn--sm  { padding: 6px 12px;  font-size: 12px; border-radius: var(--radius-sm); }
+.btn--lg  { padding: 13px 28px; font-size: 16px; font-weight: 700; border-radius: var(--radius-xl); }
+.btn--icon { padding: 8px; border-radius: var(--radius-sm); }
+

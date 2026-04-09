@@ -1,106 +1,34 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
-import type { GameConfig, Group, Idol, Label } from '../types';
-import { DEFAULT_GAME_CONFIG } from '../types';
-import { ALL_GROUPS, ALL_IDOLS, ALL_LABELS } from '../services/dataService';
+import { createContext, useContext, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 
-// ─── Dataset store ────────────────────────────────────────────────────────────
+type Theme = 'dark' | 'light'
 
-interface DatasetState {
-  groups: Group[];
-  idols: Idol[];
-  labels: Label[];
-  addGroup: (group: Group) => void;
-  updateGroup: (group: Group) => void;
-  addOrUpdateIdols: (idols: Idol[]) => void;
-  addOrUpdateLabels: (labels: Label[]) => void;
+interface AppContextValue {
+  theme: Theme
+  toggleTheme: () => void
 }
 
-interface AppContextValue extends DatasetState {
-  config: GameConfig;
-  setConfig: (update: Partial<GameConfig>) => void;
-  resetConfig: () => void;
-}
-
-const AppContext = createContext<AppContextValue | null>(null);
+const AppContext = createContext<AppContextValue | null>(null)
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [config, setConfigState] = useState<GameConfig>(() => {
-    try {
-      const saved = localStorage.getItem('kpopultimatequiz-config');
-      if (saved) return { ...DEFAULT_GAME_CONFIG, ...JSON.parse(saved) };
-    } catch {
-      /* ignore */
-    }
-    return DEFAULT_GAME_CONFIG;
-  });
+  const [theme, setTheme] = useState<Theme>(() => {
+    return (localStorage.getItem('kq-theme') as Theme) ?? 'dark'
+  })
 
-  const [groups, setGroups] = useState<Group[]>(ALL_GROUPS);
-  const [idols, setIdols] = useState<Idol[]>(ALL_IDOLS);
-  const [labels, setLabels] = useState<Label[]>(ALL_LABELS);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('kq-theme', theme)
+  }, [theme])
 
-  const setConfig = useCallback((update: Partial<GameConfig>) => {
-    setConfigState((prev) => {
-      const next = { ...prev, ...update };
-      try {
-        localStorage.setItem('kpopultimatequiz-config', JSON.stringify(next));
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
-  }, []);
+  function toggleTheme() {
+    setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+  }
 
-  const resetConfig = useCallback(() => {
-    setConfigState(DEFAULT_GAME_CONFIG);
-    localStorage.removeItem('kpopultimatequiz-config');
-  }, []);
-
-  const addGroup = useCallback((group: Group) => {
-    setGroups((prev) => [...prev.filter((g) => g.id !== group.id), group]);
-  }, []);
-
-  const updateGroup = useCallback((group: Group) => {
-    setGroups((prev) => prev.map((g) => (g.id === group.id ? group : g)));
-  }, []);
-
-  const addOrUpdateLabels = useCallback((newLabels: Label[]) => {
-    setLabels((prev) => {
-      const map = new Map(prev.map((l) => [l.id, l]));
-      for (const label of newLabels) map.set(label.id, label);
-      return Array.from(map.values());
-    });
-  }, []);
-
-  const addOrUpdateIdols = useCallback((newIdols: Idol[]) => {
-    setIdols((prev) => {
-      const map = new Map(prev.map((i) => [i.id, i]));
-      for (const idol of newIdols) map.set(idol.id, idol);
-      return Array.from(map.values());
-    });
-  }, []);
-
-  return (
-    <AppContext.Provider
-      value={{
-        config,
-        setConfig,
-        resetConfig,
-        groups,
-        idols,
-        labels,
-        addGroup,
-        updateGroup,
-        addOrUpdateIdols,
-        addOrUpdateLabels,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{ theme, toggleTheme }}>{children}</AppContext.Provider>
 }
 
-export function useApp(): AppContextValue {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error('useApp must be used within AppProvider');
-  return ctx;
+export function useAppContext() {
+  const ctx = useContext(AppContext)
+  if (!ctx) throw new Error('useAppContext must be used inside AppProvider')
+  return ctx
 }

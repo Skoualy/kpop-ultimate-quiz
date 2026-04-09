@@ -1,0 +1,301 @@
+// ─── Page header ─────────────────────────────────────────────────────────────
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.pageHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+.section { margin-bottom: 20px; }
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+// ─── Fields row (dans une ConfigCard) ────────────────────────────────────────
+.fieldsRow {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.fieldHint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.fieldError {
+  font-size: 11px;
+  color: var(--color-danger, #ef4444);
+  font-weight: 500;
+}
+
+.fieldDisabled {
+  .fieldLabel { opacity: 0.5; }
+  input, select { opacity: 0.45; pointer-events: none; }
+}
+
+// ─── Mode 2 joueurs ───────────────────────────────────────────────────────────
+.twoPlayerRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.twoPlayerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 200px;
+}
+
+.twoPlayerDesc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  max-width: 240px;
+}
+
+.twoPlayerFields {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+  min-width: 240px;
+}
+
+.twoPlayerField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 120px;
+}
+
+// ─── Options supplémentaires ──────────────────────────────────────────────────
+.advancedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.optionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.optionGroupLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+// ─── Section groupes ──────────────────────────────────────────────────────────
+.groupsCard {
+  width: 100%;
+}
+
+.groupSelectorHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.groupSelectorTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.groupSelectorCount {
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.groupSearchRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.groupSearch {
+  flex: 1;
+  min-width: 180px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus { border-color: var(--accent-purple); }
+}
+
+.groupFilterSelect {
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 7px 28px 7px 10px;
+  font-size: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  min-width: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' viewBox='0 0 10 6'%3E%3Cpath stroke='%238892b0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: border-color 0.15s;
+  white-space: nowrap;
+
+  &:focus { border-color: var(--accent-purple); }
+  option { background: var(--bg-card); color: var(--text-primary); }
+}
+
+.groupFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+// ─── Dual list ────────────────────────────────────────────────────────────────
+.dual {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  width: 100%;
+}
+
+.listPanel { display: flex; flex-direction: column; }
+
+.listHeader {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.list {
+  overflow-y: auto;
+  height: 240px;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 2px;
+    &:hover { background: var(--accent-purple); }
+  }
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+  user-select: none;
+  gap: 6px;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: rgba(255, 255, 255, 0.04); }
+}
+
+.listItemSelected { background: rgba(124, 58, 237, 0.12) !important; }
+.listItemName     { font-weight: 500; color: var(--text-primary); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.listItemMeta     { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.listItemMetaText { font-size: 10px; color: var(--text-muted); }
+
+.rowBadge {
+  display: inline-flex; align-items: center;
+  padding: 1px 5px; border-radius: var(--radius-pill);
+  font-size: 8px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+}
+.rowBadgeSubunit { background: rgba(251,191,36,0.2); color: #f59e0b; border: 1px solid rgba(251,191,36,0.4); }
+.rowBadgeSoloist { background: rgba(167,139,250,0.2); color: #a78bfa; border: 1px solid rgba(167,139,250,0.4); }
+
+.controls {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 5px; padding: 6px;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.ctrlBtn {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); font-size: 12px; font-weight: 700;
+  background: var(--bg-pill); border: 1px solid var(--border-strong);
+  color: var(--text-secondary); cursor: pointer; font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover { background: rgba(255, 255, 255, 0.12); color: var(--text-primary); }
+}

@@ -1,19 +1,19 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { AppProvider } from './context/AppContext';
-import { App } from './App';
-import './index.css';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { AppProvider } from '@/context/AppContext'
+import { GameProvider } from '@/context/GameContext'
+import '@/styles/globals.scss'
+import { App } from './app/App'
 
-const root = document.getElementById('root');
-if (!root) throw new Error('Root element not found');
-
-createRoot(root).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <AppProvider>
-        <App />
+        <GameProvider>
+          <App />
+        </GameProvider>
       </AppProvider>
     </BrowserRouter>
-  </StrictMode>
-);
+  </StrictMode>,
+)
