@@ -9,7 +9,7 @@ import { Card } from '@/shared/Components/Card'
 import { PaginationControl } from '@/shared/Components/PaginationControl'
 import { Badge } from '@/shared/PureComponents/Badge'
 import { CATEGORY_LABELS, GENERATIONS } from '@/shared/constants'
-import { PLACEHOLDER_PATHS, resolveGroupCover } from '@/shared/utils/placeholder'
+import { resolveGroupCover } from '@/shared/utils/placeholder'
 import type { GroupCategory, GroupStatus } from '@/shared/models'
 import type { GroupCardViewModel, GroupFilters } from './GroupsPage.types'
 import styles from './GroupsPage.module.scss'
@@ -200,23 +200,14 @@ export default function GroupsPage() {
               {paginatedGroups.map((group) => (
                 <Card key={group.id} className={styles.groupCard}>
                   <div className={styles.cardTop}>
-                    <img
-                      className={styles.cover}
-                      src={group.coverImage}
-                      alt={`Cover ${group.name}`}
-                      loading="lazy"
-                      onError={(event) => {
-                        event.currentTarget.onerror = null
-                        event.currentTarget.src = PLACEHOLDER_PATHS.groupCover
-                      }}
-                    />
+                    <img className={styles.cover} src={group.coverImage} alt={`Cover ${group.name}`} loading="lazy" />
 
                     <div>
                       <h2 className={styles.cardName}>{group.name}</h2>
                       <div className={styles.badges}>
                         <Badge variant={getCategoryBadgeVariant(group.category)}>{CATEGORY_LABELS[group.category]}</Badge>
                         <Badge variant={getStatusBadgeVariant(group.status)}>{group.status === 'active' ? 'Actif' : 'Inactif'}</Badge>
-                        <Badge variant="teal">Gen {group.generation}</Badge>
+                        <Badge variant="purple">Gen {group.generation}</Badge>
                       </div>
                     </div>
                   </div>
