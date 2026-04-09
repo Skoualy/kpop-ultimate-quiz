@@ -16,6 +16,7 @@ export * from './PureComponents/ConfigCard'
 // Components
 export * from './Components/Card'
 export * from './Components/LoadingSpinner'
+export * from './Components/PaginationControl'
 
 // Layout
 export * from './Layout'

@@ -2,8 +2,8 @@ import type { Group, GroupCategory } from '@/shared/models'
 
 const BASE = '/dataset'
 
-interface GroupIndexEntry {
-  id:       string
+export interface GroupIndexEntry {
+  id: string
   category: GroupCategory
 }
 
@@ -13,20 +13,26 @@ async function fetchJson<T>(path: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
+async function getIndex(): Promise<GroupIndexEntry[]> {
+  return fetchJson<GroupIndexEntry[]>(`${BASE}/groups/index.json`)
+}
+
 async function getAll(): Promise<Group[]> {
-  try {
-    const index = await fetchJson<GroupIndexEntry[]>(`${BASE}/groups/index.json`)
-    const results = await Promise.allSettled(
-      index.map(({ id, category }) =>
-        fetchJson<Group>(`${BASE}/groups/${category}/${id}.json`),
-      ),
-    )
-    return results
-      .filter((r): r is PromiseFulfilledResult<Group> => r.status === 'fulfilled')
-      .map((r) => r.value)
-  } catch {
-    return []
+  const index = await getIndex()
+  const results = await Promise.allSettled(
+    index.map(({ id, category }) =>
+      fetchJson<Group>(`${BASE}/groups/${category}/${id}.json`),
+    ),
+  )
+
+  const rejectedCount = results.filter((entry) => entry.status === 'rejected').length
+  if (rejectedCount === results.length && results.length > 0) {
+    throw new Error('Impossible de charger les groupes. Vérifie le dataset groups/index.json.')
   }
+
+  return results
+    .filter((entry): entry is PromiseFulfilledResult<Group> => entry.status === 'fulfilled')
+    .map((entry) => entry.value)
 }
 
 async function getById(id: string, category: GroupCategory): Promise<Group | null> {
@@ -39,7 +45,7 @@ async function getById(id: string, category: GroupCategory): Promise<Group | nul
 
 async function getSubUnits(parentId: string): Promise<Group[]> {
   const all = await getAll()
-  return all.filter((g) => g.parentGroupId === parentId)
+  return all.filter((group) => group.parentGroupId === parentId)
 }
 
-export const groupService = { getAll, getById, getSubUnits }
+export const groupService = { getAll, getById, getSubUnits, getIndex }
