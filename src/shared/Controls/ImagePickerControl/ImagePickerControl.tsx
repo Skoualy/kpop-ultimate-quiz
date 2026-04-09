@@ -73,6 +73,9 @@ export function ImagePickerControl({
           ) : (
             <>
               <img src={placeholderImage} alt="placeholder" className={styles.preview} />
+              <div className={styles.empty}>
+                <span className={styles.icon}>{emptyIcon}</span>
+              </div>
               {!disabled && <div className={styles.hoverOverlay}>✎ Changer</div>}
             </>
           )}

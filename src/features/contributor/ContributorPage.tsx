@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGroupList } from '@/shared/hooks/useGroupList'
 import { useIdolList } from '@/shared/hooks/useIdolList'
@@ -29,7 +29,7 @@ export default function ContributorPage() {
   const allGroups = groups ?? []
   const allIdols = idols ?? []
   const editGroup = groupId ? (allGroups.find((g) => g.id === groupId) ?? null) : null
-  const isEdit = !!editGroup
+  const isEdit = !!groupId
 
   const [step, setStep] = useState(0)
   const [stepErrors, setStepErrors] = useState<string[]>([])
@@ -127,6 +127,69 @@ export default function ContributorPage() {
   const effectiveCategory: GroupCategory = parentGroup?.category ?? form.category
   const isSoloist = effectiveCategory === 'femaleSoloist' || effectiveCategory === 'maleSoloist'
   const isSubunit = !!form.parentGroupId
+
+  function buildEditableMembersFromGroup() {
+    if (!editGroup) return [emptyMember('current')]
+
+    return editGroup.members.map((member) => {
+      const idol = idolMap.get(member.idolId)
+      return {
+        _uiKey: Math.random().toString(36).slice(2),
+        name: idol?.name ?? member.idolId,
+        nationality: idol?.nationality ?? 'kr',
+        roles: member.roles,
+        portrait: idol?.portrait ?? '',
+        portraitFile: null,
+        status: member.status,
+        resolutionMode: 'existing' as const,
+        existingIdolId: member.idolId,
+        generatedId: member.idolId,
+      }
+    })
+  }
+
+  const initializedEditGroupIdRef = useRef<string | null>(null)
+
+  useEffect(() => {
+    if (!groupId || !editGroup) return
+    if (initializedEditGroupIdRef.current === groupId) return
+
+    setForm({
+      id: editGroup.id,
+      name: editGroup.name,
+      category: editGroup.category,
+      parentGroupId: editGroup.parentGroupId ?? '',
+      generation: editGroup.generation as GroupForm['generation'],
+      debutYear: String(editGroup.debutYear),
+      status: editGroup.status,
+      company: editGroup.company ?? '',
+      coverImage: editGroup.coverImage ?? '',
+      coverFile: null,
+      fandomName: editGroup.fandomName ?? '',
+      notes: editGroup.notes ?? '',
+    })
+
+    setMembers(buildEditableMembersFromGroup())
+    setTitles(editGroup.discography.titles.map((song) => ({
+      _uiKey: Math.random().toString(36).slice(2),
+      id: song.id,
+      title: song.title,
+      youtubeUrl: song.youtubeUrl ?? '',
+      language: (song.language ?? '') as LanguageCode | '',
+      isDebutSong: song.isDebutSong ?? false,
+    })))
+    setBSides(editGroup.discography.bSides.map((song) => ({
+      _uiKey: Math.random().toString(36).slice(2),
+      id: song.id,
+      title: song.title,
+      youtubeUrl: song.youtubeUrl ?? '',
+      language: (song.language ?? '') as LanguageCode | '',
+      isDebutSong: false,
+    })))
+
+    setMaxStep(3)
+    initializedEditGroupIdRef.current = groupId
+  }, [groupId, editGroup, idolMap])
 
   function makeDefaultMembersForStructure(nextCategory: GroupCategory, nextParentGroupId: string): EditableMember[] {
     const nextIsSoloist = nextCategory === 'femaleSoloist' || nextCategory === 'maleSoloist'

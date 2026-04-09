@@ -1,0 +1,124 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.searchRow {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.count {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.stateCard {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-secondary);
+}
+
+.stateTitle {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.groupCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cover {
+  width: 62px;
+  height: 62px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.meta strong {
+  color: var(--text-primary);
+}
+
+.separator {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.membersCount {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
