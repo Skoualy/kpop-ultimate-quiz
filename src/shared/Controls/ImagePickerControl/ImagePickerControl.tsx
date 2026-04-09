@@ -5,6 +5,7 @@ import styles from './ImagePickerControl.module.scss'
 
 export function ImagePickerControl({
   value,
+  placeholderImage,
   onChange,
   onFileChange,
   label,
@@ -70,9 +71,10 @@ export function ImagePickerControl({
               )}
             </>
           ) : (
-            <div className={styles.empty}>
-              <span className={styles.icon}>{emptyIcon}</span>
-            </div>
+            <>
+              <img src={placeholderImage} alt="placeholder" className={styles.preview} />
+              {!disabled && <div className={styles.hoverOverlay}>✎ Changer</div>}
+            </>
           )}
         </div>
 

@@ -14,6 +14,7 @@ import type { Group, GroupCategory, GroupStatus, Generation } from '@/shared/mod
 import type { GroupForm } from './GroupInfoStep.types'
 import styles from './GroupInfoStep.module.scss'
 import { GeneratedIdInputControl } from '@/shared/Controls/GeneratedIdInputControl'
+import { resolveGroupCover } from '@/shared/utils/placeholder'
 
 export function validateGroupInfo(form: GroupForm, existingGroups: Group[], isEdit: boolean): string[] {
   const errors: string[] = []
@@ -152,10 +153,11 @@ export function GroupInfoStep({
             <ImagePickerControl
               label="Cover du groupe"
               value={form.coverImage}
+              placeholderImage={resolveGroupCover({ coverImage: form.coverImage })}
               onChange={(v) => upd('coverImage', v)}
               onFileChange={(f) => upd('coverFile', f)}
               aspectRatio="1/1"
-              hint="600×600 px · webp"
+              hint="600x600 px · webp"
               emptyIcon="🎵"
             />
           </div>

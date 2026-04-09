@@ -1,4 +1,4 @@
-import type { MemberRole, NationalityCode, MemberStatus } from '@/shared/models'
+import type { MemberRole, NationalityCode, MemberStatus, GroupCategory } from '@/shared/models'
 import { slugify } from '@/shared/utils/slug'
 
 export interface EditableMember {
@@ -41,6 +41,14 @@ export function resetMember(member: EditableMember): EditableMember {
     existingIdolId: null,
     generatedId: '',
   }
+}
+
+export function getMemberPlaceholderByCategory(groupCategory: GroupCategory): string {
+  if (groupCategory === 'boyGroup' || groupCategory === 'maleSoloist') {
+    return '/assets/placeholders/idol-male.webp'
+  }
+
+  return '/assets/placeholders/idol-female.webp'
 }
 
 export function buildUniqueIdolId(name: string, usedIds: string[]): string {

@@ -216,6 +216,9 @@ export interface Idol {
 - format recommandé : `webp`
 - dimension cible : `400x533`
 - convention recommandée : `assets/idols/{idolId}/portrait.webp`
+- si absent ou null, l'UI doit afficher un placeholder de genre :
+  - `assets/placeholders/idol-female.webp`
+  - `assets/placeholders/idol-male.webp`
 
 #### `notes`
 
@@ -625,6 +628,13 @@ Lorsqu'on rattache une idole existante à un groupe :
 - on déduit le `gender` attendu depuis `group.category`
 - on filtre en priorité les idoles ayant le même `gender`
 
+Dans le contributor, le placeholder portrait d’un membre est déterminé depuis la catégorie effective du groupe en cours :
+
+- `girlGroup` / `femaleSoloist` → `assets/placeholders/idol-female.webp`
+- `boyGroup` / `maleSoloist` → `assets/placeholders/idol-male.webp`
+
+Cette logique réutilise le même principe de dérivation que pour `gender` sur l’idole.
+
 ### Gestion des sub-units dans le contributor
 
 - le formulaire expose directement `parentGroupId`
@@ -763,6 +773,9 @@ assets/
 ├── idols/
 │   └── {idolId}/
 │       └── portrait.webp
+├── labels/
+│   └── {labelId}/
+│       └── logo.webp
 └── placeholders/
     ├── group-cover.webp
     ├── idol-female.webp
@@ -774,6 +787,36 @@ assets/
 - tous les noms de dossiers et fichiers doivent respecter les conventions de nommage définies plus haut
 - format image recommandé : `webp`
 - les placeholders sont partagés et stables
+
+### Règles de fallback visuel
+
+Lorsqu'une image réelle n'est pas disponible, l'application doit utiliser les placeholders dédiés :
+
+- **groupe** :
+  - fallback : `assets/placeholders/group-cover.webp`
+- **idole d'un groupe ou soloist féminin** :
+  - fallback : `assets/placeholders/idol-female.webp`
+- **idole d'un groupe ou soloist masculin** :
+  - fallback : `assets/placeholders/idol-male.webp`
+
+### Règles de résolution
+
+#### Cover de groupe
+
+- si `group.coverImage` est défini et valide, l'utiliser
+- sinon utiliser `assets/placeholders/group-cover.webp`
+
+#### Portrait d'idole
+
+- si `idol.portrait` est défini et valide, l'utiliser
+- sinon choisir le placeholder selon le genre dérivé de l'idole :
+  - `f` → `assets/placeholders/idol-female.webp`
+  - `m` → `assets/placeholders/idol-male.webp`
+
+### Règle contributor
+
+Dans le contributor, l'absence d'image ne bloque pas l'export.
+Le dataset peut contenir `null` pour `coverImage` ou `portrait`, et l'application se charge d'afficher le placeholder approprié côté UI.
 
 ---
 
@@ -848,6 +891,7 @@ La cible de déploiement n'est plus Electron. La cible principale est une applic
 - les fichiers groupes détaillés sont stockés dans `dataset/groups/{GroupCategory}/{groupId}.json`
 - pour une sub-unit, les rôles sont hérités du parent et doivent être présents dans le dataset final
 - pour un soloist, l'UI contributor expose `vocal` / `rapper`, mais l'export enrichit les rôles avec `mainVocal` / `mainRapper`
+- `coverImage` ou `portrait` absents ne bloquent pas l'affichage : l'UI doit utiliser les placeholders dédiés
 
 ---
 

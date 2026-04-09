@@ -7,7 +7,13 @@ import { GeneratedIdInputControl } from '@/shared/Controls/GeneratedIdInputContr
 import { ROLES, ROLE_LABELS } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
 import type { MemberRole, NationalityCode, GroupCategory } from '@/shared/models'
-import { EditableMember, emptyMember, resetMember, buildUniqueIdolId } from './MembersStep.types'
+import {
+  EditableMember,
+  emptyMember,
+  resetMember,
+  buildUniqueIdolId,
+  getMemberPlaceholderByCategory,
+} from './MembersStep.types'
 import styles from './MembersStep.module.scss'
 
 interface ExistingIdolOption {
@@ -42,6 +48,7 @@ export function MembersStep({
   isSoloist,
   isSubunit,
   parentGroup,
+  groupCategory,
   existingIdols,
   errors,
 }: MembersStepProps) {
@@ -278,6 +285,7 @@ export function MembersStep({
                 onReset={() => resetSoloist(m._uiKey)}
                 isSoloist={isSoloist}
                 isSubunit={isSubunit}
+                groupCategory={groupCategory}
               />
             ))}
         </div>
@@ -336,6 +344,7 @@ export function MembersStep({
             onReset={() => resetSoloist(m._uiKey)}
             isSoloist={isSoloist}
             isSubunit={isSubunit}
+            groupCategory={groupCategory}
           />
         ))}
       </div>
@@ -389,6 +398,7 @@ export function MembersStep({
               onReset={() => resetSoloist(m._uiKey)}
               isSoloist={isSoloist}
               isSubunit={isSubunit}
+              groupCategory={groupCategory}
               hideRemoveButton
             />
           ))}
@@ -406,6 +416,7 @@ interface MemberCardProps {
   onReset: () => void
   isSoloist: boolean
   isSubunit: boolean
+  groupCategory: GroupCategory
   hideRemoveButton?: boolean
 }
 
@@ -417,10 +428,11 @@ function MemberCard({
   onReset,
   isSoloist,
   isSubunit,
+  groupCategory,
   hideRemoveButton,
 }: MemberCardProps) {
   const isExistingMember = member.resolutionMode === 'existing' && !!member.existingIdolId
-
+  const memberPlaceholderImage = getMemberPlaceholderByCategory(groupCategory)
   const classicRoleOptions = ROLES.map((r) => ({ value: r, label: ROLE_LABELS[r] }))
   const soloistRoleOptions: { value: MemberRole; label: string }[] = [
     { value: 'vocal', label: 'Vocal' },
@@ -465,6 +477,7 @@ function MemberCard({
         <div className={styles.cardPortrait}>
           <ImagePickerControl
             value={member.portrait}
+            placeholderImage={memberPlaceholderImage}
             onChange={(v) => onUpdate({ portrait: v })}
             onFileChange={(f) => onUpdate({ portraitFile: f })}
             aspectRatio="400/533"
