@@ -1,6 +1,7 @@
 import { slugify } from '@/shared/utils/slug'
 import { EditableSong } from './SongsStep.types'
 import { LanguageCode } from '@/shared/models/enums'
+import { extractYoutubeId } from '@/shared/utils/youtube'
 
 export class SongsStepServices {
   public static emptySong(): EditableSong {
@@ -26,6 +27,11 @@ export class SongsStepServices {
 
   public static normalizeSongTitle(value: string): string {
     return value.trim().toLowerCase()
+  }
+
+  public static isYoutubeUrlValid(url: string): boolean {
+    if (!url.trim()) return false
+    return !!extractYoutubeId(url.trim())
   }
 
   public static validateSongs(titles: EditableSong[], bSides: EditableSong[]): string[] {
@@ -64,6 +70,10 @@ export class SongsStepServices {
 
       if (!title && url) {
         errors.push(`Une ${bucket} a une URL YouTube sans titre`)
+      }
+
+      if (url && !SongsStepServices.isYoutubeUrlValid(url)) {
+        errors.push(`"${title || 'Chanson sans titre'}" : URL YouTube invalide`)
       }
 
       const key = SongsStepServices.buildSongId(song.title, song.language)
