@@ -62,7 +62,15 @@ export function ImagePickerControl({
         >
           {value ? (
             <>
-              <img src={value} alt="preview" className={styles.preview} />
+              <img
+                src={value}
+                alt="preview"
+                className={styles.preview}
+                onError={(event) => {
+                  event.currentTarget.onerror = null
+                  event.currentTarget.src = placeholderImage ?? ""
+                }}
+              />
               {!disabled && <div className={styles.hoverOverlay}>✎ Changer</div>}
               {!disabled && (
                 <button className={styles.clearBtn} onClick={handleClear} title="Supprimer">

@@ -19,7 +19,9 @@ interface SongsStepProps {
 }
 
 export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isSoloist, errors }: SongsStepProps) {
-  const showBSides = !isSubunit && !isSoloist
+  void isSubunit
+  void isSoloist
+  const showBSides = true
 
   function updateSong(
     setter: React.Dispatch<React.SetStateAction<EditableSong[]>>,
@@ -207,6 +209,9 @@ function SongCard({ song, songs, onUpdate, onRemove, showDebutFlag, onDebutToggl
               placeholder="https://www.youtube.com/watch?v=..."
               onChange={(e) => onUpdate({ youtubeUrl: e.target.value })}
             />
+            {song.youtubeUrl.trim() && !SongsStepServices.isYoutubeUrlValid(song.youtubeUrl) && (
+              <span className={styles.errorInline}>URL YouTube invalide (miniature introuvable)</span>
+            )}
           </div>
         </div>
 

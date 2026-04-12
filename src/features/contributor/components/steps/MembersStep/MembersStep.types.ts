@@ -77,7 +77,11 @@ export function validateMembers(
   const errors: string[] = []
   const current = members.filter((m) => m.status === 'current')
 
-  if (current.length === 0) errors.push('Au moins un membre actuel est requis')
+  if (isSoloist) {
+    if (current.length === 0) errors.push('Au moins un membre actuel est requis')
+  } else if (current.length < 2) {
+    errors.push('Au moins deux membres actuels sont requis pour un groupe / sub-unit')
+  }
 
   for (const m of members) {
     if (!m.name.trim()) {
@@ -104,5 +108,12 @@ export function validateMembers(
     }
   }
 
+  const leaderCount = current.filter((m) => m.roles.includes('leader')).length
+  if (leaderCount > 1) errors.push('Le rôle Leader ne peut être attribué qu\'à un seul membre')
+
+  const maknaeCount = current.filter((m) => m.roles.includes('maknae')).length
+  if (maknaeCount > 1) errors.push('Le rôle Maknae ne peut être attribué qu\'à un seul membre')
+
   return [...new Set(errors)]
 }
+

@@ -7,6 +7,7 @@ export * from './Controls/FilterBadgeGroupControl'
 export * from './Controls/BadgeGroupControl'
 export * from './Controls/ImagePickerControl'
 export * from './Controls/GeneratedIdInputControl'
+export * from './Controls/DraftBundleControl'
 
 // PureComponents
 export * from './PureComponents/Badge'
