@@ -321,15 +321,19 @@ export default function ContributorPage() {
       ...(s.isDebutSong ? { isDebutSong: true } : {}),
     })
 
-    const idolsBlock = members
-      .filter((m) => m.resolutionMode === 'new')
-      .map((m) => ({
-        id: m.generatedId,
+    const normalizedMembers = [...members].sort((a, b) => {
+      const aLeader = a.roles.includes('leader') ? 0 : 1
+      const bLeader = b.roles.includes('leader') ? 0 : 1
+      return aLeader - bLeader
+    })
+
+    const idolsBlock = normalizedMembers.map((m) => ({
+        id: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
         name: m.name,
         primaryGroupId: form.id,
         gender,
         nationality: m.nationality,
-        portrait: m.portrait ? getIdolPortraitPath(m.generatedId) : null,
+        portrait: m.portrait ? getIdolPortraitPath(m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId) : null,
         notes: null,
         _file: m.portraitFile,
       }))
@@ -349,22 +353,13 @@ export default function ContributorPage() {
       status: form.status,
       company: form.company || null,
       coverImage: form.coverImage ? getGroupCoverPath(form.id) : null,
-      members: [...members]
-        .sort((a, b) => {
-          const aLeader = a.roles.includes('leader') ? 0 : 1
-          const bLeader = b.roles.includes('leader') ? 0 : 1
-          return aLeader - bLeader
-        })
-        .map((m) => ({
+      members: normalizedMembers.map((m) => ({
           idolId: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
           status: m.status,
           roles: resolveExportRoles(m, isSoloist),
         })),
       discography: {
-        titles: titles
-          .filter((s) => s.title.trim())
-          .sort((a, b) => Number(b.isDebutSong) - Number(a.isDebutSong))
-          .map(toSongEntry),
+        titles: SongsStepServices.sortSongsForExport(titles).map(toSongEntry),
         bSides: bSides.filter((s) => s.title.trim()).map(toSongEntry),
       },
       fandomName: form.fandomName || null,
@@ -387,9 +382,11 @@ export default function ContributorPage() {
       groupJson,
       groupId: form.id,
       coverFile: form.coverFile,
-      memberAssets: idolsBlock.map(({ _file, id }) => ({
+      coverSource: form.coverImage || '',
+      memberAssets: idolsBlock.map(({ _file, id, portrait }) => ({
         idolId: id,
         file: _file,
+        source: portrait ?? '',
       })),
       newLabels,
     })
@@ -400,10 +397,13 @@ export default function ContributorPage() {
     const JSZip = (await import('jszip')).default
     const zip = new JSZip()
 
+    const sortedMembers = [...members].sort((a, b) => Number(b.roles.includes('leader')) - Number(a.roles.includes('leader')))
+    const sortedTitles = SongsStepServices.sortSongsForExport(titles)
+
     const draft: ContributorDraft = {
       form,
-      members,
-      titles,
+      members: sortedMembers,
+      titles: sortedTitles,
       bSides,
       savedAt: new Date().toISOString(),
     }
@@ -427,7 +427,7 @@ export default function ContributorPage() {
       await appendAssetFromPath(`assets/groups/${form.id}/cover.webp`, form.coverImage)
     }
 
-    for (const member of members) {
+    for (const member of sortedMembers) {
       const idolId = member.existingIdolId || member.generatedId
       if (!idolId) continue
 
@@ -554,6 +554,27 @@ export default function ContributorPage() {
         })}
       </div>
 
+      {step < 3 && (
+        <div className={styles.stepNavTop}>
+          {step > 0 && (
+            <button
+              className="btn btn--ghost"
+              onClick={() => {
+                setStepErrors([])
+                setStep((s) => s - 1)
+              }}
+            >
+              ← Retour
+            </button>
+          )}
+          <div className={styles.stepNavSpacer} />
+          <button className="btn btn--secondary" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
+          <button className="btn btn--primary" onClick={tryAdvance}>
+            Suivant →
+          </button>
+        </div>
+      )}
+
       {step === 0 && (
         <GroupInfoStep
           form={form}
@@ -614,26 +635,6 @@ export default function ContributorPage() {
         />
       )}
 
-      {step < 3 && (
-        <div className={styles.stepNav}>
-          {step > 0 && (
-            <button
-              className="btn btn--ghost"
-              onClick={() => {
-                setStepErrors([])
-                setStep((s) => s - 1)
-              }}
-            >
-              ← Retour
-            </button>
-          )}
-          <div className={styles.stepNavSpacer} />
-          <button className="btn btn--secondary" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
-          <button className="btn btn--primary" onClick={tryAdvance}>
-            Suivant →
-          </button>
-        </div>
-      )}
     </PageContainer>
   )
 }

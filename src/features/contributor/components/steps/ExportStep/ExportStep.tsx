@@ -12,7 +12,8 @@ export interface ExportBundle {
   groupJson: string
   groupId: string
   coverFile: File | null
-  memberAssets: { idolId: string; file: File | null }[]
+  coverSource?: string
+  memberAssets: { idolId: string; file: File | null; source?: string }[]
   newLabels: { id: string; name: string; country: string; logo: null }[]
 }
 
@@ -65,11 +66,33 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
       // Cover groupe
       if (bundle.coverFile) {
         zip.file(`assets/groups/${bundle.groupId}/cover.webp`, bundle.coverFile)
+      } else if (bundle.coverSource) {
+        try {
+          const response = await fetch(bundle.coverSource)
+          if (response.ok) {
+            const blob = await response.blob()
+            zip.file(`assets/groups/${bundle.groupId}/cover.webp`, blob)
+          }
+        } catch {
+          // ignore missing cover source in export
+        }
       }
 
       // Portraits membres
-      for (const { idolId, file } of bundle.memberAssets) {
-        if (file) zip.file(`assets/idols/${idolId}/portrait.webp`, file)
+      for (const { idolId, file, source } of bundle.memberAssets) {
+        if (file) {
+          zip.file(`assets/idols/${idolId}/portrait.webp`, file)
+          continue
+        }
+        if (!source) continue
+        try {
+          const response = await fetch(source)
+          if (!response.ok) continue
+          const blob = await response.blob()
+          zip.file(`assets/idols/${idolId}/portrait.webp`, blob)
+        } catch {
+          // keep zip generation resilient when source cannot be fetched
+        }
       }
 
       const blob = await zip.generateAsync({ type: 'blob' })

@@ -34,6 +34,26 @@ export class SongsStepServices {
     return !!extractYoutubeId(url.trim())
   }
 
+  public static sortSongsForExport(songs: EditableSong[]): EditableSong[] {
+    return [...songs]
+      .filter((song) => song.title.trim())
+      .sort((a, b) => Number(b.isDebutSong) - Number(a.isDebutSong))
+  }
+
+  public static findCrossBucketDuplicates(primary: EditableSong[], secondary: EditableSong[]): Set<string> {
+    const secondaryTitles = new Set(
+      secondary
+        .map((song) => SongsStepServices.normalizeSongTitle(song.title))
+        .filter(Boolean),
+    )
+
+    return new Set(
+      primary
+        .filter((song) => secondaryTitles.has(SongsStepServices.normalizeSongTitle(song.title)))
+        .map((song) => song._uiKey),
+    )
+  }
+
   public static validateSongs(titles: EditableSong[], bSides: EditableSong[]): string[] {
     const errors: string[] = []
 
@@ -59,6 +79,9 @@ export class SongsStepServices {
         buckets: Set<'title track' | 'b-side'>
       }
     >()
+    const titleNames = new Set(
+      titles.map((song) => SongsStepServices.normalizeSongTitle(song.title)).filter(Boolean),
+    )
 
     for (const { song, bucket } of allSongs) {
       const title = song.title.trim()
@@ -88,6 +111,10 @@ export class SongsStepServices {
           count: 1,
           buckets: new Set([bucket]),
         })
+      }
+
+      if (bucket === 'b-side' && titleNames.has(SongsStepServices.normalizeSongTitle(song.title))) {
+        errors.push(`Doublon détecté entre titles et b-sides : "${song.title.trim().toLowerCase()}"`)
       }
     }
 
