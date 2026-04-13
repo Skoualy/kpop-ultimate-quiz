@@ -32,6 +32,7 @@ interface MembersStepProps {
   isSubunit: boolean
   parentGroup?: { id: string; name: string; members: { idolId: string; roles: MemberRole[] }[] } | null
   existingIdols: ExistingIdolOption[]
+  isEdit: boolean
   errors?: string[]
 }
 
@@ -50,6 +51,7 @@ export function MembersStep({
   parentGroup,
   groupCategory,
   existingIdols,
+  isEdit,
   errors,
 }: MembersStepProps) {
   const current = members.filter((m) => m.status === 'current')
@@ -63,7 +65,26 @@ export function MembersStep({
   const [dismissedConflicts, setDismissedConflicts] = useState<Record<string, string>>({})
 
   function update(uiKey: string, patch: Partial<EditableMember>) {
-    setMembers((prev) => prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m)))
+    setMembers((prev) => {
+      const next = prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m))
+      const updated = next.find((m) => m._uiKey === uiKey)
+      if (!updated) return next
+
+      const hasLeader = updated.roles.includes('leader')
+      const hasMaknae = updated.roles.includes('maknae')
+
+      return next.map((member) => {
+        if (member._uiKey === uiKey) return member
+
+        const roles = member.roles.filter((role) => {
+          if (role === 'leader' && hasLeader) return false
+          if (role === 'maknae' && hasMaknae) return false
+          return true
+        })
+
+        return roles.length === member.roles.length ? member : { ...member, roles }
+      })
+    })
   }
 
   function resetSoloist(uiKey: string) {
@@ -79,6 +100,22 @@ export function MembersStep({
     setMembers((prev) =>
       prev.map((m) => {
         if (m._uiKey !== uiKey) return m
+
+        if (isEdit) {
+          const reservedIds = [
+            ...existingIdols.map((i) => i.id),
+            ...prev
+              .filter((x) => x._uiKey !== uiKey)
+              .map((x) => (x.resolutionMode === 'existing' && x.existingIdolId ? x.existingIdolId : x.generatedId))
+              .filter(Boolean),
+          ]
+
+          return {
+            ...m,
+            name: value,
+            generatedId: m.generatedId || buildUniqueIdolId(value, reservedIds),
+          }
+        }
 
         const matchedExisting =
           value.trim().length > 1 ? existingIdols.find((i) => slugify(i.name) === slugify(value)) : null
@@ -215,8 +252,8 @@ export function MembersStep({
     return null
   }
 
-  const currentConflict = useMemo(() => findSectionConflict(current), [current, existingIdols, dismissedConflicts])
-  const formerConflict = useMemo(() => findSectionConflict(former), [former, existingIdols, dismissedConflicts])
+  const currentConflict = useMemo(() => (isEdit ? null : findSectionConflict(current)), [current, existingIdols, dismissedConflicts, isEdit])
+  const formerConflict = useMemo(() => (isEdit ? null : findSectionConflict(former)), [former, existingIdols, dismissedConflicts, isEdit])
 
   if (isSubunit && parentGroup) {
     const parentMemberOptions = parentGroup.members.map((m) => {
@@ -270,7 +307,7 @@ export function MembersStep({
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>
-              Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
+              Membres actuels {!isSoloist && <span className={styles.requiredNote}>(au moins deux requis)</span>}
             </div>
           </div>
 
@@ -286,6 +323,7 @@ export function MembersStep({
                 isSoloist={isSoloist}
                 isSubunit={isSubunit}
                 groupCategory={groupCategory}
+                isEdit={isEdit}
               />
             ))}
         </div>
@@ -298,7 +336,7 @@ export function MembersStep({
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionTitle}>
-            Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
+            Membres actuels {!isSoloist && <span className={styles.requiredNote}>(au moins deux requis)</span>}
           </div>
 
           {!isSoloist && (
@@ -345,6 +383,7 @@ export function MembersStep({
             isSoloist={isSoloist}
             isSubunit={isSubunit}
             groupCategory={groupCategory}
+            isEdit={isEdit}
           />
         ))}
       </div>
@@ -399,6 +438,7 @@ export function MembersStep({
               isSoloist={isSoloist}
               isSubunit={isSubunit}
               groupCategory={groupCategory}
+              isEdit={isEdit}
               hideRemoveButton
             />
           ))}
@@ -417,6 +457,7 @@ interface MemberCardProps {
   isSoloist: boolean
   isSubunit: boolean
   groupCategory: GroupCategory
+  isEdit: boolean
   hideRemoveButton?: boolean
 }
 
@@ -429,6 +470,7 @@ function MemberCard({
   isSoloist,
   isSubunit,
   groupCategory,
+  isEdit,
   hideRemoveButton,
 }: MemberCardProps) {
   const isExistingMember = member.resolutionMode === 'existing' && !!member.existingIdolId
@@ -446,18 +488,26 @@ function MemberCard({
   const contentTop = (
     <>
       <div className={styles.field}>
-        <GeneratedIdInputControl
-          label="Nom de scène"
-          required
-          value={member.name}
-          onChange={onNameChange}
-          generatedId={
-            member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId
-          }
-          exists={false}
-          placeholder="Ex: Sana"
-          disabled={lockIdentityFields}
-        />
+        {isEdit ? (
+          <>
+            <label className={styles.label}>Nom de scène <span className={styles.required}>*</span></label>
+            <input className="input" value={member.name} placeholder="Ex: Sana" onChange={(e) => onNameChange(e.target.value)} />
+            <span className={styles.requiredSmall}>ID verrouillé : {member.generatedId || member.existingIdolId || '—'}</span>
+          </>
+        ) : (
+          <GeneratedIdInputControl
+            label="Nom de scène"
+            required
+            value={member.name}
+            onChange={onNameChange}
+            generatedId={
+              member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId
+            }
+            exists={false}
+            placeholder="Ex: Sana"
+            disabled={lockIdentityFields}
+          />
+        )}
       </div>
 
       <div className={styles.field}>
@@ -465,7 +515,7 @@ function MemberCard({
         <SelectNationalityControl
           value={member.nationality}
           onChange={(v: NationalityCode) => onUpdate({ nationality: v })}
-          disabled={lockIdentityFields}
+          disabled={false}
         />
       </div>
     </>

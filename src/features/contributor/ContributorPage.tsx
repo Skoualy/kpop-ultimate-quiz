@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGroupList } from '@/shared/hooks/useGroupList'
 import { useIdolList } from '@/shared/hooks/useIdolList'
 import { PageContainer } from '@/shared/Layout'
+import { DraftBundleControl } from '@/shared/Controls/DraftBundleControl'
 
 import { GroupInfoStep, emptyGroupForm, validateGroupInfo } from './components/steps/GroupInfoStep'
 import type { GroupForm } from './components/steps/GroupInfoStep'
@@ -16,9 +17,18 @@ import type { ExportBundle } from './components/steps/ExportStep'
 import type { GroupCategory, LanguageCode, MemberRole } from '@/shared/models'
 import { GENDER_BY_CATEGORY, PARENT_ELIGIBLE_CATEGORIES } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
+import { getGroupCoverPath, getIdolPortraitPath } from '@/shared/utils/assets'
 import styles from './ContributorPage.module.scss'
 
 const TABS = ['① Infos groupe', '② Membres', '③ Musiques', '④ Export']
+
+interface ContributorDraft {
+  form: GroupForm
+  members: EditableMember[]
+  titles: EditableSong[]
+  bSides: EditableSong[]
+  savedAt: string
+}
 
 export default function ContributorPage() {
   const navigate = useNavigate()
@@ -29,7 +39,7 @@ export default function ContributorPage() {
   const allGroups = groups ?? []
   const allIdols = idols ?? []
   const editGroup = groupId ? (allGroups.find((g) => g.id === groupId) ?? null) : null
-  const isEdit = !!editGroup
+  const isEdit = !!groupId
 
   const [step, setStep] = useState(0)
   const [stepErrors, setStepErrors] = useState<string[]>([])
@@ -128,6 +138,88 @@ export default function ContributorPage() {
   const isSoloist = effectiveCategory === 'femaleSoloist' || effectiveCategory === 'maleSoloist'
   const isSubunit = !!form.parentGroupId
 
+  function buildEditableMembersFromGroup() {
+    if (!editGroup) return [emptyMember('current')]
+
+    return editGroup.members.map((member) => {
+      const idol = idolMap.get(member.idolId)
+      return {
+        _uiKey: Math.random().toString(36).slice(2),
+        name: idol?.name ?? member.idolId,
+        nationality: idol?.nationality ?? 'kr',
+        roles: member.roles,
+        portrait: idol?.portrait ?? '',
+        portraitFile: null,
+        status: member.status,
+        resolutionMode: 'existing' as const,
+        existingIdolId: member.idolId,
+        generatedId: member.idolId,
+      }
+    })
+  }
+
+  const initializedEditGroupIdRef = useRef<string | null>(null)
+
+  const previousGroupIdRef = useRef<string | undefined>(groupId)
+
+  useEffect(() => {
+    const cameFromEditRoute = !!previousGroupIdRef.current && !groupId
+    if (cameFromEditRoute) {
+      setForm(emptyGroupForm())
+      setMembers([emptyMember('current')])
+      setTitles([SongsStepServices.emptySong()])
+      setBSides([])
+      setBundle(null)
+      setStepErrors([])
+      setStep(0)
+      setMaxStep(0)
+      initializedEditGroupIdRef.current = null
+    }
+
+    previousGroupIdRef.current = groupId
+  }, [groupId])
+
+  useEffect(() => {
+    if (!groupId || !editGroup) return
+    if (initializedEditGroupIdRef.current === groupId) return
+
+    setForm({
+      id: editGroup.id,
+      name: editGroup.name,
+      category: editGroup.category,
+      parentGroupId: editGroup.parentGroupId ?? '',
+      generation: editGroup.generation as GroupForm['generation'],
+      debutYear: String(editGroup.debutYear),
+      status: editGroup.status,
+      company: editGroup.company ?? '',
+      coverImage: editGroup.coverImage ?? '',
+      coverFile: null,
+      fandomName: editGroup.fandomName ?? '',
+      notes: editGroup.notes ?? '',
+    })
+
+    setMembers(buildEditableMembersFromGroup())
+    setTitles(editGroup.discography.titles.map((song) => ({
+      _uiKey: Math.random().toString(36).slice(2),
+      id: song.id,
+      title: song.title,
+      youtubeUrl: song.youtubeUrl ?? '',
+      language: (song.language ?? '') as LanguageCode | '',
+      isDebutSong: song.isDebutSong ?? false,
+    })))
+    setBSides(editGroup.discography.bSides.map((song) => ({
+      _uiKey: Math.random().toString(36).slice(2),
+      id: song.id,
+      title: song.title,
+      youtubeUrl: song.youtubeUrl ?? '',
+      language: (song.language ?? '') as LanguageCode | '',
+      isDebutSong: false,
+    })))
+
+    setMaxStep(3)
+    initializedEditGroupIdRef.current = groupId
+  }, [groupId, editGroup, idolMap])
+
   function makeDefaultMembersForStructure(nextCategory: GroupCategory, nextParentGroupId: string): EditableMember[] {
     const nextIsSoloist = nextCategory === 'femaleSoloist' || nextCategory === 'maleSoloist'
     const nextIsSubunit = nextParentGroupId.length > 0
@@ -167,17 +259,29 @@ export default function ContributorPage() {
     return true
   }
 
-  function handleTabClick(i: number) {
-    if (i > maxStep) return
+  function validateStep(currentStep: number): string[] {
+    if (currentStep === 0) return validateGroupInfo(form, allGroups, isEdit)
+    if (currentStep === 1) return validateMembers(members, { isSoloist, isSubunit })
+    if (currentStep === 2) return SongsStepServices.validateSongs(titles, bSides)
+    return []
+  }
+
+  function handleTabClick(nextStep: number) {
+    if (nextStep === step) return
+
+    const errors = validateStep(step)
+    if (errors.length > 0) {
+      setStepErrors(errors)
+      return
+    }
+
     setStepErrors([])
-    setStep(i)
+    if (nextStep > maxStep) setMaxStep(nextStep)
+    setStep(nextStep)
   }
 
   function tryAdvance() {
-    let errors: string[] = []
-    if (step === 0) errors = validateGroupInfo(form, allGroups, isEdit)
-    if (step === 1) errors = validateMembers(members, { isSoloist, isSubunit })
-    if (step === 2) errors = SongsStepServices.validateSongs(titles, bSides)
+    const errors = validateStep(step)
 
     if (errors.length > 0) {
       setStepErrors(errors)
@@ -225,7 +329,7 @@ export default function ContributorPage() {
         primaryGroupId: form.id,
         gender,
         nationality: m.nationality,
-        portrait: m.portrait ? `assets/idols/${m.generatedId}/portrait.webp` : null,
+        portrait: m.portrait ? getIdolPortraitPath(m.generatedId) : null,
         notes: null,
         _file: m.portraitFile,
       }))
@@ -244,14 +348,23 @@ export default function ContributorPage() {
       debutYear: parseInt(form.debutYear),
       status: form.status,
       company: form.company || null,
-      coverImage: form.coverImage ? `assets/groups/${form.id}/cover.webp` : null,
-      members: members.map((m) => ({
-        idolId: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
-        status: m.status,
-        roles: resolveExportRoles(m, isSoloist),
-      })),
+      coverImage: form.coverImage ? getGroupCoverPath(form.id) : null,
+      members: [...members]
+        .sort((a, b) => {
+          const aLeader = a.roles.includes('leader') ? 0 : 1
+          const bLeader = b.roles.includes('leader') ? 0 : 1
+          return aLeader - bLeader
+        })
+        .map((m) => ({
+          idolId: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
+          status: m.status,
+          roles: resolveExportRoles(m, isSoloist),
+        })),
       discography: {
-        titles: titles.filter((s) => s.title.trim()).map(toSongEntry),
+        titles: titles
+          .filter((s) => s.title.trim())
+          .sort((a, b) => Number(b.isDebutSong) - Number(a.isDebutSong))
+          .map(toSongEntry),
         bSides: bSides.filter((s) => s.title.trim()).map(toSongEntry),
       },
       fandomName: form.fandomName || null,
@@ -282,6 +395,125 @@ export default function ContributorPage() {
     })
   }
 
+
+  async function downloadDraft() {
+    const JSZip = (await import('jszip')).default
+    const zip = new JSZip()
+
+    const draft: ContributorDraft = {
+      form,
+      members,
+      titles,
+      bSides,
+      savedAt: new Date().toISOString(),
+    }
+
+    zip.file('draft.json', JSON.stringify(draft, null, 2))
+
+    async function appendAssetFromPath(targetPath: string, sourcePath: string) {
+      try {
+        const response = await fetch(sourcePath)
+        if (!response.ok) return
+        const blob = await response.blob()
+        zip.file(targetPath, blob)
+      } catch {
+        // ignore missing external assets in draft export
+      }
+    }
+
+    if (form.coverFile) {
+      zip.file(`assets/groups/${form.id}/cover.webp`, form.coverFile)
+    } else if (form.coverImage) {
+      await appendAssetFromPath(`assets/groups/${form.id}/cover.webp`, form.coverImage)
+    }
+
+    for (const member of members) {
+      const idolId = member.existingIdolId || member.generatedId
+      if (!idolId) continue
+
+      if (member.portraitFile) {
+        zip.file(`assets/idols/${idolId}/portrait.webp`, member.portraitFile)
+      } else if (member.portrait) {
+        await appendAssetFromPath(`assets/idols/${idolId}/portrait.webp`, member.portrait)
+      }
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' })
+    const url = URL.createObjectURL(blob)
+    const a = Object.assign(document.createElement('a'), {
+      href: url,
+      download: `${form.id || 'group'}-draft.zip`,
+    })
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  async function loadDraft(file: File) {
+    try {
+      const isZip = file.name.toLowerCase().endsWith('.zip')
+
+      if (!isZip) {
+        const raw = await file.text()
+        const draft = JSON.parse(raw) as ContributorDraft
+        setForm(draft.form)
+        setMembers(draft.members)
+        setTitles(draft.titles)
+        setBSides(draft.bSides)
+        setBundle(null)
+        setStepErrors([])
+        setStep(0)
+        setMaxStep(0)
+        return
+      }
+
+      const JSZip = (await import('jszip')).default
+      const zip = await JSZip.loadAsync(file)
+      const draftFile = zip.file('draft.json')
+      if (!draftFile) throw new Error('draft.json manquant')
+
+      const draft = JSON.parse(await draftFile.async('string')) as ContributorDraft
+      const nextForm = { ...draft.form }
+      const nextMembers = [...draft.members]
+
+      const coverZipPath = `assets/groups/${nextForm.id}/cover.webp`
+      const coverZipFile = zip.file(coverZipPath)
+      if (coverZipFile) {
+        const coverBlob = await coverZipFile.async('blob')
+        const coverFile = new File([coverBlob], 'cover.webp', { type: coverBlob.type || 'image/webp' })
+        nextForm.coverFile = coverFile
+        nextForm.coverImage = URL.createObjectURL(coverBlob)
+      }
+
+      for (let i = 0; i < nextMembers.length; i += 1) {
+        const member = nextMembers[i]
+        const idolId = member.existingIdolId || member.generatedId
+        if (!idolId) continue
+
+        const portraitZipPath = `assets/idols/${idolId}/portrait.webp`
+        const portraitZipFile = zip.file(portraitZipPath)
+        if (!portraitZipFile) continue
+
+        const portraitBlob = await portraitZipFile.async('blob')
+        nextMembers[i] = {
+          ...member,
+          portraitFile: new File([portraitBlob], 'portrait.webp', { type: portraitBlob.type || 'image/webp' }),
+          portrait: URL.createObjectURL(portraitBlob),
+        }
+      }
+
+      setForm(nextForm)
+      setMembers(nextMembers)
+      setTitles(draft.titles)
+      setBSides(draft.bSides)
+      setBundle(null)
+      setStepErrors([])
+      setStep(0)
+      setMaxStep(0)
+    } catch {
+      setStepErrors(['Le fichier draft est invalide ou corrompu'])
+    }
+  }
+
   return (
     <PageContainer>
       <div className={styles.pageHeader}>
@@ -291,9 +523,12 @@ export default function ContributorPage() {
             Remplis ce formulaire pour soumettre un nouveau groupe ou corriger un groupe existant.
           </p>
         </div>
-        <button className="btn btn--ghost btn--sm" onClick={() => navigate(-1)}>
-          ← Retour
-        </button>
+        <div className={styles.headerTools}>
+          <DraftBundleControl onFileSelect={loadDraft} />
+          <button className="btn btn--ghost btn--sm" onClick={() => navigate(-1)}>
+            ← Retour
+          </button>
+        </div>
       </div>
 
       {isEdit && editGroup && (
@@ -304,17 +539,14 @@ export default function ContributorPage() {
 
       <div className={styles.tabs}>
         {TABS.map((tab, i) => {
-          const locked = i > maxStep
           const isActive = step === i
           return (
             <button
               key={tab}
-              className={[styles.tab, isActive ? styles.tabActive : '', locked ? styles.tabLocked : '']
+              className={[styles.tab, isActive ? styles.tabActive : '']
                 .filter(Boolean)
                 .join(' ')}
               onClick={() => handleTabClick(i)}
-              disabled={locked}
-              title={locked ? "Complète les étapes précédentes d'abord" : undefined}
             >
               {tab}
             </button>
@@ -352,6 +584,7 @@ export default function ContributorPage() {
               : null
           }
           existingIdols={existingIdols}
+          isEdit={isEdit}
           errors={stepErrors}
         />
       )}
@@ -377,6 +610,7 @@ export default function ContributorPage() {
           bundle={bundle}
           onGenerate={handleGenerate}
           onBack={() => setStep(2)}
+          onSaveDraft={downloadDraft}
         />
       )}
 
@@ -394,6 +628,7 @@ export default function ContributorPage() {
             </button>
           )}
           <div className={styles.stepNavSpacer} />
+          <button className="btn btn--secondary" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
           <button className="btn btn--primary" onClick={tryAdvance}>
             Suivant →
           </button>
