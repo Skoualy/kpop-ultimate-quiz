@@ -1,3 +1,26 @@
+.warningCard {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.warningTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.warningItem {
+  font-size: 12px;
+  color: #fcd34d;
+}
+
 .wrapper { display: flex; flex-direction: column; gap: 16px; }
 
 .summaryCard {

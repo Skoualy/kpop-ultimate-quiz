@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react'
 import { ContributorStep } from '@/features/contributor/components/ContributorStep'
+import { PaginationControl } from '@/shared/Components/PaginationControl'
+import { CollapsibleSection } from '@/shared/Components/CollapsibleSection'
+import { ScrollTopControl } from '@/shared/Controls/ScrollTopControl'
 import { BadgeGroupControl } from '@/shared/Controls/BadgeGroupControl'
 import { SelectNationalityControl } from '@/shared/Controls/SelectNationalityControl'
 import { ImagePickerControl } from '@/shared/Controls/ImagePickerControl'
@@ -15,6 +18,8 @@ import {
   getMemberPlaceholderByCategory,
 } from './MembersStep.types'
 import styles from './MembersStep.module.scss'
+
+const MEMBER_PAGE_SIZES = [10, 15, 20, 25, 30]
 
 interface ExistingIdolOption {
   id: string
@@ -32,6 +37,7 @@ interface MembersStepProps {
   isSubunit: boolean
   parentGroup?: { id: string; name: string; members: { idolId: string; roles: MemberRole[] }[] } | null
   existingIdols: ExistingIdolOption[]
+  isEdit: boolean
   errors?: string[]
 }
 
@@ -50,6 +56,7 @@ export function MembersStep({
   parentGroup,
   groupCategory,
   existingIdols,
+  isEdit,
   errors,
 }: MembersStepProps) {
   const current = members.filter((m) => m.status === 'current')
@@ -61,9 +68,32 @@ export function MembersStep({
   )
 
   const [dismissedConflicts, setDismissedConflicts] = useState<Record<string, string>>({})
+  const [search, setSearch] = useState('')
+  const [pageSize, setPageSize] = useState(10)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [formerPage, setFormerPage] = useState(1)
 
   function update(uiKey: string, patch: Partial<EditableMember>) {
-    setMembers((prev) => prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m)))
+    setMembers((prev) => {
+      const next = prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m))
+      const updated = next.find((m) => m._uiKey === uiKey)
+      if (!updated) return next
+
+      const hasLeader = updated.roles.includes('leader')
+      const hasMaknae = updated.roles.includes('maknae')
+
+      return next.map((member) => {
+        if (member._uiKey === uiKey) return member
+
+        const roles = member.roles.filter((role) => {
+          if (role === 'leader' && hasLeader) return false
+          if (role === 'maknae' && hasMaknae) return false
+          return true
+        })
+
+        return roles.length === member.roles.length ? member : { ...member, roles }
+      })
+    })
   }
 
   function resetSoloist(uiKey: string) {
@@ -79,6 +109,22 @@ export function MembersStep({
     setMembers((prev) =>
       prev.map((m) => {
         if (m._uiKey !== uiKey) return m
+
+        if (isEdit) {
+          const reservedIds = [
+            ...existingIdols.map((i) => i.id),
+            ...prev
+              .filter((x) => x._uiKey !== uiKey)
+              .map((x) => (x.resolutionMode === 'existing' && x.existingIdolId ? x.existingIdolId : x.generatedId))
+              .filter(Boolean),
+          ]
+
+          return {
+            ...m,
+            name: value,
+            generatedId: m.generatedId || buildUniqueIdolId(value, reservedIds),
+          }
+        }
 
         const matchedExisting =
           value.trim().length > 1 ? existingIdols.find((i) => slugify(i.name) === slugify(value)) : null
@@ -134,6 +180,26 @@ export function MembersStep({
 
   function addMember(status: 'current' | 'former') {
     setMembers((prev) => [emptyMember(status), ...prev])
+  }
+
+  function moveMember(uiKey: string, direction: 'up' | 'down') {
+    setMembers((prev) => {
+      const index = prev.findIndex((member) => member._uiKey === uiKey)
+      if (index < 0) return prev
+      const target = direction === 'up' ? index - 1 : index + 1
+      if (target < 0 || target >= prev.length) return prev
+      const sameStatus = prev[target].status === prev[index].status
+      if (!sameStatus) return prev
+
+      const next = [...prev]
+      const [item] = next.splice(index, 1)
+      next.splice(target, 0, item)
+      return next
+    })
+  }
+
+  function transferMemberStatus(uiKey: string, nextStatus: 'current' | 'former') {
+    setMembers((prev) => prev.map((member) => (member._uiKey === uiKey ? { ...member, status: nextStatus } : member)))
   }
 
   function resolveConflictAsExisting(conflict: MemberConflict) {
@@ -215,8 +281,14 @@ export function MembersStep({
     return null
   }
 
-  const currentConflict = useMemo(() => findSectionConflict(current), [current, existingIdols, dismissedConflicts])
-  const formerConflict = useMemo(() => findSectionConflict(former), [former, existingIdols, dismissedConflicts])
+  const currentConflict = useMemo(() => (isEdit ? null : findSectionConflict(current)), [current, existingIdols, dismissedConflicts, isEdit])
+  const formerConflict = useMemo(() => (isEdit ? null : findSectionConflict(former)), [former, existingIdols, dismissedConflicts, isEdit])
+  const memberHint = '💡 Utilise les rôles pour améliorer la qualité du quiz (leader/maknae uniques).'
+  const query = search.trim().toLowerCase()
+  const filteredCurrent = current.filter((member) => !query || member.name.toLowerCase().includes(query))
+  const filteredFormer = former.filter((member) => !query || member.name.toLowerCase().includes(query))
+  const pagedCurrent = filteredCurrent.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  const pagedFormer = filteredFormer.slice((formerPage - 1) * pageSize, formerPage * pageSize)
 
   if (isSubunit && parentGroup) {
     const parentMemberOptions = parentGroup.members.map((m) => {
@@ -270,7 +342,7 @@ export function MembersStep({
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>
-              Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
+              Membres actuels {!isSoloist && <span className={styles.requiredNote}>(au moins deux requis)</span>}
             </div>
           </div>
 
@@ -286,6 +358,7 @@ export function MembersStep({
                 isSoloist={isSoloist}
                 isSubunit={isSubunit}
                 groupCategory={groupCategory}
+                isEdit={isEdit}
               />
             ))}
         </div>
@@ -295,20 +368,20 @@ export function MembersStep({
 
   return (
     <ContributorStep errors={errors}>
-      <div className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionTitle}>
-            Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
-          </div>
+      <div className={styles.topToolbar}>
+        <input
+          className="input"
+          value={search}
+          placeholder="Rechercher un membre..."
+          onChange={(e) => {
+            setSearch(e.target.value)
+            setCurrentPage(1)
+            setFormerPage(1)
+          }}
+        />
+      </div>
 
-          {!isSoloist && (
-            <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>
-              + Ajouter
-            </button>
-          )}
-        </div>
-
-        {currentConflict && (
+      {currentConflict && (
           <div className={styles.reuseBox}>
             <span>
               L&apos;idol <strong>{currentConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?
@@ -334,7 +407,13 @@ export function MembersStep({
           </div>
         )}
 
-        {current.map((m) => (
+      <CollapsibleSection
+        title="Membres actuels"
+        subtitle={!isSoloist ? 'au moins deux requis' : undefined}
+        actions={!isSoloist ? <button type="button" className="btn btn--secondary btn--sm" onClick={(e) => { e.stopPropagation(); addMember('current') }}>+ Ajouter</button> : undefined}
+      >
+        <div className={styles.hint}>{memberHint}</div>
+        {pagedCurrent.map((m) => (
           <MemberCard
             key={m._uiKey}
             member={m}
@@ -345,22 +424,35 @@ export function MembersStep({
             isSoloist={isSoloist}
             isSubunit={isSubunit}
             groupCategory={groupCategory}
+            isEdit={isEdit}
+            onMoveUp={() => moveMember(m._uiKey, 'up')}
+            onMoveDown={() => moveMember(m._uiKey, 'down')}
+            onSwitchStatus={showFormer ? () => transferMemberStatus(m._uiKey, 'former') : undefined}
           />
         ))}
-      </div>
+        {filteredCurrent.length > 10 && (
+          <PaginationControl
+            currentPage={currentPage}
+            totalItems={filteredCurrent.length}
+            pageSize={pageSize}
+            pageSizeOptions={MEMBER_PAGE_SIZES}
+            onPageChange={setCurrentPage}
+            onPageSizeChange={(size) => {
+              setPageSize(size)
+              setCurrentPage(1)
+              setFormerPage(1)
+            }}
+          />
+        )}
+      </CollapsibleSection>
 
       {showFormer && (
-        <div className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              Anciens membres{' '}
-              <span style={{ fontWeight: 400, fontSize: 13, color: 'var(--text-muted)' }}>(optionnel)</span>
-            </div>
-
-            <button type="button" className="btn btn--ghost btn--sm" onClick={() => addMember('former')}>
-              + Ajouter
-            </button>
-          </div>
+        <CollapsibleSection
+          title="Anciens membres"
+          subtitle="optionnel"
+          actions={<button type="button" className="btn btn--ghost btn--sm" onClick={(e) => { e.stopPropagation(); addMember('former') }}>+ Ajouter</button>}
+        >
+          <div className={styles.hint}>💡 Déplace rapidement un membre entre sections avec le bouton ⇄.</div>
 
           {formerConflict && (
             <div className={styles.reuseBox}>
@@ -388,7 +480,7 @@ export function MembersStep({
             </div>
           )}
 
-          {former.map((m) => (
+          {pagedFormer.map((m) => (
             <MemberCard
               key={m._uiKey}
               member={m}
@@ -399,11 +491,30 @@ export function MembersStep({
               isSoloist={isSoloist}
               isSubunit={isSubunit}
               groupCategory={groupCategory}
+              isEdit={isEdit}
               hideRemoveButton
+              onMoveUp={() => moveMember(m._uiKey, 'up')}
+              onMoveDown={() => moveMember(m._uiKey, 'down')}
+              onSwitchStatus={() => transferMemberStatus(m._uiKey, 'current')}
             />
           ))}
-        </div>
+          {filteredFormer.length > 10 && (
+            <PaginationControl
+              currentPage={formerPage}
+              totalItems={filteredFormer.length}
+              pageSize={pageSize}
+              pageSizeOptions={MEMBER_PAGE_SIZES}
+              onPageChange={setFormerPage}
+              onPageSizeChange={(size) => {
+                setPageSize(size)
+                setCurrentPage(1)
+                setFormerPage(1)
+              }}
+            />
+          )}
+        </CollapsibleSection>
       )}
+      <ScrollTopControl />
     </ContributorStep>
   )
 }
@@ -417,7 +528,11 @@ interface MemberCardProps {
   isSoloist: boolean
   isSubunit: boolean
   groupCategory: GroupCategory
+  isEdit: boolean
   hideRemoveButton?: boolean
+  onMoveUp?: () => void
+  onMoveDown?: () => void
+  onSwitchStatus?: () => void
 }
 
 function MemberCard({
@@ -429,7 +544,11 @@ function MemberCard({
   isSoloist,
   isSubunit,
   groupCategory,
+  isEdit,
   hideRemoveButton,
+  onMoveUp,
+  onMoveDown,
+  onSwitchStatus,
 }: MemberCardProps) {
   const isExistingMember = member.resolutionMode === 'existing' && !!member.existingIdolId
   const memberPlaceholderImage = getMemberPlaceholderByCategory(groupCategory)
@@ -446,18 +565,26 @@ function MemberCard({
   const contentTop = (
     <>
       <div className={styles.field}>
-        <GeneratedIdInputControl
-          label="Nom de scène"
-          required
-          value={member.name}
-          onChange={onNameChange}
-          generatedId={
-            member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId
-          }
-          exists={false}
-          placeholder="Ex: Sana"
-          disabled={lockIdentityFields}
-        />
+        {isEdit ? (
+          <>
+            <label className={styles.label}>Nom de scène <span className={styles.required}>*</span></label>
+            <input className="input" value={member.name} placeholder="Ex: Sana" onChange={(e) => onNameChange(e.target.value)} />
+            <span className={styles.requiredSmall}>ID verrouillé : {member.generatedId || member.existingIdolId || '—'}</span>
+          </>
+        ) : (
+          <GeneratedIdInputControl
+            label="Nom de scène"
+            required
+            value={member.name}
+            onChange={onNameChange}
+            generatedId={
+              member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId
+            }
+            exists={false}
+            placeholder="Ex: Sana"
+            disabled={lockIdentityFields}
+          />
+        )}
       </div>
 
       <div className={styles.field}>
@@ -465,7 +592,7 @@ function MemberCard({
         <SelectNationalityControl
           value={member.nationality}
           onChange={(v: NationalityCode) => onUpdate({ nationality: v })}
-          disabled={lockIdentityFields}
+          disabled={false}
         />
       </div>
     </>
@@ -511,6 +638,7 @@ function MemberCard({
                 isMultiselect
                 size="sm"
               />
+              <span className={styles.hint}>💡 Un seul membre peut être Leader ou Maknae.</span>
             </div>
           )}
         </div>
@@ -523,6 +651,9 @@ function MemberCard({
           </div>
         ) : !hideRemoveButton ? (
           <div className={styles.cardDeleteRow}>
+            {onMoveUp && <button type="button" className="btn btn--ghost btn--sm" onClick={onMoveUp}>↑</button>}
+            {onMoveDown && <button type="button" className="btn btn--ghost btn--sm" onClick={onMoveDown}>↓</button>}
+            {onSwitchStatus && <button type="button" className="btn btn--secondary btn--sm" onClick={onSwitchStatus}>⇄</button>}
             <button type="button" className="btn btn--danger btn--sm" onClick={onRemove}>
               🗑 Supprimer
             </button>

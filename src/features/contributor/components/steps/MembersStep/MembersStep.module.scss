@@ -5,6 +5,10 @@
   margin-bottom: 20px;
 }
 
+.topToolbar {
+  margin-bottom: 12px;
+}
+
 .sectionHeader {
   display: flex;
   align-items: center;
@@ -19,6 +23,15 @@
   font-size: 11px;
   color: var(--accent-pink);
   font-weight: 400;
+}
+
+.hint {
+  font-size: 12px;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.22);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
 }
 
 // ─── MemberCard ───────────────────────────────────────────────────────────────
@@ -54,6 +67,8 @@
   display: flex;
   justify-content: flex-end;
   min-width: 130px;
+  gap: 8px;
+  align-items: center;
 }
 
 // ─── Champ ────────────────────────────────────────────────────────────────────

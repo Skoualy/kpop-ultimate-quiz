@@ -3,7 +3,7 @@ import { ContributorStep } from '@/features/contributor/components/ContributorSt
 import type { EditableMember } from '../MembersStep/MembersStep.types'
 import type { EditableSong } from '../SongsStep/SongsStep.types'
 import type { GroupForm } from '../GroupInfoStep/GroupInfoStep.types'
-import { NATIONALITY_LABELS, ROLE_LABELS, GENERATION_LABELS } from '@/shared/constants'
+import { NATIONALITY_LABELS, ROLE_LABELS, GENERATION_LABELS, ROLES } from '@/shared/constants'
 import type { MemberRole, NationalityCode, Generation } from '@/shared/models'
 import styles from './ExportStep.module.scss'
 import JSZip from 'jszip'
@@ -12,7 +12,8 @@ export interface ExportBundle {
   groupJson: string
   groupId: string
   coverFile: File | null
-  memberAssets: { idolId: string; file: File | null }[]
+  coverSource?: string
+  memberAssets: { idolId: string; file: File | null; source?: string }[]
   newLabels: { id: string; name: string; country: string; logo: null }[]
 }
 
@@ -24,6 +25,7 @@ interface ExportStepProps {
   bundle: ExportBundle | null
   onGenerate: () => void
   onBack: () => void
+  onSaveDraft: () => void
 }
 
 export async function readJsonFromZip(zip: JSZip, path: string) {
@@ -33,7 +35,7 @@ export async function readJsonFromZip(zip: JSZip, path: string) {
   return JSON.parse(text)
 }
 
-export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, onBack }: ExportStepProps) {
+export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, onBack, onSaveDraft }: ExportStepProps) {
   const [downloading, setDownloading] = useState(false)
 
   async function handleDownloadZip() {
@@ -64,11 +66,33 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
       // Cover groupe
       if (bundle.coverFile) {
         zip.file(`assets/groups/${bundle.groupId}/cover.webp`, bundle.coverFile)
+      } else if (bundle.coverSource) {
+        try {
+          const response = await fetch(bundle.coverSource)
+          if (response.ok) {
+            const blob = await response.blob()
+            zip.file(`assets/groups/${bundle.groupId}/cover.webp`, blob)
+          }
+        } catch {
+          // ignore missing cover source in export
+        }
       }
 
       // Portraits membres
-      for (const { idolId, file } of bundle.memberAssets) {
-        if (file) zip.file(`assets/idols/${idolId}/portrait.webp`, file)
+      for (const { idolId, file, source } of bundle.memberAssets) {
+        if (file) {
+          zip.file(`assets/idols/${idolId}/portrait.webp`, file)
+          continue
+        }
+        if (!source) continue
+        try {
+          const response = await fetch(source)
+          if (!response.ok) continue
+          const blob = await response.blob()
+          zip.file(`assets/idols/${idolId}/portrait.webp`, blob)
+        } catch {
+          // keep zip generation resilient when source cannot be fetched
+        }
       }
 
       const blob = await zip.generateAsync({ type: 'blob' })
@@ -87,10 +111,26 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
 
   const current = members.filter((m) => m.status === 'current')
   const former = members.filter((m) => m.status === 'former')
+  const debutSongsCount = titles.filter((song) => song.title.trim() && song.isDebutSong).length
+  const rolesNotAssigned = ROLES.filter((role) => !members.some((member) => member.roles.includes(role)))
+
+  const warningMessages: string[] = []
+  if (!form.fandomName.trim()) warningMessages.push('Nom de fandom non renseigné')
+  if (rolesNotAssigned.length > 0) warningMessages.push(`Rôles non attribués : ${rolesNotAssigned.map((role) => ROLE_LABELS[role]).join(', ')}`)
+  if (debutSongsCount === 0) warningMessages.push('Aucune chanson de début n\'a été attribuée')
 
   return (
     <ContributorStep>
       <div className={styles.wrapper}>
+        {warningMessages.length > 0 && (
+          <div className={styles.warningCard}>
+            <div className={styles.warningTitle}>⚠ Vérifications recommandées</div>
+            {warningMessages.map((message) => (
+              <div key={message} className={styles.warningItem}>• {message}</div>
+            ))}
+          </div>
+        )}
+
         {/* ── Résumé scrollable ── */}
         <div className={styles.summaryCard}>
           <div className={styles.summaryTitle}>Vérifier avant export</div>
@@ -109,7 +149,7 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
               {form.fandomName && <Row k="Fandom" v={form.fandomName} />}
               <div className={styles.summaryRow}>
                 <span className={styles.summaryKey}>Cover</span>
-                <span className={styles.summaryVal}>{form.coverImage ? '✅ Image prête' : '⚠️ Aucune image'}</span>
+                <span className={styles.summaryVal}>{form.coverImage ? '✅ Image déclarée (existence à vérifier)' : '⚠️ Aucune image'}</span>
               </div>
             </div>
 
@@ -127,7 +167,7 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
                     {m.roles.length > 0 && ` · ${m.roles.map((r) => ROLE_LABELS[r as MemberRole]).join(', ')}`}
                     {m.status === 'former' && ' · ancien'}
                   </span>
-                  {m.portrait && <span className={styles.memberPortrait}>🖼 portrait</span>}
+                  <span className={styles.memberPortrait}>{m.portrait ? '🖼 portrait déclaré' : '⚠️ portrait manquant'}</span>
                 </div>
               ))}
             </div>
@@ -174,6 +214,9 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
             </button>
             <button className="btn btn--ghost" onClick={onBack}>
               ✏️ Modifier
+            </button>
+            <button className="btn btn--secondary" onClick={onSaveDraft}>
+              💾 Sauvegarder en brouillon
             </button>
           </div>
         </div>
