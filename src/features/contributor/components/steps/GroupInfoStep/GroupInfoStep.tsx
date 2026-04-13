@@ -153,7 +153,7 @@ export function GroupInfoStep({
             <ImagePickerControl
               label="Cover du groupe"
               value={form.coverImage}
-              placeholderImage={resolveGroupCover({ coverImage: form.coverImage })}
+              placeholderImage={resolveGroupCover({ id: form.id, coverImage: form.coverImage })}
               onChange={(v) => upd('coverImage', v)}
               onFileChange={(f) => upd('coverFile', f)}
               aspectRatio="1/1"
@@ -233,14 +233,14 @@ export function GroupInfoStep({
               </div>
 
               <div className={styles.field}>
-                <label className={styles.label} style={{ opacity: isSoloist ? 0.45 : 1 }}>
+                <label className={styles.label} style={{ opacity: isEdit || isSoloist ? 0.45 : 1 }}>
                   Sub-unit de <span className={styles.hint}>— laisser vide si indépendant</span>
                 </label>
                 <select
                   className="select"
                   value={isSoloist ? '' : form.parentGroupId}
                   disabled={isEdit || isSoloist}
-                  style={{ opacity: isSoloist ? 0.4 : 1 }}
+                  style={{ opacity: isEdit || isSoloist ? 0.4 : 1 }}
                   onChange={(e) => applyParentGroupChange(e.target.value)}
                 >
                   <option value="">— Aucun (groupe indépendant)</option>

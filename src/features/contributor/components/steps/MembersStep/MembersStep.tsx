@@ -307,7 +307,7 @@ export function MembersStep({
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>
-              Membres actuels <span className={styles.requiredNote}>(au moins deux requis)</span>
+              Membres actuels {!isSoloist && <span className={styles.requiredNote}>(au moins deux requis)</span>}
             </div>
           </div>
 
@@ -336,7 +336,7 @@ export function MembersStep({
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionTitle}>
-            Membres actuels <span className={styles.requiredNote}>(au moins deux requis)</span>
+            Membres actuels {!isSoloist && <span className={styles.requiredNote}>(au moins deux requis)</span>}
           </div>
 
           {!isSoloist && (

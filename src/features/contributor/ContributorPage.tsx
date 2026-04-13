@@ -17,6 +17,7 @@ import type { ExportBundle } from './components/steps/ExportStep'
 import type { GroupCategory, LanguageCode, MemberRole } from '@/shared/models'
 import { GENDER_BY_CATEGORY, PARENT_ELIGIBLE_CATEGORIES } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
+import { getGroupCoverPath, getIdolPortraitPath } from '@/shared/utils/assets'
 import styles from './ContributorPage.module.scss'
 
 const TABS = ['① Infos groupe', '② Membres', '③ Musiques', '④ Export']
@@ -158,6 +159,25 @@ export default function ContributorPage() {
   }
 
   const initializedEditGroupIdRef = useRef<string | null>(null)
+
+  const previousGroupIdRef = useRef<string | undefined>(groupId)
+
+  useEffect(() => {
+    const cameFromEditRoute = !!previousGroupIdRef.current && !groupId
+    if (cameFromEditRoute) {
+      setForm(emptyGroupForm())
+      setMembers([emptyMember('current')])
+      setTitles([SongsStepServices.emptySong()])
+      setBSides([])
+      setBundle(null)
+      setStepErrors([])
+      setStep(0)
+      setMaxStep(0)
+      initializedEditGroupIdRef.current = null
+    }
+
+    previousGroupIdRef.current = groupId
+  }, [groupId])
 
   useEffect(() => {
     if (!groupId || !editGroup) return
@@ -309,7 +329,7 @@ export default function ContributorPage() {
         primaryGroupId: form.id,
         gender,
         nationality: m.nationality,
-        portrait: m.portrait ? `assets/idols/${m.generatedId}/portrait.webp` : null,
+        portrait: m.portrait ? getIdolPortraitPath(m.generatedId) : null,
         notes: null,
         _file: m.portraitFile,
       }))
@@ -328,7 +348,7 @@ export default function ContributorPage() {
       debutYear: parseInt(form.debutYear),
       status: form.status,
       company: form.company || null,
-      coverImage: form.coverImage ? `assets/groups/${form.id}/cover.webp` : null,
+      coverImage: form.coverImage ? getGroupCoverPath(form.id) : null,
       members: [...members]
         .sort((a, b) => {
           const aLeader = a.roles.includes('leader') ? 0 : 1
@@ -376,7 +396,10 @@ export default function ContributorPage() {
   }
 
 
-  function downloadDraft() {
+  async function downloadDraft() {
+    const JSZip = (await import('jszip')).default
+    const zip = new JSZip()
+
     const draft: ContributorDraft = {
       form,
       members,
@@ -385,11 +408,41 @@ export default function ContributorPage() {
       savedAt: new Date().toISOString(),
     }
 
-    const blob = new Blob([JSON.stringify(draft, null, 2)], { type: 'application/json' })
+    zip.file('draft.json', JSON.stringify(draft, null, 2))
+
+    async function appendAssetFromPath(targetPath: string, sourcePath: string) {
+      try {
+        const response = await fetch(sourcePath)
+        if (!response.ok) return
+        const blob = await response.blob()
+        zip.file(targetPath, blob)
+      } catch {
+        // ignore missing external assets in draft export
+      }
+    }
+
+    if (form.coverFile) {
+      zip.file(`assets/groups/${form.id}/cover.webp`, form.coverFile)
+    } else if (form.coverImage) {
+      await appendAssetFromPath(`assets/groups/${form.id}/cover.webp`, form.coverImage)
+    }
+
+    for (const member of members) {
+      const idolId = member.existingIdolId || member.generatedId
+      if (!idolId) continue
+
+      if (member.portraitFile) {
+        zip.file(`assets/idols/${idolId}/portrait.webp`, member.portraitFile)
+      } else if (member.portrait) {
+        await appendAssetFromPath(`assets/idols/${idolId}/portrait.webp`, member.portrait)
+      }
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' })
     const url = URL.createObjectURL(blob)
     const a = Object.assign(document.createElement('a'), {
       href: url,
-      download: `${form.id || 'group'}-draft.json`,
+      download: `${form.id || 'group'}-draft.zip`,
     })
     a.click()
     URL.revokeObjectURL(url)
@@ -397,11 +450,59 @@ export default function ContributorPage() {
 
   async function loadDraft(file: File) {
     try {
-      const raw = await file.text()
-      const draft = JSON.parse(raw) as ContributorDraft
+      const isZip = file.name.toLowerCase().endsWith('.zip')
 
-      setForm(draft.form)
-      setMembers(draft.members)
+      if (!isZip) {
+        const raw = await file.text()
+        const draft = JSON.parse(raw) as ContributorDraft
+        setForm(draft.form)
+        setMembers(draft.members)
+        setTitles(draft.titles)
+        setBSides(draft.bSides)
+        setBundle(null)
+        setStepErrors([])
+        setStep(0)
+        setMaxStep(0)
+        return
+      }
+
+      const JSZip = (await import('jszip')).default
+      const zip = await JSZip.loadAsync(file)
+      const draftFile = zip.file('draft.json')
+      if (!draftFile) throw new Error('draft.json manquant')
+
+      const draft = JSON.parse(await draftFile.async('string')) as ContributorDraft
+      const nextForm = { ...draft.form }
+      const nextMembers = [...draft.members]
+
+      const coverZipPath = `assets/groups/${nextForm.id}/cover.webp`
+      const coverZipFile = zip.file(coverZipPath)
+      if (coverZipFile) {
+        const coverBlob = await coverZipFile.async('blob')
+        const coverFile = new File([coverBlob], 'cover.webp', { type: coverBlob.type || 'image/webp' })
+        nextForm.coverFile = coverFile
+        nextForm.coverImage = URL.createObjectURL(coverBlob)
+      }
+
+      for (let i = 0; i < nextMembers.length; i += 1) {
+        const member = nextMembers[i]
+        const idolId = member.existingIdolId || member.generatedId
+        if (!idolId) continue
+
+        const portraitZipPath = `assets/idols/${idolId}/portrait.webp`
+        const portraitZipFile = zip.file(portraitZipPath)
+        if (!portraitZipFile) continue
+
+        const portraitBlob = await portraitZipFile.async('blob')
+        nextMembers[i] = {
+          ...member,
+          portraitFile: new File([portraitBlob], 'portrait.webp', { type: portraitBlob.type || 'image/webp' }),
+          portrait: URL.createObjectURL(portraitBlob),
+        }
+      }
+
+      setForm(nextForm)
+      setMembers(nextMembers)
       setTitles(draft.titles)
       setBSides(draft.bSides)
       setBundle(null)

@@ -1,5 +1,6 @@
 import type { MemberRole, NationalityCode, MemberStatus, GroupCategory } from '@/shared/models'
 import { slugify } from '@/shared/utils/slug'
+import { getIdolPlaceholderPath } from '@/shared/utils/assets'
 
 export interface EditableMember {
   _uiKey: string
@@ -45,10 +46,10 @@ export function resetMember(member: EditableMember): EditableMember {
 
 export function getMemberPlaceholderByCategory(groupCategory: GroupCategory): string {
   if (groupCategory === 'boyGroup' || groupCategory === 'maleSoloist') {
-    return '/assets/placeholders/idol-male.webp'
+    return getIdolPlaceholderPath('m')
   }
 
-  return '/assets/placeholders/idol-female.webp'
+  return getIdolPlaceholderPath('f')
 }
 
 export function buildUniqueIdolId(name: string, usedIds: string[]): string {

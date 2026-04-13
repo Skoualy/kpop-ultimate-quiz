@@ -11,7 +11,7 @@ export function DraftBundleControl({ onFileSelect, className = '' }: DraftBundle
         ref={inputRef}
         className={styles.input}
         type="file"
-        accept="application/json"
+        accept="application/json,.zip,application/zip"
         onChange={(event) => {
           const file = event.target.files?.[0]
           if (!file) return

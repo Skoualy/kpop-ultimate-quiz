@@ -99,6 +99,15 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
   return (
     <ContributorStep>
       <div className={styles.wrapper}>
+        {warningMessages.length > 0 && (
+          <div className={styles.warningCard}>
+            <div className={styles.warningTitle}>⚠ Vérifications recommandées</div>
+            {warningMessages.map((message) => (
+              <div key={message} className={styles.warningItem}>• {message}</div>
+            ))}
+          </div>
+        )}
+
         {/* ── Résumé scrollable ── */}
         <div className={styles.summaryCard}>
           <div className={styles.summaryTitle}>Vérifier avant export</div>
