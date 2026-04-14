@@ -61,6 +61,39 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
     setter((prev) => [SongsStepServices.emptySong(), ...prev])
   }
 
+  function moveSong(
+    setter: React.Dispatch<React.SetStateAction<EditableSong[]>>,
+    key: string,
+    direction: 'up' | 'down',
+  ) {
+    setter((prev) => {
+      const index = prev.findIndex((song) => song._uiKey === key)
+      if (index < 0) return prev
+      const target = direction === 'up' ? index - 1 : index + 1
+      if (target < 0 || target >= prev.length) return prev
+
+      const next = [...prev]
+      const [item] = next.splice(index, 1)
+      next.splice(target, 0, item)
+      return next
+    })
+  }
+
+  function transferSong(key: string, from: 'titles' | 'bsides') {
+    if (from === 'titles') {
+      const song = titles.find((item) => item._uiKey === key)
+      if (!song) return
+      setTitles((prev) => prev.filter((item) => item._uiKey !== key))
+      setBSides((prev) => [{ ...song, isDebutSong: false }, ...prev])
+      return
+    }
+
+    const song = bSides.find((item) => item._uiKey === key)
+    if (!song) return
+    setBSides((prev) => prev.filter((item) => item._uiKey !== key))
+    setTitles((prev) => [{ ...song }, ...prev])
+  }
+
   function handleDebutToggle(key: string, checked: boolean) {
     setTitles((prev) =>
       prev.map((song) => ({

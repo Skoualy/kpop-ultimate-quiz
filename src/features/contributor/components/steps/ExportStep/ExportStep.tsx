@@ -195,6 +195,14 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
               ))}
             </div>
           </div>
+          {warningMessages.length > 0 && (
+            <div className={styles.summarySection}>
+              <div className={styles.summarySectionTitle}>⚠ Vérifications recommandées</div>
+              {warningMessages.map((message) => (
+                <div key={message} className={styles.songMeta}>• {message}</div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* ── Actions ── */}
