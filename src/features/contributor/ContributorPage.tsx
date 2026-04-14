@@ -555,6 +555,27 @@ export default function ContributorPage() {
         })}
       </div>
 
+      {step < 3 && (
+        <div className={styles.stepNavTop}>
+          {step > 0 && (
+            <button
+              className="btn btn--ghost"
+              onClick={() => {
+                setStepErrors([])
+                setStep((s) => s - 1)
+              }}
+            >
+              ← Retour
+            </button>
+          )}
+          <div className={styles.stepNavSpacer} />
+          <button className="btn btn--secondary" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
+          <button className="btn btn--primary" onClick={tryAdvance}>
+            Suivant →
+          </button>
+        </div>
+      )}
+
       {step === 0 && (
         <GroupInfoStep
           form={form}
