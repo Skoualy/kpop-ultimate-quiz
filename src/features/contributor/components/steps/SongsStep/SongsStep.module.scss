@@ -5,29 +5,29 @@
   margin-bottom: 24px;
 }
 
-.sectionHeader {
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.toolbarRight {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.sectionHeaderLeft {
-  display: flex;
-  align-items: baseline;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
-.sectionTitle {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.sectionSubtitle {
+.pageSizeInline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   color: var(--text-muted);
+}
+
+.pageSizeSelect {
+  min-width: 120px;
 }
 
 .warning {
@@ -51,6 +51,34 @@
   padding: 18px;
   color: var(--text-muted);
   background: var(--bg-card);
+}
+
+.dragRow {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.dragging {
+  opacity: 0.45;
+}
+
+.dragHandle {
+  user-select: none;
+  cursor: grab;
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropEnd {
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  height: 16px;
 }
 
 .card {
@@ -119,11 +147,6 @@
   color: var(--accent-pink);
 }
 
-.subtext {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
 .errorInline {
   font-size: 12px;
   color: #f87171;
@@ -142,6 +165,15 @@
 }
 
 @media (max-width: 1080px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbarRight {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   .card {
     grid-template-columns: 1fr;
   }

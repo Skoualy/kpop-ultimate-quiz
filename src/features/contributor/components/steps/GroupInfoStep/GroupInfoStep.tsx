@@ -153,7 +153,7 @@ export function GroupInfoStep({
             <ImagePickerControl
               label="Cover du groupe"
               value={form.coverImage}
-              placeholderImage={resolveGroupCover({ coverImage: form.coverImage })}
+              placeholderImage={resolveGroupCover({ id: form.id, coverImage: form.coverImage })}
               onChange={(v) => upd('coverImage', v)}
               onFileChange={(f) => upd('coverFile', f)}
               aspectRatio="1/1"
@@ -165,21 +165,36 @@ export function GroupInfoStep({
           <div className={styles.fieldsCol}>
             <div className={styles.grid2}>
               <div className={styles.field}>
-                <GeneratedIdInputControl
-                  label="Nom du groupe"
-                  required
-                  value={form.name}
-                  onChange={(value) =>
-                    setForm((prev) => ({
-                      ...prev,
-                      name: value,
-                      id: slugify(value),
-                    }))
-                  }
-                  generatedId={form.id}
-                  exists={existingGroups.some((g) => g.id === form.id)}
-                  placeholder="Ex: TWICE"
-                />
+                {isEdit ? (
+                  <>
+                    <label className={styles.label}>
+                      Nom du groupe <span className={styles.required}>*</span>
+                    </label>
+                    <input
+                      className="input"
+                      value={form.name}
+                      placeholder="Ex: TWICE"
+                      onChange={(e) => upd('name', e.target.value)}
+                    />
+                    <span className={styles.infoMsg}>ID verrouillé en édition : {form.id}</span>
+                  </>
+                ) : (
+                  <GeneratedIdInputControl
+                    label="Nom du groupe"
+                    required
+                    value={form.name}
+                    onChange={(value) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        name: value,
+                        id: slugify(value),
+                      }))
+                    }
+                    generatedId={form.id}
+                    exists={existingGroups.some((g) => g.id === form.id)}
+                    placeholder="Ex: TWICE"
+                  />
+                )}
               </div>
 
               <div className={styles.field}>
@@ -205,7 +220,7 @@ export function GroupInfoStep({
                 <select
                   className="select"
                   value={form.category}
-                  disabled={!!parentGroup}
+                  disabled={isEdit || !!parentGroup}
                   onChange={(e) => applyCategoryChange(e.target.value as GroupCategory)}
                 >
                   {CATEGORIES.map((c) => (
@@ -218,14 +233,14 @@ export function GroupInfoStep({
               </div>
 
               <div className={styles.field}>
-                <label className={styles.label} style={{ opacity: isSoloist ? 0.45 : 1 }}>
+                <label className={styles.label} style={{ opacity: isEdit || isSoloist ? 0.45 : 1 }}>
                   Sub-unit de <span className={styles.hint}>— laisser vide si indépendant</span>
                 </label>
                 <select
                   className="select"
                   value={isSoloist ? '' : form.parentGroupId}
-                  disabled={isSoloist}
-                  style={{ opacity: isSoloist ? 0.4 : 1 }}
+                  disabled={isEdit || isSoloist}
+                  style={{ opacity: isEdit || isSoloist ? 0.4 : 1 }}
                   onChange={(e) => applyParentGroupChange(e.target.value)}
                 >
                   <option value="">— Aucun (groupe indépendant)</option>
@@ -254,6 +269,7 @@ export function GroupInfoStep({
                   value={form.debutYear}
                   placeholder="Ex: 2015"
                   onChange={(e) => upd('debutYear', e.target.value)}
+                  disabled={isEdit}
                 />
               </div>
 
@@ -269,6 +285,7 @@ export function GroupInfoStep({
                     setGenManual(true)
                     upd('generation', e.target.value as Generation)
                   }}
+                  disabled={isEdit}
                 >
                   <option value="">— Sélectionner</option>
                   {GENERATIONS.map((g) => (

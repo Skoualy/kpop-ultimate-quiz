@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react'
 import { ContributorStep } from '@/features/contributor/components/ContributorStep'
+import { PaginationControl } from '@/shared/Components/PaginationControl'
+import { CollapsibleSection } from '@/shared/Components/CollapsibleSection'
+import { ScrollTopControl } from '@/shared/Controls/ScrollTopControl'
 import { BadgeGroupControl } from '@/shared/Controls/BadgeGroupControl'
 import { SelectNationalityControl } from '@/shared/Controls/SelectNationalityControl'
 import { ImagePickerControl } from '@/shared/Controls/ImagePickerControl'
@@ -15,6 +18,9 @@ import {
   getMemberPlaceholderByCategory,
 } from './MembersStep.types'
 import styles from './MembersStep.module.scss'
+
+const MEMBER_PAGE_SIZES = [10, 15, 20, 25, 30]
+type MemberZone = 'current' | 'former'
 
 interface ExistingIdolOption {
   id: string
@@ -32,6 +38,7 @@ interface MembersStepProps {
   isSubunit: boolean
   parentGroup?: { id: string; name: string; members: { idolId: string; roles: MemberRole[] }[] } | null
   existingIdols: ExistingIdolOption[]
+  isEdit: boolean
   errors?: string[]
 }
 
@@ -50,6 +57,7 @@ export function MembersStep({
   parentGroup,
   groupCategory,
   existingIdols,
+  isEdit,
   errors,
 }: MembersStepProps) {
   const current = members.filter((m) => m.status === 'current')
@@ -61,9 +69,31 @@ export function MembersStep({
   )
 
   const [dismissedConflicts, setDismissedConflicts] = useState<Record<string, string>>({})
+  const [search, setSearch] = useState('')
+  const [pageSize, setPageSize] = useState(10)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [formerPage, setFormerPage] = useState(1)
+  const [dragging, setDragging] = useState<{ key: string } | null>(null)
 
   function update(uiKey: string, patch: Partial<EditableMember>) {
-    setMembers((prev) => prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m)))
+    setMembers((prev) => {
+      const next = prev.map((m) => (m._uiKey === uiKey ? { ...m, ...patch } : m))
+      const updated = next.find((m) => m._uiKey === uiKey)
+      if (!updated) return next
+
+      const hasLeader = updated.roles.includes('leader')
+      const hasMaknae = updated.roles.includes('maknae')
+
+      return next.map((member) => {
+        if (member._uiKey === uiKey) return member
+        const roles = member.roles.filter((role) => {
+          if (role === 'leader' && hasLeader) return false
+          if (role === 'maknae' && hasMaknae) return false
+          return true
+        })
+        return roles.length === member.roles.length ? member : { ...member, roles }
+      })
+    })
   }
 
   function resetSoloist(uiKey: string) {
@@ -79,6 +109,22 @@ export function MembersStep({
     setMembers((prev) =>
       prev.map((m) => {
         if (m._uiKey !== uiKey) return m
+
+        if (isEdit) {
+          const reservedIds = [
+            ...existingIdols.map((i) => i.id),
+            ...prev
+              .filter((x) => x._uiKey !== uiKey)
+              .map((x) => (x.resolutionMode === 'existing' && x.existingIdolId ? x.existingIdolId : x.generatedId))
+              .filter(Boolean),
+          ]
+
+          return {
+            ...m,
+            name: value,
+            generatedId: m.generatedId || buildUniqueIdolId(value, reservedIds),
+          }
+        }
 
         const matchedExisting =
           value.trim().length > 1 ? existingIdols.find((i) => slugify(i.name) === slugify(value)) : null
@@ -121,19 +167,42 @@ export function MembersStep({
     if (isSubunit) {
       const member = members.find((m) => m._uiKey === uiKey)
       const idolId = member?.existingIdolId
-      if (idolId) {
-        setSelectedParentIds((prev) => prev.filter((id) => id !== idolId))
-      }
+      if (idolId) setSelectedParentIds((prev) => prev.filter((id) => id !== idolId))
     }
-    setDismissedConflicts((prev) => {
-      const next = { ...prev }
-      delete next[uiKey]
-      return next
-    })
   }
 
   function addMember(status: 'current' | 'former') {
     setMembers((prev) => [emptyMember(status), ...prev])
+  }
+
+  function moveDraggedMember(to: MemberZone, overKey?: string) {
+    if (!dragging) return
+    const currentZone: MemberZone = current.some((member) => member._uiKey === dragging.key) ? 'current' : 'former'
+    const sourceList = currentZone === 'current' ? current : former
+    const targetList = to === 'current' ? current : former
+    const draggedMember = sourceList.find((member) => member._uiKey === dragging.key)
+    if (!draggedMember) return
+
+    const nextSource = sourceList.filter((member) => member._uiKey !== dragging.key)
+    const targetWithoutDragged = currentZone === to ? nextSource : targetList
+    const insertIndex = overKey ? targetWithoutDragged.findIndex((member) => member._uiKey === overKey) : -1
+
+    const nextTargetMember = { ...draggedMember, status: to }
+    const nextTarget = [...targetWithoutDragged]
+    if (insertIndex >= 0) nextTarget.splice(insertIndex, 0, nextTargetMember)
+    else nextTarget.push(nextTargetMember)
+
+    if (currentZone === to) {
+      if (to === 'current') {
+        setMembers([...nextTarget, ...former])
+      } else {
+        setMembers([...current, ...nextTarget])
+      }
+    } else if (currentZone === 'current') {
+      setMembers([...nextSource, ...nextTarget])
+    } else {
+      setMembers([...nextTarget, ...nextSource])
+    }
   }
 
   function resolveConflictAsExisting(conflict: MemberConflict) {
@@ -155,12 +224,6 @@ export function MembersStep({
           : m,
       ),
     )
-
-    setDismissedConflicts((prev) => {
-      const next = { ...prev }
-      delete next[conflict.uiKey]
-      return next
-    })
   }
 
   function resolveConflictAsNew(conflict: MemberConflict) {
@@ -215,8 +278,13 @@ export function MembersStep({
     return null
   }
 
-  const currentConflict = useMemo(() => findSectionConflict(current), [current, existingIdols, dismissedConflicts])
-  const formerConflict = useMemo(() => findSectionConflict(former), [former, existingIdols, dismissedConflicts])
+  const currentConflict = useMemo(() => (isEdit ? null : findSectionConflict(current)), [current, existingIdols, dismissedConflicts, isEdit])
+  const formerConflict = useMemo(() => (isEdit ? null : findSectionConflict(former)), [former, existingIdols, dismissedConflicts, isEdit])
+  const query = search.trim().toLowerCase()
+  const filteredCurrent = current.filter((member) => !query || member.name.toLowerCase().includes(query))
+  const filteredFormer = former.filter((member) => !query || member.name.toLowerCase().includes(query))
+  const pagedCurrent = filteredCurrent.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  const pagedFormer = filteredFormer.slice((formerPage - 1) * pageSize, formerPage * pageSize)
 
   if (isSubunit && parentGroup) {
     const parentMemberOptions = parentGroup.members.map((m) => {
@@ -234,7 +302,6 @@ export function MembersStep({
           <div className={styles.subunitHint}>
             Sélectionne les membres qui participent à cette sub-unit. Les rôles seront hérités du groupe principal.
           </div>
-
           <BadgeGroupControl
             options={parentMemberOptions}
             selectedBadges={selectedParentIds}
@@ -244,7 +311,6 @@ export function MembersStep({
                 if (existing) return existing
 
                 const idol = existingIdols.find((i) => i.id === id)
-
                 return {
                   _uiKey: `existing-${id}`,
                   name: idol?.name ?? id,
@@ -266,129 +332,51 @@ export function MembersStep({
             size="md"
           />
         </div>
-
-        <div className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
-            </div>
-          </div>
-
-          {members.length > 0 &&
-            members.map((m) => (
-              <MemberCard
-                key={m._uiKey}
-                member={m}
-                onUpdate={(p) => update(m._uiKey, p)}
-                onNameChange={(value) => updateName(m._uiKey, value)}
-                onRemove={() => remove(m._uiKey)}
-                onReset={() => resetSoloist(m._uiKey)}
-                isSoloist={isSoloist}
-                isSubunit={isSubunit}
-                groupCategory={groupCategory}
-              />
-            ))}
-        </div>
       </ContributorStep>
     )
   }
 
   return (
     <ContributorStep errors={errors}>
-      <div className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionTitle}>
-            Membres actuels <span className={styles.requiredNote}>(au moins un requis)</span>
-          </div>
-
-          {!isSoloist && (
-            <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>
-              + Ajouter
-            </button>
-          )}
-        </div>
-
-        {currentConflict && (
-          <div className={styles.reuseBox}>
-            <span>
-              L&apos;idol <strong>{currentConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?
-            </span>
-
-            <div className={styles.reuseActions}>
-              <button
-                type="button"
-                className="btn btn--secondary btn--sm"
-                onClick={() => resolveConflictAsExisting(currentConflict)}
-              >
-                Réutiliser
-              </button>
-
-              <button
-                type="button"
-                className="btn btn--ghost btn--sm"
-                onClick={() => resolveConflictAsNew(currentConflict)}
-              >
-                Nouveau
-              </button>
-            </div>
-          </div>
-        )}
-
-        {current.map((m) => (
-          <MemberCard
-            key={m._uiKey}
-            member={m}
-            onUpdate={(p) => update(m._uiKey, p)}
-            onNameChange={(value) => updateName(m._uiKey, value)}
-            onRemove={() => remove(m._uiKey)}
-            onReset={() => resetSoloist(m._uiKey)}
-            isSoloist={isSoloist}
-            isSubunit={isSubunit}
-            groupCategory={groupCategory}
-          />
-        ))}
+      <div className={styles.topToolbar}>
+        <input
+          className="input"
+          value={search}
+          placeholder="Rechercher un membre..."
+          onChange={(e) => {
+            setSearch(e.target.value)
+            setCurrentPage(1)
+            setFormerPage(1)
+          }}
+        />
+        <label className={styles.pageSizeInline}>
+          <span>Par page</span>
+          <select className={['select', styles.pageSizeSelect].join(' ')} value={String(pageSize)} onChange={(e) => setPageSize(Number(e.target.value))}>
+            {MEMBER_PAGE_SIZES.map((size) => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+          </select>
+        </label>
       </div>
 
-      {showFormer && (
-        <div className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              Anciens membres{' '}
-              <span style={{ fontWeight: 400, fontSize: 13, color: 'var(--text-muted)' }}>(optionnel)</span>
-            </div>
-
-            <button type="button" className="btn btn--ghost btn--sm" onClick={() => addMember('former')}>
-              + Ajouter
-            </button>
+      {currentConflict && (
+        <div className={styles.reuseBox}>
+          <span>L&apos;idol <strong>{currentConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?</span>
+          <div className={styles.reuseActions}>
+            <button type="button" className="btn btn--secondary btn--sm" onClick={() => resolveConflictAsExisting(currentConflict)}>Réutiliser</button>
+            <button type="button" className="btn btn--ghost btn--sm" onClick={() => resolveConflictAsNew(currentConflict)}>Nouveau</button>
           </div>
+        </div>
+      )}
 
-          {formerConflict && (
-            <div className={styles.reuseBox}>
-              <span>
-                L&apos;idol <strong>{formerConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?
-              </span>
-
-              <div className={styles.reuseActions}>
-                <button
-                  type="button"
-                  className="btn btn--secondary btn--sm"
-                  onClick={() => resolveConflictAsExisting(formerConflict)}
-                >
-                  Réutiliser
-                </button>
-
-                <button
-                  type="button"
-                  className="btn btn--ghost btn--sm"
-                  onClick={() => resolveConflictAsNew(formerConflict)}
-                >
-                  Nouveau
-                </button>
-              </div>
-            </div>
-          )}
-
-          {former.map((m) => (
+      <CollapsibleSection
+        title="Membres actuels"
+        subtitle={!isSoloist ? 'au moins deux requis' : undefined}
+        actions={!isSoloist ? <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>+ Ajouter</button> : undefined}
+      >
+        <div className={styles.hint}>💡 Utilise les rôles pour améliorer la qualité du quiz (leader/maknae uniques).</div>
+        <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()}>
+          {pagedCurrent.map((m) => (
             <MemberCard
               key={m._uiKey}
               member={m}
@@ -399,11 +387,103 @@ export function MembersStep({
               isSoloist={isSoloist}
               isSubunit={isSubunit}
               groupCategory={groupCategory}
-              hideRemoveButton
+              isEdit={isEdit}
+              onDragHover={() => moveDraggedMember('current', m._uiKey)}
+              isDragging={dragging?.key === m._uiKey}
+              onDragStart={() => setDragging({ key: m._uiKey })}
+              onDragEnd={() => setDragging(null)}
             />
           ))}
+          {pagedCurrent.length > 0 && (
+            <div
+              className={styles.dropEnd}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault()
+                moveDraggedMember('current')
+                setDragging(null)
+              }}
+            />
+          )}
         </div>
+
+        {filteredCurrent.length > 10 && (
+          <PaginationControl
+            currentPage={currentPage}
+            totalItems={filteredCurrent.length}
+            pageSize={pageSize}
+            showPageSize={false}
+            pageSizeOptions={MEMBER_PAGE_SIZES}
+            onPageChange={setCurrentPage}
+            onPageSizeChange={setPageSize}
+          />
+        )}
+      </CollapsibleSection>
+
+      {showFormer && (
+        <CollapsibleSection
+          title="Anciens membres"
+          subtitle="optionnel"
+          actions={<button type="button" className="btn btn--ghost btn--sm" onClick={() => addMember('former')}>+ Ajouter</button>}
+        >
+          {formerConflict && (
+            <div className={styles.reuseBox}>
+              <span>L&apos;idol <strong>{formerConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?</span>
+              <div className={styles.reuseActions}>
+                <button type="button" className="btn btn--secondary btn--sm" onClick={() => resolveConflictAsExisting(formerConflict)}>Réutiliser</button>
+                <button type="button" className="btn btn--ghost btn--sm" onClick={() => resolveConflictAsNew(formerConflict)}>Nouveau</button>
+              </div>
+            </div>
+          )}
+
+          <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()}>
+            {pagedFormer.map((m) => (
+              <MemberCard
+                key={m._uiKey}
+                member={m}
+                onUpdate={(p) => update(m._uiKey, p)}
+                onNameChange={(value) => updateName(m._uiKey, value)}
+                onRemove={() => remove(m._uiKey)}
+                onReset={() => resetSoloist(m._uiKey)}
+                isSoloist={isSoloist}
+                isSubunit={isSubunit}
+                groupCategory={groupCategory}
+                isEdit={isEdit}
+                hideRemoveButton
+                onDragHover={() => moveDraggedMember('former', m._uiKey)}
+                isDragging={dragging?.key === m._uiKey}
+                onDragStart={() => setDragging({ key: m._uiKey })}
+                onDragEnd={() => setDragging(null)}
+              />
+            ))}
+            {pagedFormer.length > 0 && (
+              <div
+                className={styles.dropEnd}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault()
+                  moveDraggedMember('former')
+                  setDragging(null)
+                }}
+              />
+            )}
+          </div>
+
+          {filteredFormer.length > 10 && (
+            <PaginationControl
+              currentPage={formerPage}
+              totalItems={filteredFormer.length}
+              pageSize={pageSize}
+              showPageSize={false}
+              pageSizeOptions={MEMBER_PAGE_SIZES}
+              onPageChange={setFormerPage}
+              onPageSizeChange={setPageSize}
+            />
+          )}
+        </CollapsibleSection>
       )}
+
+      <ScrollTopControl />
     </ContributorStep>
   )
 }
@@ -417,7 +497,12 @@ interface MemberCardProps {
   isSoloist: boolean
   isSubunit: boolean
   groupCategory: GroupCategory
+  isEdit: boolean
   hideRemoveButton?: boolean
+  onDragHover: () => void
+  isDragging: boolean
+  onDragStart: () => void
+  onDragEnd: () => void
 }
 
 function MemberCard({
@@ -429,7 +514,12 @@ function MemberCard({
   isSoloist,
   isSubunit,
   groupCategory,
+  isEdit,
   hideRemoveButton,
+  onDragHover,
+  isDragging,
+  onDragStart,
+  onDragEnd,
 }: MemberCardProps) {
   const isExistingMember = member.resolutionMode === 'existing' && !!member.existingIdolId
   const memberPlaceholderImage = getMemberPlaceholderByCategory(groupCategory)
@@ -443,91 +533,91 @@ function MemberCard({
   const lockIdentityFields = isExistingMember
   const lockPortrait = isSubunit
 
-  const contentTop = (
-    <>
-      <div className={styles.field}>
-        <GeneratedIdInputControl
-          label="Nom de scène"
-          required
-          value={member.name}
-          onChange={onNameChange}
-          generatedId={
-            member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId
-          }
-          exists={false}
-          placeholder="Ex: Sana"
-          disabled={lockIdentityFields}
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label className={styles.label}>Nationalité</label>
-        <SelectNationalityControl
-          value={member.nationality}
-          onChange={(v: NationalityCode) => onUpdate({ nationality: v })}
-          disabled={lockIdentityFields}
-        />
-      </div>
-    </>
-  )
-
   return (
-    <div className={styles.card}>
-      <div className={styles.cardBody}>
-        <div className={styles.cardPortrait}>
-          <ImagePickerControl
-            value={member.portrait}
-            placeholderImage={memberPlaceholderImage}
-            onChange={(v) => onUpdate({ portrait: v })}
-            onFileChange={(f) => onUpdate({ portraitFile: f })}
-            aspectRatio="400/533"
-            hint="400×533 px"
-            emptyIcon="👤"
-            disabled={lockPortrait}
-          />
-        </div>
+    <div
+      className={[styles.dragRow, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
+      onDragOver={(e) => e.preventDefault()}
+      onDragEnter={(e) => {
+        e.preventDefault()
+        if (!isDragging) onDragHover()
+      }}
+    >
+      <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>
+      <div className={styles.card}>
+        <div className={styles.cardBody}>
+          <div className={styles.cardPortrait}>
+            <ImagePickerControl
+              value={member.portrait}
+              placeholderImage={memberPlaceholderImage}
+              onChange={(v) => onUpdate({ portrait: v })}
+              onFileChange={(f) => onUpdate({ portraitFile: f })}
+              aspectRatio="400/533"
+              hint="400×533 px"
+              emptyIcon="👤"
+              disabled={lockPortrait}
+            />
+          </div>
 
-        <div className={styles.cardRight}>
-          {isSubunit ? (
-            <>
-              <div className={styles.field}>{contentTop.props.children[0]}</div>
-              <div className={styles.field}>{contentTop.props.children[1]}</div>
-            </>
-          ) : (
-            <div className={styles.row2}>{contentTop}</div>
-          )}
+          <div className={styles.cardRight}>
+            <div className={styles.row2}>
+              <div className={styles.field}>
+                {isEdit ? (
+                  <>
+                    <label className={styles.label}>Nom de scène <span className={styles.required}>*</span></label>
+                    <input className="input" value={member.name} placeholder="Ex: Sana" onChange={(e) => onNameChange(e.target.value)} />
+                    <span className={styles.requiredSmall}>ID verrouillé : {member.generatedId || member.existingIdolId || '—'}</span>
+                  </>
+                ) : (
+                  <GeneratedIdInputControl
+                    label="Nom de scène"
+                    required
+                    value={member.name}
+                    onChange={onNameChange}
+                    generatedId={member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId}
+                    exists={false}
+                    placeholder="Ex: Sana"
+                    disabled={lockIdentityFields}
+                  />
+                )}
+              </div>
 
-          {!isSubunit && (
-            <div className={styles.field}>
-              <label className={styles.label}>
-                {isSoloist ? 'Rôle' : 'Rôles'} <span className={styles.required}>*</span>{' '}
-                {!isSoloist && <span className={styles.requiredSmall}>(au moins un)</span>}
-              </label>
-
-              <BadgeGroupControl<MemberRole>
-                options={roleOptions}
-                selectedBadges={member.roles}
-                onChange={(roles) => onUpdate({ roles: roles as MemberRole[] })}
-                isMultiselect
-                size="sm"
-              />
+              <div className={styles.field}>
+                <label className={styles.label}>Nationalité</label>
+                <SelectNationalityControl
+                  value={member.nationality}
+                  onChange={(v: NationalityCode) => onUpdate({ nationality: v })}
+                  disabled={false}
+                />
+              </div>
             </div>
-          )}
-        </div>
 
-        {isSoloist ? (
-          <div className={styles.cardDeleteRow}>
-            <button type="button" className="btn btn--ghost btn--sm" onClick={onReset}>
-              ↺ Reset
-            </button>
+            {!isSubunit && (
+              <div className={styles.field}>
+                <label className={styles.label}>
+                  {isSoloist ? 'Rôle' : 'Rôles'} <span className={styles.required}>*</span>{' '}
+                  {!isSoloist && <span className={styles.requiredSmall}>(au moins un)</span>}
+                </label>
+                <BadgeGroupControl<MemberRole>
+                  options={roleOptions}
+                  selectedBadges={member.roles}
+                  onChange={(roles) => onUpdate({ roles: roles as MemberRole[] })}
+                  isMultiselect
+                  size="sm"
+                />
+              </div>
+            )}
           </div>
-        ) : !hideRemoveButton ? (
-          <div className={styles.cardDeleteRow}>
-            <button type="button" className="btn btn--danger btn--sm" onClick={onRemove}>
-              🗑 Supprimer
-            </button>
-          </div>
-        ) : null}
+
+          {isSoloist ? (
+            <div className={styles.cardDeleteRow}>
+              <button type="button" className="btn btn--ghost btn--sm" onClick={onReset}>↺ Reset</button>
+            </div>
+          ) : !hideRemoveButton ? (
+            <div className={styles.cardDeleteRow}>
+              <button type="button" className="btn btn--danger btn--sm" onClick={onRemove}>🗑 Supprimer</button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   )
