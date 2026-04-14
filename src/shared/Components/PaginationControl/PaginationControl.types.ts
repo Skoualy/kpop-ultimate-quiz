@@ -3,6 +3,7 @@ export interface PaginationControlProps {
   totalItems: number
   pageSize: number
   pageSizeOptions?: number[]
+  showPageSize?: boolean
   onPageChange: (page: number) => void
   onPageSizeChange: (pageSize: number) => void
   className?: string

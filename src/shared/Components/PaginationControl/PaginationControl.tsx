@@ -11,6 +11,7 @@ export function PaginationControl({
   totalItems,
   pageSize,
   pageSizeOptions = [6, 12, 24, 48],
+  showPageSize = true,
   onPageChange,
   onPageSizeChange,
   className = '',
@@ -23,18 +24,20 @@ export function PaginationControl({
   return (
     <div className={[styles.wrapper, className].filter(Boolean).join(' ')}>
       <div className={styles.meta}>
-        <label className={styles.pageSizeGroup}>
-          <span>Par page</span>
-          <select
-            className={['select', styles.pageSizeSelect].join(' ')}
-            value={String(pageSize)}
-            onChange={(e) => onPageSizeChange(Number(e.target.value))}
-          >
-            {pageSizeOptions.map((size) => (
-              <option key={size} value={size}>{size}</option>
-            ))}
-          </select>
-        </label>
+        {showPageSize && (
+          <label className={styles.pageSizeGroup}>
+            <span>Par page</span>
+            <select
+              className={['select', styles.pageSizeSelect].join(' ')}
+              value={String(pageSize)}
+              onChange={(e) => onPageSizeChange(Number(e.target.value))}
+            >
+              {pageSizeOptions.map((size) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
+          </label>
+        )}
 
         <span className={styles.pageInfo}>
           Page {safePage} / {totalPages}

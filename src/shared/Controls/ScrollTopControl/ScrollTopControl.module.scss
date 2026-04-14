@@ -1,6 +1,9 @@
 .btn {
-  position: sticky;
-  bottom: 14px;
-  margin-left: auto;
-  z-index: 2;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
