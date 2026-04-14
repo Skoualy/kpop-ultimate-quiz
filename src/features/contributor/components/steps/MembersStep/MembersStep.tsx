@@ -191,11 +191,18 @@ export function MembersStep({
     if (insertIndex >= 0) nextTarget.splice(insertIndex, 0, nextTargetMember)
     else nextTarget.push(nextTargetMember)
 
-    const merged = [
-      ...(to === 'current' ? nextTarget : nextSource),
-      ...(to === 'former' ? nextTarget : nextSource),
-    ]
-    setMembers(merged)
+    if (dragging.from === to) {
+      if (to === 'current') {
+        setMembers([...nextTarget, ...former])
+      } else {
+        setMembers([...current, ...nextTarget])
+      }
+    } else if (dragging.from === 'current') {
+      setMembers([...nextSource, ...nextTarget])
+    } else {
+      setMembers([...nextTarget, ...nextSource])
+    }
+    setDragging(null)
   }
 
   function resolveConflictAsExisting(conflict: MemberConflict) {
@@ -368,7 +375,7 @@ export function MembersStep({
         actions={!isSoloist ? <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>+ Ajouter</button> : undefined}
       >
         <div className={styles.hint}>💡 Utilise les rôles pour améliorer la qualité du quiz (leader/maknae uniques).</div>
-        <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()} onDrop={() => moveDraggedMember('current')}>
+        <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()}>
           {pagedCurrent.map((m) => (
             <MemberCard
               key={m._uiKey}
@@ -382,10 +389,21 @@ export function MembersStep({
               groupCategory={groupCategory}
               isEdit={isEdit}
               onDropOnCard={() => moveDraggedMember('current', m._uiKey)}
+              isDragging={dragging?.key === m._uiKey}
               onDragStart={() => setDragging({ key: m._uiKey, from: 'current' })}
               onDragEnd={() => setDragging(null)}
             />
           ))}
+          {pagedCurrent.length > 0 && (
+            <div
+              className={styles.dropEnd}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault()
+                moveDraggedMember('current')
+              }}
+            />
+          )}
         </div>
 
         {filteredCurrent.length > 10 && (
@@ -417,7 +435,7 @@ export function MembersStep({
             </div>
           )}
 
-          <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()} onDrop={() => moveDraggedMember('former')}>
+          <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()}>
             {pagedFormer.map((m) => (
               <MemberCard
                 key={m._uiKey}
@@ -432,10 +450,21 @@ export function MembersStep({
                 isEdit={isEdit}
                 hideRemoveButton
                 onDropOnCard={() => moveDraggedMember('former', m._uiKey)}
+                isDragging={dragging?.key === m._uiKey}
                 onDragStart={() => setDragging({ key: m._uiKey, from: 'former' })}
                 onDragEnd={() => setDragging(null)}
               />
             ))}
+            {pagedFormer.length > 0 && (
+              <div
+                className={styles.dropEnd}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault()
+                  moveDraggedMember('former')
+                }}
+              />
+            )}
           </div>
 
           {filteredFormer.length > 10 && (
@@ -469,6 +498,7 @@ interface MemberCardProps {
   isEdit: boolean
   hideRemoveButton?: boolean
   onDropOnCard: () => void
+  isDragging: boolean
   onDragStart: () => void
   onDragEnd: () => void
 }
@@ -485,6 +515,7 @@ function MemberCard({
   isEdit,
   hideRemoveButton,
   onDropOnCard,
+  isDragging,
   onDragStart,
   onDragEnd,
 }: MemberCardProps) {
@@ -501,7 +532,15 @@ function MemberCard({
   const lockPortrait = isSubunit
 
   return (
-    <div className={styles.dragRow} onDragOver={(e) => e.preventDefault()} onDrop={onDropOnCard}>
+    <div
+      className={[styles.dragRow, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        onDropOnCard()
+      }}
+    >
       <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>
       <div className={styles.card}>
         <div className={styles.cardBody}>

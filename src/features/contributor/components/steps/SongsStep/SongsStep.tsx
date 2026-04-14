@@ -140,6 +140,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
     } else {
       updateZones(nextTarget, nextSource)
     }
+    setDragging(null)
   }
 
   const titleCrossDuplicateIds = useMemo(() => SongsStepServices.findCrossBucketDuplicates(titles, bSides), [titles, bSides])
@@ -214,7 +215,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
         subtitle="au moins un requis"
         actions={<button type="button" className="btn btn--secondary btn--sm" onClick={() => addSong(setTitles)}>+ Ajouter</button>}
       >
-        <div className={styles.cards} onDragOver={(e) => e.preventDefault()} onDrop={() => moveDraggedSong('titles')}>
+        <div className={styles.cards} onDragOver={(e) => e.preventDefault()}>
           {pagedTitles.length > 0 ? (
             pagedTitles.map((song) => (
               <SongCard
@@ -227,12 +228,23 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
                 onRemove={() => removeSong(setTitles, song._uiKey)}
                 onDebutToggle={(checked) => handleDebutToggle(song._uiKey, checked)}
                 onDropOnCard={() => moveDraggedSong('titles', song._uiKey)}
+                isDragging={dragging?.key === song._uiKey}
                 onDragStart={() => setDragging({ key: song._uiKey, from: 'titles' })}
                 onDragEnd={() => setDragging(null)}
               />
             ))
           ) : (
             <div className={styles.emptyState}>Aucune chanson pour le moment.</div>
+          )}
+          {pagedTitles.length > 0 && (
+            <div
+              className={styles.dropEnd}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault()
+                moveDraggedSong('titles')
+              }}
+            />
           )}
         </div>
 
@@ -255,7 +267,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
           subtitle="optionnel"
           actions={<button type="button" className="btn btn--secondary btn--sm" onClick={() => addSong(setBSides)}>+ Ajouter</button>}
         >
-          <div className={styles.cards} onDragOver={(e) => e.preventDefault()} onDrop={() => moveDraggedSong('bsides')}>
+          <div className={styles.cards} onDragOver={(e) => e.preventDefault()}>
             {pagedBSides.length > 0 ? (
               pagedBSides.map((song) => (
                 <SongCard
@@ -267,12 +279,23 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
                   onUpdate={(patch) => updateSong(setBSides, song._uiKey, patch)}
                   onRemove={() => removeSong(setBSides, song._uiKey)}
                   onDropOnCard={() => moveDraggedSong('bsides', song._uiKey)}
+                  isDragging={dragging?.key === song._uiKey}
                   onDragStart={() => setDragging({ key: song._uiKey, from: 'bsides' })}
                   onDragEnd={() => setDragging(null)}
                 />
               ))
             ) : (
               <div className={styles.emptyState}>Aucune chanson pour le moment.</div>
+            )}
+            {pagedBSides.length > 0 && (
+              <div
+                className={styles.dropEnd}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault()
+                  moveDraggedSong('bsides')
+                }}
+              />
             )}
           </div>
 
@@ -303,11 +326,12 @@ interface SongCardProps {
   showDebutFlag: boolean
   onDebutToggle?: (checked: boolean) => void
   onDropOnCard: () => void
+  isDragging: boolean
   onDragStart: () => void
   onDragEnd: () => void
 }
 
-function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFlag, onDebutToggle, onDropOnCard, onDragStart, onDragEnd }: SongCardProps) {
+function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFlag, onDebutToggle, onDropOnCard, isDragging, onDragStart, onDragEnd }: SongCardProps) {
   const currentSongKey = SongsStepServices.buildSongId(song.title, song.language)
 
   const duplicateSong =
@@ -320,7 +344,15 @@ function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFla
       : null
 
   return (
-    <div className={styles.dragRow} onDragOver={(e) => e.preventDefault()} onDrop={onDropOnCard}>
+    <div
+      className={[styles.dragRow, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        onDropOnCard()
+      }}
+    >
       <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>
       <article className={styles.card}>
         <div className={styles.thumbCol}>

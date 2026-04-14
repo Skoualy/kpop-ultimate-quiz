@@ -45,6 +45,10 @@
   gap: 10px;
 }
 
+.dragging {
+  opacity: 0.45;
+}
+
 .dragHandle {
   user-select: none;
   cursor: grab;
@@ -54,6 +58,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dropEnd {
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  height: 16px;
 }
 
 .card {
