@@ -525,6 +525,7 @@ export default function ContributorPage() {
         </div>
         <div className={styles.headerTools}>
           <DraftBundleControl onFileSelect={loadDraft} />
+          <button className="btn btn--secondary btn--sm" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
           <button className="btn btn--ghost btn--sm" onClick={() => navigate(-1)}>
             ← Retour
           </button>
@@ -633,6 +634,26 @@ export default function ContributorPage() {
           onBack={() => setStep(2)}
           onSaveDraft={downloadDraft}
         />
+      )}
+
+      {step < 3 && (
+        <div className={styles.stepNav}>
+          {step > 0 && (
+            <button
+              className="btn btn--ghost"
+              onClick={() => {
+                setStepErrors([])
+                setStep((s) => s - 1)
+              }}
+            >
+              ← Précédent
+            </button>
+          )}
+          <div className={styles.stepNavSpacer} />
+          <button className="btn btn--primary" onClick={tryAdvance}>
+            Suivant →
+          </button>
+        </div>
       )}
 
     </PageContainer>

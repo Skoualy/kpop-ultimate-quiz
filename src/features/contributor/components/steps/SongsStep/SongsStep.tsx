@@ -36,7 +36,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
   const [pageSize, setPageSize] = useState(10)
   const [titlePage, setTitlePage] = useState(1)
   const [bSidePage, setBSidePage] = useState(1)
-  const [dragging, setDragging] = useState<{ key: string; from: SongZone } | null>(null)
+  const [dragging, setDragging] = useState<{ key: string } | null>(null)
 
   function updateSong(
     setter: React.Dispatch<React.SetStateAction<EditableSong[]>>,
@@ -110,14 +110,14 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
 
   function moveDraggedSong(toZone: SongZone, overKey?: string) {
     if (!dragging) return
-
-    const sourceList = dragging.from === 'titles' ? titles : bSides
+    const currentZone: SongZone = titles.some((song) => song._uiKey === dragging.key) ? 'titles' : 'bsides'
+    const sourceList = currentZone === 'titles' ? titles : bSides
     const targetList = toZone === 'titles' ? titles : bSides
     const draggedSong = sourceList.find((song) => song._uiKey === dragging.key)
     if (!draggedSong) return
 
     const nextSource = sourceList.filter((song) => song._uiKey !== dragging.key)
-    const targetWithoutDragged = dragging.from === toZone ? nextSource : targetList
+    const targetWithoutDragged = currentZone === toZone ? nextSource : targetList
 
     const insertIndex = overKey ? targetWithoutDragged.findIndex((song) => song._uiKey === overKey) : -1
     const normalizedDragged = toZone === 'bsides' ? { ...draggedSong, isDebutSong: false } : draggedSong
@@ -129,18 +129,17 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
       nextTarget.push(normalizedDragged)
     }
 
-    if (dragging.from === toZone) {
+    if (currentZone === toZone) {
       if (toZone === 'titles') {
         updateZones(nextTarget, bSides)
       } else {
         updateZones(titles, nextTarget)
       }
-    } else if (dragging.from === 'titles') {
+    } else if (currentZone === 'titles') {
       updateZones(nextSource, nextTarget)
     } else {
       updateZones(nextTarget, nextSource)
     }
-    setDragging(null)
   }
 
   const titleCrossDuplicateIds = useMemo(() => SongsStepServices.findCrossBucketDuplicates(titles, bSides), [titles, bSides])
@@ -166,8 +165,6 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
 
   return (
     <ContributorStep errors={errors}>
-      <div className={styles.warning}>⚠ Vérifie bien l’orthographe des titres. Ils seront utilisés comme réponses pour le blind test.</div>
-
       <div className={styles.toolbar}>
         <input
           className="input"
@@ -210,6 +207,8 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
         </div>
       </div>
 
+      <div className={styles.warning}>⚠ Vérifie bien l’orthographe des titres. Ils seront utilisés comme réponses pour le blind test.</div>
+
       <CollapsibleSection
         title="Title tracks"
         subtitle="au moins un requis"
@@ -227,9 +226,9 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
                 onUpdate={(patch) => updateSong(setTitles, song._uiKey, patch)}
                 onRemove={() => removeSong(setTitles, song._uiKey)}
                 onDebutToggle={(checked) => handleDebutToggle(song._uiKey, checked)}
-                onDropOnCard={() => moveDraggedSong('titles', song._uiKey)}
+                onDragHover={() => moveDraggedSong('titles', song._uiKey)}
                 isDragging={dragging?.key === song._uiKey}
-                onDragStart={() => setDragging({ key: song._uiKey, from: 'titles' })}
+                onDragStart={() => setDragging({ key: song._uiKey })}
                 onDragEnd={() => setDragging(null)}
               />
             ))
@@ -243,6 +242,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
               onDrop={(e) => {
                 e.preventDefault()
                 moveDraggedSong('titles')
+                setDragging(null)
               }}
             />
           )}
@@ -278,9 +278,9 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
                   showDebutFlag={false}
                   onUpdate={(patch) => updateSong(setBSides, song._uiKey, patch)}
                   onRemove={() => removeSong(setBSides, song._uiKey)}
-                  onDropOnCard={() => moveDraggedSong('bsides', song._uiKey)}
+                  onDragHover={() => moveDraggedSong('bsides', song._uiKey)}
                   isDragging={dragging?.key === song._uiKey}
-                  onDragStart={() => setDragging({ key: song._uiKey, from: 'bsides' })}
+                  onDragStart={() => setDragging({ key: song._uiKey })}
                   onDragEnd={() => setDragging(null)}
                 />
               ))
@@ -294,6 +294,7 @@ export function SongsStep({ titles, setTitles, bSides, setBSides, isSubunit, isS
                 onDrop={(e) => {
                   e.preventDefault()
                   moveDraggedSong('bsides')
+                  setDragging(null)
                 }}
               />
             )}
@@ -325,13 +326,13 @@ interface SongCardProps {
   onRemove: () => void
   showDebutFlag: boolean
   onDebutToggle?: (checked: boolean) => void
-  onDropOnCard: () => void
+  onDragHover: () => void
   isDragging: boolean
   onDragStart: () => void
   onDragEnd: () => void
 }
 
-function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFlag, onDebutToggle, onDropOnCard, isDragging, onDragStart, onDragEnd }: SongCardProps) {
+function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFlag, onDebutToggle, onDragHover, isDragging, onDragStart, onDragEnd }: SongCardProps) {
   const currentSongKey = SongsStepServices.buildSongId(song.title, song.language)
 
   const duplicateSong =
@@ -347,10 +348,9 @@ function SongCard({ song, songs, inOtherBucket, onUpdate, onRemove, showDebutFla
     <div
       className={[styles.dragRow, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
       onDragOver={(e) => e.preventDefault()}
-      onDrop={(e) => {
+      onDragEnter={(e) => {
         e.preventDefault()
-        e.stopPropagation()
-        onDropOnCard()
+        if (!isDragging) onDragHover()
       }}
     >
       <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>

@@ -73,7 +73,7 @@ export function MembersStep({
   const [pageSize, setPageSize] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const [formerPage, setFormerPage] = useState(1)
-  const [dragging, setDragging] = useState<{ key: string; from: MemberZone } | null>(null)
+  const [dragging, setDragging] = useState<{ key: string } | null>(null)
 
   function update(uiKey: string, patch: Partial<EditableMember>) {
     setMembers((prev) => {
@@ -177,13 +177,14 @@ export function MembersStep({
 
   function moveDraggedMember(to: MemberZone, overKey?: string) {
     if (!dragging) return
-    const sourceList = dragging.from === 'current' ? current : former
+    const currentZone: MemberZone = current.some((member) => member._uiKey === dragging.key) ? 'current' : 'former'
+    const sourceList = currentZone === 'current' ? current : former
     const targetList = to === 'current' ? current : former
     const draggedMember = sourceList.find((member) => member._uiKey === dragging.key)
     if (!draggedMember) return
 
     const nextSource = sourceList.filter((member) => member._uiKey !== dragging.key)
-    const targetWithoutDragged = dragging.from === to ? nextSource : targetList
+    const targetWithoutDragged = currentZone === to ? nextSource : targetList
     const insertIndex = overKey ? targetWithoutDragged.findIndex((member) => member._uiKey === overKey) : -1
 
     const nextTargetMember = { ...draggedMember, status: to }
@@ -191,18 +192,17 @@ export function MembersStep({
     if (insertIndex >= 0) nextTarget.splice(insertIndex, 0, nextTargetMember)
     else nextTarget.push(nextTargetMember)
 
-    if (dragging.from === to) {
+    if (currentZone === to) {
       if (to === 'current') {
         setMembers([...nextTarget, ...former])
       } else {
         setMembers([...current, ...nextTarget])
       }
-    } else if (dragging.from === 'current') {
+    } else if (currentZone === 'current') {
       setMembers([...nextSource, ...nextTarget])
     } else {
       setMembers([...nextTarget, ...nextSource])
     }
-    setDragging(null)
   }
 
   function resolveConflictAsExisting(conflict: MemberConflict) {
@@ -388,9 +388,9 @@ export function MembersStep({
               isSubunit={isSubunit}
               groupCategory={groupCategory}
               isEdit={isEdit}
-              onDropOnCard={() => moveDraggedMember('current', m._uiKey)}
+              onDragHover={() => moveDraggedMember('current', m._uiKey)}
               isDragging={dragging?.key === m._uiKey}
-              onDragStart={() => setDragging({ key: m._uiKey, from: 'current' })}
+              onDragStart={() => setDragging({ key: m._uiKey })}
               onDragEnd={() => setDragging(null)}
             />
           ))}
@@ -401,6 +401,7 @@ export function MembersStep({
               onDrop={(e) => {
                 e.preventDefault()
                 moveDraggedMember('current')
+                setDragging(null)
               }}
             />
           )}
@@ -449,9 +450,9 @@ export function MembersStep({
                 groupCategory={groupCategory}
                 isEdit={isEdit}
                 hideRemoveButton
-                onDropOnCard={() => moveDraggedMember('former', m._uiKey)}
+                onDragHover={() => moveDraggedMember('former', m._uiKey)}
                 isDragging={dragging?.key === m._uiKey}
-                onDragStart={() => setDragging({ key: m._uiKey, from: 'former' })}
+                onDragStart={() => setDragging({ key: m._uiKey })}
                 onDragEnd={() => setDragging(null)}
               />
             ))}
@@ -462,6 +463,7 @@ export function MembersStep({
                 onDrop={(e) => {
                   e.preventDefault()
                   moveDraggedMember('former')
+                  setDragging(null)
                 }}
               />
             )}
@@ -497,7 +499,7 @@ interface MemberCardProps {
   groupCategory: GroupCategory
   isEdit: boolean
   hideRemoveButton?: boolean
-  onDropOnCard: () => void
+  onDragHover: () => void
   isDragging: boolean
   onDragStart: () => void
   onDragEnd: () => void
@@ -514,7 +516,7 @@ function MemberCard({
   groupCategory,
   isEdit,
   hideRemoveButton,
-  onDropOnCard,
+  onDragHover,
   isDragging,
   onDragStart,
   onDragEnd,
@@ -535,10 +537,9 @@ function MemberCard({
     <div
       className={[styles.dragRow, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
       onDragOver={(e) => e.preventDefault()}
-      onDrop={(e) => {
+      onDragEnter={(e) => {
         e.preventDefault()
-        e.stopPropagation()
-        onDropOnCard()
+        if (!isDragging) onDragHover()
       }}
     >
       <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>
