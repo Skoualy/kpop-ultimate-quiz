@@ -1,0 +1,1 @@
+export { CriterionBadge } from './CriterionBadge'

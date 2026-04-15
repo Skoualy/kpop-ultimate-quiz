@@ -1,1 +1,1 @@
-export * from './ScrollTopControl'
+export { ScrollTopControl } from './ScrollTopControl'

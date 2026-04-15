@@ -7,48 +7,61 @@
   "debutYear": 2018,
   "status": "active",
   "company": "Cube Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/i-dle/cover.webp",
   "members": [
     {
       "idolId": "soyeon",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "leader",
+        "mainRapper"
       ]
     },
     {
       "idolId": "miyeon",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer",
+        "visual"
       ]
     },
     {
       "idolId": "minnie",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "soojin",
       "status": "former",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer",
+        "rapper"
       ]
     },
     {
       "idolId": "yuqi",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual",
+        "rapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "shuhua",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "maknae",
+        "visual"
       ]
     }
   ],
@@ -57,88 +70,143 @@
       {
         "id": "latata",
         "title": "Latata",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Latata+MV",
+        "youtubeUrl": "https://youtu.be/p4RIhcY7V3c?si=Sls2eFYT7uWcZ1Hw",
         "isDebutSong": true
       },
       {
-        "id": "hann-alone",
-        "title": "Hann Alone",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Hann+Alone+MV"
+        "id": "mono-feat-skaiwater",
+        "title": "Mono (Feat. skaiwater)",
+        "youtubeUrl": "https://youtu.be/DYgE3SGPEqk?si=L_i8Klai57QGMTIC"
       },
       {
-        "id": "senorita",
-        "title": "Senorita",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Senorita+MV"
+        "id": "wife",
+        "title": "Wife",
+        "youtubeUrl": "https://youtu.be/baaNwRAhHBo?si=aPVLNHeHdlcC0NCo"
       },
       {
-        "id": "uh-oh",
-        "title": "Uh-Oh",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Uh-Oh+MV"
-      },
-      {
-        "id": "lion",
-        "title": "Lion",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Lion+MV"
-      },
-      {
-        "id": "oh-my-god",
-        "title": "Oh My God",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Oh+My+God+MV"
-      },
-      {
-        "id": "dumdi-dumdi",
-        "title": "Dumdi Dumdi",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Dumdi+Dumdi+MV"
-      },
-      {
-        "id": "hwaa",
-        "title": "Hwaa",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Hwaa+MV"
-      },
-      {
-        "id": "tomboy",
-        "title": "Tomboy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Tomboy+MV"
-      },
-      {
-        "id": "nxde",
-        "title": "Nxde",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Nxde+MV"
-      },
-      {
-        "id": "queencard",
-        "title": "Queencard",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Queencard+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "put-it-straight",
-        "title": "Put It Straight",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Put+It+Straight+MV"
+        "id": "good-thing",
+        "title": "Good Thing",
+        "youtubeUrl": "https://youtu.be/hAONx6nuEgI?si=E6litFtRjzij_lZB"
       },
       {
         "id": "allergy",
         "title": "Allergy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Allergy+MV"
+        "youtubeUrl": "https://youtu.be/XZaBkbvteBc?si=V1rYu0xvDuSD4pP0"
+      },
+      {
+        "id": "hann-alone",
+        "title": "HANN (Alone)",
+        "youtubeUrl": "https://youtu.be/OKNXn2qCEws?si=DYe2otRUUsumuN3Z"
+      },
+      {
+        "id": "senorita",
+        "title": "Senorita",
+        "youtubeUrl": "https://youtu.be/2cevbhEqQF4?si=e4837uHI1XDZxjht"
+      },
+      {
+        "id": "uh-oh",
+        "title": "Uh-Oh",
+        "youtubeUrl": "https://youtu.be/I66oFXdf0KU?si=QCtv5g_BwiHLVV83"
+      },
+      {
+        "id": "lion",
+        "title": "Lion",
+        "youtubeUrl": "https://youtu.be/6oanIo_2Z4Q?si=FY-FX4qWZZUoi4XH"
+      },
+      {
+        "id": "oh-my-god",
+        "title": "Oh My God",
+        "youtubeUrl": "https://youtu.be/om3n2ni8luE?si=f-aoW__AtsFQdbfj"
+      },
+      {
+        "id": "dumdi-dumdi",
+        "title": "Dumdi Dumdi",
+        "youtubeUrl": "https://youtu.be/HPQ5mqovXHo?si=Oic1LvjTFUIQ5Hez"
+      },
+      {
+        "id": "hwaa",
+        "title": "HWAA",
+        "youtubeUrl": "https://youtu.be/z3szNvgQxHo?si=pFcDp2QUI8d0Zeze"
       },
       {
         "id": "my-bag",
         "title": "My Bag",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+My+Bag+MV"
-      },
-      {
-        "id": "lucid",
-        "title": "Lucid",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Lucid+MV"
+        "youtubeUrl": "https://youtu.be/cnBV09Ux2S0?si=31ANfiHrUoQj-6m4"
       },
       {
         "id": "super-lady",
         "title": "Super Lady",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Super+Lady+MV"
+        "youtubeUrl": "https://youtu.be/6f3RzjXPQwA?si=_uygwzl2_IwDPIoQ"
+      },
+      {
+        "id": "tomboy",
+        "title": "Tomboy",
+        "youtubeUrl": "https://youtu.be/Jh4QFaPmdss?si=n104tuCePIcwO4Uh"
+      },
+      {
+        "id": "nxde",
+        "title": "Nxde",
+        "youtubeUrl": "https://youtu.be/fCO7f0SmrDc?si=5ksv18ScUVZbp3vW"
+      },
+      {
+        "id": "queencard",
+        "title": "Queencard",
+        "youtubeUrl": "https://youtu.be/7HDeem-JaSY?si=GU1miHEnS8Vj_NRI"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "paradise",
+        "title": "Paradise",
+        "youtubeUrl": "https://youtu.be/s83gOWvBuWM?si=nJdIXOHxzgp8ggVj"
+      },
+      {
+        "id": "already",
+        "title": "Already",
+        "youtubeUrl": "https://youtu.be/9Bp42n1hxOY?si=cHtPxFkQn_kVpHNy"
+      },
+      {
+        "id": "where-is-love",
+        "title": "Where is Love",
+        "youtubeUrl": "https://youtu.be/-vo6u69BGn8?si=5aPxnUEgultVqnpg"
+      },
+      {
+        "id": "dahlia",
+        "title": "Dahlia",
+        "youtubeUrl": "https://youtu.be/KTm-4DAIUgU?si=vt5OiDUhYEUfHCbO"
+      },
+      {
+        "id": "moon",
+        "title": "Moon",
+        "youtubeUrl": "https://youtu.be/TpDzXlrzA2g?si=2cDZ962M6Aldcl_K"
+      },
+      {
+        "id": "maze",
+        "title": "Maze",
+        "youtubeUrl": "https://youtu.be/aRfqzT84rYg?si=JoLisTTJDHfwbl7-"
+      },
+      {
+        "id": "lost",
+        "title": "Lost",
+        "youtubeUrl": "https://youtu.be/14qyVLxaFek?si=rMufiU-CcNtHojjJ"
+      },
+      {
+        "id": "hann-alone-in-winter",
+        "title": "HANN (Alone in Winter)",
+        "youtubeUrl": "https://youtu.be/WaNGttCs8JM?si=Nq5wwY377vDXCsgn"
+      },
+      {
+        "id": "put-it-straight",
+        "title": "Put It Straight",
+        "youtubeUrl": "https://youtu.be/uyyBdaSeIi0?si=1zSiUjQixz83hpqn"
+      },
+      {
+        "id": "change",
+        "title": "Change",
+        "youtubeUrl": "https://youtu.be/bjFMG8BT144?si=hOv9_DIm8Ophajq5"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Neverland",
   "notes": null
 }

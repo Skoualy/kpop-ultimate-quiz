@@ -1229,7 +1229,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "th",
-    "portrait": "../../assets/idols/minnie/portrait.webp",
+    "portrait": "/assets/idols/minnie/portrait.webp",
     "notes": null
   },
   {
@@ -1247,7 +1247,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/miyeon/portrait.webp",
+    "portrait": "/assets/idols/miyeon/portrait.webp",
     "notes": null
   },
   {
@@ -1535,7 +1535,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "tw",
-    "portrait": "../../assets/idols/shuhua/portrait.webp",
+    "portrait": "/assets/idols/shuhua/portrait.webp",
     "notes": null
   },
   {
@@ -1598,7 +1598,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/soojin/portrait.webp",
+    "portrait": "/assets/idols/soojin/portrait.webp",
     "notes": null
   },
   {
@@ -1634,7 +1634,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/soyeon/portrait.webp",
+    "portrait": "/assets/idols/soyeon/portrait.webp",
     "notes": null
   },
   {
@@ -2129,7 +2129,7 @@
     "primaryGroupId": "i-dle",
     "gender": "f",
     "nationality": "cn",
-    "portrait": "../../assets/idols/yuqi/portrait.webp",
+    "portrait": "/assets/idols/yuqi/portrait.webp",
     "notes": null
   },
   {
