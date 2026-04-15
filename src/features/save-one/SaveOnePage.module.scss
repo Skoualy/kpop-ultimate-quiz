@@ -1,0 +1,213 @@
+.page {
+  min-height: 100vh;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.16), transparent 42%),
+    radial-gradient(circle at 90% 0%, rgba(233, 30, 140, 0.16), transparent 40%), var(--bg-base);
+}
+
+.shell {
+  max-width: 1280px;
+  height: calc(100vh - 36px);
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(12, 16, 40, 0.7);
+  backdrop-filter: blur(4px);
+  padding: 14px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-pill);
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 5px 10px;
+  color: var(--text-secondary);
+}
+
+.timerTrack {
+  height: 8px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.timerBar {
+  height: 100%;
+  background: var(--gradient-timer);
+  transition: width 1s linear;
+}
+
+.body {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+
+.cardsGrid {
+  min-height: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.idolCard {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 0;
+}
+
+.idolButton,
+.songThumbBtn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+}
+
+.idolImageWrap {
+  padding: 10px;
+}
+
+.idolImage {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.idolMeta {
+  border-top: 1px solid var(--border);
+  padding: 9px 10px;
+}
+
+.songPlayer {
+  width: min(650px, 100%);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #060913;
+}
+
+.thumbsGrid {
+  min-height: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.songCard {
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.thumbMask {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 32px;
+  background: linear-gradient(150deg, rgba(124, 58, 237, 0.2), rgba(3, 8, 30, 0.9));
+}
+
+.meta {
+  padding: 8px;
+  font-size: 13px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 9, 22, 0.82);
+  display: grid;
+  place-items: center;
+  z-index: 40;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlayBox {
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 20px;
+  background: rgba(26, 29, 53, 0.9);
+}
+
+.summary {
+  display: grid;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.summaryRow {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.smallThumb {
+  width: 70px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.commonPick {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 8px;
+  }
+  .shell {
+    height: calc(100vh - 16px);
+    border-radius: 14px;
+    padding: 10px;
+  }
+  .summaryRow {
+    grid-template-columns: 50px 1fr;
+  }
+}
