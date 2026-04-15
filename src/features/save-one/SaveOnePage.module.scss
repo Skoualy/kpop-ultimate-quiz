@@ -1,0 +1,257 @@
+.page {
+  height: 100vh;
+  overflow: hidden;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 12px;
+  color: var(--text-primary);
+}
+
+.centered {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  h1 { font-size: 22px; }
+  p { color: var(--text-secondary); }
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.timer {
+  min-width: 54px;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-pill);
+  border: 1px solid var(--border-strong);
+}
+
+.playerSection {
+  display: grid;
+  gap: 8px;
+}
+
+.iframe {
+  width: min(100%, 720px);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: #000;
+}
+
+.iframePlaceholder {
+  width: min(100%, 720px);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  background: #000;
+}
+
+.choicesGrid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.choiceCard {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 6px;
+  padding: 10px;
+  text-align: left;
+}
+
+.portraitWrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  background: var(--bg-surface);
+}
+
+.portrait {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius-md) - 4px);
+}
+
+.portraitFallback {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.former {
+  color: var(--color-warning);
+  font-weight: 700;
+}
+
+.songCard {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.songThumbButton {
+  border: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #0f0f12;
+  padding: 0;
+}
+
+.songThumb,
+.hiddenThumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.hiddenThumb {
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+
+.songMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.songTitle {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.overlay,
+.roundOverlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 10, 18, 0.68);
+  z-index: 100;
+  border: 0;
+}
+
+.overlayPanel {
+  min-width: 220px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  text-align: center;
+  animation: popIn 200ms ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryGrid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.summaryRound {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  background: var(--bg-card);
+}
+
+.matchRound {
+  border-color: var(--accent-teal);
+}
+
+.summaryMeta {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .choicesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .songTitle {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  .choicesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .choiceCard,
+  .songCard {
+    padding: 6px;
+  }
+
+  .songMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
