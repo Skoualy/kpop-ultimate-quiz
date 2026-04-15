@@ -32,7 +32,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/arin/portrait.webp",
+    "portrait": "/assets/idols/arin/portrait.webp",
     "notes": null
   },
   {
@@ -140,7 +140,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/chaeyoung/portrait.webp",
+    "portrait": "/assets/idols/chaeyoung/portrait.webp",
     "notes": null
   },
   {
@@ -230,7 +230,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/dahyun/portrait.webp",
+    "portrait": "/assets/idols/dahyun/portrait.webp",
     "notes": null
   },
   {
@@ -536,7 +536,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hyojung/portrait.webp",
+    "portrait": "/assets/idols/hyojung/portrait.webp",
     "notes": null
   },
   {
@@ -627,6 +627,15 @@
     "gender": "f",
     "nationality": "kr",
     "portrait": "../../assets/idols/iu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "j",
+    "name": "JinE",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "/assets/idols/j/portrait.webp",
     "notes": null
   },
   {
@@ -734,7 +743,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jeongyeon/portrait.webp",
+    "portrait": "/assets/idols/jeongyeon/portrait.webp",
     "notes": null
   },
   {
@@ -752,7 +761,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jiho/portrait.webp",
+    "portrait": "/assets/idols/jiho/portrait.webp",
     "notes": null
   },
   {
@@ -770,7 +779,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jihyo/portrait.webp",
+    "portrait": "/assets/idols/jihyo/portrait.webp",
     "notes": null
   },
   {
@@ -1139,7 +1148,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/mimi/portrait.webp",
+    "portrait": "/assets/idols/mimi/portrait.webp",
     "notes": null
   },
   {
@@ -1148,7 +1157,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/mina/portrait.webp",
+    "portrait": "/assets/idols/mina/portrait.webp",
     "notes": null
   },
   {
@@ -1169,7 +1178,6 @@
     "portrait": "../../assets/idols/mingi/portrait.webp",
     "notes": null
   },
-
   {
     "id": "mingyu",
     "name": "Mingyu",
@@ -1257,7 +1265,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/momo/portrait.webp",
+    "portrait": "/assets/idols/momo/portrait.webp",
     "notes": null
   },
   {
@@ -1275,7 +1283,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/nayeon/portrait.webp",
+    "portrait": "/assets/idols/nayeon/portrait.webp",
     "notes": null
   },
   {
@@ -1428,7 +1436,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/sana/portrait.webp",
+    "portrait": "/assets/idols/sana/portrait.webp",
     "notes": null
   },
   {
@@ -1482,7 +1490,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seunghee/portrait.webp",
+    "portrait": "/assets/idols/seunghee/portrait.webp",
     "notes": null
   },
   {
@@ -1779,7 +1787,7 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "tw",
-    "portrait": "../../assets/idols/tzuyu/portrait.webp",
+    "portrait": "/assets/idols/tzuyu/portrait.webp",
     "notes": null
   },
   {
@@ -1968,7 +1976,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yooa/portrait.webp",
+    "portrait": "/assets/idols/yooa/portrait.webp",
     "notes": null
   },
   {
@@ -2022,7 +2030,7 @@
     "primaryGroupId": "oh-my-girl",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yubin/portrait.webp",
+    "portrait": "/assets/idols/yubin/portrait.webp",
     "notes": null
   },
   {

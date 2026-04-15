@@ -7,55 +7,76 @@
   "debutYear": 2015,
   "status": "active",
   "company": "WM Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/oh-my-girl/cover.webp",
   "members": [
     {
       "idolId": "hyojung",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "mimi",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "yooa",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer",
+        "visual"
       ]
     },
     {
       "idolId": "seunghee",
       "status": "current",
       "roles": [
-        "vocal"
-      ]
-    },
-    {
-      "idolId": "jiho",
-      "status": "former",
-      "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "yubin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "arin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "maknae"
+      ]
+    },
+    {
+      "idolId": "jiho",
+      "status": "former",
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "j",
+      "status": "former",
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer"
       ]
     }
   ],
@@ -64,73 +85,158 @@
       {
         "id": "cupid",
         "title": "Cupid",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Cupid+MV",
+        "youtubeUrl": "https://youtu.be/fCrCUv6rQ7I?si=o_HOJa3fdUNdUkc-",
         "isDebutSong": true
       },
       {
-        "id": "closer",
-        "title": "Closer",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Closer+MV"
+        "id": "summer-comes",
+        "title": "Summer Comes",
+        "youtubeUrl": "https://youtu.be/fNaKSu73w60?si=5X6oajso48ilO0bd"
       },
       {
-        "id": "liar-liar",
-        "title": "Liar Liar",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Liar+Liar+MV"
+        "id": "bunghee-fall-in-love",
+        "title": "Bunghee (Fall in Love)",
+        "youtubeUrl": "https://youtu.be/QTD_yleCK9Y?si=wuG8c-6Iok1JPhY5"
       },
       {
-        "id": "windy-day",
-        "title": "Windy Day",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Windy+Day+MV"
-      },
-      {
-        "id": "secret-garden",
-        "title": "Secret Garden",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Secret+Garden+MV"
-      },
-      {
-        "id": "nonstop",
-        "title": "Nonstop",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Nonstop+MV"
-      },
-      {
-        "id": "dun-dun-dance",
-        "title": "Dun Dun Dance",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Dun+Dun+Dance+MV"
-      },
-      {
-        "id": "real-love",
-        "title": "Real Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Real+Love+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "illusion",
-        "title": "Illusion",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Illusion+MV"
-      },
-      {
-        "id": "gravity",
-        "title": "Gravity",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Gravity+MV"
-      },
-      {
-        "id": "checkmate",
-        "title": "Checkmate",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Checkmate+MV"
-      },
-      {
-        "id": "my-doll",
-        "title": "My Doll",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+My+Doll+MV"
+        "id": "renember-me",
+        "title": "Renember Me",
+        "youtubeUrl": "https://youtu.be/RrvdjyIL0fA?si=u5O-O2ZLjuRHif69"
       },
       {
         "id": "dolphin",
         "title": "Dolphin",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Dolphin+MV"
+        "youtubeUrl": "https://youtu.be/ThEkQD-p71Q?si=IkJxTEAr33Dvd24e"
+      },
+      {
+        "id": "listen-to-my-world-a-ing",
+        "title": "Listen To My World (A-ing)",
+        "youtubeUrl": "https://youtu.be/_W4dL2Av6LE?si=HgUFjPD5Z-0KSTIK"
+      },
+      {
+        "id": "classified",
+        "title": "Classified",
+        "youtubeUrl": "https://youtu.be/VPg-HtAUeRQ?si=LPjjhqibndMzoa83"
+      },
+      {
+        "id": "the-fifth-season",
+        "title": "The Fifth Season",
+        "youtubeUrl": "https://youtu.be/udGwca1HBM4?si=MGogd-ck4yD2ZnrD"
+      },
+      {
+        "id": "closer",
+        "title": "Closer",
+        "youtubeUrl": "https://youtu.be/isUudT58Xfk?si=yRXrJYUY8r-rO5LM"
+      },
+      {
+        "id": "liar-liar",
+        "title": "Liar Liar",
+        "youtubeUrl": "https://youtu.be/LNZKqhXCv5c?si=TJwbRHQpfIKlbXq4"
+      },
+      {
+        "id": "windy-day",
+        "title": "Windy Day",
+        "youtubeUrl": "https://youtu.be/AJqhKWo89FQ?si=422V7AbFgX9bzGu7"
+      },
+      {
+        "id": "secret-garden",
+        "title": "Secret Garden",
+        "youtubeUrl": "https://youtu.be/Lznx5A7fNto?si=8EVBHZ7kdV_hHoND"
+      },
+      {
+        "id": "nonstop",
+        "title": "Nonstop",
+        "youtubeUrl": "https://youtu.be/iDjQSdN_ig8?si=Hvh8i2a1FifGzCdD"
+      },
+      {
+        "id": "dun-dun-dance",
+        "title": "Dun Dun Dance",
+        "youtubeUrl": "https://youtu.be/HzOjwL7IP_o?si=TyrsxxPhQPkrZX2G"
+      },
+      {
+        "id": "real-love",
+        "title": "Real Love",
+        "youtubeUrl": "https://youtu.be/BWK65TVZ_tM?si=RMvVp3jiNK_WiiEA"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "start-up",
+        "title": "Start Up",
+        "youtubeUrl": "https://youtu.be/PX2z7ZC90qE?si=XmO-Ts6R-zFUEkyl"
+      },
+      {
+        "id": "shower",
+        "title": "Shower",
+        "youtubeUrl": "https://youtu.be/OpWZQFrKtpY?si=8xJ8CsNJ6HWiAFXI"
+      },
+      {
+        "id": "step-by-step",
+        "title": "Step by Step",
+        "youtubeUrl": "https://youtu.be/9oC-CbJSz88?si=fiNnQxEF9TmkAiMS"
+      },
+      {
+        "id": "guerilla",
+        "title": "Guerilla",
+        "youtubeUrl": "https://youtu.be/CBfJiyuHVPs?si=hzLjbcsDT2lnUX9n"
+      },
+      {
+        "id": "je-t-aime",
+        "title": "Je t'aime",
+        "youtubeUrl": "https://youtu.be/lyuMOjbYoR0?si=o9X6WAbuBwU6zBqw"
+      },
+      {
+        "id": "parachute",
+        "title": "Parachute",
+        "youtubeUrl": "https://youtu.be/2wLiKro7zcg?si=JkVkCwepOqEqgeec"
+      },
+      {
+        "id": "knock-knock",
+        "title": "Knock Knock",
+        "youtubeUrl": "https://youtu.be/KLeomtXnGUI?si=ihQljtFXCFjagKZp"
+      },
+      {
+        "id": "love-o-clock",
+        "title": "Love O'Clock",
+        "youtubeUrl": "https://youtu.be/xvlp043eH3A?si=OdfmMRnDLqye85l7"
+      },
+      {
+        "id": "neon",
+        "title": "Neon",
+        "youtubeUrl": "https://youtu.be/9mLtnxqbEno?si=nctpbaXgamQDkmhw"
+      },
+      {
+        "id": "vogue",
+        "title": "Vogue",
+        "youtubeUrl": "https://youtu.be/ybumxup2QqY?si=0xWXqRYhFaf-a9Ne"
+      },
+      {
+        "id": "case-no-l5ve",
+        "title": " Case No.L5VE",
+        "youtubeUrl": "https://youtu.be/qtp4YFmzzDs?si=VWSUUvKwXzwAvUhB"
+      },
+      {
+        "id": "twilight",
+        "title": "Twilight",
+        "youtubeUrl": "https://youtu.be/qFLIqDmSW_s?si=bni-ZJdhUME9Bf4G"
+      },
+      {
+        "id": "drip",
+        "title": "Drip",
+        "youtubeUrl": "https://youtu.be/GLIGtoiXCRs?si=gUthkiX5t0wsE7Pi"
+      },
+      {
+        "id": "checkmate",
+        "title": "Checkmate",
+        "youtubeUrl": "https://youtu.be/jVr41j0zigc?si=f590UtC9FYnPcunb"
+      },
+      {
+        "id": "my-doll",
+        "title": "My Doll",
+        "youtubeUrl": "https://youtu.be/4_efCcnb2TA?si=yCtT_9syo_AFmhmy"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Miracle",
   "notes": null
 }

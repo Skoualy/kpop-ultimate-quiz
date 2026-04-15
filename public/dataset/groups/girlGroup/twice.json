@@ -1,58 +1,92 @@
 {
   "id": "twice",
-  "name": "TWICE",
+  "name": "Twice",
   "category": "girlGroup",
   "parentGroupId": null,
   "generation": "3",
   "debutYear": 2015,
   "status": "active",
   "company": "JYP Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/twice/cover.webp",
   "members": [
     {
       "idolId": "jihyo",
       "status": "current",
-      "roles": ["leader", "mainVocal", "dancer"]
+      "roles": [
+        "mainVocal",
+        "dancer",
+        "leader"
+      ]
     },
     {
       "idolId": "nayeon",
       "status": "current",
-      "roles": ["vocal", "visual", "dancer"]
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer"
+      ]
     },
     {
       "idolId": "jeongyeon",
       "status": "current",
-      "roles": ["vocal", "dancer"]
+      "roles": [
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "momo",
       "status": "current",
-      "roles": ["vocal", "rapper", "mainDancer"]
+      "roles": [
+        "vocal",
+        "rapper",
+        "mainDancer"
+      ]
     },
     {
       "idolId": "sana",
       "status": "current",
-      "roles": ["vocal", "dancer"]
+      "roles": [
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "mina",
       "status": "current",
-      "roles": ["vocal", "mainDancer"]
+      "roles": [
+        "vocal",
+        "mainDancer"
+      ]
     },
     {
       "idolId": "dahyun",
       "status": "current",
-      "roles": ["vocal", "rapper", "dancer"]
+      "roles": [
+        "vocal",
+        "rapper",
+        "dancer"
+      ]
     },
     {
       "idolId": "chaeyoung",
       "status": "current",
-      "roles": ["mainRapper", "vocal", "dancer"]
+      "roles": [
+        "mainRapper",
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "tzuyu",
       "status": "current",
-      "roles": ["vocal", "visual", "dancer", "maknae"]
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer",
+        "maknae"
+      ]
     }
   ],
   "discography": {
@@ -60,79 +94,292 @@
       {
         "id": "like-ooh-ahh",
         "title": "Like OOH-AHH",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Like+OOH-AHH+MV",
+        "youtubeUrl": "https://youtu.be/0rtV5esQT6I?si=OIGRsGn_dbaiefkM",
         "isDebutSong": true
+      },
+      {
+        "id": "wake-me-up-jp",
+        "title": "Wake Me Up",
+        "youtubeUrl": "https://youtu.be/DdLYSziSXII?si=tu8U0VDzDtKx6M9l",
+        "language": "jp"
+      },
+      {
+        "id": "yes-or-yes",
+        "title": "Yes Or Yes",
+        "youtubeUrl": "https://youtu.be/mAKsZ26SabQ?si=Bg6vt-WC0ecccLC6"
+      },
+      {
+        "id": "fanfare-jp",
+        "title": "Fanfare",
+        "youtubeUrl": "https://youtu.be/kRT174IdxuM?si=yINO0oqnwz1SwQEM",
+        "language": "jp"
+      },
+      {
+        "id": "one-spark",
+        "title": "One Spark",
+        "youtubeUrl": "https://youtu.be/jCzez_q8si0?si=2-n5A71ehOkkZAmv"
+      },
+      {
+        "id": "i-got-you-en",
+        "title": "I Got You",
+        "youtubeUrl": "https://youtu.be/haf67eKF0uo?si=I-Ri8Be2C8VKRGXL",
+        "language": "en"
+      },
+      {
+        "id": "bdz-jp",
+        "title": "BDZ",
+        "youtubeUrl": "https://youtu.be/CMNahhgR_ss?si=E4AChdTe9gO8Qlwq",
+        "language": "jp"
+      },
+      {
+        "id": "more-and-more",
+        "title": "More & More",
+        "youtubeUrl": "https://youtu.be/mH0_XpSHkZo?si=hO290OaesBfArFAT"
+      },
+      {
+        "id": "hare-hare-jp",
+        "title": "Hare Hare",
+        "youtubeUrl": "https://youtu.be/-uqWaGzQyxA?si=c4v_ilLfKKzRfayU",
+        "language": "jp"
+      },
+      {
+        "id": "enemy-jp",
+        "title": "Enemy",
+        "youtubeUrl": "https://youtu.be/xWldBK4d2Ps?si=ATZ2Q7QdY92ntLir",
+        "language": "jp"
+      },
+      {
+        "id": "me-plusyou-en",
+        "title": "ME+YOU",
+        "youtubeUrl": "https://youtu.be/zqorlX_5oHQ?si=hdMJCPdbN_QUH-55",
+        "language": "en"
+      },
+      {
+        "id": "moonlight-sunrise-en",
+        "title": "Moonlight Sunrise",
+        "youtubeUrl": "https://youtu.be/cKlEE_EYuNM?si=h-s4kEu2RpQFYZFF",
+        "language": "en"
+      },
+      {
+        "id": "strategy-en",
+        "title": "Strategy",
+        "youtubeUrl": "https://youtu.be/bpiyH00cqS8?si=PoWKK4xgPpbc223R",
+        "language": "en"
+      },
+      {
+        "id": "alcohol-free",
+        "title": "Alcohol-Free",
+        "youtubeUrl": "https://youtu.be/XA2YEHn-A8Q?si=FNwEmnituN5XTvqV"
+      },
+      {
+        "id": "fake-and-true-jp",
+        "title": "Fake & True",
+        "youtubeUrl": "https://youtu.be/zQELp93xxfo?si=n2J6fh9EfHlB8v4i",
+        "language": "jp"
+      },
+      {
+        "id": "scientist",
+        "title": "Scientist",
+        "youtubeUrl": "https://youtu.be/vPwaXytZcgI?si=udoMK1bHi_V73pdw"
+      },
+      {
+        "id": "better-jp",
+        "title": "Better",
+        "youtubeUrl": "https://youtu.be/sLmLwgxnPUE?si=8MBtw_J8sWCd2OsW",
+        "language": "jp"
+      },
+      {
+        "id": "breakthrough-jp",
+        "title": "Breakthrough",
+        "youtubeUrl": "https://youtu.be/ZdKYi5ekshM?si=IJ_p8fv-fzPduWN5",
+        "language": "jp"
+      },
+      {
+        "id": "heart-shaker",
+        "title": "Heart Shaker",
+        "youtubeUrl": "https://youtu.be/rRzxEiBLQCA?si=9kjKfKJYY9VNZ8Xc"
+      },
+      {
+        "id": "knock-knock",
+        "title": "Knock Knock",
+        "youtubeUrl": "https://youtu.be/8A2t_tAjMz8?si=rPjCTaRzlY8W47Uz"
+      },
+      {
+        "id": "what-is-love",
+        "title": "What is Love?",
+        "youtubeUrl": "https://youtu.be/i0p1bmr0EmE?si=SvVsGB5CmLaoEIgM"
+      },
+      {
+        "id": "this-is-for-en",
+        "title": "This is For",
+        "youtubeUrl": "https://youtu.be/eHHQaoEW30Q?si=1OSpiJGaXGoZkVXd",
+        "language": "en"
+      },
+      {
+        "id": "perfect-world-jp",
+        "title": "Perfect World",
+        "youtubeUrl": "https://youtu.be/fmOEKOjyDxU?si=HLeLzsYmO2g_e_75",
+        "language": "jp"
       },
       {
         "id": "cheer-up",
         "title": "Cheer Up",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Cheer+Up+MV"
+        "youtubeUrl": "https://youtu.be/c7rCyll5AeY?si=X6KxCvEf3ctqk0y0"
       },
       {
         "id": "tt",
         "title": "TT",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+TT+MV"
+        "youtubeUrl": "https://youtu.be/ePpPVE-GGJw?si=S7xnhnzLOBF_TgC2"
       },
       {
         "id": "likey",
         "title": "Likey",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Likey+MV"
+        "youtubeUrl": "https://youtu.be/V2hlQkVJZhE?si=SWjpp6lrs3fgmnlL"
       },
       {
         "id": "fancy",
         "title": "Fancy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Fancy+MV"
+        "youtubeUrl": "https://youtu.be/kOHB85vDuow?si=u9gZth6PEWi-W-Np"
       },
       {
         "id": "feel-special",
         "title": "Feel Special",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Feel+Special+MV"
+        "youtubeUrl": "https://youtu.be/3ymwOvzhwHs?si=vdQguH8zarabCU3F"
       },
       {
         "id": "i-can-t-stop-me",
         "title": "I Can't Stop Me",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+I+Can%27t+Stop+Me+MV"
+        "youtubeUrl": "https://youtu.be/CM4CkVFmTds?si=z1AIr9lNj5b92wMB"
       },
       {
         "id": "the-feels-en",
         "title": "The Feels",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+The+Feels+MV",
+        "youtubeUrl": "https://youtu.be/f5_wn8mexmM?si=ONsR5Dwjmgw7ByaM",
         "language": "en"
       },
       {
         "id": "talk-that-talk",
         "title": "Talk That Talk",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Talk+That+Talk+MV"
+        "youtubeUrl": "https://youtu.be/k6jqx9kZgPM?si=6gOqTGkxLQlo0MS6"
       }
     ],
     "bSides": [
       {
-        "id": "be-as-one",
-        "title": "Be as ONE",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Be+as+ONE+MV"
+        "id": "look-at-me",
+        "title": "Look At Me",
+        "youtubeUrl": "https://youtu.be/Q97pvL6GsIA?si=KhFG64A00Pm7gFQ1"
+      },
+      {
+        "id": "new-new",
+        "title": "New New",
+        "youtubeUrl": "https://youtu.be/JqEEOtVtBO4?si=ZKxRkRVhqzIg8bux"
+      },
+      {
+        "id": "strawberry-moon-jp",
+        "title": " Strawberry Moon",
+        "youtubeUrl": "https://youtu.be/44TcFBoycL8?si=IRHU-dg4kF9nw2T4",
+        "language": "jp"
+      },
+      {
+        "id": "blame-it-on-me",
+        "title": "Blame It On Me",
+        "youtubeUrl": "https://youtu.be/Mk8hIPg2dNE?si=UHiZ_skfcgAKLH9k"
+      },
+      {
+        "id": "cruel",
+        "title": "Cruel",
+        "youtubeUrl": "https://youtu.be/HQXBAGVSOyY?si=ijDZN4J4BGTEYTYo"
+      },
+      {
+        "id": "brave",
+        "title": "Brave",
+        "youtubeUrl": "https://youtu.be/QTy21FWLvqY?si=y848_FR2MBPc6PTv"
+      },
+      {
+        "id": "mars",
+        "title": "Mars",
+        "youtubeUrl": "https://youtu.be/N1ExjhcpLso?si=XVL_z-9BV_5t3BWU"
+      },
+      {
+        "id": "icon-en",
+        "title": "Icon",
+        "youtubeUrl": "https://youtu.be/wfXETdOzYos?si=hcMpb1nn4VwUD62B",
+        "language": "en"
+      },
+      {
+        "id": "cry-for-me",
+        "title": "Cry For Me",
+        "youtubeUrl": "https://youtu.be/9KW7hojmoaI?si=pI3iAjchlyMhZys8"
+      },
+      {
+        "id": "set-me-free",
+        "title": "Set Me Free",
+        "youtubeUrl": "https://youtu.be/w4cTYnOPdNk?si=OaqO5Q_7PGNdTLsS"
+      },
+      {
+        "id": "push-and-pull-jihyo-sana-dahyun",
+        "title": "Push & Pull (Jihyo, Sana, Dahyun)",
+        "youtubeUrl": "https://youtu.be/LKHm2N-knDQ?si=ut0mkQoBZYOPeSlu"
+      },
+      {
+        "id": "go-hard",
+        "title": "Go Hard",
+        "youtubeUrl": "https://youtu.be/VSc74fDej4I?si=CW6jrRYI8RGovp_6"
+      },
+      {
+        "id": "turn-it-up",
+        "title": "Turn It Up",
+        "youtubeUrl": "https://youtu.be/Ssro0ddHe1Y?si=q-1Dz-j7K2jMJXFs"
+      },
+      {
+        "id": "up-no-more",
+        "title": "Up No More",
+        "youtubeUrl": "https://youtu.be/Qgylz1pLFE0?si=hVR6-v_B3MIv3pSh"
+      },
+      {
+        "id": "trouble",
+        "title": "Trouble",
+        "youtubeUrl": "https://youtu.be/vm9Lkyp4l9Q?si=rRJAQ568p3quDjKj"
+      },
+      {
+        "id": "scorpion-jp",
+        "title": "Scorpion",
+        "youtubeUrl": "https://youtu.be/V4gusFdqBb4?si=us4nvb7JcdIq8AcH",
+        "language": "jp"
+      },
+      {
+        "id": "queen-of-hearts-en",
+        "title": "Queen of Hearts",
+        "youtubeUrl": "https://youtu.be/Q4Rb5_kjS2M?si=YaMihFdrz5LK5Rqv",
+        "language": "en"
       },
       {
         "id": "get-loud",
         "title": "Get Loud",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Get+Loud+MV"
+        "youtubeUrl": "https://youtu.be/EZ8FUhUPk1I?si=ulxHyuAn5K7CScZk"
       },
       {
-        "id": "trick-it",
-        "title": "Trick It",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Trick+It+MV"
+        "id": "like-it-like-it",
+        "title": "Like It Like It",
+        "youtubeUrl": "https://youtu.be/Z-hpRjpFmmU?si=7nO-DCKmbPSUJQX5"
       },
       {
         "id": "baby-blue-love",
         "title": "Baby Blue Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Baby+Blue+Love+MV"
+        "youtubeUrl": "https://youtu.be/bJNWWFLeskg?si=rsU7DCVcgxAa636K"
       },
       {
-        "id": "basics",
-        "title": "Basics",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Basics+MV"
+        "id": "f-i-l-a-fall-in-love-again",
+        "title": " F.I.L.A (Fall In Love Again)",
+        "youtubeUrl": "https://youtu.be/I4xliZW07tk?si=dU9NVmayQQzN15Of"
+      },
+      {
+        "id": "turtle",
+        "title": "Turtle",
+        "youtubeUrl": "https://youtu.be/tVv_C2fYStU?si=08UnCjfwDGK6ily-"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "ONCE",
   "notes": null
 }
