@@ -1,0 +1,132 @@
+{
+  "id": "shinee",
+  "name": "SHINee",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2008,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "onew",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jonghyun",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "key",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "minho",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "taemin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "replay",
+        "title": "Replay",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Replay+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "love-like-oxygen",
+        "title": "Love Like Oxygen",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Love+Like+Oxygen+MV"
+      },
+      {
+        "id": "ring-ding-dong",
+        "title": "Ring Ding Dong",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Ring+Ding+Dong+MV"
+      },
+      {
+        "id": "lucifer",
+        "title": "Lucifer",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Lucifer+MV"
+      },
+      {
+        "id": "sherlock",
+        "title": "Sherlock",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Sherlock+MV"
+      },
+      {
+        "id": "dream-girl",
+        "title": "Dream Girl",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Dream+Girl+MV"
+      },
+      {
+        "id": "view",
+        "title": "View",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+View+MV"
+      },
+      {
+        "id": "1-of-1",
+        "title": "1 of 1",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+1+of+1+MV"
+      },
+      {
+        "id": "don-t-call-me",
+        "title": "Don't Call Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Don%27t+Call+Me+MV"
+      },
+      {
+        "id": "hard",
+        "title": "Hard",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Hard+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "an-encore",
+        "title": "An Encore",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+An+Encore+MV"
+      },
+      {
+        "id": "odd-eye",
+        "title": "Odd Eye",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Odd+Eye+MV"
+      },
+      {
+        "id": "bodyguard",
+        "title": "Bodyguard",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Bodyguard+MV"
+      },
+      {
+        "id": "ready-or-not",
+        "title": "Ready Or Not",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Ready+Or+Not+MV"
+      },
+      {
+        "id": "atlantis",
+        "title": "Atlantis",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=SHINee+Atlantis+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -1,0 +1,139 @@
+{
+  "id": "gfriend",
+  "name": "GFriend",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "inactive",
+  "company": "Source Music",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "sowon",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yerin",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "eunha",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yuju",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sinb",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "umji",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "glass-bead",
+        "title": "Glass Bead",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Glass+Bead+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "me-gustas-tu",
+        "title": "Me Gustas Tu",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Me+Gustas+Tu+MV"
+      },
+      {
+        "id": "rough",
+        "title": "Rough",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Rough+MV"
+      },
+      {
+        "id": "navillera",
+        "title": "Navillera",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Navillera+MV"
+      },
+      {
+        "id": "fingertip",
+        "title": "Fingertip",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Fingertip+MV"
+      },
+      {
+        "id": "love-whisper",
+        "title": "Love Whisper",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Love+Whisper+MV"
+      },
+      {
+        "id": "sunny-summer",
+        "title": "Sunny Summer",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Sunny+Summer+MV"
+      },
+      {
+        "id": "time-for-the-moon-night",
+        "title": "Time for the Moon Night",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Time+for+the+Moon+Night+MV"
+      },
+      {
+        "id": "sunrise",
+        "title": "Sunrise",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Sunrise+MV"
+      },
+      {
+        "id": "mago",
+        "title": "Mago",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Mago+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "crush",
+        "title": "Crush",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Crush+MV"
+      },
+      {
+        "id": "compass",
+        "title": "Compass",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Compass+MV"
+      },
+      {
+        "id": "fall-in-love",
+        "title": "Fall in Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Fall+in+Love+MV"
+      },
+      {
+        "id": "memoria",
+        "title": "Memoria",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Memoria+MV"
+      },
+      {
+        "id": "mr-blue",
+        "title": "Mr Blue",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Mr+Blue+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -1,5 +1,166 @@
 [
-  { "id": "twice",  "category": "girlGroup" },
-  { "id": "misamo", "category": "girlGroup" },
-  { "id": "nayeon", "category": "femaleSoloist" }
+  {
+    "id": "ateez",
+    "category": "boyGroup"
+  },
+  {
+    "id": "bts",
+    "category": "boyGroup"
+  },
+  {
+    "id": "day6",
+    "category": "boyGroup"
+  },
+  {
+    "id": "enhypen",
+    "category": "boyGroup"
+  },
+  {
+    "id": "exo",
+    "category": "boyGroup"
+  },
+  {
+    "id": "ftisland",
+    "category": "boyGroup"
+  },
+  {
+    "id": "got7",
+    "category": "boyGroup"
+  },
+  {
+    "id": "ikon",
+    "category": "boyGroup"
+  },
+  {
+    "id": "p1harmony",
+    "category": "boyGroup"
+  },
+  {
+    "id": "seventeen",
+    "category": "boyGroup"
+  },
+  {
+    "id": "shinee",
+    "category": "boyGroup"
+  },
+  {
+    "id": "stray-kids",
+    "category": "boyGroup"
+  },
+  {
+    "id": "super-junior",
+    "category": "boyGroup"
+  },
+  {
+    "id": "treasure",
+    "category": "boyGroup"
+  },
+  {
+    "id": "iu",
+    "category": "femaleSoloist"
+  },
+  {
+    "id": "jihyo-solo",
+    "category": "femaleSoloist"
+  },
+  {
+    "id": "nayeon-solo",
+    "category": "femaleSoloist"
+  },
+  {
+    "id": "rothy",
+    "category": "femaleSoloist"
+  },
+  {
+    "id": "2ne1",
+    "category": "girlGroup"
+  },
+  {
+    "id": "aespa",
+    "category": "girlGroup"
+  },
+  {
+    "id": "aoa",
+    "category": "girlGroup"
+  },
+  {
+    "id": "baby-monster",
+    "category": "girlGroup"
+  },
+  {
+    "id": "blackpink",
+    "category": "girlGroup"
+  },
+  {
+    "id": "dreamcatcher",
+    "category": "girlGroup"
+  },
+  {
+    "id": "everglow",
+    "category": "girlGroup"
+  },
+  {
+    "id": "gfriend",
+    "category": "girlGroup"
+  },
+  {
+    "id": "girls-generation",
+    "category": "girlGroup"
+  },
+  {
+    "id": "hearts2hearts",
+    "category": "girlGroup"
+  },
+  {
+    "id": "i-dle",
+    "category": "girlGroup"
+  },
+  {
+    "id": "illit",
+    "category": "girlGroup"
+  },
+  {
+    "id": "ive",
+    "category": "girlGroup"
+  },
+  {
+    "id": "le-sserafim",
+    "category": "girlGroup"
+  },
+  {
+    "id": "mamamoo",
+    "category": "girlGroup"
+  },
+  {
+    "id": "misamo",
+    "category": "girlGroup"
+  },
+  {
+    "id": "newjeans",
+    "category": "girlGroup"
+  },
+  {
+    "id": "nmixx",
+    "category": "girlGroup"
+  },
+  {
+    "id": "oh-my-girl",
+    "category": "girlGroup"
+  },
+  {
+    "id": "red-velvet",
+    "category": "girlGroup"
+  },
+  {
+    "id": "twice",
+    "category": "girlGroup"
+  },
+  {
+    "id": "viviz",
+    "category": "girlGroup"
+  },
+  {
+    "id": "wonder-girls",
+    "category": "girlGroup"
+  }
 ]

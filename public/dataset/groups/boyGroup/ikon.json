@@ -1,0 +1,136 @@
+{
+  "id": "ikon",
+  "name": "iKON",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "active",
+  "company": "YG Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "jinhwan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yunhyeong",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "bobby",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "donghyuk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jun-e",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "chanwoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "b-i",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "my-type",
+        "title": "My Type",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+My+Type+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "rhythm-ta",
+        "title": "Rhythm Ta",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Rhythm+Ta+MV"
+      },
+      {
+        "id": "dumb-dumber",
+        "title": "Dumb & Dumber",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Dumb+%26+Dumber+MV"
+      },
+      {
+        "id": "apology",
+        "title": "Apology",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Apology+MV"
+      },
+      {
+        "id": "what-s-wrong",
+        "title": "What's Wrong",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+What%27s+Wrong+MV"
+      },
+      {
+        "id": "bling-bling",
+        "title": "Bling Bling",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Bling+Bling+MV"
+      },
+      {
+        "id": "love-scenario",
+        "title": "Love Scenario",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Love+Scenario+MV"
+      },
+      {
+        "id": "killing-me",
+        "title": "Killing Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Killing+Me+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "airplane",
+        "title": "Airplane",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Airplane+MV"
+      },
+      {
+        "id": "best-friend",
+        "title": "Best Friend",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Best+Friend+MV"
+      },
+      {
+        "id": "don-t-let-me-know",
+        "title": "Don't Let Me Know",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Don%27t+Let+Me+Know+MV"
+      },
+      {
+        "id": "i-miss-you-so-bad",
+        "title": "I Miss You So Bad",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+I+Miss+You+So+Bad+MV"
+      },
+      {
+        "id": "just-go",
+        "title": "Just Go",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Just+Go+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

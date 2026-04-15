@@ -1,0 +1,131 @@
+{
+  "id": "aoa",
+  "name": "AOA",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2012,
+  "status": "inactive",
+  "company": "FNC Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "choa",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jimin",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yuna",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyejeong",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mina",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "chanmi",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seolhyun",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "elvis",
+        "title": "Elvis",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Elvis+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "confused",
+        "title": "Confused",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Confused+MV"
+      },
+      {
+        "id": "miniskirt",
+        "title": "Miniskirt",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Miniskirt+MV"
+      },
+      {
+        "id": "short-hair",
+        "title": "Short Hair",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Short+Hair+MV"
+      },
+      {
+        "id": "like-a-cat",
+        "title": "Like a Cat",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Like+a+Cat+MV"
+      },
+      {
+        "id": "heart-attack",
+        "title": "Heart Attack",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Heart+Attack+MV"
+      },
+      {
+        "id": "excuse-me",
+        "title": "Excuse Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Excuse+Me+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "bingle-bangle",
+        "title": "Bingle Bangle",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Bingle+Bangle+MV"
+      },
+      {
+        "id": "10-seconds",
+        "title": "10 Seconds",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+10+Seconds+MV"
+      },
+      {
+        "id": "under-the-sky",
+        "title": "Under the Sky",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Under+the+Sky+MV"
+      },
+      {
+        "id": "my-song",
+        "title": "My Song",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+My+Song+MV"
+      },
+      {
+        "id": "get-out",
+        "title": "Get Out",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Get+Out+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

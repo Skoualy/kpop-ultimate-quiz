@@ -1,0 +1,131 @@
+{
+  "id": "enhypen",
+  "name": "ENHYPEN",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2020,
+  "status": "active",
+  "company": "Belift Lab",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "heeseung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jay",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jake",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sunghoon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sunoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jungwon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ni-ki",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "given-taken",
+        "title": "Given Taken",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Given+Taken+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "drunk-dazed",
+        "title": "Drunk Dazed",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Drunk+Dazed+MV"
+      },
+      {
+        "id": "tamed-dashed",
+        "title": "Tamed Dashed",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Tamed+Dashed+MV"
+      },
+      {
+        "id": "blessed-cursed",
+        "title": "Blessed Cursed",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Blessed+Cursed+MV"
+      },
+      {
+        "id": "future-perfect",
+        "title": "Future Perfect",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Future+Perfect+MV"
+      },
+      {
+        "id": "bite-me",
+        "title": "Bite Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Bite+Me+MV"
+      },
+      {
+        "id": "sweet-venom",
+        "title": "Sweet Venom",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Sweet+Venom+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "let-me-in",
+        "title": "Let Me In",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Let+Me+In+MV"
+      },
+      {
+        "id": "fever",
+        "title": "Fever",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Fever+MV"
+      },
+      {
+        "id": "polaroid-love",
+        "title": "Polaroid Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Polaroid+Love+MV"
+      },
+      {
+        "id": "shout-out",
+        "title": "Shout Out",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+Shout+Out+MV"
+      },
+      {
+        "id": "tfw-that-feeling-when",
+        "title": "TFW That Feeling When",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ENHYPEN+TFW+That+Feeling+When+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -1,0 +1,119 @@
+{
+  "id": "le-sserafim",
+  "name": "Le Sserafim",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2022,
+  "status": "active",
+  "company": "Source Music",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "chaewon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sakura",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yunjin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "kazuha",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "eunchae",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "garam",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "fearless",
+        "title": "Fearless",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Fearless+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "antifragile",
+        "title": "Antifragile",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Antifragile+MV"
+      },
+      {
+        "id": "unforgiven",
+        "title": "Unforgiven",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Unforgiven+MV"
+      },
+      {
+        "id": "perfect-night",
+        "title": "Perfect Night",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Perfect+Night+MV"
+      },
+      {
+        "id": "easy",
+        "title": "Easy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Easy+MV"
+      },
+      {
+        "id": "smart",
+        "title": "Smart",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Smart+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "blue-flame",
+        "title": "Blue Flame",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Blue+Flame+MV"
+      },
+      {
+        "id": "no-celestial",
+        "title": "No Celestial",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+No+Celestial+MV"
+      },
+      {
+        "id": "impurities",
+        "title": "Impurities",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Impurities+MV"
+      },
+      {
+        "id": "no-return-into-the-unknown",
+        "title": "No-Return Into the Unknown",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+No-Return+Into+the+Unknown+MV"
+      },
+      {
+        "id": "swan",
+        "title": "Swan",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Le+Sserafim+Swan+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

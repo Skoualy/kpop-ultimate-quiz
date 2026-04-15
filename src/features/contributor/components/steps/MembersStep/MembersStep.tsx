@@ -278,8 +278,14 @@ export function MembersStep({
     return null
   }
 
-  const currentConflict = useMemo(() => (isEdit ? null : findSectionConflict(current)), [current, existingIdols, dismissedConflicts, isEdit])
-  const formerConflict = useMemo(() => (isEdit ? null : findSectionConflict(former)), [former, existingIdols, dismissedConflicts, isEdit])
+  const currentConflict = useMemo(
+    () => (isEdit ? null : findSectionConflict(current)),
+    [current, existingIdols, dismissedConflicts, isEdit],
+  )
+  const formerConflict = useMemo(
+    () => (isEdit ? null : findSectionConflict(former)),
+    [former, existingIdols, dismissedConflicts, isEdit],
+  )
   const query = search.trim().toLowerCase()
   const filteredCurrent = current.filter((member) => !query || member.name.toLowerCase().includes(query))
   const filteredFormer = former.filter((member) => !query || member.name.toLowerCase().includes(query))
@@ -351,9 +357,15 @@ export function MembersStep({
         />
         <label className={styles.pageSizeInline}>
           <span>Par page</span>
-          <select className={['select', styles.pageSizeSelect].join(' ')} value={String(pageSize)} onChange={(e) => setPageSize(Number(e.target.value))}>
+          <select
+            className={['select', styles.pageSizeSelect].join(' ')}
+            value={String(pageSize)}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
             {MEMBER_PAGE_SIZES.map((size) => (
-              <option key={size} value={size}>{size}</option>
+              <option key={size} value={size}>
+                {size}
+              </option>
             ))}
           </select>
         </label>
@@ -361,20 +373,41 @@ export function MembersStep({
 
       {currentConflict && (
         <div className={styles.reuseBox}>
-          <span>L&apos;idol <strong>{currentConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?</span>
+          <span>
+            L&apos;idol <strong>{currentConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?
+          </span>
           <div className={styles.reuseActions}>
-            <button type="button" className="btn btn--secondary btn--sm" onClick={() => resolveConflictAsExisting(currentConflict)}>Réutiliser</button>
-            <button type="button" className="btn btn--ghost btn--sm" onClick={() => resolveConflictAsNew(currentConflict)}>Nouveau</button>
+            <button
+              type="button"
+              className="btn btn--secondary btn--sm"
+              onClick={() => resolveConflictAsExisting(currentConflict)}
+            >
+              Réutiliser
+            </button>
+            <button
+              type="button"
+              className="btn btn--ghost btn--sm"
+              onClick={() => resolveConflictAsNew(currentConflict)}
+            >
+              Nouveau
+            </button>
           </div>
         </div>
       )}
 
+      <div className={styles.hint}>💡 Utilise les rôles pour améliorer la qualité du quiz (leader/maknae uniques).</div>
+
       <CollapsibleSection
         title="Membres actuels"
         subtitle={!isSoloist ? 'au moins deux requis' : undefined}
-        actions={!isSoloist ? <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>+ Ajouter</button> : undefined}
+        actions={
+          !isSoloist ? (
+            <button type="button" className="btn btn--secondary btn--sm" onClick={() => addMember('current')}>
+              + Ajouter
+            </button>
+          ) : undefined
+        }
       >
-        <div className={styles.hint}>💡 Utilise les rôles pour améliorer la qualité du quiz (leader/maknae uniques).</div>
         <div className={styles.sectionList} onDragOver={(e) => e.preventDefault()}>
           {pagedCurrent.map((m) => (
             <MemberCard
@@ -424,14 +457,32 @@ export function MembersStep({
         <CollapsibleSection
           title="Anciens membres"
           subtitle="optionnel"
-          actions={<button type="button" className="btn btn--ghost btn--sm" onClick={() => addMember('former')}>+ Ajouter</button>}
+          actions={
+            <button type="button" className="btn btn--ghost btn--sm" onClick={() => addMember('former')}>
+              + Ajouter
+            </button>
+          }
         >
           {formerConflict && (
             <div className={styles.reuseBox}>
-              <span>L&apos;idol <strong>{formerConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?</span>
+              <span>
+                L&apos;idol <strong>{formerConflict.memberName}</strong> existe déjà. Réutiliser ou créer un nouveau ?
+              </span>
               <div className={styles.reuseActions}>
-                <button type="button" className="btn btn--secondary btn--sm" onClick={() => resolveConflictAsExisting(formerConflict)}>Réutiliser</button>
-                <button type="button" className="btn btn--ghost btn--sm" onClick={() => resolveConflictAsNew(formerConflict)}>Nouveau</button>
+                <button
+                  type="button"
+                  className="btn btn--secondary btn--sm"
+                  onClick={() => resolveConflictAsExisting(formerConflict)}
+                >
+                  Réutiliser
+                </button>
+                <button
+                  type="button"
+                  className="btn btn--ghost btn--sm"
+                  onClick={() => resolveConflictAsNew(formerConflict)}
+                >
+                  Nouveau
+                </button>
               </div>
             </div>
           )}
@@ -449,7 +500,6 @@ export function MembersStep({
                 isSubunit={isSubunit}
                 groupCategory={groupCategory}
                 isEdit={isEdit}
-                hideRemoveButton
                 onDragHover={() => moveDraggedMember('former', m._uiKey)}
                 isDragging={dragging?.key === m._uiKey}
                 onDragStart={() => setDragging({ key: m._uiKey })}
@@ -542,7 +592,15 @@ function MemberCard({
         if (!isDragging) onDragHover()
       }}
     >
-      <div className={styles.dragHandle} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} title="Glisser-déposer">⋮⋮</div>
+      <div
+        className={styles.dragHandle}
+        draggable
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        title="Glisser-déposer"
+      >
+        ⋮⋮
+      </div>
       <div className={styles.card}>
         <div className={styles.cardBody}>
           <div className={styles.cardPortrait}>
@@ -552,8 +610,7 @@ function MemberCard({
               onChange={(v) => onUpdate({ portrait: v })}
               onFileChange={(f) => onUpdate({ portraitFile: f })}
               aspectRatio="400/533"
-              hint="400×533 px"
-              emptyIcon="👤"
+              hint="400×533 px · webp"
               disabled={lockPortrait}
             />
           </div>
@@ -563,9 +620,15 @@ function MemberCard({
               <div className={styles.field}>
                 {isEdit ? (
                   <>
-                    <label className={styles.label}>Nom de scène <span className={styles.required}>*</span></label>
-                    <input className="input" value={member.name} placeholder="Ex: Sana" onChange={(e) => onNameChange(e.target.value)} />
-                    <span className={styles.requiredSmall}>ID verrouillé : {member.generatedId || member.existingIdolId || '—'}</span>
+                    <label className={styles.label}>
+                      Nom de scène <span className={styles.required}>*</span>
+                    </label>
+                    <input
+                      className="input"
+                      value={member.name}
+                      placeholder="Ex: Sana"
+                      onChange={(e) => onNameChange(e.target.value)}
+                    />
                   </>
                 ) : (
                   <GeneratedIdInputControl
@@ -573,7 +636,11 @@ function MemberCard({
                     required
                     value={member.name}
                     onChange={onNameChange}
-                    generatedId={member.resolutionMode === 'existing' && member.existingIdolId ? member.existingIdolId : member.generatedId}
+                    generatedId={
+                      member.resolutionMode === 'existing' && member.existingIdolId
+                        ? member.existingIdolId
+                        : member.generatedId
+                    }
                     exists={false}
                     placeholder="Ex: Sana"
                     disabled={lockIdentityFields}
@@ -595,7 +662,6 @@ function MemberCard({
               <div className={styles.field}>
                 <label className={styles.label}>
                   {isSoloist ? 'Rôle' : 'Rôles'} <span className={styles.required}>*</span>{' '}
-                  {!isSoloist && <span className={styles.requiredSmall}>(au moins un)</span>}
                 </label>
                 <BadgeGroupControl<MemberRole>
                   options={roleOptions}
@@ -610,11 +676,15 @@ function MemberCard({
 
           {isSoloist ? (
             <div className={styles.cardDeleteRow}>
-              <button type="button" className="btn btn--ghost btn--sm" onClick={onReset}>↺ Reset</button>
+              <button type="button" className="btn btn--ghost btn--sm" onClick={onReset}>
+                ↺ Reset
+              </button>
             </div>
           ) : !hideRemoveButton ? (
             <div className={styles.cardDeleteRow}>
-              <button type="button" className="btn btn--danger btn--sm" onClick={onRemove}>🗑 Supprimer</button>
+              <button type="button" className="btn btn--danger btn--sm" onClick={onRemove}>
+                🗑 Supprimer
+              </button>
             </div>
           ) : null}
         </div>

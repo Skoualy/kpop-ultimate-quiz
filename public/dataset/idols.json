@@ -1,65 +1,137 @@
 [
   {
-    "id": "jihyo",
-    "name": "Jihyo",
-    "primaryGroupId": "twice",
+    "id": "a-na",
+    "name": "A-na",
+    "primaryGroupId": "hearts2hearts",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "assets/idols/jihyo/portrait.webp",
+    "portrait": "../../assets/idols/a-na/portrait.webp",
     "notes": null
   },
   {
-    "id": "nayeon",
-    "name": "Nayeon",
-    "primaryGroupId": "nayeon",
+    "id": "ahyeon",
+    "name": "Ahyeon",
+    "primaryGroupId": "baby-monster",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "assets/idols/nayeon/portrait.webp",
+    "portrait": "../../assets/idols/ahyeon/portrait.webp",
     "notes": null
   },
   {
-    "id": "jeongyeon",
-    "name": "Jeongyeon",
-    "primaryGroupId": "twice",
+    "id": "aisha",
+    "name": "Aisha",
+    "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "assets/idols/jeongyeon/portrait.webp",
+    "portrait": "../../assets/idols/aisha/portrait.webp",
     "notes": null
   },
   {
-    "id": "momo",
-    "name": "Momo",
-    "primaryGroupId": "twice",
+    "id": "arin",
+    "name": "Arin",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/arin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "asa",
+    "name": "Asa",
+    "primaryGroupId": "baby-monster",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "assets/idols/momo/portrait.webp",
+    "portrait": "../../assets/idols/asa/portrait.webp",
     "notes": null
   },
   {
-    "id": "sana",
-    "name": "Sana",
-    "primaryGroupId": "twice",
-    "gender": "f",
+    "id": "asahi",
+    "name": "Asahi",
+    "primaryGroupId": "treasure",
+    "gender": "m",
     "nationality": "jp",
-    "portrait": "assets/idols/sana/portrait.webp",
+    "portrait": "../../assets/idols/asahi/portrait.webp",
     "notes": null
   },
   {
-    "id": "mina",
-    "name": "Mina",
-    "primaryGroupId": "twice",
-    "gender": "f",
-    "nationality": "jp",
-    "portrait": "assets/idols/mina/portrait.webp",
+    "id": "b-i",
+    "name": "B.I",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/b-i/portrait.webp",
     "notes": null
   },
   {
-    "id": "dahyun",
-    "name": "Dahyun",
-    "primaryGroupId": "twice",
+    "id": "bae",
+    "name": "Bae",
+    "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "assets/idols/dahyun/portrait.webp",
+    "portrait": "../../assets/idols/bae/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "baekhyun",
+    "name": "Baekhyun",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/baekhyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "bambam",
+    "name": "BamBam",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "th",
+    "portrait": "../../assets/idols/bambam/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "bang-chan",
+    "name": "Bang Chan",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "au",
+    "portrait": "../../assets/idols/bang-chan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "bobby",
+    "name": "Bobby",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/bobby/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "bom",
+    "name": "Bom",
+    "primaryGroupId": "2ne1",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/bom/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "carmen",
+    "name": "Carmen",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "id",
+    "portrait": "../../assets/idols/carmen/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chaewon",
+    "name": "Chaewon",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/chaewon/portrait.webp",
     "notes": null
   },
   {
@@ -68,7 +140,1637 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "assets/idols/chaeyoung/portrait.webp",
+    "portrait": "../../assets/idols/chaeyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "changbin",
+    "name": "Changbin",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/changbin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chanmi",
+    "name": "Chanmi",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/chanmi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chanwoo",
+    "name": "Chanwoo",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/chanwoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chanyeol",
+    "name": "Chanyeol",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/chanyeol/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chen",
+    "name": "Chen",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/chen/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "chiquita",
+    "name": "Chiquita",
+    "primaryGroupId": "baby-monster",
+    "gender": "f",
+    "nationality": "th",
+    "portrait": "../../assets/idols/chiquita/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "choa",
+    "name": "ChoA",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/choa/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "cl",
+    "name": "CL",
+    "primaryGroupId": "2ne1",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/cl/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "d-o",
+    "name": "D.O.",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/d-o/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dahyun",
+    "name": "Dahyun",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dahyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dami",
+    "name": "Dami",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dami/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "danielle",
+    "name": "Danielle",
+    "primaryGroupId": "newjeans",
+    "gender": "f",
+    "nationality": "au",
+    "portrait": "../../assets/idols/danielle/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dara",
+    "name": "Dara",
+    "primaryGroupId": "2ne1",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dara/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dino",
+    "name": "Dino",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dino/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dk",
+    "name": "DK",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "donghae",
+    "name": "Donghae",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/donghae/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "donghyuk",
+    "name": "Donghyuk",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/donghyuk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "dowoon",
+    "name": "Dowoon",
+    "primaryGroupId": "day6",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/dowoon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "doyoung",
+    "name": "Doyoung",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/doyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "e-u",
+    "name": "E:U",
+    "primaryGroupId": "everglow",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/e-u/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "eunchae",
+    "name": "Eunchae",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/eunchae/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "eunha",
+    "name": "Eunha",
+    "primaryGroupId": "viviz",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/eunha/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "eunhyuk",
+    "name": "Eunhyuk",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/eunhyuk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "felix",
+    "name": "Felix",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "au",
+    "portrait": "../../assets/idols/felix/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "gaeul",
+    "name": "Gaeul",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/gaeul/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "gahyeon",
+    "name": "Gahyeon",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/gahyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "garam",
+    "name": "Garam",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/garam/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "giselle",
+    "name": "Giselle",
+    "primaryGroupId": "aespa",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/giselle/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "haerin",
+    "name": "Haerin",
+    "primaryGroupId": "newjeans",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/haerin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "haewon",
+    "name": "Haewon",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/haewon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "han",
+    "name": "Han",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/han/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "handong",
+    "name": "Handong",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/handong/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hanni",
+    "name": "Hanni",
+    "primaryGroupId": "newjeans",
+    "gender": "f",
+    "nationality": "au",
+    "portrait": "../../assets/idols/hanni/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "haruto",
+    "name": "Haruto",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/haruto/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "heechul",
+    "name": "Heechul",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/heechul/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "heeseung",
+    "name": "Heeseung",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/heeseung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hongjoong",
+    "name": "Hongjoong",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hongjoong/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hongki",
+    "name": "Hongki",
+    "primaryGroupId": "ftisland",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hongki/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hoshi",
+    "name": "Hoshi",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hoshi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hwasa",
+    "name": "Hwasa",
+    "primaryGroupId": "mamamoo",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hwasa/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyein",
+    "name": "Hyein",
+    "primaryGroupId": "newjeans",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyein/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyejeong",
+    "name": "Hyejeong",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyejeong/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyerim",
+    "name": "Hyerim",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyerim/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyojung",
+    "name": "Hyojung",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyojung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyoyeon",
+    "name": "Hyoyeon",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyoyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyuna",
+    "name": "Hyuna",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyuna/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyunjin",
+    "name": "Hyunjin",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyunjin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "hyunsuk",
+    "name": "Hyunsuk",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/hyunsuk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "i-n",
+    "name": "I.N",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/i-n/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ian",
+    "name": "Ian",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/ian/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "intak",
+    "name": "Intak",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/intak/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "irene",
+    "name": "Irene",
+    "primaryGroupId": "red-velvet",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/irene/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "iroha",
+    "name": "Iroha",
+    "primaryGroupId": "illit",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/iroha/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "iu",
+    "name": "IU",
+    "primaryGroupId": "iu",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/iu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "j-hope",
+    "name": "J-Hope",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/j-hope/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jackson",
+    "name": "Jackson",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/jackson/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jae",
+    "name": "Jae",
+    "primaryGroupId": "day6",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jae/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jaehyuk",
+    "name": "Jaehyuk",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jaehyuk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jaejin",
+    "name": "Jaejin",
+    "primaryGroupId": "ftisland",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jaejin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jake",
+    "name": "Jake",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "au",
+    "portrait": "../../assets/idols/jake/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jay",
+    "name": "Jay",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "us",
+    "portrait": "../../assets/idols/jay/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jay-b",
+    "name": "Jay B",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jay-b/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jennie",
+    "name": "Jennie",
+    "primaryGroupId": "blackpink",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jennie/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jeonghan",
+    "name": "Jeonghan",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jeonghan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jeongwoo",
+    "name": "Jeongwoo",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jeongwoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jeongyeon",
+    "name": "Jeongyeon",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jeongyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jessica",
+    "name": "Jessica",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "us",
+    "portrait": "../../assets/idols/jessica/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jiho",
+    "name": "Jiho",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jiho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jihoon",
+    "name": "Jihoon",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jihoon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jihyo",
+    "name": "Jihyo",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jihyo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jimin",
+    "name": "Jimin",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jimin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jimin-2",
+    "name": "Jimin",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jimin-2/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jin",
+    "name": "Jin",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jinhwan",
+    "name": "Jinhwan",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jinhwan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jinyoung",
+    "name": "Jinyoung",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jinyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jisoo",
+    "name": "Jisoo",
+    "primaryGroupId": "blackpink",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jisoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jiu",
+    "name": "JiU",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jiu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jiung",
+    "name": "Jiung",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jiung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jiwoo",
+    "name": "Jiwoo",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jiwoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jiwoo-2",
+    "name": "Jiwoo",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jiwoo-2/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jongho",
+    "name": "Jongho",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jongho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jonghoon",
+    "name": "Jonghoon",
+    "primaryGroupId": "ftisland",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jonghoon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jonghyun",
+    "name": "Jonghyun",
+    "primaryGroupId": "shinee",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jonghyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jongseob",
+    "name": "Jongseob",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jongseob/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "joshua",
+    "name": "Joshua",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "us",
+    "portrait": "../../assets/idols/joshua/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "joy",
+    "name": "Joy",
+    "primaryGroupId": "red-velvet",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/joy/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jun",
+    "name": "Jun",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/jun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jun-e",
+    "name": "Jun e",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jun-e/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "junghwan",
+    "name": "Junghwan",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/junghwan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jungkook",
+    "name": "Jungkook",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jungkook/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "jungwon",
+    "name": "Jungwon",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/jungwon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "junkyu",
+    "name": "Junkyu",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/junkyu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "juun",
+    "name": "Juun",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/juun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "kai",
+    "name": "Kai",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/kai/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "karina",
+    "name": "Karina",
+    "primaryGroupId": "aespa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/karina/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "kazuha",
+    "name": "Kazuha",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/kazuha/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "keeho",
+    "name": "Keeho",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "ca",
+    "portrait": "../../assets/idols/keeho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "key",
+    "name": "Key",
+    "primaryGroupId": "shinee",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/key/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "kyuhyun",
+    "name": "Kyuhyun",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/kyuhyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "kyujin",
+    "name": "Kyujin",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/kyujin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "lay",
+    "name": "Lay",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/lay/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "lee-know",
+    "name": "Lee Know",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/lee-know/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "leeseo",
+    "name": "Leeseo",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/leeseo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "leeteuk",
+    "name": "Leeteuk",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/leeteuk/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "lily",
+    "name": "Lily",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "au",
+    "portrait": "../../assets/idols/lily/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "lisa",
+    "name": "Lisa",
+    "primaryGroupId": "blackpink",
+    "gender": "f",
+    "nationality": "th",
+    "portrait": "../../assets/idols/lisa/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "liz",
+    "name": "Liz",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/liz/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mark",
+    "name": "Mark",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "us",
+    "portrait": "../../assets/idols/mark/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mashiho",
+    "name": "Mashiho",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/mashiho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mia",
+    "name": "Mia",
+    "primaryGroupId": "everglow",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/mia/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mimi",
+    "name": "Mimi",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/mimi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mina",
+    "name": "Mina",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/mina/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mina-2",
+    "name": "Mina",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/mina-2/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "mingi",
+    "name": "Mingi",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/mingi/portrait.webp",
+    "notes": null
+  },
+
+  {
+    "id": "mingyu",
+    "name": "Mingyu",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/mingyu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minho",
+    "name": "Minho",
+    "primaryGroupId": "shinee",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/minho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minhwan",
+    "name": "Minhwan",
+    "primaryGroupId": "ftisland",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/minhwan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minji",
+    "name": "Minji",
+    "primaryGroupId": "newjeans",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/minji/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minju",
+    "name": "Minju",
+    "primaryGroupId": "illit",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/minju/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minnie",
+    "name": "Minnie",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "th",
+    "portrait": "../../assets/idols/minnie/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "minzy",
+    "name": "Minzy",
+    "primaryGroupId": "2ne1",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/minzy/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "miyeon",
+    "name": "Miyeon",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/miyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "moka",
+    "name": "Moka",
+    "primaryGroupId": "illit",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/moka/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "momo",
+    "name": "Momo",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/momo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "moonbyul",
+    "name": "Moonbyul",
+    "primaryGroupId": "mamamoo",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/moonbyul/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "nayeon",
+    "name": "Nayeon",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/nayeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ni-ki",
+    "name": "Ni-ki",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/ni-ki/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ningning",
+    "name": "Ningning",
+    "primaryGroupId": "aespa",
+    "gender": "f",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/ningning/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "onda",
+    "name": "Onda",
+    "primaryGroupId": "everglow",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/onda/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "onew",
+    "name": "Onew",
+    "primaryGroupId": "shinee",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/onew/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "pharita",
+    "name": "Pharita",
+    "primaryGroupId": "baby-monster",
+    "gender": "f",
+    "nationality": "th",
+    "portrait": "../../assets/idols/pharita/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rami",
+    "name": "Rami",
+    "primaryGroupId": "baby-monster",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/rami/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rei",
+    "name": "Rei",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/rei/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rm",
+    "name": "RM",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/rm/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rora",
+    "name": "Rora",
+    "primaryGroupId": "baby-monster",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/rora/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rose",
+    "name": "Rosé",
+    "primaryGroupId": "blackpink",
+    "gender": "f",
+    "nationality": "au",
+    "portrait": "../../assets/idols/rose/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "rothy",
+    "name": "Rothy",
+    "primaryGroupId": "rothy",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/rothy/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ruka",
+    "name": "Ruka",
+    "primaryGroupId": "baby-monster",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/ruka/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ryeowook",
+    "name": "Ryeowook",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/ryeowook/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "s-coups",
+    "name": "S.Coups",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/s-coups/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sakura",
+    "name": "Sakura",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/sakura/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "san",
+    "name": "San",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/san/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sana",
+    "name": "Sana",
+    "primaryGroupId": "twice",
+    "gender": "f",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/sana/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sehun",
+    "name": "Sehun",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sehun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seohyun",
+    "name": "Seohyun",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seohyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seolhyun",
+    "name": "Seolhyun",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seolhyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seonghwa",
+    "name": "Seonghwa",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seonghwa/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seulgi",
+    "name": "Seulgi",
+    "primaryGroupId": "red-velvet",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seulgi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seunghee",
+    "name": "Seunghee",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seunghee/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seunghyun",
+    "name": "Seunghyun",
+    "primaryGroupId": "ftisland",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seunghyun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seungkwan",
+    "name": "Seungkwan",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seungkwan/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "seungmin",
+    "name": "Seungmin",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/seungmin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "shindong",
+    "name": "Shindong",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/shindong/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "shuhua",
+    "name": "Shuhua",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "tw",
+    "portrait": "../../assets/idols/shuhua/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sihyeon",
+    "name": "Sihyeon",
+    "primaryGroupId": "everglow",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sihyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sinb",
+    "name": "SinB",
+    "primaryGroupId": "viviz",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sinb/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "siwon",
+    "name": "Siwon",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/siwon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "siyeon",
+    "name": "Siyeon",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/siyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sohee",
+    "name": "Sohee",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sohee/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "solar",
+    "name": "Solar",
+    "primaryGroupId": "mamamoo",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/solar/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "soojin",
+    "name": "Soojin",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/soojin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sooyoung",
+    "name": "Sooyoung",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sooyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "soul",
+    "name": "Soul",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/soul/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sowon",
+    "name": "Sowon",
+    "primaryGroupId": "gfriend",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sowon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "soyeon",
+    "name": "Soyeon",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/soyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "stella",
+    "name": "Stella",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/stella/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sua",
+    "name": "SuA",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sua/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "suga",
+    "name": "Suga",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/suga/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "suho",
+    "name": "Suho",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/suho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sullyoon",
+    "name": "Sullyoon",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sullyoon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sunghoon",
+    "name": "Sunghoon",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sunghoon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sungjin",
+    "name": "Sungjin",
+    "primaryGroupId": "day6",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sungjin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sungmin",
+    "name": "Sungmin",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sungmin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sunny",
+    "name": "Sunny",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sunny/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sunoo",
+    "name": "Sunoo",
+    "primaryGroupId": "enhypen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sunoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "sunye",
+    "name": "Sunye",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/sunye/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "taemin",
+    "name": "Taemin",
+    "primaryGroupId": "shinee",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/taemin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "taeyeon",
+    "name": "Taeyeon",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/taeyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "the8",
+    "name": "The8",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/the8/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "theo",
+    "name": "Theo",
+    "primaryGroupId": "p1harmony",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/theo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "tiffany",
+    "name": "Tiffany",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "us",
+    "portrait": "../../assets/idols/tiffany/portrait.webp",
     "notes": null
   },
   {
@@ -77,7 +1779,358 @@
     "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "tw",
-    "portrait": "assets/idols/tzuyu/portrait.webp",
+    "portrait": "../../assets/idols/tzuyu/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "umji",
+    "name": "Umji",
+    "primaryGroupId": "viviz",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/umji/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "v",
+    "name": "V",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/v/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "vernon",
+    "name": "Vernon",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "us",
+    "portrait": "../../assets/idols/vernon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wendy",
+    "name": "Wendy",
+    "primaryGroupId": "red-velvet",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wendy/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wheein",
+    "name": "Wheein",
+    "primaryGroupId": "mamamoo",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wheein/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "winter",
+    "name": "Winter",
+    "primaryGroupId": "aespa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/winter/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wonhee",
+    "name": "Wonhee",
+    "primaryGroupId": "illit",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wonhee/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wonpil",
+    "name": "Wonpil",
+    "primaryGroupId": "day6",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wonpil/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wonwoo",
+    "name": "Wonwoo",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wonwoo/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wonyoung",
+    "name": "Wonyoung",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wonyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "wooyoung",
+    "name": "Wooyoung",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/wooyoung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "woozi",
+    "name": "Woozi",
+    "primaryGroupId": "seventeen",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/woozi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "xiumin",
+    "name": "Xiumin",
+    "primaryGroupId": "exo",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/xiumin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "ye-on",
+    "name": "Ye-on",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/ye-on/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yeeun",
+    "name": "Yeeun",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yeeun/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yeosang",
+    "name": "Yeosang",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yeosang/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yeri",
+    "name": "Yeri",
+    "primaryGroupId": "red-velvet",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yeri/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yerin",
+    "name": "Yerin",
+    "primaryGroupId": "gfriend",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yerin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yesung",
+    "name": "Yesung",
+    "primaryGroupId": "super-junior",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yesung/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yiren",
+    "name": "Yiren",
+    "primaryGroupId": "everglow",
+    "gender": "f",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/yiren/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yooa",
+    "name": "YooA",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yooa/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yoohyeon",
+    "name": "Yoohyeon",
+    "primaryGroupId": "dreamcatcher",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yoohyeon/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yoona",
+    "name": "Yoona",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yoona/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yoshi",
+    "name": "Yoshi",
+    "primaryGroupId": "treasure",
+    "gender": "m",
+    "nationality": "jp",
+    "portrait": "../../assets/idols/yoshi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "young-k",
+    "name": "Young K",
+    "primaryGroupId": "day6",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/young-k/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "youngjae",
+    "name": "Youngjae",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/youngjae/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yubin",
+    "name": "Yubin",
+    "primaryGroupId": "oh-my-girl",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yubin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yubin-2",
+    "name": "Yubin",
+    "primaryGroupId": "wonder-girls",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yubin-2/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yugyeom",
+    "name": "Yugyeom",
+    "primaryGroupId": "got7",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yugyeom/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yuha",
+    "name": "Yuha",
+    "primaryGroupId": "hearts2hearts",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yuha/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yujin",
+    "name": "Yujin",
+    "primaryGroupId": "ive",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yujin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yuju",
+    "name": "Yuju",
+    "primaryGroupId": "gfriend",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yuju/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yuna",
+    "name": "Yuna",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yuna/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yunah",
+    "name": "Yunah",
+    "primaryGroupId": "illit",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yunah/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yunho",
+    "name": "Yunho",
+    "primaryGroupId": "ateez",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yunho/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yunhyeong",
+    "name": "Yunhyeong",
+    "primaryGroupId": "ikon",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yunhyeong/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yunjin",
+    "name": "Yunjin",
+    "primaryGroupId": "le-sserafim",
+    "gender": "f",
+    "nationality": "us",
+    "portrait": "../../assets/idols/yunjin/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yuqi",
+    "name": "Yuqi",
+    "primaryGroupId": "i-dle",
+    "gender": "f",
+    "nationality": "cn",
+    "portrait": "../../assets/idols/yuqi/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "yuri",
+    "name": "Yuri",
+    "primaryGroupId": "girls-generation",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "../../assets/idols/yuri/portrait.webp",
     "notes": null
   }
 ]

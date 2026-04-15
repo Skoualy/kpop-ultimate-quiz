@@ -1,0 +1,115 @@
+{
+  "id": "2ne1",
+  "name": "2NE1",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2009,
+  "status": "inactive",
+  "company": "YG Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "cl",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "bom",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "dara",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "minzy",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "fire",
+        "title": "Fire",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Fire+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "i-don-t-care",
+        "title": "I Don't Care",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+I+Don%27t+Care+MV"
+      },
+      {
+        "id": "go-away",
+        "title": "Go Away",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Go+Away+MV"
+      },
+      {
+        "id": "can-t-nobody",
+        "title": "Can't Nobody",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Can%27t+Nobody+MV"
+      },
+      {
+        "id": "lonely",
+        "title": "Lonely",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Lonely+MV"
+      },
+      {
+        "id": "i-am-the-best",
+        "title": "I Am The Best",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+I+Am+The+Best+MV"
+      },
+      {
+        "id": "ugly",
+        "title": "Ugly",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Ugly+MV"
+      },
+      {
+        "id": "come-back-home",
+        "title": "Come Back Home",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Come+Back+Home+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "it-hurts",
+        "title": "It Hurts",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+It+Hurts+MV"
+      },
+      {
+        "id": "missing-you",
+        "title": "Missing You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Missing+You+MV"
+      },
+      {
+        "id": "crush",
+        "title": "Crush",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Crush+MV"
+      },
+      {
+        "id": "baby-i-miss-you",
+        "title": "Baby I Miss You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+Baby+I+Miss+You+MV"
+      },
+      {
+        "id": "if-i-were-you",
+        "title": "If I Were You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=2NE1+If+I+Were+You+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

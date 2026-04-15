@@ -1,0 +1,129 @@
+{
+  "id": "wonder-girls",
+  "name": "Wonder Girls",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2007,
+  "status": "inactive",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "sunye",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyuna",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sohee",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yeeun",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yubin-2",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyerim",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "irony",
+        "title": "Irony",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Irony+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "tell-me",
+        "title": "Tell Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Tell+Me+MV"
+      },
+      {
+        "id": "so-hot",
+        "title": "So Hot",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+So+Hot+MV"
+      },
+      {
+        "id": "nobody",
+        "title": "Nobody",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Nobody+MV"
+      },
+      {
+        "id": "be-my-baby",
+        "title": "Be My Baby",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Be+My+Baby+MV"
+      },
+      {
+        "id": "like-this",
+        "title": "Like This",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Like+This+MV"
+      },
+      {
+        "id": "i-feel-you",
+        "title": "I Feel You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+I+Feel+You+MV"
+      },
+      {
+        "id": "why-so-lonely",
+        "title": "Why So Lonely",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Why+So+Lonely+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "stop",
+        "title": "Stop",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Stop+MV"
+      },
+      {
+        "id": "sunset",
+        "title": "Sunset",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Sunset+MV"
+      },
+      {
+        "id": "the-dj-is-mine",
+        "title": "The DJ Is Mine",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+The+DJ+Is+Mine+MV"
+      },
+      {
+        "id": "baby-don-t-play",
+        "title": "Baby Don't Play",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+Baby+Don%27t+Play+MV"
+      },
+      {
+        "id": "r-e-a-l",
+        "title": "R.E.A.L",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Wonder+Girls+R.E.A.L+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

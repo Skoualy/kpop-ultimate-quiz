@@ -1,0 +1,162 @@
+{
+  "id": "super-junior",
+  "name": "Super Junior",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2005,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "leeteuk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "heechul",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yesung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "shindong",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sungmin",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "eunhyuk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "donghae",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "siwon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ryeowook",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "kyuhyun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "twins",
+        "title": "Twins",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Twins+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "sorry-sorry",
+        "title": "Sorry Sorry",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Sorry+Sorry+MV"
+      },
+      {
+        "id": "bonamana",
+        "title": "Bonamana",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Bonamana+MV"
+      },
+      {
+        "id": "mr-simple",
+        "title": "Mr Simple",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Mr+Simple+MV"
+      },
+      {
+        "id": "sexy-free-single",
+        "title": "Sexy Free & Single",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Sexy+Free+%26+Single+MV"
+      },
+      {
+        "id": "mamacita",
+        "title": "Mamacita",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Mamacita+MV"
+      },
+      {
+        "id": "devil",
+        "title": "Devil",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Devil+MV"
+      },
+      {
+        "id": "black-suit",
+        "title": "Black Suit",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Black+Suit+MV"
+      },
+      {
+        "id": "house-party",
+        "title": "House Party",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+House+Party+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "no-other",
+        "title": "No Other",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+No+Other+MV"
+      },
+      {
+        "id": "don-t-don",
+        "title": "Don't Don",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Don%27t+Don+MV"
+      },
+      {
+        "id": "one-more-chance",
+        "title": "One More Chance",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+One+More+Chance+MV"
+      },
+      {
+        "id": "devil-2",
+        "title": "Devil",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Devil+MV"
+      },
+      {
+        "id": "stars-appear",
+        "title": "Stars Appear",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Super+Junior+Stars+Appear+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

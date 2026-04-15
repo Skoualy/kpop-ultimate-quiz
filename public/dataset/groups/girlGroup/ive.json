@@ -1,0 +1,124 @@
+{
+  "id": "ive",
+  "name": "IVE",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2021,
+  "status": "active",
+  "company": "Starship Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "yujin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "gaeul",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "rei",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wonyoung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "liz",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "leeseo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "eleven",
+        "title": "Eleven",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Eleven+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "love-dive",
+        "title": "Love Dive",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Love+Dive+MV"
+      },
+      {
+        "id": "after-like",
+        "title": "After Like",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+After+Like+MV"
+      },
+      {
+        "id": "kitsch",
+        "title": "Kitsch",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Kitsch+MV"
+      },
+      {
+        "id": "i-am",
+        "title": "I Am",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+I+Am+MV"
+      },
+      {
+        "id": "either-way",
+        "title": "Either Way",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Either+Way+MV"
+      },
+      {
+        "id": "baddie",
+        "title": "Baddie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Baddie+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "royal",
+        "title": "Royal",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Royal+MV"
+      },
+      {
+        "id": "blue-blood",
+        "title": "Blue Blood",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Blue+Blood+MV"
+      },
+      {
+        "id": "hypnosis",
+        "title": "Hypnosis",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Hypnosis+MV"
+      },
+      {
+        "id": "shine-with-me",
+        "title": "Shine With Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Shine+With+Me+MV"
+      },
+      {
+        "id": "accendio",
+        "title": "Accendio",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Accendio+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -11,7 +11,6 @@ export function ImagePickerControl({
   label,
   hint,
   aspectRatio = '1/1',
-  emptyIcon = '🖼',
   disabled = false,
   outputWidth,
   outputHeight,
@@ -68,7 +67,7 @@ export function ImagePickerControl({
                 className={styles.preview}
                 onError={(event) => {
                   event.currentTarget.onerror = null
-                  event.currentTarget.src = placeholderImage ?? ""
+                  event.currentTarget.src = placeholderImage ?? ''
                 }}
               />
               {!disabled && <div className={styles.hoverOverlay}>✎ Changer</div>}
@@ -81,9 +80,6 @@ export function ImagePickerControl({
           ) : (
             <>
               <img src={placeholderImage} alt="placeholder" className={styles.preview} />
-              <div className={styles.empty}>
-                <span className={styles.icon}>{emptyIcon}</span>
-              </div>
               {!disabled && <div className={styles.hoverOverlay}>✎ Changer</div>}
             </>
           )}

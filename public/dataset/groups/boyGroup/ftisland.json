@@ -1,0 +1,107 @@
+{
+  "id": "ftisland",
+  "name": "FTISLAND",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2007,
+  "status": "active",
+  "company": "FNC Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "hongki",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jonghoon",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jaejin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "minhwan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seunghyun",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "love-sick",
+        "title": "Love Sick",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Love+Sick+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "after-love",
+        "title": "After Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+After+Love+MV"
+      },
+      {
+        "id": "severely",
+        "title": "Severely",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Severely+MV"
+      },
+      {
+        "id": "i-hope",
+        "title": "I Hope",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+I+Hope+MV"
+      },
+      {
+        "id": "hello-hello",
+        "title": "Hello Hello",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Hello+Hello+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "primadonna",
+        "title": "Primadonna",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Primadonna+MV"
+      },
+      {
+        "id": "bad-woman",
+        "title": "Bad Woman",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Bad+Woman+MV"
+      },
+      {
+        "id": "heaven",
+        "title": "Heaven",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Heaven+MV"
+      },
+      {
+        "id": "flower-rock",
+        "title": "Flower Rock",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+Flower+Rock+MV"
+      },
+      {
+        "id": "i-will",
+        "title": "I Will",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=FTISLAND+I+Will+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

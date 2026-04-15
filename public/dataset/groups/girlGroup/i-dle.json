@@ -1,0 +1,144 @@
+{
+  "id": "i-dle",
+  "name": "I-dle",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2018,
+  "status": "active",
+  "company": "Cube Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "soyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "miyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "minnie",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "soojin",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yuqi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "shuhua",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "latata",
+        "title": "Latata",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Latata+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "hann-alone",
+        "title": "Hann Alone",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Hann+Alone+MV"
+      },
+      {
+        "id": "senorita",
+        "title": "Senorita",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Senorita+MV"
+      },
+      {
+        "id": "uh-oh",
+        "title": "Uh-Oh",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Uh-Oh+MV"
+      },
+      {
+        "id": "lion",
+        "title": "Lion",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Lion+MV"
+      },
+      {
+        "id": "oh-my-god",
+        "title": "Oh My God",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Oh+My+God+MV"
+      },
+      {
+        "id": "dumdi-dumdi",
+        "title": "Dumdi Dumdi",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Dumdi+Dumdi+MV"
+      },
+      {
+        "id": "hwaa",
+        "title": "Hwaa",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Hwaa+MV"
+      },
+      {
+        "id": "tomboy",
+        "title": "Tomboy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Tomboy+MV"
+      },
+      {
+        "id": "nxde",
+        "title": "Nxde",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Nxde+MV"
+      },
+      {
+        "id": "queencard",
+        "title": "Queencard",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Queencard+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "put-it-straight",
+        "title": "Put It Straight",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Put+It+Straight+MV"
+      },
+      {
+        "id": "allergy",
+        "title": "Allergy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Allergy+MV"
+      },
+      {
+        "id": "my-bag",
+        "title": "My Bag",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+My+Bag+MV"
+      },
+      {
+        "id": "lucid",
+        "title": "Lucid",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Lucid+MV"
+      },
+      {
+        "id": "super-lady",
+        "title": "Super Lady",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=I-dle+Super+Lady+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

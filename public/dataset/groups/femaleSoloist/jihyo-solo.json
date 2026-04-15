@@ -1,0 +1,44 @@
+{
+  "id": "jihyo-solo",
+  "name": "Jihyo",
+  "category": "femaleSoloist",
+  "parentGroupId": "twice",
+  "generation": "5",
+  "debutYear": 2023,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "jihyo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "killin-me-good",
+        "title": "Killin' Me Good",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Jihyo+Killin%27+Me+Good+MV",
+        "isDebutSong": true
+      }
+    ],
+    "bSides": [
+      {
+        "id": "talkin-about-it",
+        "title": "Talkin' About It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Jihyo+Talkin%27+About+It+MV"
+      },
+      {
+        "id": "don-t-wanna-go-back",
+        "title": "Don't Wanna Go Back",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Jihyo+Don%27t+Wanna+Go+Back+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

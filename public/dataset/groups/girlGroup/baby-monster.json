@@ -1,0 +1,101 @@
+{
+  "id": "baby-monster",
+  "name": "BabyMonster",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "5",
+  "debutYear": 2023,
+  "status": "active",
+  "company": "YG Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "ruka",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "pharita",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "asa",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ahyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "rami",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "rora",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "chiquita",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "batter-up",
+        "title": "Batter Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+Batter+Up+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "stuck-in-the-middle",
+        "title": "Stuck In The Middle",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+Stuck+In+The+Middle+MV"
+      },
+      {
+        "id": "sheesh",
+        "title": "Sheesh",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+Sheesh+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "like-that",
+        "title": "Like That",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+Like+That+MV"
+      },
+      {
+        "id": "dream",
+        "title": "Dream",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+Dream+MV"
+      },
+      {
+        "id": "see-u-there",
+        "title": "See U There",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BabyMonster+See+U+There+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

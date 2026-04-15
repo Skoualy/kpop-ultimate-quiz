@@ -1,0 +1,170 @@
+{
+  "id": "exo",
+  "name": "EXO",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2012,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "xiumin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "suho",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "lay",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "baekhyun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "chen",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "chanyeol",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "d-o",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "kai",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sehun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "mama",
+        "title": "Mama",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Mama+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "wolf",
+        "title": "Wolf",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Wolf+MV"
+      },
+      {
+        "id": "growl",
+        "title": "Growl",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Growl+MV"
+      },
+      {
+        "id": "overdose",
+        "title": "Overdose",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Overdose+MV"
+      },
+      {
+        "id": "call-me-baby",
+        "title": "Call Me Baby",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Call+Me+Baby+MV"
+      },
+      {
+        "id": "love-me-right",
+        "title": "Love Me Right",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Love+Me+Right+MV"
+      },
+      {
+        "id": "monster",
+        "title": "Monster",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Monster+MV"
+      },
+      {
+        "id": "lucky-one",
+        "title": "Lucky One",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Lucky+One+MV"
+      },
+      {
+        "id": "power",
+        "title": "Power",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Power+MV"
+      },
+      {
+        "id": "tempo",
+        "title": "Tempo",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Tempo+MV"
+      },
+      {
+        "id": "obsession",
+        "title": "Obsession",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Obsession+MV"
+      },
+      {
+        "id": "cream-soda",
+        "title": "Cream Soda",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Cream+Soda+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "sweet-lies",
+        "title": "Sweet Lies",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Sweet+Lies+MV"
+      },
+      {
+        "id": "touch-it",
+        "title": "Touch It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Touch+It+MV"
+      },
+      {
+        "id": "ko-ko-bop",
+        "title": "Ko Ko Bop",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Ko+Ko+Bop+MV"
+      },
+      {
+        "id": "the-eve",
+        "title": "The Eve",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+The+Eve+MV"
+      },
+      {
+        "id": "electric-kiss",
+        "title": "Electric Kiss",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=EXO+Electric+Kiss+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -1,0 +1,163 @@
+{
+  "id": "stray-kids",
+  "name": "Stray Kids",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2018,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "bang-chan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "lee-know",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "changbin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyunjin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "han",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "felix",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seungmin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "i-n",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "district-9",
+        "title": "District 9",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+District+9+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "my-pace",
+        "title": "My Pace",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+My+Pace+MV"
+      },
+      {
+        "id": "i-am-you",
+        "title": "I Am You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+I+Am+You+MV"
+      },
+      {
+        "id": "miroh",
+        "title": "MIROH",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+MIROH+MV"
+      },
+      {
+        "id": "side-effects",
+        "title": "Side Effects",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Side+Effects+MV"
+      },
+      {
+        "id": "levanter",
+        "title": "Levanter",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Levanter+MV"
+      },
+      {
+        "id": "god-s-menu",
+        "title": "God's Menu",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+God%27s+Menu+MV"
+      },
+      {
+        "id": "back-door",
+        "title": "Back Door",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Back+Door+MV"
+      },
+      {
+        "id": "thunderous",
+        "title": "Thunderous",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Thunderous+MV"
+      },
+      {
+        "id": "maniac",
+        "title": "Maniac",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Maniac+MV"
+      },
+      {
+        "id": "case-143",
+        "title": "Case 143",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Case+143+MV"
+      },
+      {
+        "id": "s-class",
+        "title": "S-Class",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+S-Class+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "double-knot",
+        "title": "Double Knot",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Double+Knot+MV"
+      },
+      {
+        "id": "hellevator",
+        "title": "Hellevator",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Hellevator+MV"
+      },
+      {
+        "id": "grow-up",
+        "title": "Grow Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Grow+Up+MV"
+      },
+      {
+        "id": "get-cool",
+        "title": "Get Cool",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Get+Cool+MV"
+      },
+      {
+        "id": "victory-song",
+        "title": "Victory Song",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Victory+Song+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

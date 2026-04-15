@@ -1,0 +1,64 @@
+{
+  "id": "rothy",
+  "name": "Rothy",
+  "category": "femaleSoloist",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2017,
+  "status": "active",
+  "company": "Dorothy Company",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "rothy",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "burning",
+        "title": "Burning",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Burning+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "blossom-flower",
+        "title": "Blossom Flower",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Blossom+Flower+MV"
+      },
+      {
+        "id": "cold-love",
+        "title": "Cold Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Cold+Love+MV"
+      },
+      {
+        "id": "changed-number",
+        "title": "Changed Number",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Changed+Number+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "cloud",
+        "title": "Cloud",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Cloud+MV"
+      },
+      {
+        "id": "ocean-view",
+        "title": "Ocean View",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Ocean+View+MV"
+      },
+      {
+        "id": "stars",
+        "title": "Stars",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Rothy+Stars+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

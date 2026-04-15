@@ -1,0 +1,171 @@
+{
+  "id": "bts",
+  "name": "BTS",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2013,
+  "status": "active",
+  "company": "BigHit Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "rm",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "suga",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "j-hope",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jimin-2",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "v",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jungkook",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "no-more-dream",
+        "title": "No More Dream",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+No+More+Dream+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "boy-in-luv",
+        "title": "Boy In Luv",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Boy+In+Luv+MV"
+      },
+      {
+        "id": "i-need-u",
+        "title": "I Need U",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+I+Need+U+MV"
+      },
+      {
+        "id": "fire",
+        "title": "Fire",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Fire+MV"
+      },
+      {
+        "id": "blood-sweat-tears",
+        "title": "Blood Sweat & Tears",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Blood+Sweat+%26+Tears+MV"
+      },
+      {
+        "id": "spring-day",
+        "title": "Spring Day",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Spring+Day+MV"
+      },
+      {
+        "id": "dna",
+        "title": "DNA",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+DNA+MV"
+      },
+      {
+        "id": "fake-love",
+        "title": "Fake Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Fake+Love+MV"
+      },
+      {
+        "id": "idol",
+        "title": "Idol",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Idol+MV"
+      },
+      {
+        "id": "boy-with-luv",
+        "title": "Boy With Luv",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Boy+With+Luv+MV"
+      },
+      {
+        "id": "on",
+        "title": "On",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+On+MV"
+      },
+      {
+        "id": "dynamite",
+        "title": "Dynamite",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Dynamite+MV"
+      },
+      {
+        "id": "butter",
+        "title": "Butter",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Butter+MV"
+      },
+      {
+        "id": "permission-to-dance",
+        "title": "Permission to Dance",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Permission+to+Dance+MV"
+      },
+      {
+        "id": "yet-to-come",
+        "title": "Yet to Come",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Yet+to+Come+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "dope",
+        "title": "Dope",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Dope+MV"
+      },
+      {
+        "id": "home",
+        "title": "Home",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Home+MV"
+      },
+      {
+        "id": "black-swan",
+        "title": "Black Swan",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Black+Swan+MV"
+      },
+      {
+        "id": "pied-piper",
+        "title": "Pied Piper",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Pied+Piper+MV"
+      },
+      {
+        "id": "run",
+        "title": "Run",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Run+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

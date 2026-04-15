@@ -1,0 +1,168 @@
+{
+  "id": "ateez",
+  "name": "ATEEZ",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2018,
+  "status": "active",
+  "company": "KQ Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "hongjoong",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seonghwa",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yunho",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yeosang",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "san",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mingi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wooyoung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jongho",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "pirate-king",
+        "title": "Pirate King",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Pirate+King+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "treasure",
+        "title": "Treasure",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Treasure+MV"
+      },
+      {
+        "id": "say-my-name",
+        "title": "Say My Name",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Say+My+Name+MV"
+      },
+      {
+        "id": "wave",
+        "title": "Wave",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Wave+MV"
+      },
+      {
+        "id": "wonderland",
+        "title": "Wonderland",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Wonderland+MV"
+      },
+      {
+        "id": "answer",
+        "title": "Answer",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Answer+MV"
+      },
+      {
+        "id": "inception",
+        "title": "Inception",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Inception+MV"
+      },
+      {
+        "id": "fireworks",
+        "title": "Fireworks",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Fireworks+MV"
+      },
+      {
+        "id": "deja-vu",
+        "title": "Deja Vu",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Deja+Vu+MV"
+      },
+      {
+        "id": "turbulence",
+        "title": "Turbulence",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Turbulence+MV"
+      },
+      {
+        "id": "guerilla",
+        "title": "Guerilla",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Guerilla+MV"
+      },
+      {
+        "id": "halazia",
+        "title": "Halazia",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Halazia+MV"
+      },
+      {
+        "id": "bouncy",
+        "title": "Bouncy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Bouncy+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "aurora",
+        "title": "Aurora",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Aurora+MV"
+      },
+      {
+        "id": "thanxx",
+        "title": "Thanxx",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Thanxx+MV"
+      },
+      {
+        "id": "utopia",
+        "title": "Utopia",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Utopia+MV"
+      },
+      {
+        "id": "desire",
+        "title": "Desire",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Desire+MV"
+      },
+      {
+        "id": "if-without-you",
+        "title": "If Without You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+If+Without+You+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

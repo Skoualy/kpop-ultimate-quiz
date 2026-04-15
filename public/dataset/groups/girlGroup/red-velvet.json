@@ -1,0 +1,137 @@
+{
+  "id": "red-velvet",
+  "name": "Red Velvet",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2014,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "irene",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seulgi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wendy",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "joy",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yeri",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "happiness",
+        "title": "Happiness",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Happiness+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "ice-cream-cake",
+        "title": "Ice Cream Cake",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Ice+Cream+Cake+MV"
+      },
+      {
+        "id": "dumb-dumb",
+        "title": "Dumb Dumb",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Dumb+Dumb+MV"
+      },
+      {
+        "id": "russian-roulette",
+        "title": "Russian Roulette",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Russian+Roulette+MV"
+      },
+      {
+        "id": "red-flavor",
+        "title": "Red Flavor",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Red+Flavor+MV"
+      },
+      {
+        "id": "peek-a-boo",
+        "title": "Peek-A-Boo",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Peek-A-Boo+MV"
+      },
+      {
+        "id": "bad-boy",
+        "title": "Bad Boy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Bad+Boy+MV"
+      },
+      {
+        "id": "psycho",
+        "title": "Psycho",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Psycho+MV"
+      },
+      {
+        "id": "feel-my-rhythm",
+        "title": "Feel My Rhythm",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Feel+My+Rhythm+MV"
+      },
+      {
+        "id": "birthday",
+        "title": "Birthday",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Birthday+MV"
+      },
+      {
+        "id": "chill-kill",
+        "title": "Chill Kill",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Chill+Kill+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "time-to-love",
+        "title": "Time to Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Time+to+Love+MV"
+      },
+      {
+        "id": "all-right",
+        "title": "All Right",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+All+Right+MV"
+      },
+      {
+        "id": "carpool",
+        "title": "Carpool",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Carpool+MV"
+      },
+      {
+        "id": "kingdom-come",
+        "title": "Kingdom Come",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Kingdom+Come+MV"
+      },
+      {
+        "id": "you-better-know",
+        "title": "You Better Know",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+You+Better+Know+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

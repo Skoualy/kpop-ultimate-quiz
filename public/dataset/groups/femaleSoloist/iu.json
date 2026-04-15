@@ -1,0 +1,104 @@
+{
+  "id": "iu",
+  "name": "IU",
+  "category": "femaleSoloist",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2008,
+  "status": "active",
+  "company": "EDAM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "iu",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "good-day",
+        "title": "Good Day",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Good+Day+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "you-and-i",
+        "title": "You And I",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+You+And+I+MV"
+      },
+      {
+        "id": "the-red-shoes",
+        "title": "The Red Shoes",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+The+Red+Shoes+MV"
+      },
+      {
+        "id": "twenty-three",
+        "title": "Twenty Three",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Twenty+Three+MV"
+      },
+      {
+        "id": "palette",
+        "title": "Palette",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Palette+MV"
+      },
+      {
+        "id": "bbibbi",
+        "title": "BBIBBI",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+BBIBBI+MV"
+      },
+      {
+        "id": "blueming",
+        "title": "Blueming",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Blueming+MV"
+      },
+      {
+        "id": "celebrity",
+        "title": "Celebrity",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Celebrity+MV"
+      },
+      {
+        "id": "lilac",
+        "title": "Lilac",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Lilac+MV"
+      },
+      {
+        "id": "eight",
+        "title": "Eight",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Eight+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "through-the-night",
+        "title": "Through The Night",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Through+The+Night+MV"
+      },
+      {
+        "id": "my-sea",
+        "title": "My Sea",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+My+Sea+MV"
+      },
+      {
+        "id": "jam-jam",
+        "title": "Jam Jam",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Jam+Jam+MV"
+      },
+      {
+        "id": "above-the-time",
+        "title": "Above The Time",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Above+The+Time+MV"
+      },
+      {
+        "id": "love-poem",
+        "title": "Love Poem",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=IU+Love+Poem+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

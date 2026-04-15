@@ -1,0 +1,78 @@
+{
+  "id": "viviz",
+  "name": "VIVIZ",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2022,
+  "status": "active",
+  "company": "Big Planet Made",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "eunha",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sinb",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "umji",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "bop-bop",
+        "title": "Bop Bop",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Bop+Bop+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "loveade",
+        "title": "Loveade",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Loveade+MV"
+      },
+      {
+        "id": "pull-up",
+        "title": "Pull Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Pull+Up+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "fiesta",
+        "title": "Fiesta",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Fiesta+MV"
+      },
+      {
+        "id": "vanilla",
+        "title": "Vanilla",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Vanilla+MV"
+      },
+      {
+        "id": "maniac",
+        "title": "Maniac",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Maniac+MV"
+      },
+      {
+        "id": "untie",
+        "title": "Untie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=VIVIZ+Untie+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

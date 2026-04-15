@@ -199,22 +199,26 @@ export default function ContributorPage() {
     })
 
     setMembers(buildEditableMembersFromGroup())
-    setTitles(editGroup.discography.titles.map((song) => ({
-      _uiKey: Math.random().toString(36).slice(2),
-      id: song.id,
-      title: song.title,
-      youtubeUrl: song.youtubeUrl ?? '',
-      language: (song.language ?? '') as LanguageCode | '',
-      isDebutSong: song.isDebutSong ?? false,
-    })))
-    setBSides(editGroup.discography.bSides.map((song) => ({
-      _uiKey: Math.random().toString(36).slice(2),
-      id: song.id,
-      title: song.title,
-      youtubeUrl: song.youtubeUrl ?? '',
-      language: (song.language ?? '') as LanguageCode | '',
-      isDebutSong: false,
-    })))
+    setTitles(
+      editGroup.discography.titles.map((song) => ({
+        _uiKey: Math.random().toString(36).slice(2),
+        id: song.id,
+        title: song.title,
+        youtubeUrl: song.youtubeUrl ?? '',
+        language: (song.language ?? '') as LanguageCode | '',
+        isDebutSong: song.isDebutSong ?? false,
+      })),
+    )
+    setBSides(
+      editGroup.discography.bSides.map((song) => ({
+        _uiKey: Math.random().toString(36).slice(2),
+        id: song.id,
+        title: song.title,
+        youtubeUrl: song.youtubeUrl ?? '',
+        language: (song.language ?? '') as LanguageCode | '',
+        isDebutSong: false,
+      })),
+    )
 
     setMaxStep(3)
     initializedEditGroupIdRef.current = groupId
@@ -328,15 +332,17 @@ export default function ContributorPage() {
     })
 
     const idolsBlock = normalizedMembers.map((m) => ({
-        id: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
-        name: m.name,
-        primaryGroupId: form.id,
-        gender,
-        nationality: m.nationality,
-        portrait: m.portrait ? getIdolPortraitPath(m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId) : null,
-        notes: null,
-        _file: m.portraitFile,
-      }))
+      id: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
+      name: m.name,
+      primaryGroupId: form.id,
+      gender,
+      nationality: m.nationality,
+      portrait: m.portrait
+        ? getIdolPortraitPath(m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId)
+        : null,
+      notes: null,
+      _file: m.portraitFile,
+    }))
 
     const newLabels =
       form.company && !existingLabels.includes(form.company)
@@ -354,10 +360,10 @@ export default function ContributorPage() {
       company: form.company || null,
       coverImage: form.coverImage ? getGroupCoverPath(form.id) : null,
       members: normalizedMembers.map((m) => ({
-          idolId: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
-          status: m.status,
-          roles: resolveExportRoles(m, isSoloist),
-        })),
+        idolId: m.resolutionMode === 'existing' && m.existingIdolId ? m.existingIdolId : m.generatedId,
+        status: m.status,
+        roles: resolveExportRoles(m, isSoloist),
+      })),
       discography: {
         titles: SongsStepServices.sortSongsForExport(titles).map(toSongEntry),
         bSides: bSides.filter((s) => s.title.trim()).map(toSongEntry),
@@ -392,12 +398,13 @@ export default function ContributorPage() {
     })
   }
 
-
   async function downloadDraft() {
     const JSZip = (await import('jszip')).default
     const zip = new JSZip()
 
-    const sortedMembers = [...members].sort((a, b) => Number(b.roles.includes('leader')) - Number(a.roles.includes('leader')))
+    const sortedMembers = [...members].sort(
+      (a, b) => Number(b.roles.includes('leader')) - Number(a.roles.includes('leader')),
+    )
     const sortedTitles = SongsStepServices.sortSongsForExport(titles)
 
     const draft: ContributorDraft = {
@@ -525,7 +532,9 @@ export default function ContributorPage() {
         </div>
         <div className={styles.headerTools}>
           <DraftBundleControl onFileSelect={loadDraft} />
-          <button className="btn btn--secondary btn--sm" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
+          <button className="btn btn--secondary btn--sm" onClick={downloadDraft}>
+            💾 Sauvegarder en brouillon
+          </button>
           <button className="btn btn--ghost btn--sm" onClick={() => navigate(-1)}>
             ← Retour
           </button>
@@ -544,9 +553,7 @@ export default function ContributorPage() {
           return (
             <button
               key={tab}
-              className={[styles.tab, isActive ? styles.tabActive : '']
-                .filter(Boolean)
-                .join(' ')}
+              className={[styles.tab, isActive ? styles.tabActive : ''].filter(Boolean).join(' ')}
               onClick={() => handleTabClick(i)}
             >
               {tab}
@@ -554,27 +561,6 @@ export default function ContributorPage() {
           )
         })}
       </div>
-
-      {step < 3 && (
-        <div className={styles.stepNavTop}>
-          {step > 0 && (
-            <button
-              className="btn btn--ghost"
-              onClick={() => {
-                setStepErrors([])
-                setStep((s) => s - 1)
-              }}
-            >
-              ← Retour
-            </button>
-          )}
-          <div className={styles.stepNavSpacer} />
-          <button className="btn btn--secondary" onClick={downloadDraft}>💾 Sauvegarder en brouillon</button>
-          <button className="btn btn--primary" onClick={tryAdvance}>
-            Suivant →
-          </button>
-        </div>
-      )}
 
       {step === 0 && (
         <GroupInfoStep
@@ -655,7 +641,6 @@ export default function ContributorPage() {
           </button>
         </div>
       )}
-
     </PageContainer>
   )
 }

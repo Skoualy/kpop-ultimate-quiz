@@ -1,0 +1,161 @@
+{
+  "id": "got7",
+  "name": "GOT7",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2014,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "jay-b",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mark",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jackson",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jinyoung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "youngjae",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "bambam",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yugyeom",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "girls-girls-girls",
+        "title": "Girls Girls Girls",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Girls+Girls+Girls+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "a",
+        "title": "A",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+A+MV"
+      },
+      {
+        "id": "stop-stop-it",
+        "title": "Stop Stop It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Stop+Stop+It+MV"
+      },
+      {
+        "id": "just-right",
+        "title": "Just Right",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Just+Right+MV"
+      },
+      {
+        "id": "if-you-do",
+        "title": "If You Do",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+If+You+Do+MV"
+      },
+      {
+        "id": "hard-carry",
+        "title": "Hard Carry",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Hard+Carry+MV"
+      },
+      {
+        "id": "never-ever",
+        "title": "Never Ever",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Never+Ever+MV"
+      },
+      {
+        "id": "you-are",
+        "title": "You Are",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+You+Are+MV"
+      },
+      {
+        "id": "look",
+        "title": "Look",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Look+MV"
+      },
+      {
+        "id": "lullaby",
+        "title": "Lullaby",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Lullaby+MV"
+      },
+      {
+        "id": "miracle",
+        "title": "Miracle",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Miracle+MV"
+      },
+      {
+        "id": "not-by-the-moon",
+        "title": "Not By The Moon",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Not+By+The+Moon+MV"
+      },
+      {
+        "id": "last-piece",
+        "title": "Last Piece",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Last+Piece+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "teenager",
+        "title": "Teenager",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Teenager+MV"
+      },
+      {
+        "id": "page",
+        "title": "Page",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Page+MV"
+      },
+      {
+        "id": "thank-you",
+        "title": "Thank You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Thank+You+MV"
+      },
+      {
+        "id": "just-right-2",
+        "title": "Just Right",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Just+Right+MV"
+      },
+      {
+        "id": "out",
+        "title": "Out",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=GOT7+Out+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

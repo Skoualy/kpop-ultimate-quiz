@@ -6,7 +6,6 @@ export interface ImagePickerControlProps {
   label?: string
   hint?: string
   aspectRatio?: string
-  emptyIcon?: string
   disabled?: boolean
   outputWidth?: number
   outputHeight?: number

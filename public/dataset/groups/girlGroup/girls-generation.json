@@ -1,0 +1,155 @@
+{
+  "id": "girls-generation",
+  "name": "Girls' Generation",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "2",
+  "debutYear": 2007,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "taeyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sunny",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "tiffany",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyoyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yuri",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sooyoung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yoona",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seohyun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jessica",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "into-the-new-world",
+        "title": "Into The New World",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Into+The+New+World+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "gee",
+        "title": "Gee",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Gee+MV"
+      },
+      {
+        "id": "genie",
+        "title": "Genie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Genie+MV"
+      },
+      {
+        "id": "oh",
+        "title": "Oh",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Oh+MV"
+      },
+      {
+        "id": "run-devil-run",
+        "title": "Run Devil Run",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Run+Devil+Run+MV"
+      },
+      {
+        "id": "the-boys",
+        "title": "The Boys",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+The+Boys+MV"
+      },
+      {
+        "id": "i-got-a-boy",
+        "title": "I Got A Boy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+I+Got+A+Boy+MV"
+      },
+      {
+        "id": "lion-heart",
+        "title": "Lion Heart",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Lion+Heart+MV"
+      },
+      {
+        "id": "forever-1",
+        "title": "Forever 1",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Forever+1+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "complete",
+        "title": "Complete",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Complete+MV"
+      },
+      {
+        "id": "baby-baby",
+        "title": "Baby Baby",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Baby+Baby+MV"
+      },
+      {
+        "id": "my-best-friend",
+        "title": "My Best Friend",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+My+Best+Friend+MV"
+      },
+      {
+        "id": "mr-mr",
+        "title": "Mr Mr",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Mr+Mr+MV"
+      },
+      {
+        "id": "destiny",
+        "title": "Destiny",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Girls%27+Generation+Destiny+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

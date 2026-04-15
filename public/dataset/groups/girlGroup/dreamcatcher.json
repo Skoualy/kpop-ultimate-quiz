@@ -1,0 +1,151 @@
+{
+  "id": "dreamcatcher",
+  "name": "Dreamcatcher",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2017,
+  "status": "active",
+  "company": "Dreamcatcher Company",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "jiu",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sua",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "siyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "handong",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yoohyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "dami",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "gahyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "chase-me",
+        "title": "Chase Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Chase+Me+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "good-night",
+        "title": "Good Night",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Good+Night+MV"
+      },
+      {
+        "id": "fly-high",
+        "title": "Fly High",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Fly+High+MV"
+      },
+      {
+        "id": "you-and-i",
+        "title": "You And I",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+You+And+I+MV"
+      },
+      {
+        "id": "what",
+        "title": "What",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+What+MV"
+      },
+      {
+        "id": "piri",
+        "title": "Piri",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Piri+MV"
+      },
+      {
+        "id": "deja-vu",
+        "title": "Deja Vu",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Deja+Vu+MV"
+      },
+      {
+        "id": "scream",
+        "title": "Scream",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Scream+MV"
+      },
+      {
+        "id": "odd-eye",
+        "title": "Odd Eye",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Odd+Eye+MV"
+      },
+      {
+        "id": "maison",
+        "title": "Maison",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Maison+MV"
+      },
+      {
+        "id": "vision",
+        "title": "Vision",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Vision+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "sleep-walking",
+        "title": "Sleep-walking",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Sleep-walking+MV"
+      },
+      {
+        "id": "full-moon",
+        "title": "Full Moon",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Full+Moon+MV"
+      },
+      {
+        "id": "silent-night",
+        "title": "Silent Night",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Silent+Night+MV"
+      },
+      {
+        "id": "odd-eye-2",
+        "title": "Odd Eye",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Odd+Eye+MV"
+      },
+      {
+        "id": "red-sun",
+        "title": "Red Sun",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Dreamcatcher+Red+Sun+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

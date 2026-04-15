@@ -1,0 +1,77 @@
+{
+  "id": "illit",
+  "name": "ILLIT",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "5",
+  "debutYear": 2024,
+  "status": "active",
+  "company": "Belift Lab",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "yunah",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "minju",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "iroha",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "moka",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wonhee",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "magnetic",
+        "title": "Magnetic",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Magnetic+MV",
+        "isDebutSong": true
+      }
+    ],
+    "bSides": [
+      {
+        "id": "lucky-girl-syndrome",
+        "title": "Lucky Girl Syndrome",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Lucky+Girl+Syndrome+MV"
+      },
+      {
+        "id": "midnight-fiction",
+        "title": "Midnight Fiction",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Midnight+Fiction+MV"
+      },
+      {
+        "id": "my-world",
+        "title": "My World",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+My+World+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

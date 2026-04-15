@@ -1,0 +1,122 @@
+{
+  "id": "newjeans",
+  "name": "NewJeans",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2022,
+  "status": "active",
+  "company": "ADOR",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "minji",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hanni",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "danielle",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "haerin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hyein",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "attention",
+        "title": "Attention",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Attention+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "hype-boy",
+        "title": "Hype Boy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Hype+Boy+MV"
+      },
+      {
+        "id": "cookie",
+        "title": "Cookie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Cookie+MV"
+      },
+      {
+        "id": "ditto",
+        "title": "Ditto",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Ditto+MV"
+      },
+      {
+        "id": "omg",
+        "title": "OMG",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+OMG+MV"
+      },
+      {
+        "id": "super-shy",
+        "title": "Super Shy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Super+Shy+MV"
+      },
+      {
+        "id": "eta",
+        "title": "ETA",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ETA+MV"
+      },
+      {
+        "id": "cool-with-you",
+        "title": "Cool With You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Cool+With+You+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "new-jeans",
+        "title": "New Jeans",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+New+Jeans+MV"
+      },
+      {
+        "id": "zero",
+        "title": "Zero",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Zero+MV"
+      },
+      {
+        "id": "asap",
+        "title": "ASAP",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ASAP+MV"
+      },
+      {
+        "id": "eta-remix",
+        "title": "ETA (Remix)",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ETA+%28Remix%29+MV"
+      },
+      {
+        "id": "get-up",
+        "title": "Get Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Get+Up+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

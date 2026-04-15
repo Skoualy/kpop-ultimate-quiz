@@ -35,7 +35,16 @@ export async function readJsonFromZip(zip: JSZip, path: string) {
   return JSON.parse(text)
 }
 
-export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, onBack, onSaveDraft }: ExportStepProps) {
+export function ExportStep({
+  form,
+  members,
+  titles,
+  bSides,
+  bundle,
+  onGenerate,
+  onBack,
+  onSaveDraft,
+}: ExportStepProps) {
   const [downloading, setDownloading] = useState(false)
 
   async function handleDownloadZip() {
@@ -116,8 +125,9 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
 
   const warningMessages: string[] = []
   if (!form.fandomName.trim()) warningMessages.push('Nom de fandom non renseigné')
-  if (rolesNotAssigned.length > 0) warningMessages.push(`Rôles non attribués : ${rolesNotAssigned.map((role) => ROLE_LABELS[role]).join(', ')}`)
-  if (debutSongsCount === 0) warningMessages.push('Aucune chanson de début n\'a été attribuée')
+  if (rolesNotAssigned.length > 0)
+    warningMessages.push(`Rôles non attribués : ${rolesNotAssigned.map((role) => ROLE_LABELS[role]).join(', ')}`)
+  if (debutSongsCount === 0) warningMessages.push("Aucune chanson de début n'a été attribuée")
 
   return (
     <ContributorStep>
@@ -126,7 +136,9 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
           <div className={styles.warningCard}>
             <div className={styles.warningTitle}>⚠ Vérifications recommandées</div>
             {warningMessages.map((message) => (
-              <div key={message} className={styles.warningItem}>• {message}</div>
+              <div key={message} className={styles.warningItem}>
+                • {message}
+              </div>
             ))}
           </div>
         )}
@@ -149,7 +161,9 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
               {form.fandomName && <Row k="Fandom" v={form.fandomName} />}
               <div className={styles.summaryRow}>
                 <span className={styles.summaryKey}>Cover</span>
-                <span className={styles.summaryVal}>{form.coverImage ? '✅ Image déclarée (existence à vérifier)' : '⚠️ Aucune image'}</span>
+                <span className={styles.summaryVal}>
+                  {form.coverImage ? '✅ Image déclarée (existence à vérifier)' : '⚠️ Aucune image'}
+                </span>
               </div>
             </div>
 
@@ -167,7 +181,9 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
                     {m.roles.length > 0 && ` · ${m.roles.map((r) => ROLE_LABELS[r as MemberRole]).join(', ')}`}
                     {m.status === 'former' && ' · ancien'}
                   </span>
-                  <span className={styles.memberPortrait}>{m.portrait ? '🖼 portrait déclaré' : '⚠️ portrait manquant'}</span>
+                  <span className={styles.memberPortrait}>
+                    {m.portrait ? '🖼 portrait déclaré' : '⚠️ portrait manquant'}
+                  </span>
                 </div>
               ))}
             </div>
@@ -195,14 +211,6 @@ export function ExportStep({ form, members, titles, bSides, bundle, onGenerate, 
               ))}
             </div>
           </div>
-          {warningMessages.length > 0 && (
-            <div className={styles.summarySection}>
-              <div className={styles.summarySectionTitle}>⚠ Vérifications recommandées</div>
-              {warningMessages.map((message) => (
-                <div key={message} className={styles.songMeta}>• {message}</div>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* ── Actions ── */}

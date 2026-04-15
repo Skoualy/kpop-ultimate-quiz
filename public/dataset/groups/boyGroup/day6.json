@@ -1,0 +1,122 @@
+{
+  "id": "day6",
+  "name": "Day6",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "sungjin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jae",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "young-k",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wonpil",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "dowoon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "congratulations",
+        "title": "Congratulations",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Congratulations+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "letting-go",
+        "title": "Letting Go",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Letting+Go+MV"
+      },
+      {
+        "id": "i-smile",
+        "title": "I Smile",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+I+Smile+MV"
+      },
+      {
+        "id": "i-wait",
+        "title": "I Wait",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+I+Wait+MV"
+      },
+      {
+        "id": "you-were-beautiful",
+        "title": "You Were Beautiful",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+You+Were+Beautiful+MV"
+      },
+      {
+        "id": "shoot-me",
+        "title": "Shoot Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Shoot+Me+MV"
+      },
+      {
+        "id": "time-of-our-life",
+        "title": "Time of Our Life",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Time+of+Our+Life+MV"
+      },
+      {
+        "id": "zombie",
+        "title": "Zombie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Zombie+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "colors",
+        "title": "Colors",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Colors+MV"
+      },
+      {
+        "id": "man-in-a-movie",
+        "title": "Man In A Movie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Man+In+A+Movie+MV"
+      },
+      {
+        "id": "days-gone-by",
+        "title": "Days Gone By",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Days+Gone+By+MV"
+      },
+      {
+        "id": "warning",
+        "title": "Warning",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Warning+MV"
+      },
+      {
+        "id": "sweet-chaos",
+        "title": "Sweet Chaos",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Day6+Sweet+Chaos+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

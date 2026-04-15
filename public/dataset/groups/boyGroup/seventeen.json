@@ -1,0 +1,203 @@
+{
+  "id": "seventeen",
+  "name": "Seventeen",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "active",
+  "company": "Pledis Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "s-coups",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jeonghan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "joshua",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "hoshi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "wonwoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "woozi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "dk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mingyu",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "the8",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seungkwan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "vernon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "dino",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "adore-u",
+        "title": "Adore U",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Adore+U+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "mansae",
+        "title": "Mansae",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Mansae+MV"
+      },
+      {
+        "id": "pretty-u",
+        "title": "Pretty U",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Pretty+U+MV"
+      },
+      {
+        "id": "very-nice",
+        "title": "Very Nice",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Very+Nice+MV"
+      },
+      {
+        "id": "boom-boom",
+        "title": "Boom Boom",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Boom+Boom+MV"
+      },
+      {
+        "id": "don-t-wanna-cry",
+        "title": "Don't Wanna Cry",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Don%27t+Wanna+Cry+MV"
+      },
+      {
+        "id": "clap",
+        "title": "Clap",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Clap+MV"
+      },
+      {
+        "id": "thanks",
+        "title": "Thanks",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Thanks+MV"
+      },
+      {
+        "id": "home",
+        "title": "Home",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Home+MV"
+      },
+      {
+        "id": "fear",
+        "title": "Fear",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Fear+MV"
+      },
+      {
+        "id": "left-right",
+        "title": "Left & Right",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Left+%26+Right+MV"
+      },
+      {
+        "id": "hot",
+        "title": "Hot",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Hot+MV"
+      },
+      {
+        "id": "super",
+        "title": "Super",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Super+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "lilili-yabbay",
+        "title": "Lilili Yabbay",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Lilili+Yabbay+MV"
+      },
+      {
+        "id": "run-to-you",
+        "title": "Run To You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Run+To+You+MV"
+      },
+      {
+        "id": "change-up",
+        "title": "Change Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Change+Up+MV"
+      },
+      {
+        "id": "snap-shoot",
+        "title": "Snap Shoot",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Snap+Shoot+MV"
+      },
+      {
+        "id": "my-my",
+        "title": "My My",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+My+My+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

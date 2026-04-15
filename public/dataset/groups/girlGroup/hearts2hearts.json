@@ -1,0 +1,81 @@
+{
+  "id": "hearts2hearts",
+  "name": "Hearts2Hearts",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "5",
+  "debutYear": 2025,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "carmen",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jiwoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yuha",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "stella",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "juun",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "a-na",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ian",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ye-on",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [],
+    "bSides": [
+      {
+        "id": "",
+        "title": "—",
+        "youtubeUrl": ""
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

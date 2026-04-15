@@ -1,0 +1,115 @@
+{
+  "id": "aespa",
+  "name": "aespa",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2020,
+  "status": "active",
+  "company": "SM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "karina",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "giselle",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "winter",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "ningning",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "black-mamba",
+        "title": "Black Mamba",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Black+Mamba+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "next-level",
+        "title": "Next Level",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Next+Level+MV"
+      },
+      {
+        "id": "savage",
+        "title": "Savage",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Savage+MV"
+      },
+      {
+        "id": "girls",
+        "title": "Girls",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Girls+MV"
+      },
+      {
+        "id": "spicy",
+        "title": "Spicy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Spicy+MV"
+      },
+      {
+        "id": "drama",
+        "title": "Drama",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Drama+MV"
+      },
+      {
+        "id": "better-things",
+        "title": "Better Things",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Better+Things+MV"
+      },
+      {
+        "id": "supernova",
+        "title": "Supernova",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Supernova+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "yeppi-yeppi",
+        "title": "Yeppi Yeppi",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Yeppi+Yeppi+MV"
+      },
+      {
+        "id": "lucid-dream",
+        "title": "Lucid Dream",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Lucid+Dream+MV"
+      },
+      {
+        "id": "welcome-to-my-world",
+        "title": "Welcome To My World",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Welcome+To+My+World+MV"
+      },
+      {
+        "id": "thirsty",
+        "title": "Thirsty",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Thirsty+MV"
+      },
+      {
+        "id": "till-we-meet-again",
+        "title": "Till We Meet Again",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=aespa+Till+We+Meet+Again+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

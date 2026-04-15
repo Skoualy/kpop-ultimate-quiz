@@ -7,62 +7,132 @@
   "debutYear": 2015,
   "status": "active",
   "company": "JYP Entertainment",
-  "coverImage": "assets/groups/twice/cover.webp",
+  "coverImage": null,
   "members": [
-    { "idolId": "jihyo", "status": "current", "roles": ["leader", "mainVocal"] },
-    { "idolId": "nayeon", "status": "current", "roles": ["vocal"] },
-    { "idolId": "jeongyeon", "status": "current", "roles": ["vocal"] },
-    { "idolId": "momo", "status": "current", "roles": ["mainDancer", "dancer", "rapper"] },
-    { "idolId": "sana", "status": "current", "roles": ["vocal", "dancer"] },
-    { "idolId": "mina", "status": "current", "roles": ["mainDancer", "vocal"] },
-    { "idolId": "dahyun", "status": "current", "roles": ["rapper", "dancer"] },
-    { "idolId": "chaeyoung", "status": "current", "roles": ["mainRapper", "vocal"] },
-    { "idolId": "tzuyu", "status": "current", "roles": ["dancer", "visual", "maknae"] }
+    {
+      "idolId": "jihyo",
+      "status": "current",
+      "roles": ["leader", "mainVocal", "dancer"]
+    },
+    {
+      "idolId": "nayeon",
+      "status": "current",
+      "roles": ["vocal", "visual", "dancer"]
+    },
+    {
+      "idolId": "jeongyeon",
+      "status": "current",
+      "roles": ["vocal", "dancer"]
+    },
+    {
+      "idolId": "momo",
+      "status": "current",
+      "roles": ["vocal", "rapper", "mainDancer"]
+    },
+    {
+      "idolId": "sana",
+      "status": "current",
+      "roles": ["vocal", "dancer"]
+    },
+    {
+      "idolId": "mina",
+      "status": "current",
+      "roles": ["vocal", "mainDancer"]
+    },
+    {
+      "idolId": "dahyun",
+      "status": "current",
+      "roles": ["vocal", "rapper", "dancer"]
+    },
+    {
+      "idolId": "chaeyoung",
+      "status": "current",
+      "roles": ["mainRapper", "vocal", "dancer"]
+    },
+    {
+      "idolId": "tzuyu",
+      "status": "current",
+      "roles": ["vocal", "visual", "dancer", "maknae"]
+    }
   ],
   "discography": {
     "titles": [
       {
-        "id": "like-oooh-ahh",
+        "id": "like-ooh-ahh",
         "title": "Like OOH-AHH",
-        "youtubeUrl": "https://www.youtube.com/watch?v=0rtV5esQT6I",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Like+OOH-AHH+MV",
         "isDebutSong": true
       },
-      { "id": "cheer-up", "title": "CHEER UP", "youtubeUrl": "https://www.youtube.com/watch?v=c_P-zcKSBkA" },
-      { "id": "tt", "title": "TT", "youtubeUrl": "https://www.youtube.com/watch?v=ePpPVE-GGJw" },
-      { "id": "likey", "title": "LIKEY", "youtubeUrl": "https://www.youtube.com/watch?v=V2hlQkVJZhE" },
-      { "id": "what-is-love", "title": "What is Love?", "youtubeUrl": "https://www.youtube.com/watch?v=5pTQCOPCMjI" },
       {
-        "id": "dance-the-night-away",
-        "title": "Dance the Night Away",
-        "youtubeUrl": "https://www.youtube.com/watch?v=mK_An2JWNKM"
+        "id": "cheer-up",
+        "title": "Cheer Up",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Cheer+Up+MV"
       },
-      { "id": "yes-or-yes", "title": "YES or YES", "youtubeUrl": "https://www.youtube.com/watch?v=sQdNE2FYDSA" },
-      { "id": "fancy", "title": "FANCY", "youtubeUrl": "https://www.youtube.com/watch?v=kOHB85vDuow" },
-      { "id": "feel-special", "title": "Feel Special", "youtubeUrl": "https://www.youtube.com/watch?v=3ymwOvzhwHs" },
-      { "id": "more-and-more", "title": "MORE & MORE", "youtubeUrl": "https://www.youtube.com/watch?v=c1dg5OiD1LI" },
       {
-        "id": "i-cant-stop-me",
-        "title": "I CAN'T STOP ME",
-        "youtubeUrl": "https://www.youtube.com/watch?v=cNuc7RcM4Ks"
+        "id": "tt",
+        "title": "TT",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+TT+MV"
       },
-      { "id": "cry-for-me", "title": "Cry For Me", "youtubeUrl": "https://www.youtube.com/watch?v=Y6lMqHxeDZ0" },
-      { "id": "alcohol-free", "title": "Alcohol-Free", "youtubeUrl": "https://www.youtube.com/watch?v=pCo-cH93N6E" },
-      { "id": "the-feels", "title": "The Feels", "youtubeUrl": "https://www.youtube.com/watch?v=8yQBHWKQBTo" },
-      { "id": "scientist", "title": "SCIENTIST", "youtubeUrl": "https://www.youtube.com/watch?v=5lO_pPclMqc" },
+      {
+        "id": "likey",
+        "title": "Likey",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Likey+MV"
+      },
+      {
+        "id": "fancy",
+        "title": "Fancy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Fancy+MV"
+      },
+      {
+        "id": "feel-special",
+        "title": "Feel Special",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Feel+Special+MV"
+      },
+      {
+        "id": "i-can-t-stop-me",
+        "title": "I Can't Stop Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+I+Can%27t+Stop+Me+MV"
+      },
+      {
+        "id": "the-feels-en",
+        "title": "The Feels",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+The+Feels+MV",
+        "language": "en"
+      },
       {
         "id": "talk-that-talk",
-        "title": "Talk that Talk",
-        "youtubeUrl": "https://www.youtube.com/watch?v=OiHOBBuCmbU"
-      },
-      { "id": "set-me-free", "title": "SET ME FREE", "youtubeUrl": "https://www.youtube.com/watch?v=xWE5LQr7B4k" },
-      { "id": "rush", "title": "RUSH", "youtubeUrl": "https://www.youtube.com/watch?v=0T8Hs_mHyNs" }
+        "title": "Talk That Talk",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Talk+That+Talk+MV"
+      }
     ],
     "bSides": [
-      { "id": "icon", "title": "ICON", "youtubeUrl": "https://www.youtube.com/watch?v=wfXETdOzYos" },
-      { "id": "knock-knock", "title": "KNOCK KNOCK", "youtubeUrl": "https://www.youtube.com/watch?v=8A2t3l7o41s" },
-      { "id": "signal", "title": "SIGNAL", "youtubeUrl": "https://www.youtube.com/watch?v=OpiCFrV5PsY" }
+      {
+        "id": "be-as-one",
+        "title": "Be as ONE",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Be+as+ONE+MV"
+      },
+      {
+        "id": "get-loud",
+        "title": "Get Loud",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Get+Loud+MV"
+      },
+      {
+        "id": "trick-it",
+        "title": "Trick It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Trick+It+MV"
+      },
+      {
+        "id": "baby-blue-love",
+        "title": "Baby Blue Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Baby+Blue+Love+MV"
+      },
+      {
+        "id": "basics",
+        "title": "Basics",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=TWICE+Basics+MV"
+      }
     ]
   },
-  "fandomName": "ONCE",
+  "fandomName": null,
   "notes": null
 }

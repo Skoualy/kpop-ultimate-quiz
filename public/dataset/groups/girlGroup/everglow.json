@@ -1,0 +1,124 @@
+{
+  "id": "everglow",
+  "name": "Everglow",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2019,
+  "status": "active",
+  "company": "Yuehua Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "e-u",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sihyeon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mia",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "onda",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "aisha",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yiren",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "bon-bon-chocolat",
+        "title": "Bon Bon Chocolat",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Bon+Bon+Chocolat+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "adios",
+        "title": "Adios",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Adios+MV"
+      },
+      {
+        "id": "dun-dun",
+        "title": "Dun Dun",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Dun+Dun+MV"
+      },
+      {
+        "id": "la-di-da",
+        "title": "La Di Da",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+La+Di+Da+MV"
+      },
+      {
+        "id": "first",
+        "title": "First",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+First+MV"
+      },
+      {
+        "id": "pirate",
+        "title": "Pirate",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Pirate+MV"
+      },
+      {
+        "id": "slay",
+        "title": "Slay",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Slay+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "moon",
+        "title": "Moon",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Moon+MV"
+      },
+      {
+        "id": "no-lie",
+        "title": "No Lie",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+No+Lie+MV"
+      },
+      {
+        "id": "company",
+        "title": "Company",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Company+MV"
+      },
+      {
+        "id": "don-t-ask-don-t-tell",
+        "title": "Don't Ask Don't Tell",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Don%27t+Ask+Don%27t+Tell+MV"
+      },
+      {
+        "id": "please-please",
+        "title": "Please Please",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Please+Please+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

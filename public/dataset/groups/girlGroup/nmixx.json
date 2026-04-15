@@ -1,0 +1,119 @@
+{
+  "id": "nmixx",
+  "name": "NMIXX",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2022,
+  "status": "active",
+  "company": "JYP Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "lily",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "haewon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "sullyoon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "bae",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jiwoo-2",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "kyujin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "o-o",
+        "title": "O.O",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+O.O+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "dice",
+        "title": "Dice",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Dice+MV"
+      },
+      {
+        "id": "young-dumb-stupid",
+        "title": "Young Dumb Stupid",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Young+Dumb+Stupid+MV"
+      },
+      {
+        "id": "love-me-like-this",
+        "title": "Love Me Like This",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Love+Me+Like+This+MV"
+      },
+      {
+        "id": "party-o-clock",
+        "title": "Party O Clock",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Party+O+Clock+MV"
+      },
+      {
+        "id": "sonar-breaker",
+        "title": "Sonar Breaker",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Sonar+Breaker+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "tank",
+        "title": "Tank",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Tank+MV"
+      },
+      {
+        "id": "paxxword",
+        "title": "PAXXWORD",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+PAXXWORD+MV"
+      },
+      {
+        "id": "cool",
+        "title": "COOL",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+COOL+MV"
+      },
+      {
+        "id": "dash",
+        "title": "Dash",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Dash+MV"
+      },
+      {
+        "id": "secret-of-sweet-oasis",
+        "title": "Secret Of Sweet Oasis",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Secret+Of+Sweet+Oasis+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

@@ -1,0 +1,164 @@
+{
+  "id": "treasure",
+  "name": "Treasure",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2020,
+  "status": "active",
+  "company": "YG Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "hyunsuk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jihoon",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yoshi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "junkyu",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mashiho",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jaehyuk",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "asahi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "haruto",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "doyoung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jeongwoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "junghwan",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "boy",
+        "title": "Boy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Boy+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "i-love-you",
+        "title": "I Love You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+I+Love+You+MV"
+      },
+      {
+        "id": "mmm",
+        "title": "Mmm",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Mmm+MV"
+      },
+      {
+        "id": "my-treasure",
+        "title": "My Treasure",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+My+Treasure+MV"
+      },
+      {
+        "id": "jikjin",
+        "title": "Jikjin",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Jikjin+MV"
+      },
+      {
+        "id": "darari",
+        "title": "Darari",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Darari+MV"
+      },
+      {
+        "id": "hello",
+        "title": "Hello",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Hello+MV"
+      },
+      {
+        "id": "bona-bona",
+        "title": "Bona Bona",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Bona+Bona+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "going-crazy",
+        "title": "Going Crazy",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Going+Crazy+MV"
+      },
+      {
+        "id": "come-to-me",
+        "title": "Come To Me",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Come+To+Me+MV"
+      },
+      {
+        "id": "u",
+        "title": "U",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+U+MV"
+      },
+      {
+        "id": "bff",
+        "title": "BFF",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+BFF+MV"
+      },
+      {
+        "id": "thank-you",
+        "title": "Thank You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Treasure+Thank+You+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

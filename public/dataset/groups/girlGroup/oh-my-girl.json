@@ -1,0 +1,136 @@
+{
+  "id": "oh-my-girl",
+  "name": "Oh My Girl",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2015,
+  "status": "active",
+  "company": "WM Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "hyojung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "mimi",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yooa",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "seunghee",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jiho",
+      "status": "former",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "yubin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "arin",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "cupid",
+        "title": "Cupid",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Cupid+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "closer",
+        "title": "Closer",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Closer+MV"
+      },
+      {
+        "id": "liar-liar",
+        "title": "Liar Liar",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Liar+Liar+MV"
+      },
+      {
+        "id": "windy-day",
+        "title": "Windy Day",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Windy+Day+MV"
+      },
+      {
+        "id": "secret-garden",
+        "title": "Secret Garden",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Secret+Garden+MV"
+      },
+      {
+        "id": "nonstop",
+        "title": "Nonstop",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Nonstop+MV"
+      },
+      {
+        "id": "dun-dun-dance",
+        "title": "Dun Dun Dance",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Dun+Dun+Dance+MV"
+      },
+      {
+        "id": "real-love",
+        "title": "Real Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Real+Love+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "illusion",
+        "title": "Illusion",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Illusion+MV"
+      },
+      {
+        "id": "gravity",
+        "title": "Gravity",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Gravity+MV"
+      },
+      {
+        "id": "checkmate",
+        "title": "Checkmate",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Checkmate+MV"
+      },
+      {
+        "id": "my-doll",
+        "title": "My Doll",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+My+Doll+MV"
+      },
+      {
+        "id": "dolphin",
+        "title": "Dolphin",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=Oh+My+Girl+Dolphin+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

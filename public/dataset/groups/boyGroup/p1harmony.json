@@ -1,0 +1,124 @@
+{
+  "id": "p1harmony",
+  "name": "P1Harmony",
+  "category": "boyGroup",
+  "parentGroupId": null,
+  "generation": "4",
+  "debutYear": 2020,
+  "status": "active",
+  "company": "FNC Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "keeho",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "theo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jiung",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "intak",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "soul",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jongseob",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "siren",
+        "title": "Siren",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Siren+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "scared",
+        "title": "Scared",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Scared+MV"
+      },
+      {
+        "id": "do-it-like-this",
+        "title": "Do It Like This",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Do+It+Like+This+MV"
+      },
+      {
+        "id": "doom-du-doom",
+        "title": "Doom Du Doom",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Doom+Du+Doom+MV"
+      },
+      {
+        "id": "jump",
+        "title": "Jump",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Jump+MV"
+      },
+      {
+        "id": "back-down",
+        "title": "Back Down",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Back+Down+MV"
+      },
+      {
+        "id": "killin-it",
+        "title": "Killin It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Killin+It+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "reset",
+        "title": "Reset",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Reset+MV"
+      },
+      {
+        "id": "that-s-it",
+        "title": "That's It",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+That%27s+It+MV"
+      },
+      {
+        "id": "nemonade",
+        "title": "Nemonade",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Nemonade+MV"
+      },
+      {
+        "id": "butterfly",
+        "title": "Butterfly",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Butterfly+MV"
+      },
+      {
+        "id": "mirror-mirror",
+        "title": "Mirror Mirror",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=P1Harmony+Mirror+Mirror+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

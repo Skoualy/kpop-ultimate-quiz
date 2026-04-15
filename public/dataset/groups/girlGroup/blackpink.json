@@ -1,0 +1,131 @@
+{
+  "id": "blackpink",
+  "name": "BLACKPINK",
+  "category": "girlGroup",
+  "parentGroupId": null,
+  "generation": "3",
+  "debutYear": 2016,
+  "status": "active",
+  "company": "YG Entertainment",
+  "coverImage": null,
+  "members": [
+    {
+      "idolId": "jisoo",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "jennie",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "rose",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    },
+    {
+      "idolId": "lisa",
+      "status": "current",
+      "roles": [
+        "vocal"
+      ]
+    }
+  ],
+  "discography": {
+    "titles": [
+      {
+        "id": "whistle",
+        "title": "Whistle",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Whistle+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "boombayah",
+        "title": "Boombayah",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Boombayah+MV",
+        "isDebutSong": true
+      },
+      {
+        "id": "playing-with-fire",
+        "title": "Playing With Fire",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Playing+With+Fire+MV"
+      },
+      {
+        "id": "stay",
+        "title": "Stay",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Stay+MV"
+      },
+      {
+        "id": "as-if-it-s-your-last",
+        "title": "As If It's Your Last",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+As+If+It%27s+Your+Last+MV"
+      },
+      {
+        "id": "ddu-du-ddu-du",
+        "title": "Ddu-Du Ddu-Du",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Ddu-Du+Ddu-Du+MV"
+      },
+      {
+        "id": "kill-this-love",
+        "title": "Kill This Love",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Kill+This+Love+MV"
+      },
+      {
+        "id": "how-you-like-that",
+        "title": "How You Like That",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+How+You+Like+That+MV"
+      },
+      {
+        "id": "lovesick-girls",
+        "title": "Lovesick Girls",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Lovesick+Girls+MV"
+      },
+      {
+        "id": "pink-venom",
+        "title": "Pink Venom",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Pink+Venom+MV"
+      },
+      {
+        "id": "shut-down",
+        "title": "Shut Down",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Shut+Down+MV"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "forever-young",
+        "title": "Forever Young",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Forever+Young+MV"
+      },
+      {
+        "id": "hope-not",
+        "title": "Hope Not",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Hope+Not+MV"
+      },
+      {
+        "id": "crazy-over-you",
+        "title": "Crazy Over You",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Crazy+Over+You+MV"
+      },
+      {
+        "id": "pretty-savage",
+        "title": "Pretty Savage",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Pretty+Savage+MV"
+      },
+      {
+        "id": "typa-girl",
+        "title": "Typa Girl",
+        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Typa+Girl+MV"
+      }
+    ]
+  },
+  "fandomName": null,
+  "notes": null
+}

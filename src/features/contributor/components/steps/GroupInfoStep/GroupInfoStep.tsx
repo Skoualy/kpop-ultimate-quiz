@@ -158,7 +158,6 @@ export function GroupInfoStep({
               onFileChange={(f) => upd('coverFile', f)}
               aspectRatio="1/1"
               hint="600x600 px · webp"
-              emptyIcon="🎵"
             />
           </div>
 
@@ -176,7 +175,6 @@ export function GroupInfoStep({
                       placeholder="Ex: TWICE"
                       onChange={(e) => upd('name', e.target.value)}
                     />
-                    <span className={styles.infoMsg}>ID verrouillé en édition : {form.id}</span>
                   </>
                 ) : (
                   <GeneratedIdInputControl
