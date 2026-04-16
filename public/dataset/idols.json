@@ -365,7 +365,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/gaeul/portrait.webp",
+    "portrait": "/assets/idols/gaeul/portrait.webp",
     "notes": null
   },
   {
@@ -500,7 +500,7 @@
     "primaryGroupId": "mamamoo",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hwasa/portrait.webp",
+    "portrait": "/assets/idols/hwasa/portrait.webp",
     "notes": null
   },
   {
@@ -1076,7 +1076,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/leeseo/portrait.webp",
+    "portrait": "/assets/idols/leeseo/portrait.webp",
     "notes": null
   },
   {
@@ -1112,7 +1112,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/liz/portrait.webp",
+    "portrait": "/assets/idols/liz/portrait.webp",
     "notes": null
   },
   {
@@ -1274,13 +1274,13 @@
     "primaryGroupId": "mamamoo",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/moonbyul/portrait.webp",
+    "portrait": "/assets/idols/moonbyul/portrait.webp",
     "notes": null
   },
   {
     "id": "nayeon",
     "name": "Nayeon",
-    "primaryGroupId": "nayeon",
+    "primaryGroupId": "twice",
     "gender": "f",
     "nationality": "kr",
     "portrait": "/assets/idols/nayeon/portrait.webp",
@@ -1346,7 +1346,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/rei/portrait.webp",
+    "portrait": "/assets/idols/rei/portrait.webp",
     "notes": null
   },
   {
@@ -1589,7 +1589,7 @@
     "primaryGroupId": "mamamoo",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/solar/portrait.webp",
+    "portrait": "/assets/idols/solar/portrait.webp",
     "notes": null
   },
   {
@@ -1832,7 +1832,7 @@
     "primaryGroupId": "mamamoo",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wheein/portrait.webp",
+    "portrait": "/assets/idols/wheein/portrait.webp",
     "notes": null
   },
   {
@@ -1877,7 +1877,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wonyoung/portrait.webp",
+    "portrait": "/assets/idols/wonyoung/portrait.webp",
     "notes": null
   },
   {
@@ -2066,7 +2066,7 @@
     "primaryGroupId": "ive",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yujin/portrait.webp",
+    "portrait": "/assets/idols/yujin/portrait.webp",
     "notes": null
   },
   {

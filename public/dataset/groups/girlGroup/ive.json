@@ -7,19 +7,23 @@
   "debutYear": 2021,
   "status": "active",
   "company": "Starship Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/ive/cover.webp",
   "members": [
     {
       "idolId": "yujin",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainVocal",
+        "mainDancer"
       ]
     },
     {
       "idolId": "gaeul",
       "status": "current",
       "roles": [
+        "mainDancer",
+        "rapper",
         "vocal"
       ]
     },
@@ -27,28 +31,36 @@
       "idolId": "rei",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "dancer"
       ]
     },
     {
       "idolId": "wonyoung",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "visual"
       ]
     },
     {
       "idolId": "liz",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "leeseo",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual",
+        "maknae",
+        "dancer"
       ]
     }
   ],
@@ -57,68 +69,123 @@
       {
         "id": "eleven",
         "title": "Eleven",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Eleven+MV",
+        "youtubeUrl": "https://youtu.be/--FmExEAsM8?si=dpIyrpdkTBvm6Weo",
         "isDebutSong": true
       },
       {
-        "id": "love-dive",
-        "title": "Love Dive",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Love+Dive+MV"
+        "id": "supernova-love",
+        "title": "Supernova Love",
+        "youtubeUrl": "https://youtu.be/fyk6vjwI3wc?si=oIAjWe36_I1ixNU8"
       },
       {
-        "id": "after-like",
-        "title": "After Like",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+After+Like+MV"
+        "id": "rebel-heart",
+        "title": "Rebel Heart",
+        "youtubeUrl": "https://youtu.be/g36q0ZLvygQ?si=MMjNpDFRNvvEqOPe"
       },
       {
-        "id": "kitsch",
-        "title": "Kitsch",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Kitsch+MV"
+        "id": "off-the-record",
+        "title": "Off The Record",
+        "youtubeUrl": "https://youtu.be/_ApV7Lm87cg?si=1F8b3CghOzSi42vD"
       },
       {
-        "id": "i-am",
-        "title": "I Am",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+I+Am+MV"
+        "id": "bang-bang",
+        "title": "Bang Bang",
+        "youtubeUrl": "https://youtu.be/9qkpcLK422o?si=xkHpel8zDkoxqzUS"
       },
       {
-        "id": "either-way",
-        "title": "Either Way",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Either+Way+MV"
+        "id": "blackhole",
+        "title": "Blackhole ",
+        "youtubeUrl": "https://youtu.be/1Lmy7qwmSMc?si=a8HgDBuPV0AXWkOP"
       },
       {
-        "id": "baddie",
-        "title": "Baddie",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Baddie+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "royal",
-        "title": "Royal",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Royal+MV"
+        "id": "attitude",
+        "title": "ATTITUDE",
+        "youtubeUrl": "https://youtu.be/38xYeot-ciM?si=dSyZjjTiGmWGwepH"
       },
       {
-        "id": "blue-blood",
-        "title": "Blue Blood",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Blue+Blood+MV"
-      },
-      {
-        "id": "hypnosis",
-        "title": "Hypnosis",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Hypnosis+MV"
-      },
-      {
-        "id": "shine-with-me",
-        "title": "Shine With Me",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Shine+With+Me+MV"
+        "id": "heya",
+        "title": "HEYA",
+        "youtubeUrl": "https://youtu.be/07EzMbVH3QE?si=wbSCX8lqEIzxOCb6"
       },
       {
         "id": "accendio",
         "title": "Accendio",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=IVE+Accendio+MV"
+        "youtubeUrl": "https://youtu.be/PGLx4V680J8?si=XwMgb1z_-YB6HiLO"
+      },
+      {
+        "id": "love-dive",
+        "title": "Love Dive",
+        "youtubeUrl": "https://youtu.be/Y8JFxS1HlDo?si=eKJTgzgFKdWE-XJr"
+      },
+      {
+        "id": "after-like",
+        "title": "After Like",
+        "youtubeUrl": "https://youtu.be/F0B7HDiY-10?si=rw7J8ibZkXqp49Ks"
+      },
+      {
+        "id": "kitsch",
+        "title": "Kitsch",
+        "youtubeUrl": "https://youtu.be/pG6iaOMV46I?si=wvfDzZP3Iw02nf6h"
+      },
+      {
+        "id": "i-am",
+        "title": "I Am",
+        "youtubeUrl": "https://youtu.be/6ZUIwj3FgUY?si=ZJXS_wX70EG1AsHb"
+      },
+      {
+        "id": "either-way",
+        "title": "Either Way",
+        "youtubeUrl": "https://youtu.be/_Hu4GYtye5U?si=yOGt3sg6JNMfj0uE"
+      },
+      {
+        "id": "baddie",
+        "title": "Baddie",
+        "youtubeUrl": "https://youtu.be/Da4P2uT4mVc?si=vjUu8UCOkxS7kNnY"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "fashion",
+        "title": "Fashion",
+        "youtubeUrl": "https://youtu.be/nb_0gsCEXEg?si=n2vs6Quu9g2MXtQ1"
+      },
+      {
+        "id": "take-it",
+        "title": "Take It",
+        "youtubeUrl": "https://youtu.be/4pjWi5POJvI?si=rNzcFqJy7Ln5mYrp"
+      },
+      {
+        "id": "fireworks",
+        "title": "Fireworks",
+        "youtubeUrl": "https://youtu.be/Wy3B943wKSA?si=J6qwM2C1JYzhy-O7"
+      },
+      {
+        "id": "my-satisfaction",
+        "title": "My Satisfaction",
+        "youtubeUrl": "https://youtu.be/CgW67rjToHw?si=-XdeDZ8_sujh-fpd"
+      },
+      {
+        "id": "royal",
+        "title": "Royal",
+        "youtubeUrl": "https://youtu.be/pXbugSyo0tI?si=VxgCtWXfMGoq_I9_"
+      },
+      {
+        "id": "blue-blood",
+        "title": "Blue Blood",
+        "youtubeUrl": "https://youtu.be/VMoZofGtCQg?si=ySU9NlpHGmOPgZ98"
+      },
+      {
+        "id": "hypnosis",
+        "title": "Hypnosis",
+        "youtubeUrl": "https://youtu.be/X3_XCoQNERU?si=yveTl8RMDYGC_xOG"
+      },
+      {
+        "id": "shine-with-me",
+        "title": "Shine With Me",
+        "youtubeUrl": "https://youtu.be/h3HP316Me90?si=jPEWrzOaRsPPAQrp"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Dive",
   "notes": null
 }

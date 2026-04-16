@@ -7,34 +7,41 @@
   "debutYear": 2014,
   "status": "active",
   "company": "RBW",
-  "coverImage": null,
+  "coverImage": "/assets/groups/mamamoo/cover.webp",
   "members": [
     {
       "idolId": "solar",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "moonbyul",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainDancer",
+        "mainRapper"
       ]
     },
     {
       "idolId": "wheein",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "hwasa",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "maknae",
+        "rapper",
+        "dancer"
       ]
     }
   ],
@@ -43,83 +50,98 @@
       {
         "id": "mr-ambiguous",
         "title": "Mr Ambiguous",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Mr+Ambiguous+MV",
+        "youtubeUrl": "https://youtu.be/QwjWP2Tnsjk?si=3W6EbWmu9l5psC8p",
         "isDebutSong": true
       },
       {
-        "id": "um-oh-ah-yeh",
-        "title": "Um Oh Ah Yeh",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Um+Oh+Ah+Yeh+MV"
+        "id": "dinga",
+        "title": "Dinga",
+        "youtubeUrl": "https://youtu.be/dfl9KIX1WpU?si=D_08XCQjY0Xp4j9m"
       },
       {
-        "id": "you-re-the-best",
-        "title": "You're the Best",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+You%27re+the+Best+MV"
-      },
-      {
-        "id": "decalcomanie",
-        "title": "Décalcomanie",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+D%C3%A9calcomanie+MV"
-      },
-      {
-        "id": "yes-i-am",
-        "title": "Yes I Am",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Yes+I+Am+MV"
-      },
-      {
-        "id": "starry-night",
-        "title": "Starry Night",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Starry+Night+MV"
-      },
-      {
-        "id": "egotistic",
-        "title": "Egotistic",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Egotistic+MV"
-      },
-      {
-        "id": "hip",
-        "title": "Hip",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Hip+MV"
-      },
-      {
-        "id": "aya",
-        "title": "Aya",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Aya+MV"
-      },
-      {
-        "id": "illella",
-        "title": "ILLELLA",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+ILLELLA+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "no-more-drama",
-        "title": "No More Drama",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+No+More+Drama+MV"
-      },
-      {
-        "id": "sleep-in-the-car",
-        "title": "Sleep In The Car",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Sleep+In+The+Car+MV"
-      },
-      {
-        "id": "my-star",
-        "title": "My Star",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+My+Star+MV"
+        "id": "piano-man",
+        "title": "Piano Man",
+        "youtubeUrl": "https://youtu.be/3IIBVnn4eTM?si=QXrAuRawOG6dYoSW"
       },
       {
         "id": "wind-flower",
         "title": "Wind Flower",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+Wind+Flower+MV"
+        "youtubeUrl": "https://youtu.be/uOZ2r_UAfdc?si=EpfTiGfTTIesUeSb"
+      },
+      {
+        "id": "um-oh-ah-yeh",
+        "title": "Um Oh Ah Yeh",
+        "youtubeUrl": "https://youtu.be/pFuJAIMQjHk?si=ABoXT-5RtHQ9er6n"
+      },
+      {
+        "id": "you-re-the-best",
+        "title": "You're the Best",
+        "youtubeUrl": "https://youtu.be/QbhmTM1cRro?si=9qhcXr4UkUQ8Gapr"
+      },
+      {
+        "id": "decalcomanie",
+        "title": "Décalcomanie",
+        "youtubeUrl": "https://youtu.be/y2OFPvYxZuY?si=5cnRe4HEtalKjLcn"
+      },
+      {
+        "id": "yes-i-am",
+        "title": "Yes I Am",
+        "youtubeUrl": "https://youtu.be/hTMlLDAclTI?si=Q3qLBVYfMRDivSF6"
+      },
+      {
+        "id": "starry-night",
+        "title": "Starry Night",
+        "youtubeUrl": "https://youtu.be/LjUXm0Zy_dk?si=Y_ykelL68UGcmIyi"
+      },
+      {
+        "id": "egotistic",
+        "title": "Egotistic",
+        "youtubeUrl": "https://youtu.be/G5UM2rOyqr4?si=-MKNqc8McVnxo3oD"
+      },
+      {
+        "id": "hip",
+        "title": "Hip",
+        "youtubeUrl": "https://youtu.be/KhTeiaCezwM?si=cxnF5heybHsAdCf8"
+      },
+      {
+        "id": "aya",
+        "title": "Aya",
+        "youtubeUrl": "https://youtu.be/UoI9riNffEU?si=r3xBph_9T7sN9jq4"
+      },
+      {
+        "id": "illella",
+        "title": "ILLELLA",
+        "youtubeUrl": "https://youtu.be/Vz508O9NNTg?si=U7hWI3S3LtJdYi85"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "destiny",
+        "title": "Destiny",
+        "youtubeUrl": "https://youtu.be/mbkq_OxBrTk?si=D-u_W5ZIaVRupwRf"
+      },
+      {
+        "id": "no-more-drama",
+        "title": "No More Drama",
+        "youtubeUrl": "https://youtu.be/Iwg0qUuoCbA?si=LKyKDAw9VNQMMo1y"
+      },
+      {
+        "id": "sleep-in-the-car",
+        "title": "Sleep In The Car",
+        "youtubeUrl": "https://youtu.be/KB3oHWZm7-A?si=IIa5pFKiiVu8fMhm"
+      },
+      {
+        "id": "my-star",
+        "title": "My Star",
+        "youtubeUrl": "https://youtu.be/3Pni1FuJRCQ?si=zpVvjggwTfOCFK60"
       },
       {
         "id": "i-love-too",
         "title": "I Love Too",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Mamamoo+I+Love+Too+MV"
+        "youtubeUrl": "https://youtu.be/Hv4U3UiN0sk?si=nSvnw2DKIXkLxGVQ"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Moomoo",
   "notes": null
 }
