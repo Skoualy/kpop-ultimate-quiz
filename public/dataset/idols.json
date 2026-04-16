@@ -248,7 +248,7 @@
     "primaryGroupId": "newjeans",
     "gender": "f",
     "nationality": "au",
-    "portrait": "../../assets/idols/danielle/portrait.webp",
+    "portrait": "/assets/idols/danielle/portrait.webp",
     "notes": null
   },
   {
@@ -401,7 +401,7 @@
     "primaryGroupId": "newjeans",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/haerin/portrait.webp",
+    "portrait": "/assets/idols/haerin/portrait.webp",
     "notes": null
   },
   {
@@ -437,7 +437,7 @@
     "primaryGroupId": "newjeans",
     "gender": "f",
     "nationality": "au",
-    "portrait": "../../assets/idols/hanni/portrait.webp",
+    "portrait": "/assets/idols/hanni/portrait.webp",
     "notes": null
   },
   {
@@ -509,7 +509,7 @@
     "primaryGroupId": "newjeans",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hyein/portrait.webp",
+    "portrait": "/assets/idols/hyein/portrait.webp",
     "notes": null
   },
   {
@@ -608,7 +608,7 @@
     "primaryGroupId": "red-velvet",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/irene/portrait.webp",
+    "portrait": "/assets/idols/irene/portrait.webp",
     "notes": null
   },
   {
@@ -716,7 +716,7 @@
     "primaryGroupId": "blackpink",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jennie/portrait.webp",
+    "portrait": "/assets/idols/jennie/portrait.webp",
     "notes": null
   },
   {
@@ -833,7 +833,7 @@
     "primaryGroupId": "blackpink",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jisoo/portrait.webp",
+    "portrait": "/assets/idols/jisoo/portrait.webp",
     "notes": null
   },
   {
@@ -923,7 +923,7 @@
     "primaryGroupId": "red-velvet",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/joy/portrait.webp",
+    "portrait": "/assets/idols/joy/portrait.webp",
     "notes": null
   },
   {
@@ -1103,7 +1103,7 @@
     "primaryGroupId": "blackpink",
     "gender": "f",
     "nationality": "th",
-    "portrait": "../../assets/idols/lisa/portrait.webp",
+    "portrait": "/assets/idols/lisa/portrait.webp",
     "notes": null
   },
   {
@@ -1211,7 +1211,7 @@
     "primaryGroupId": "newjeans",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/minji/portrait.webp",
+    "portrait": "/assets/idols/minji/portrait.webp",
     "notes": null
   },
   {
@@ -1373,7 +1373,7 @@
     "primaryGroupId": "blackpink",
     "gender": "f",
     "nationality": "au",
-    "portrait": "../../assets/idols/rose/portrait.webp",
+    "portrait": "/assets/idols/rose/portrait.webp",
     "notes": null
   },
   {
@@ -1481,7 +1481,7 @@
     "primaryGroupId": "red-velvet",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seulgi/portrait.webp",
+    "portrait": "/assets/idols/seulgi/portrait.webp",
     "notes": null
   },
   {
@@ -1823,7 +1823,7 @@
     "primaryGroupId": "red-velvet",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wendy/portrait.webp",
+    "portrait": "/assets/idols/wendy/portrait.webp",
     "notes": null
   },
   {
@@ -1940,7 +1940,7 @@
     "primaryGroupId": "red-velvet",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yeri/portrait.webp",
+    "portrait": "/assets/idols/yeri/portrait.webp",
     "notes": null
   },
   {

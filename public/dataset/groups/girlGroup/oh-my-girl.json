@@ -89,6 +89,11 @@
         "isDebutSong": true
       },
       {
+        "id": "oh-my",
+        "title": "Oh My",
+        "youtubeUrl": "https://youtu.be/iKSo8shldrI?si=KCJdnVqHsH-syuOa"
+      },
+      {
         "id": "supadupa-jp",
         "title": "SUPADUPA ",
         "youtubeUrl": "https://www.youtube.com/watch?v=ed5nuyTJgBI",
@@ -207,6 +212,36 @@
       }
     ],
     "bSides": [
+      {
+        "id": "stupid-in-love",
+        "title": "Stupid In Love",
+        "youtubeUrl": "https://youtu.be/tCOy-TGZBxo?si=ZcwukG0f43q8ZHfR"
+      },
+      {
+        "id": "krystal",
+        "title": "Krystal",
+        "youtubeUrl": "https://youtu.be/ci2eU3Dgiw8?si=eH1P0_oLQ8fJh7xu"
+      },
+      {
+        "id": "crime-scene",
+        "title": "Crime Scene",
+        "youtubeUrl": "https://youtu.be/jo2_lLGxlLU?si=LdTOpy1WrYnVAKDv"
+      },
+      {
+        "id": "playground",
+        "title": "Playground",
+        "youtubeUrl": "https://youtu.be/P4ScNjh6GpQ?si=yi2WNpmg9YRERJWQ"
+      },
+      {
+        "id": "dear-you",
+        "title": "Dear You",
+        "youtubeUrl": "https://youtu.be/w1mvhgyjDDI?si=Ch3TJ2cR0G5oLVKb"
+      },
+      {
+        "id": "wheather-diary",
+        "title": "Wheather Diary",
+        "youtubeUrl": "https://youtu.be/GNuQhVC6684?si=mBhL2SIodjTles3N"
+      },
       {
         "id": "eternally-jp",
         "title": "Eternally",

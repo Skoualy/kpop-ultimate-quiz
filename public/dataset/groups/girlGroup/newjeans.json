@@ -7,26 +7,22 @@
   "debutYear": 2022,
   "status": "active",
   "company": "ADOR",
-  "coverImage": null,
+  "coverImage": "/assets/groups/newjeans/cover.webp",
   "members": [
     {
       "idolId": "minji",
       "status": "current",
       "roles": [
-        "vocal"
+        "dancer",
+        "vocal",
+        "mainRapper"
       ]
     },
     {
       "idolId": "hanni",
       "status": "current",
       "roles": [
-        "vocal"
-      ]
-    },
-    {
-      "idolId": "danielle",
-      "status": "current",
-      "roles": [
+        "dancer",
         "vocal"
       ]
     },
@@ -34,14 +30,25 @@
       "idolId": "haerin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "hyein",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "maknae",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "danielle",
+      "status": "former",
+      "roles": [
+        "vocal",
+        "dancer"
       ]
     }
   ],
@@ -50,73 +57,67 @@
       {
         "id": "attention",
         "title": "Attention",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Attention+MV",
+        "youtubeUrl": "https://youtu.be/js1CtxSY38I?si=2gf_92Le0PXSkG3B",
         "isDebutSong": true
+      },
+      {
+        "id": "right-now",
+        "title": "Right Now",
+        "youtubeUrl": "https://youtu.be/m6pTbEz4w3o?si=cUv4BsFxHE_gVJmy"
       },
       {
         "id": "hype-boy",
         "title": "Hype Boy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Hype+Boy+MV"
+        "youtubeUrl": "https://youtu.be/9wUKhEgnllc?si=6gJb-wyi76k35H90"
       },
       {
         "id": "cookie",
         "title": "Cookie",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Cookie+MV"
+        "youtubeUrl": "https://youtu.be/VOmIplFAGeg?si=3uw53_D1nmL-6GzX"
       },
       {
         "id": "ditto",
         "title": "Ditto",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Ditto+MV"
+        "youtubeUrl": "https://youtu.be/Km71Rr9K-Bw?si=wmn3MD8GzO7HfU8S"
       },
       {
         "id": "omg",
         "title": "OMG",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+OMG+MV"
+        "youtubeUrl": "https://youtu.be/_ZAgIHmHLdc?si=VJQqi_t-R4N25Y2A"
       },
       {
         "id": "super-shy",
         "title": "Super Shy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Super+Shy+MV"
+        "youtubeUrl": "https://youtu.be/ArmDp-zijuc?si=00Y5UCbkt20uw7NC"
       },
       {
         "id": "eta",
         "title": "ETA",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ETA+MV"
+        "youtubeUrl": "https://youtu.be/jOTfBlKSQYY?si=RK7pZrUMhYF72-wk"
       },
-      {
-        "id": "cool-with-you",
-        "title": "Cool With You",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Cool+With+You+MV"
-      }
-    ],
-    "bSides": [
       {
         "id": "new-jeans",
         "title": "New Jeans",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+New+Jeans+MV"
+        "youtubeUrl": "https://youtu.be/kcelgrGY1h8?si=qJ7BVngRFNIXIQcl"
       },
       {
         "id": "zero",
         "title": "Zero",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Zero+MV"
+        "youtubeUrl": "https://youtu.be/XIOoqJyx8E4?si=guhJkB-4Zl2y5SOY"
       },
       {
         "id": "asap",
         "title": "ASAP",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ASAP+MV"
+        "youtubeUrl": "https://youtu.be/dJdqn5v4Dkw?si=sV5Q572phZJhOluc"
       },
       {
-        "id": "eta-remix",
-        "title": "ETA (Remix)",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+ETA+%28Remix%29+MV"
-      },
-      {
-        "id": "get-up",
-        "title": "Get Up",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NewJeans+Get+Up+MV"
+        "id": "cool-with-you",
+        "title": "Cool With You",
+        "youtubeUrl": "https://youtu.be/kKsivrgoyDw?si=S3eXmO5pEEf2MXRp"
       }
-    ]
+    ],
+    "bSides": []
   },
-  "fandomName": null,
+  "fandomName": "Bunnies",
   "notes": null
 }

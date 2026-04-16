@@ -1,131 +1,148 @@
 {
   "id": "blackpink",
-  "name": "BLACKPINK",
+  "name": "Blackpink",
   "category": "girlGroup",
   "parentGroupId": null,
   "generation": "3",
   "debutYear": 2016,
   "status": "active",
   "company": "YG Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/blackpink/cover.webp",
   "members": [
     {
       "idolId": "jisoo",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual",
+        "dancer"
       ]
     },
     {
       "idolId": "jennie",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "dancer"
       ]
     },
     {
       "idolId": "rose",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "lisa",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "rapper",
+        "maknae",
+        "mainDancer"
       ]
     }
   ],
   "discography": {
     "titles": [
       {
-        "id": "whistle",
-        "title": "Whistle",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Whistle+MV",
+        "id": "boombayah",
+        "title": "Boombayah",
+        "youtubeUrl": "https://youtu.be/bwmSjveL3Lc?si=-hLIvfEcdXPo_z7g",
         "isDebutSong": true
       },
       {
-        "id": "boombayah",
-        "title": "Boombayah",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Boombayah+MV",
-        "isDebutSong": true
+        "id": "typa-girl",
+        "title": "Typa Girl",
+        "youtubeUrl": "https://youtu.be/aq4QJnoD1k4?si=5MkHqtUv21-6UsuD"
+      },
+      {
+        "id": "jump",
+        "title": "Jump",
+        "youtubeUrl": "https://youtu.be/CgCVZdcKcqY?si=AGd7wYxOQK8GYiq3"
+      },
+      {
+        "id": "go",
+        "title": "GO",
+        "youtubeUrl": "https://youtu.be/2GJfWMYCWY0?si=DSdgFbfjGlmmYr0C"
+      },
+      {
+        "id": "whistle",
+        "title": "Whistle",
+        "youtubeUrl": "https://youtu.be/dISNgvVpWlo?si=8lmoMY8ZuSbq2zKv"
       },
       {
         "id": "playing-with-fire",
         "title": "Playing With Fire",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Playing+With+Fire+MV"
+        "youtubeUrl": "https://youtu.be/9pdj4iJD08s?si=cls_ZvD6v6jk_Rei"
       },
       {
         "id": "stay",
         "title": "Stay",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Stay+MV"
+        "youtubeUrl": "https://youtu.be/FzVR_fymZw4?si=cyshv-IaNmeSkieW"
       },
       {
         "id": "as-if-it-s-your-last",
         "title": "As If It's Your Last",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+As+If+It%27s+Your+Last+MV"
+        "youtubeUrl": "https://youtu.be/Amq-qlqbjYA?si=fWvROArAU1bnKXKJ"
       },
       {
         "id": "ddu-du-ddu-du",
         "title": "Ddu-Du Ddu-Du",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Ddu-Du+Ddu-Du+MV"
+        "youtubeUrl": "https://youtu.be/IHNzOHi8sJs?si=7rDR9sGFKcdQFtza"
       },
       {
         "id": "kill-this-love",
         "title": "Kill This Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Kill+This+Love+MV"
+        "youtubeUrl": "https://youtu.be/2S24-y0Ij3Y?si=_1fxr8uXCUIl8LIu"
       },
       {
         "id": "how-you-like-that",
         "title": "How You Like That",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+How+You+Like+That+MV"
+        "youtubeUrl": "https://youtu.be/ioNng23DkIM?si=3JifiyCNFACvvj3I"
       },
       {
         "id": "lovesick-girls",
         "title": "Lovesick Girls",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Lovesick+Girls+MV"
+        "youtubeUrl": "https://youtu.be/dyRsYk0LyA8?si=uc0pta3bL0Wjvh9l"
       },
       {
         "id": "pink-venom",
         "title": "Pink Venom",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Pink+Venom+MV"
+        "youtubeUrl": "https://youtu.be/gQlMMD8auMs?si=7u5Clfga95uW4ZNV"
       },
       {
         "id": "shut-down",
         "title": "Shut Down",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Shut+Down+MV"
+        "youtubeUrl": "https://youtu.be/POe9SOEKotk?si=Pu3zg1MQnJ18B5oU"
       }
     ],
     "bSides": [
       {
         "id": "forever-young",
         "title": "Forever Young",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Forever+Young+MV"
+        "youtubeUrl": "https://youtu.be/2PSMCm9HS-Y?si=rnS5r_laAKIMBzIN"
       },
       {
         "id": "hope-not",
         "title": "Hope Not",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Hope+Not+MV"
+        "youtubeUrl": "https://youtu.be/Gk8QQdSrxRo?si=DJsh-qOwD3lnkVRk"
       },
       {
         "id": "crazy-over-you",
         "title": "Crazy Over You",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Crazy+Over+You+MV"
+        "youtubeUrl": "https://youtu.be/my38BhPN1v8?si=KokwYsc9tc_nNB9g"
       },
       {
         "id": "pretty-savage",
         "title": "Pretty Savage",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Pretty+Savage+MV"
-      },
-      {
-        "id": "typa-girl",
-        "title": "Typa Girl",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BLACKPINK+Typa+Girl+MV"
+        "youtubeUrl": "https://youtu.be/F8c8f2nK82w?si=ZspHSA6hJQVdEO04"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Blink",
   "notes": null
 }

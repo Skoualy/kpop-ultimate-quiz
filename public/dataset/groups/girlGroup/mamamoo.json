@@ -15,7 +15,8 @@
       "roles": [
         "leader",
         "mainVocal",
-        "dancer"
+        "dancer",
+        "visual"
       ]
     },
     {
@@ -23,7 +24,8 @@
       "status": "current",
       "roles": [
         "mainDancer",
-        "mainRapper"
+        "mainRapper",
+        "vocal"
       ]
     },
     {
@@ -52,6 +54,26 @@
         "title": "Mr Ambiguous",
         "youtubeUrl": "https://youtu.be/QwjWP2Tnsjk?si=3W6EbWmu9l5psC8p",
         "isDebutSong": true
+      },
+      {
+        "id": "gogobebe",
+        "title": "Gogobebe",
+        "youtubeUrl": "https://youtu.be/Oao3j2hUVvE?si=nerrxys-i2x3mAx4"
+      },
+      {
+        "id": "aze-gag",
+        "title": "AZE GAG",
+        "youtubeUrl": "https://youtu.be/6CmY-LTd_qs?si=X6jOq7g3QKnVbWlb"
+      },
+      {
+        "id": "1-cm",
+        "title": "1 CM",
+        "youtubeUrl": "https://youtu.be/I02F1lvhguw?si=9wH7ZV2Or3lHLBbZ"
+      },
+      {
+        "id": "gleem",
+        "title": "Gleem",
+        "youtubeUrl": "https://youtu.be/Ti768MTvn-0?si=egcVDsMC1jKRwL4a"
       },
       {
         "id": "dinga",
@@ -115,6 +137,11 @@
       }
     ],
     "bSides": [
+      {
+        "id": "i-miss-you",
+        "title": "I Miss You",
+        "youtubeUrl": "https://youtu.be/lecVwih5xGM?si=7J8ktUl4LuIxch6B"
+      },
       {
         "id": "destiny",
         "title": "Destiny",

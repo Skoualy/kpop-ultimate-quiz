@@ -60,8 +60,7 @@
       "roles": [
         "vocal",
         "dancer",
-        "maknae",
-        "visual"
+        "maknae"
       ]
     }
   ],
@@ -72,6 +71,30 @@
         "title": "Latata",
         "youtubeUrl": "https://youtu.be/p4RIhcY7V3c?si=Sls2eFYT7uWcZ1Hw",
         "isDebutSong": true
+      },
+      {
+        "id": "mono-en",
+        "title": "MONO",
+        "youtubeUrl": "https://youtu.be/DYgE3SGPEqk?si=o3HuZxi8oV84qJFe",
+        "language": "en"
+      },
+      {
+        "id": "i-want-that-en",
+        "title": "I Want That",
+        "youtubeUrl": "https://youtu.be/Iewisp9KYRw?si=--zAZhF6O5ZwQX9W",
+        "language": "en"
+      },
+      {
+        "id": "i-do-en",
+        "title": "I Do",
+        "youtubeUrl": "https://youtu.be/pCh3Kp6qxo8?si=YRMDVPRJPW46DW_D",
+        "language": "en"
+      },
+      {
+        "id": "fate-jp",
+        "title": "Fate",
+        "youtubeUrl": "https://youtu.be/ATK7gAaZTOM?si=FHgxM1_55shD07q2",
+        "language": "jp"
       },
       {
         "id": "allergy",

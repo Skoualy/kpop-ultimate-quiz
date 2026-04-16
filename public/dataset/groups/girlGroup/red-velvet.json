@@ -7,19 +7,24 @@
   "debutYear": 2014,
   "status": "active",
   "company": "SM Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/red-velvet/cover.webp",
   "members": [
     {
       "idolId": "irene",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "leader",
+        "mainRapper",
+        "visual",
+        "dancer"
       ]
     },
     {
       "idolId": "seulgi",
       "status": "current",
       "roles": [
+        "mainDancer",
         "vocal"
       ]
     },
@@ -27,21 +32,26 @@
       "idolId": "wendy",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "joy",
       "status": "current",
       "roles": [
-        "vocal"
+        "rapper",
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "yeri",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "rapper",
+        "maknae"
       ]
     }
   ],
@@ -50,88 +60,145 @@
       {
         "id": "happiness",
         "title": "Happiness",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Happiness+MV",
+        "youtubeUrl": "https://youtu.be/JFgv8bKfxEs?si=VskavfbBqIiX_8nu",
         "isDebutSong": true
+      },
+      {
+        "id": "rookie",
+        "title": "Rookie",
+        "youtubeUrl": "https://youtu.be/J0h8-OTC38I?si=t2NvIGQzhQvzw6M4"
+      },
+      {
+        "id": "sappy-jp",
+        "title": "Sappy",
+        "youtubeUrl": "https://youtu.be/JUJ3Pq74H4c?si=5aYUKmsEHq-qXpn6",
+        "language": "jp"
+      },
+      {
+        "id": "cookie-jar",
+        "title": "Cookie Jar",
+        "youtubeUrl": "https://youtu.be/rRgTMs_bGuI?si=xI54SqBGggZEEdyX"
+      },
+      {
+        "id": "wildside-jp",
+        "title": "Wildside",
+        "youtubeUrl": "https://youtu.be/xGr53sCo62c?si=cJxFfi3GXGj2Vda-",
+        "language": "jp"
+      },
+      {
+        "id": "rbb-really-bad-boy",
+        "title": "RBB (Really Bad Boy)",
+        "youtubeUrl": "https://youtu.be/IWJUPY-2EIM?si=GXvCDVpl71wOtmCK"
+      },
+      {
+        "id": "zimzalanim",
+        "title": "Zimzalanim",
+        "youtubeUrl": "https://youtu.be/YBnGBb1wg98?si=hj-jRl-tTAuo98oU"
+      },
+      {
+        "id": "power-up",
+        "title": "Power Up",
+        "youtubeUrl": "https://youtu.be/aiHSVQy9xN8?si=XJGd3TGGkEiYLEFL"
+      },
+      {
+        "id": "cosmic",
+        "title": "Cosmic",
+        "youtubeUrl": "https://youtu.be/FyG21rXCxlY?si=8D8zzSjrmQte7wuA"
+      },
+      {
+        "id": "queendom",
+        "title": "Queendom",
+        "youtubeUrl": "https://youtu.be/c9RzZpV460k?si=0ukIvG9Se9JCqX7V"
       },
       {
         "id": "ice-cream-cake",
         "title": "Ice Cream Cake",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Ice+Cream+Cake+MV"
+        "youtubeUrl": "https://youtu.be/glXgSSOKlls?si=7D4epEHHsCE6ZgqD"
       },
       {
         "id": "dumb-dumb",
         "title": "Dumb Dumb",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Dumb+Dumb+MV"
+        "youtubeUrl": "https://youtu.be/XGdbaEDVWp0?si=iqYeLX1ptNF0q0-c"
       },
       {
         "id": "russian-roulette",
         "title": "Russian Roulette",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Russian+Roulette+MV"
+        "youtubeUrl": "https://youtu.be/QslJYDX3o8s?si=qYW8hI8UOabJxZgG"
       },
       {
         "id": "red-flavor",
         "title": "Red Flavor",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Red+Flavor+MV"
+        "youtubeUrl": "https://youtu.be/WyiIGEHQP8o?si=Tx3bePhUOU5Pu2W5"
       },
       {
         "id": "peek-a-boo",
         "title": "Peek-A-Boo",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Peek-A-Boo+MV"
+        "youtubeUrl": "https://youtu.be/6uJf2IT2Zh8?si=qjKahZG6EYLD2TQW"
       },
       {
         "id": "bad-boy",
         "title": "Bad Boy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Bad+Boy+MV"
+        "youtubeUrl": "https://youtu.be/J_CFBjAyPWE?si=vXvMHDoJcqt73TUF"
       },
       {
         "id": "psycho",
         "title": "Psycho",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Psycho+MV"
+        "youtubeUrl": "https://youtu.be/uR8Mrt1IpXg?si=u2sP7mjAYzi2_tfs"
       },
       {
         "id": "feel-my-rhythm",
         "title": "Feel My Rhythm",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Feel+My+Rhythm+MV"
+        "youtubeUrl": "https://youtu.be/R9At2ICm4LQ?si=yrMctj6HCSgK9MNT"
       },
       {
         "id": "birthday",
         "title": "Birthday",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Birthday+MV"
+        "youtubeUrl": "https://youtu.be/Ut1OzEVUiM4?si=J1eJjoYcTd2YWitI"
       },
       {
         "id": "chill-kill",
         "title": "Chill Kill",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Chill+Kill+MV"
+        "youtubeUrl": "https://youtu.be/xlyrt5eAtKI?si=s7uRpQDe-TASBG0E"
       }
     ],
     "bSides": [
       {
+        "id": "knock-knock",
+        "title": "Knock Knock",
+        "youtubeUrl": "https://youtu.be/Zl1qdSNgjGg?si=rYVogyRzHJZ6xk9k"
+      },
+      {
+        "id": "one-kiss",
+        "title": "One Kiss",
+        "youtubeUrl": "https://youtu.be/cV88np6TRz0?si=mDfpZ7U1zevfyn2e"
+      },
+      {
         "id": "time-to-love",
         "title": "Time to Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Time+to+Love+MV"
+        "youtubeUrl": "https://youtu.be/wUTwM4if-eQ?si=U-65OW4SpFOU1reQ"
       },
       {
         "id": "all-right",
         "title": "All Right",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+All+Right+MV"
+        "youtubeUrl": "https://youtu.be/hU411ONfzPI?si=2_77_qcK_qNvBiS7"
       },
       {
         "id": "carpool",
         "title": "Carpool",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Carpool+MV"
+        "youtubeUrl": "https://youtu.be/Kfjal7yVs2U?si=S_X8fohQ0GSAM2g9"
       },
       {
         "id": "kingdom-come",
         "title": "Kingdom Come",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+Kingdom+Come+MV"
+        "youtubeUrl": "https://youtu.be/p9nNUuPei0Y?si=YeBn9CeCUGPdmSHg"
       },
       {
         "id": "you-better-know",
         "title": "You Better Know",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Red+Velvet+You+Better+Know+MV"
+        "youtubeUrl": "https://youtu.be/L2tTl5Xem_U?si=VaICYZPBkowKv507"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "ReVeluv",
   "notes": null
 }
