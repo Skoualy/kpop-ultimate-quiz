@@ -1,3 +1,5 @@
+/* ─── Page root ───────────────────────────────────────────────────────────── */
+
 .page {
   display: flex;
   flex-direction: column;
@@ -12,40 +14,24 @@
   overflow-y: auto;
 }
 
-/* ─── Header ─────────────────────────────────────────────────────────────── */
+/* ─── Header bar — tout dans une seule ligne ─────────────────────────────── */
 
 .header {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-bottom: 1px solid var(--border-strong);
   background: var(--bg-surface);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   flex-shrink: 0;
   z-index: 10;
 }
 
-.headerLeft {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.headerRight {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
+/* Bouton retour config — gauche */
 .backBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
@@ -60,11 +46,84 @@
 
   &:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
   }
 }
 
-/* Bouton Pass — top-right, rouge au hover */
+/* Zone centrale — flex grow, centrage des éléments */
+.headerCenter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.headerSep {
+  color: var(--text-muted);
+  font-size: 14px;
+  opacity: 0.4;
+}
+
+/* Round pill */
+.roundPill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.roundPillLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.roundPillValue {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.roundPillTotal {
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Info pills */
+.infoPill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.infoPillAccent {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+/* Bouton passer — droite */
 .passBtn {
   display: inline-flex;
   align-items: center;
@@ -78,66 +137,22 @@
   padding: 6px 16px;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 
   &:hover {
-    background: rgba(239, 68, 68, 0.12);
+    background: rgba(239,68,68,0.12);
     border-color: var(--color-danger);
     color: var(--color-danger);
   }
 }
 
-/* ─── Badges mode ─────────────────────────────────────────────────────────── */
-
-.modeBadges {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-surface);
+.passBtnHidden {
+  opacity: 0.35;
+  pointer-events: none;
 }
 
-.modePill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 11px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-.modePillAccent {
-  background: rgba(124, 58, 237, 0.15);
-  border-color: var(--accent-purple);
-  color: #c4b5fd;
-}
-
-.playerPill {
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid var(--accent-pink);
-  background: rgba(233, 30, 140, 0.12);
-  color: #f9a8d4;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ─── Zone de jeu ─────────────────────────────────────────────────────────── */
+/* ─── Contenu principal ───────────────────────────────────────────────────── */
 
 .content {
   flex: 1;
@@ -150,7 +165,13 @@
   overflow: hidden;
 }
 
-/* ─── États ───────────────────────────────────────────────────────────────── */
+/* Fond neutre affiché pendant les transitions (contenu démonté) */
+.transitionBlank {
+  flex: 1;
+  background: var(--bg-base);
+}
+
+/* ─── Chargement / erreur ─────────────────────────────────────────────────── */
 
 .center {
   display: flex;
@@ -173,18 +194,8 @@
   animation: spin 0.7s linear infinite;
 }
 
-.errorTitle {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-danger);
-  margin: 0;
-}
-
-.errorMsg {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0;
-}
+.errorTitle { font-size: 18px; font-weight: 700; color: var(--color-danger); margin: 0; }
+.errorMsg   { font-size: 14px; color: var(--text-muted); margin: 0; }
 
 .retryBtn {
   padding: 10px 24px;
@@ -209,8 +220,11 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-@media (max-width: 600px) {
-  .header     { padding: 10px 14px; }
-  .content    { padding: 12px; }
-  .modeBadges { padding: 6px 14px; }
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .header { padding: 8px 12px; gap: 8px; }
+  .headerCenter { gap: 5px; }
+  .infoPill { font-size: 10px; padding: 3px 8px; }
+  .content { padding: 12px; }
 }

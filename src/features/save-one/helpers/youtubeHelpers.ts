@@ -36,11 +36,12 @@ export function buildEmbedUrl(
   startTime: number,
   endTime: number,
   origin: string,
+  autoplay = true,
 ): string {
   const params = new URLSearchParams({
     start: String(Math.floor(startTime)),
     end: String(Math.ceil(endTime)),
-    autoplay: '1',
+    autoplay: autoplay ? '1' : '0',
     controls: '0',
     modestbranding: '1',
     rel: '0',
@@ -48,6 +49,7 @@ export function buildEmbedUrl(
     enablejsapi: '1',
     origin,
     playsinline: '1',
+    vq: 'hd720',
   })
   return `https://www.youtube.com/embed/${videoId}?${params.toString()}`
 }

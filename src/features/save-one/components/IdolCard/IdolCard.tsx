@@ -37,7 +37,7 @@ export function IdolCard({ idol, size, disabled, onClick }: IdolCardProps) {
         <p className={styles.group}>{idol.groupName}</p>
         {/* Badge ancien membre — SOUS le portrait, pas en overlay */}
         {idol.isFormer && (
-          <span className={styles.formerBadge}>⚠ Ancien membre</span>
+          <span className={styles.formerBadge}>Ancien membre</span>
         )}
       </div>
     </button>

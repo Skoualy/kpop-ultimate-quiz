@@ -3,7 +3,7 @@
 merge-bundle.py — fusionne un ou plusieurs ZIP de contribution dans le dataset.
 
 Usage:
-    python merge-bundle.py bundles/bundle1.zip [bundle2.zip ...]
+    python merge-bundle.py bundle1.zip [bundle2.zip ...]
 
 ZIP accepté pour merge final:
     bundle.json

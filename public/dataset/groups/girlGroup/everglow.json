@@ -7,48 +7,58 @@
   "debutYear": 2019,
   "status": "active",
   "company": "Yuehua Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/everglow/cover.webp",
   "members": [
-    {
-      "idolId": "e-u",
-      "status": "current",
-      "roles": [
-        "vocal"
-      ]
-    },
     {
       "idolId": "sihyeon",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainVocal",
+        "dancer"
       ]
     },
     {
-      "idolId": "mia",
+      "idolId": "e-u",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainRapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "onda",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "aisha",
       "status": "current",
       "roles": [
-        "vocal"
+        "maknae",
+        "visual",
+        "rapper",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "mia",
+      "status": "former",
+      "roles": [
+        "mainVocal",
+        "mainDancer"
       ]
     },
     {
       "idolId": "yiren",
-      "status": "current",
+      "status": "former",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "visual"
       ]
     }
   ],
@@ -57,68 +67,88 @@
       {
         "id": "bon-bon-chocolat",
         "title": "Bon Bon Chocolat",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Bon+Bon+Chocolat+MV",
+        "youtubeUrl": "https://youtu.be/HvGql8HwOIM?si=9V6fYw_0VQqaZot0",
         "isDebutSong": true
+      },
+      {
+        "id": "code",
+        "title": "CODE",
+        "youtubeUrl": "https://youtu.be/pe3EWBY7SIc?si=5hZ64tRvmp7pWBqO"
+      },
+      {
+        "id": "zombie",
+        "title": "Zombie",
+        "youtubeUrl": "https://youtu.be/N6f6CVlgN8A?si=DY3H3GWnRkj-fc4Q"
       },
       {
         "id": "adios",
         "title": "Adios",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Adios+MV"
+        "youtubeUrl": "https://youtu.be/4gX_p1VkgA4?si=erLya7LFRAD4FcPk"
       },
       {
         "id": "dun-dun",
         "title": "Dun Dun",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Dun+Dun+MV"
+        "youtubeUrl": "https://youtu.be/NoYKBAajoyo?si=RhguPyK4_1VYU58Y"
       },
       {
         "id": "la-di-da",
         "title": "La Di Da",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+La+Di+Da+MV"
+        "youtubeUrl": "https://youtu.be/jeI992mvlEY?si=PJrCku-GOYb-bee4"
       },
       {
         "id": "first",
         "title": "First",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+First+MV"
+        "youtubeUrl": "https://youtu.be/Z3RA7bi5FUM?si=l_2u0j-HhLZXekS4"
       },
       {
         "id": "pirate",
         "title": "Pirate",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Pirate+MV"
+        "youtubeUrl": "https://youtu.be/-2X-pL06628?si=Z2v7NdqWn9a-dnTy"
       },
       {
         "id": "slay",
         "title": "Slay",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Slay+MV"
+        "youtubeUrl": "https://youtu.be/jI5p2ePoVcc?si=XfTUzAmqclVBNQv_"
       }
     ],
     "bSides": [
       {
-        "id": "moon",
-        "title": "Moon",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Moon+MV"
-      },
-      {
-        "id": "no-lie",
-        "title": "No Lie",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+No+Lie+MV"
+        "id": "back-together",
+        "title": "Back Together",
+        "youtubeUrl": "https://youtu.be/b7ielliQuTs?si=-J_9qkHUByMlx5RC"
       },
       {
         "id": "company",
         "title": "Company",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Company+MV"
+        "youtubeUrl": "https://youtu.be/2xI2dixxewE?si=0iavPgTKyf0X77jU"
       },
       {
-        "id": "don-t-ask-don-t-tell",
-        "title": "Don't Ask Don't Tell",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Don%27t+Ask+Don%27t+Tell+MV"
+        "id": "moon",
+        "title": "Moon",
+        "youtubeUrl": "https://youtu.be/Tnu1ZIbvFDM?si=jqJdk28Ywkm_gcvu"
       },
       {
-        "id": "please-please",
-        "title": "Please Please",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Everglow+Please+Please+MV"
+        "id": "no-lie",
+        "title": "No Lie",
+        "youtubeUrl": "https://youtu.be/vs5jDODYBTA?si=Hql_NthgfQ_LinmM"
+      },
+      {
+        "id": "promise",
+        "title": "Promise",
+        "youtubeUrl": "https://youtu.be/JZmBo1EQnlE?si=3TkCdt7RZ1E7NyXI"
+      },
+      {
+        "id": "don-t-speak",
+        "title": "Don't Speak",
+        "youtubeUrl": "https://youtu.be/HVeyOiD8jms?si=woE0RZGltuJvMZVK"
+      },
+      {
+        "id": "untouchable",
+        "title": "Untouchable",
+        "youtubeUrl": "https://youtu.be/md-Bw5JUm0A?si=Z7vH_mdVym0o4HJN"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Forever",
   "notes": null
 }

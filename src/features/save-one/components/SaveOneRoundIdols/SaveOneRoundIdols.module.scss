@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
   width: 100%;
   flex: 1;
   justify-content: center;
@@ -19,7 +19,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 28px;
   width: 100%;
 }
 
@@ -44,4 +44,32 @@
   width: 100%;
   margin-bottom: 4px;
   min-height: 28px; /* réserve la hauteur même quand badge absent (criterion='all') */
+}
+
+/* ─── Player name row ─────────────────────────────────────────────────────── */
+.playerNameRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.playerName {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-pill);
+  padding: 4px 16px;
+}
+
+.playerNameP1 {
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+}
+
+.playerNameP2 {
+  color: #f9a8d4;
+  background: rgba(233, 30, 140, 0.12);
+  border: 1px solid rgba(233, 30, 140, 0.35);
 }

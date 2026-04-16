@@ -25,6 +25,8 @@ export function SaveOneRoundIdols({
   timerSeconds,
   timerKey,
   activeCriterion,
+  playerName,
+  playerIndex = 0,
   onChoose,
   onPass,
   onTimeout,
@@ -60,6 +62,12 @@ export function SaveOneRoundIdols({
 
   return (
     <div className={styles.root}>
+      {/* Nom du joueur — au-dessus du badge critère */}
+      {playerName && (
+        <div className={styles.playerNameRow}>
+          <span className={[styles.playerName, playerIndex === 1 ? styles.playerNameP2 : styles.playerNameP1].join(' ')}>{playerName}</span>
+        </div>
+      )}
       {/* Badge critère — centré au-dessus des cartes */}
       <div className={styles.criterionRow}>
         <CriterionBadge criterion={activeCriterion} />

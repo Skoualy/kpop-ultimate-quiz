@@ -89,13 +89,60 @@
         "isDebutSong": true
       },
       {
+        "id": "supadupa-jp",
+        "title": "SUPADUPA ",
+        "youtubeUrl": "https://www.youtube.com/watch?v=ed5nuyTJgBI",
+        "language": "jp"
+      },
+      {
+        "id": "nonstop-jp",
+        "title": "Nonstop",
+        "youtubeUrl": "https://youtu.be/jxHIgFyovn4?si=nWR9IllPHPeRjHe1",
+        "language": "jp"
+      },
+      {
+        "id": "real-love-jp",
+        "title": "Real Love",
+        "youtubeUrl": "https://youtu.be/YX0-srH-_FI?si=Cc7isj6r-FKLymkb",
+        "language": "jp"
+      },
+      {
+        "id": "etoile-jp",
+        "title": "Etoile",
+        "youtubeUrl": "https://youtu.be/LcrCu_BfwMo?si=ATIcEQj_3B9Bo5OH",
+        "language": "jp"
+      },
+      {
+        "id": "dun-dun-dance-jp",
+        "title": "Dun Dun Dance",
+        "youtubeUrl": "https://youtu.be/USnUuHXW6jE?si=lENre0tPmUjBY7n4",
+        "language": "jp"
+      },
+      {
+        "id": "renember-me-jp",
+        "title": "Renember Me",
+        "youtubeUrl": "https://youtu.be/0doq-DGvMc4?si=ZpXsXjXqpOJqBqWC",
+        "language": "jp"
+      },
+      {
+        "id": "dolphin-jp",
+        "title": "Dolphin",
+        "youtubeUrl": "https://youtu.be/4pPhuh60o6s?si=vCAoEmjatopyoj8t",
+        "language": "jp"
+      },
+      {
+        "id": "coloring-book",
+        "title": "Coloring Book",
+        "youtubeUrl": "https://youtu.be/7cjZFjWBZI0?si=_JNQE5-W5MsUa67U"
+      },
+      {
         "id": "summer-comes",
         "title": "Summer Comes",
         "youtubeUrl": "https://youtu.be/fNaKSu73w60?si=5X6oajso48ilO0bd"
       },
       {
-        "id": "bunghee-fall-in-love",
-        "title": "Bunghee (Fall in Love)",
+        "id": "bunghee",
+        "title": "Bunghee",
         "youtubeUrl": "https://youtu.be/QTD_yleCK9Y?si=wuG8c-6Iok1JPhY5"
       },
       {
@@ -104,13 +151,8 @@
         "youtubeUrl": "https://youtu.be/RrvdjyIL0fA?si=u5O-O2ZLjuRHif69"
       },
       {
-        "id": "dolphin",
-        "title": "Dolphin",
-        "youtubeUrl": "https://youtu.be/ThEkQD-p71Q?si=IkJxTEAr33Dvd24e"
-      },
-      {
-        "id": "listen-to-my-world-a-ing",
-        "title": "Listen To My World (A-ing)",
+        "id": "listen-to-my-world",
+        "title": "Listen To My World",
         "youtubeUrl": "https://youtu.be/_W4dL2Av6LE?si=HgUFjPD5Z-0KSTIK"
       },
       {
@@ -122,6 +164,11 @@
         "id": "the-fifth-season",
         "title": "The Fifth Season",
         "youtubeUrl": "https://youtu.be/udGwca1HBM4?si=MGogd-ck4yD2ZnrD"
+      },
+      {
+        "id": "dolphin",
+        "title": "Dolphin",
+        "youtubeUrl": "https://youtu.be/oaRTMjLdiDw?si=qLgog6ZoP_M1haSV"
       },
       {
         "id": "closer",
@@ -160,6 +207,12 @@
       }
     ],
     "bSides": [
+      {
+        "id": "eternally-jp",
+        "title": "Eternally",
+        "youtubeUrl": "https://youtu.be/lM8obpIqrME?si=YQ1ndaYf6UIb3IGe",
+        "language": "jp"
+      },
       {
         "id": "start-up",
         "title": "Start Up",

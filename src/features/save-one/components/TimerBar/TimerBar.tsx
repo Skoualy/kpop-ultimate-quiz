@@ -1,7 +1,7 @@
 import styles from './TimerBar.module.scss'
 
 interface TimerBarProps {
-  percentLeft: number    // 0..100
+  percentLeft: number      // 0..100
   remainingSeconds: number
   totalSeconds: number
   className?: string
@@ -10,20 +10,24 @@ interface TimerBarProps {
 export function TimerBar({ percentLeft, remainingSeconds, totalSeconds, className }: TimerBarProps) {
   if (totalSeconds === 0) return null
 
-  const isUrgent = percentLeft <= 30
-  const isCritical = percentLeft <= 15
+  // Color phase: >60% = green, 30-60% = orange, <30% = red
+  const colorClass = percentLeft > 60
+    ? styles.colorGreen
+    : percentLeft > 30
+    ? styles.colorOrange
+    : styles.colorRed
 
   return (
-    <div className={[styles.track, className].filter(Boolean).join(' ')}>
-      <div
-        className={[
-          styles.bar,
-          isUrgent ? styles.urgent : '',
-          isCritical ? styles.critical : '',
-        ].join(' ')}
-        style={{ width: `${percentLeft}%` }}
-      />
-      <span className={styles.label}>{remainingSeconds}s</span>
+    <div className={[styles.wrap, className].filter(Boolean).join(' ')}>
+      <div className={styles.track}>
+        <div
+          className={[styles.bar, colorClass].join(' ')}
+          style={{ width: `${percentLeft}%` }}
+        />
+      </div>
+      <span className={styles.label}>
+        {remainingSeconds}s
+      </span>
     </div>
   )
 }

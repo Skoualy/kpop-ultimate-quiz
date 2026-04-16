@@ -1,19 +1,20 @@
 {
-  "id": "nayeon-solo",
-  "name": "Nayeon",
+  "id": "nayeon",
+  "name": "NAYEON",
   "category": "femaleSoloist",
-  "parentGroupId": "twice",
-  "generation": "4",
+  "parentGroupId": null,
+  "generation": "3",
   "debutYear": 2022,
   "status": "active",
   "company": "JYP Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/nayeon/cover.webp",
   "members": [
     {
       "idolId": "nayeon",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainVocal"
       ]
     }
   ],
@@ -21,27 +22,26 @@
     "titles": [
       {
         "id": "pop",
-        "title": "Pop",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Nayeon+Pop+MV",
+        "title": "POP!",
+        "youtubeUrl": "https://youtu.be/f6YDKF0LVWw?si=-kuAECVTv5E89DHW",
         "isDebutSong": true
       },
       {
-        "id": "no-problem-en",
-        "title": "No Problem",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Nayeon+No+Problem+MV",
-        "language": "en"
+        "id": "abcd",
+        "title": "ABCD",
+        "youtubeUrl": "https://youtu.be/oUZttxRcPZw?si=xMsz8h7aKyDYKB6d"
       }
     ],
     "bSides": [
       {
-        "id": "love-countdown",
-        "title": "Love Countdown",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Nayeon+Love+Countdown+MV"
+        "id": "magic",
+        "title": "Magic",
+        "youtubeUrl": "https://www.youtube.com/watch?v=kCXZW5O5Ssg"
       },
       {
-        "id": "candyfloss",
-        "title": "Candyfloss",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Nayeon+Candyfloss+MV"
+        "id": "no-problem",
+        "title": "No Problem",
+        "youtubeUrl": "https://youtu.be/XRQxpx4NGUk?si=FFrd3KCIkGfMq2F4"
       }
     ]
   },

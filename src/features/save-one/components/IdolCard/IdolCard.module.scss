@@ -107,16 +107,16 @@
   display: inline-block;
   margin-top: 4px;
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-warning);
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  background: rgba(180, 190, 230, 0.08);
+  border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   padding: 2px 8px;
   white-space: nowrap;
   align-self: flex-start;
+  font-style: italic;
 }
 
 /* ─── Tailles (+20% vs v1) ────────────────────────────────────────────────── */

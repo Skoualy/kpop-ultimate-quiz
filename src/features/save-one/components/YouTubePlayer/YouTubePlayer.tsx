@@ -19,7 +19,7 @@ const YT_ERROR_STATES = [-1] // unstarted after error = likely unavailable
  */
 export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>(
   function YouTubePlayer(
-    { videoId, startTime, endTime, onPlay, onClipEnd, onError, className },
+    { videoId, startTime, endTime, onPlay, onClipEnd, onError, autoplay = true, className },
     ref,
   ) {
     const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -88,7 +88,7 @@ export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>
     }))
 
     const origin = typeof window !== 'undefined' ? window.location.origin : ''
-    const src = buildEmbedUrl(videoId, startTime, endTime, origin)
+    const src = buildEmbedUrl(videoId, startTime, endTime, origin, autoplay)
       + `&playerapiid=${playerId}`
 
     return (
@@ -101,10 +101,9 @@ export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>
           className={styles.iframe}
           allow="autoplay; encrypted-media"
           allowFullScreen={false}
-          sandbox="allow-scripts allow-same-origin allow-presentation"
+          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox allow-forms"
         />
-        {/* Invisible overlay to block YT click-through interactions */}
-        <div className={styles.overlay} aria-hidden="true" />
+
       </div>
     )
   },

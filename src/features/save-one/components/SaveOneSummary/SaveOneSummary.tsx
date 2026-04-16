@@ -6,28 +6,23 @@ import styles from './SaveOneSummary.module.scss'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function getItemId(item: IdolItem | SongItem): string {
-  return item.type === 'idol' ? item.idolId : item.songId
-}
-function getItemLabel(item: IdolItem | SongItem): string {
-  return item.type === 'idol' ? item.name : item.title
-}
-function getItemGroup(item: IdolItem | SongItem): string {
-  return item.groupName
-}
+function getItemId(item: IdolItem | SongItem) { return item.type === 'idol' ? item.idolId : item.songId }
+function getItemLabel(item: IdolItem | SongItem) { return item.type === 'idol' ? item.name : item.title }
+function getItemGroup(item: IdolItem | SongItem) { return item.groupName }
 function getItemImage(item: IdolItem | SongItem): string | null {
   return item.type === 'idol' ? (item.portrait ?? null) : item.thumbnailUrl
 }
 
-function computeTopGroups(
+function computeTopGroupsForPlayer(
   rounds: SaveOneSummaryProps['rounds'],
   results: RoundResult[],
+  playerIndex: 0 | 1,
 ): Array<{ groupName: string; count: number }> {
-  const p1Results = results.filter((r) => r.playerIndex === 0 && r.chosenId)
-  const tally     = new Map<string, number>()
-  for (const result of p1Results) {
-    const round = rounds[result.roundIndex]
-    const item  = (round.items as (IdolItem | SongItem)[]).find((i) => getItemId(i) === result.chosenId)
+  const filtered = results.filter((r) => r.playerIndex === playerIndex && r.chosenId)
+  const tally = new Map<string, number>()
+  for (const r of filtered) {
+    const round = rounds[r.roundIndex]
+    const item  = (round.items as (IdolItem | SongItem)[]).find((i) => getItemId(i) === r.chosenId)
     if (!item) continue
     tally.set(item.groupName, (tally.get(item.groupName) ?? 0) + 1)
   }
@@ -36,11 +31,12 @@ function computeTopGroups(
   return entries.slice(0, 3)
 }
 
-function fastestChoice(
+function fastestChoiceForPlayer(
   rounds: SaveOneSummaryProps['rounds'],
   results: RoundResult[],
+  playerIndex: 0 | 1,
 ): { label: string; ms: number } | null {
-  const timed = results.filter((r) => r.playerIndex === 0 && r.timeMs !== null && r.chosenId)
+  const timed = results.filter((r) => r.playerIndex === playerIndex && r.timeMs !== null && r.chosenId)
   if (timed.length === 0) return null
   const fastest = timed.reduce((a, b) => (b.timeMs! < a.timeMs! ? b : a))
   const round   = rounds[fastest.roundIndex]
@@ -48,11 +44,9 @@ function fastestChoice(
   return item ? { label: getItemLabel(item), ms: fastest.timeMs! } : null
 }
 
-// ─── Micro-composant : une card item dans le résumé ──────────────────────────
+// ─── Item card ────────────────────────────────────────────────────────────────
 
-function SummaryItemCard({
-  item, isChosen, isPass, isTimeout,
-}: {
+function SummaryItemCard({ item, isChosen, isPass, isTimeout }: {
   item: IdolItem | SongItem
   isChosen: boolean
   isPass?: boolean
@@ -65,22 +59,51 @@ function SummaryItemCard({
         {img ? (
           <img src={img} alt={getItemLabel(item)}
             onError={(e) => { ;(e.currentTarget as HTMLImageElement).style.display = 'none' }}
-            draggable={false}
-          />
-        ) : (
-          <div className={styles.imgPlaceholder} />
-        )}
+            draggable={false} />
+        ) : <div className={styles.imgPlaceholder} />}
         {isChosen && !isPass && !isTimeout && <span className={styles.chosenBadge}>✓</span>}
       </div>
       <p className={styles.summaryLabel}>{getItemLabel(item)}</p>
       <p className={styles.summaryGroup}>{getItemGroup(item)}</p>
-      {isPass    && <span className={styles.statusPill + ' ' + styles.passPill}>⏭ Pass</span>}
-      {isTimeout && <span className={styles.statusPill + ' ' + styles.timeoutPill}>⏱ Timeout</span>}
+      {isPass    && <span className={[styles.statusPill, styles.passPill].join(' ')}>⏭ Pass</span>}
+      {isTimeout && <span className={[styles.statusPill, styles.timeoutPill].join(' ')}>⏱ Timeout</span>}
     </div>
   )
 }
 
-// ─── Round card 1 joueur ──────────────────────────────────────────────────────
+// ─── Mini stats block (inliné dans les colonnes 2J) ──────────────────────────
+
+function PlayerStats({ fastest, topGroups }: {
+  fastest: { label: string; ms: number } | null
+  topGroups: Array<{ groupName: string; count: number }>
+}) {
+  if (!fastest && topGroups.length === 0) return null
+  return (
+    <div className={styles.playerStats}>
+      {fastest && (
+        <div className={styles.playerStat}>
+          <span className={styles.playerStatIcon}>⚡</span>
+          <span className={styles.playerStatValue}>{(fastest.ms / 1000).toFixed(1)}s</span>
+          <span className={styles.playerStatLabel}>{fastest.label}</span>
+        </div>
+      )}
+      {topGroups.length > 0 && (
+        <div className={styles.playerStat}>
+          <span className={styles.playerStatIcon}>🏆</span>
+          <div className={styles.miniPodium}>
+            {topGroups.map((g, i) => (
+              <span key={g.groupName} className={[styles.miniPodiumItem, styles[`rank${i + 1}`]].join(' ')}>
+                {i + 1}. {g.groupName} ({g.count}×)
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ─── Round card 1J ────────────────────────────────────────────────────────────
 
 function RoundCard1P({ round, result }: {
   round: SaveOneSummaryProps['rounds'][0]
@@ -106,7 +129,7 @@ function RoundCard1P({ round, result }: {
   )
 }
 
-// ─── Round card 2 joueurs — 2 colonnes ────────────────────────────────────────
+// ─── Round card 2J ────────────────────────────────────────────────────────────
 
 function RoundCard2P({ round, p1Result, p2Result, p1Name, p2Name }: {
   round: SaveOneSummaryProps['rounds'][0]
@@ -126,41 +149,29 @@ function RoundCard2P({ round, p1Result, p2Result, p1Name, p2Name }: {
         <p className={styles.roundLabel}>Round {round.roundNumber}</p>
         {sameChoice && <span className={styles.matchBanner}>★ Même choix !</span>}
       </div>
-
       <div className={styles.twoColLayout}>
-        {/* Colonne J1 */}
         <div className={styles.playerCol}>
           <p className={styles.playerColLabel}>{p1Name}</p>
           <div className={styles.roundItems}>
             {items.map((item) => {
               const id = getItemId(item)
-              return (
-                <SummaryItemCard key={id} item={item}
-                  isChosen={p1Id === id}
-                  isPass={p1Id === id && p1Result?.isPass}
-                  isTimeout={p1Id === id && p1Result?.isTimeout}
-                />
-              )
+              return <SummaryItemCard key={id} item={item}
+                isChosen={p1Id === id}
+                isPass={p1Id === id && p1Result?.isPass}
+                isTimeout={p1Id === id && p1Result?.isTimeout} />
             })}
           </div>
         </div>
-
-        {/* Séparateur vertical */}
         <div className={styles.colDivider} aria-hidden />
-
-        {/* Colonne J2 */}
         <div className={styles.playerCol}>
           <p className={[styles.playerColLabel, styles.p2Label].join(' ')}>{p2Name}</p>
           <div className={styles.roundItems}>
             {items.map((item) => {
               const id = getItemId(item)
-              return (
-                <SummaryItemCard key={id} item={item}
-                  isChosen={p2Id === id}
-                  isPass={p2Id === id && p2Result?.isPass}
-                  isTimeout={p2Id === id && p2Result?.isTimeout}
-                />
-              )
+              return <SummaryItemCard key={id} item={item}
+                isChosen={p2Id === id}
+                isPass={p2Id === id && p2Result?.isPass}
+                isTimeout={p2Id === id && p2Result?.isTimeout} />
             })}
           </div>
         </div>
@@ -173,18 +184,21 @@ function RoundCard2P({ round, p1Result, p2Result, p1Name, p2Name }: {
 
 export function SaveOneSummary({ rounds, results, config, onRestart, onBackToConfig }: SaveOneSummaryProps) {
   const twoPlayer = config.twoPlayerMode
-  const topGroups = computeTopGroups(rounds, results)
-  const fastest   = fastestChoice(rounds, results)
   const p1Name    = config.player1Name || 'Joueur 1'
   const p2Name    = config.player2Name || 'Joueur 2'
+  const pageRef   = useRef<HTMLDivElement>(null)
 
-  // Ref transmis au ScrollTopControl pour surveiller le scroll de CETTE div
-  const pageRef = useRef<HTMLDivElement>(null)
+  // Stats J1 (toujours)
+  const p1Fastest   = fastestChoiceForPlayer(rounds, results, 0)
+  const p1TopGroups = computeTopGroupsForPlayer(rounds, results, 0)
+  // Stats J2 (si 2J)
+  const p2Fastest   = twoPlayer ? fastestChoiceForPlayer(rounds, results, 1) : null
+  const p2TopGroups = twoPlayer ? computeTopGroupsForPlayer(rounds, results, 1) : []
 
   return (
     <div className={styles.page} ref={pageRef}>
 
-      {/* ── Header avec actions ── */}
+      {/* ── Header ── */}
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Résumé de partie</h1>
@@ -194,7 +208,7 @@ export function SaveOneSummary({ rounds, results, config, onRestart, onBackToCon
         </div>
         <div className={styles.headerActions}>
           <button className={styles.btnSecondary} onClick={onBackToConfig}>← Config</button>
-          <button className={styles.btnPrimary}   onClick={onRestart}>▶ Rejouer</button>
+          <button className={styles.btnPrimary} onClick={onRestart}>▶ Rejouer</button>
         </div>
       </div>
 
@@ -204,7 +218,8 @@ export function SaveOneSummary({ rounds, results, config, onRestart, onBackToCon
           const p1 = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 0)
           const p2 = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 1)
           return twoPlayer ? (
-            <RoundCard2P key={round.roundNumber} round={round} p1Result={p1} p2Result={p2} p1Name={p1Name} p2Name={p2Name} />
+            <RoundCard2P key={round.roundNumber} round={round}
+              p1Result={p1} p2Result={p2} p1Name={p1Name} p2Name={p2Name} />
           ) : (
             <RoundCard1P key={round.roundNumber} round={round} result={p1} />
           )
@@ -212,35 +227,49 @@ export function SaveOneSummary({ rounds, results, config, onRestart, onBackToCon
       </div>
 
       {/* ── Stats ── */}
-      {(fastest || topGroups.length > 0) && (
-        <div className={styles.stats}>
-          {fastest && (
-            <div className={styles.statCard}>
-              <p className={styles.statIcon}>⚡</p>
-              <p className={styles.statValue}>{(fastest.ms / 1000).toFixed(1)}s</p>
-              <p className={styles.statLabel}>Choix le plus rapide</p>
-              <p className={styles.statSub}>{fastest.label}</p>
-            </div>
-          )}
-          {topGroups.length > 0 && (
-            <div className={styles.statCard}>
-              <p className={styles.statIcon}>🏆</p>
-              <p className={styles.statLabel}>Groupes favoris</p>
-              <div className={styles.podium}>
-                {topGroups.map((g, i) => (
-                  <div key={g.groupName} className={[styles.podiumItem, styles[`rank${i + 1}`]].join(' ')}>
-                    <span className={styles.podiumRank}>{i + 1}</span>
-                    <span className={styles.podiumName}>{g.groupName}</span>
-                    <span className={styles.podiumCount}>{g.count}×</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+      {twoPlayer ? (
+        // 2J : stats dans deux colonnes
+        <div className={styles.statsRow2P}>
+          <div className={styles.statCard2P}>
+            <p className={styles.statCardTitle}>{p1Name}</p>
+            <PlayerStats fastest={p1Fastest} topGroups={p1TopGroups} />
+          </div>
+          <div className={[styles.statCard2P, styles.statCard2PP2].join(' ')}>
+            <p className={styles.statCardTitle}>{p2Name}</p>
+            <PlayerStats fastest={p2Fastest} topGroups={p2TopGroups} />
+          </div>
         </div>
+      ) : (
+        // 1J : stats normales
+        (p1Fastest || p1TopGroups.length > 0) && (
+          <div className={styles.stats}>
+            {p1Fastest && (
+              <div className={styles.statCard}>
+                <p className={styles.statIcon}>⚡</p>
+                <p className={styles.statValue}>{(p1Fastest.ms / 1000).toFixed(1)}s</p>
+                <p className={styles.statLabel}>Choix le plus rapide</p>
+                <p className={styles.statSub}>{p1Fastest.label}</p>
+              </div>
+            )}
+            {p1TopGroups.length > 0 && (
+              <div className={styles.statCard}>
+                <p className={styles.statIcon}>🏆</p>
+                <p className={styles.statLabel}>Groupes favoris</p>
+                <div className={styles.podium}>
+                  {p1TopGroups.map((g, i) => (
+                    <div key={g.groupName} className={[styles.podiumItem, styles[`rank${i + 1}`]].join(' ')}>
+                      <span className={styles.podiumRank}>{i + 1}</span>
+                      <span className={styles.podiumName}>{g.groupName}</span>
+                      <span className={styles.podiumCount}>{g.count}×</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )
       )}
 
-      {/* Bouton scroll-to-top — apparaît uniquement quand on scrolle dans la page résumé */}
       <ScrollTopControl scrollTarget={pageRef.current} threshold={150} />
     </div>
   )

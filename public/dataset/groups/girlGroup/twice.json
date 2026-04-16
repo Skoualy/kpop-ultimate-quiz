@@ -12,47 +12,81 @@
     {
       "idolId": "jihyo",
       "status": "current",
-      "roles": ["mainVocal", "dancer", "leader"]
+      "roles": [
+        "mainVocal",
+        "dancer",
+        "leader"
+      ]
     },
     {
       "idolId": "nayeon",
       "status": "current",
-      "roles": ["vocal", "visual", "dancer"]
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer"
+      ]
     },
     {
       "idolId": "jeongyeon",
       "status": "current",
-      "roles": ["vocal", "dancer"]
+      "roles": [
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "momo",
       "status": "current",
-      "roles": ["vocal", "rapper", "mainDancer"]
+      "roles": [
+        "vocal",
+        "rapper",
+        "mainDancer"
+      ]
     },
     {
       "idolId": "sana",
       "status": "current",
-      "roles": ["vocal", "dancer"]
+      "roles": [
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "mina",
       "status": "current",
-      "roles": ["vocal", "mainDancer"]
+      "roles": [
+        "vocal",
+        "mainDancer"
+      ]
     },
     {
       "idolId": "dahyun",
       "status": "current",
-      "roles": ["vocal", "rapper", "dancer"]
+      "roles": [
+        "vocal",
+        "rapper",
+        "dancer"
+      ]
     },
     {
       "idolId": "chaeyoung",
       "status": "current",
-      "roles": ["mainRapper", "vocal", "dancer"]
+      "roles": [
+        "mainRapper",
+        "vocal",
+        "dancer"
+      ]
     },
     {
       "idolId": "tzuyu",
       "status": "current",
-      "roles": ["vocal", "visual", "dancer", "maknae"]
+      "roles": [
+        "vocal",
+        "visual",
+        "dancer",
+        "maknae"
+      ]
     }
   ],
   "discography": {
@@ -282,7 +316,6 @@
         "title": "Cry For Me",
         "youtubeUrl": "https://youtu.be/9KW7hojmoaI?si=pI3iAjchlyMhZys8"
       },
-
       {
         "id": "push-and-pull-jihyo-sana-dahyun",
         "title": "Push & Pull (Jihyo, Sana, Dahyun)",

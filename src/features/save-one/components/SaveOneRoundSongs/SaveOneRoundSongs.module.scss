@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
   flex: 1;
   min-height: 0;
@@ -49,7 +49,7 @@
 
 .iframeWrapper {
   width: 100%;
-  max-width: 560px;
+  max-width: 640px;
 }
 
 .player {
@@ -71,7 +71,9 @@
   color: var(--text-muted);
   font-size: 14px;
 
-  span { font-size: 28px; }
+  span {
+    font-size: 28px;
+  }
 }
 
 /* ─── Timer ──────────────────────────────────────────────────────────────────── */
@@ -92,19 +94,104 @@
 }
 
 /* Constrain each card so they never blow up */
-.cols2 > * { max-width: 260px; }
-.cols3 > * { max-width: 200px; }
-.cols4 > * { max-width: 168px; }
-.cols5 > * { max-width: 140px; }
+.cols2 > * {
+  max-width: 260px;
+}
+.cols3 > * {
+  max-width: 200px;
+}
+.cols4 > * {
+  max-width: 168px;
+}
+.cols5 > * {
+  max-width: 140px;
+}
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
 
 @media (max-width: 700px) {
   .iframeWrapper,
-  .player { max-width: 100%; }
+  .player {
+    max-width: 100%;
+  }
 
-  .thumbnails { gap: 8px; }
+  .thumbnails {
+    gap: 8px;
+  }
 
   .cols4 > *,
-  .cols5 > * { max-width: 120px; }
+  .cols5 > * {
+    max-width: 120px;
+  }
+}
+
+/* ─── Player name row ─────────────────────────────────────────────────────── */
+.playerNameRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.playerName {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-pill);
+  padding: 4px 16px;
+}
+
+.playerNameP1 {
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+}
+
+.playerNameP2 {
+  color: #f9a8d4;
+  background: rgba(233, 30, 140, 0.12);
+  border: 1px solid rgba(233, 30, 140, 0.35);
+}
+
+/* ─── Player2 placeholder ──────────────────────────────────────────────────── */
+.player2Placeholder {
+  aspect-ratio: 16 / 9;
+  max-width: 560px;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ─── Skip clip button ────────────────────────────────────────────────────── */
+.skipClipRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.skipClipBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  padding: 5px 16px;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+
+  &:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }
 }

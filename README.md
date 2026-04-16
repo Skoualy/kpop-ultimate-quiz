@@ -1,10 +1,10 @@
-# K-Pop Ultimate Quiz — v0.5.7 MVP (React / TypeScript)
+# K-Pop Ultimate Quiz — v0.6 MVP (React / TypeScript)
 
 Quiz K-Pop orienté dataset, contribution et modes de jeu, en cours de migration vers une architecture React + TypeScript modulaire.
 
 ## État du projet
 
-Version actuelle : **v0.5.7 MVP**
+Version actuelle : **v0.6 MVP**
 
 Le projet est en transition depuis une ancienne base prototype vers une structure React / TypeScript plus propre, avec :
 

@@ -13,5 +13,7 @@ export interface YouTubePlayerProps {
   onClipEnd?: () => void
   /** Called on any YouTube player error */
   onError?: () => void
+  /** false = embed sans autoplay (lecture du P2 figée) */
+  autoplay?: boolean
   className?: string
 }

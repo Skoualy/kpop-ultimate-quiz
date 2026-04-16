@@ -23,7 +23,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/aisha/portrait.webp",
+    "portrait": "/assets/idols/aisha/portrait.webp",
     "notes": null
   },
   {
@@ -320,7 +320,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/e-u/portrait.webp",
+    "portrait": "/assets/idols/e-u/portrait.webp",
     "notes": null
   },
   {
@@ -1139,7 +1139,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/mia/portrait.webp",
+    "portrait": "/assets/idols/mia/portrait.webp",
     "notes": null
   },
   {
@@ -1280,7 +1280,7 @@
   {
     "id": "nayeon",
     "name": "Nayeon",
-    "primaryGroupId": "twice",
+    "primaryGroupId": "nayeon",
     "gender": "f",
     "nationality": "kr",
     "portrait": "/assets/idols/nayeon/portrait.webp",
@@ -1310,7 +1310,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/onda/portrait.webp",
+    "portrait": "/assets/idols/onda/portrait.webp",
     "notes": null
   },
   {
@@ -1544,7 +1544,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/sihyeon/portrait.webp",
+    "portrait": "/assets/idols/sihyeon/portrait.webp",
     "notes": null
   },
   {
@@ -1967,7 +1967,7 @@
     "primaryGroupId": "everglow",
     "gender": "f",
     "nationality": "cn",
-    "portrait": "../../assets/idols/yiren/portrait.webp",
+    "portrait": "/assets/idols/yiren/portrait.webp",
     "notes": null
   },
   {
