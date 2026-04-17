@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppContext } from '@/context/AppContext'
 import type { LayoutProps, PageContainerProps } from './Layout.types'
 import styles from './Layout.module.scss'
+import { Footer } from './Layout/Footer'
 
 export function Layout({ children }: LayoutProps) {
   const { theme, toggleTheme } = useAppContext()
@@ -51,22 +52,26 @@ export function Layout({ children }: LayoutProps) {
         </button>
       </header>
 
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {children}
-      </main>
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>{children}</main>
+      <Footer />
     </div>
   )
 }
 
 export function PageContainer({
-  children, title, subtitle, actions, wide = false, className = '',
+  children,
+  title,
+  subtitle,
+  actions,
+  wide = false,
+  className = '',
 }: PageContainerProps) {
   return (
     <div className={[styles.pageContainer, wide ? styles.pageContainerWide : '', className].filter(Boolean).join(' ')}>
       {(title || actions) && (
         <div className={styles.pageHeader}>
           <div className={styles.pageHeaderLeft}>
-            {title    && <h1>{title}</h1>}
+            {title && <h1>{title}</h1>}
             {subtitle && <p>{subtitle}</p>}
           </div>
           {actions && <div className={styles.pageHeaderActions}>{actions}</div>}

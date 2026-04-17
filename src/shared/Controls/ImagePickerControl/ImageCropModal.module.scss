@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(4px);
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .modal {
@@ -19,6 +21,7 @@
   gap: 16px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
   max-width: 95vw;
+  width: fit-content;
 }
 
 .modalHeader {
@@ -43,14 +46,13 @@
   &:hover { color: var(--text-primary); }
 }
 
-// ─── Corps ───────────────────────────────────────────────────────────────────
+// ─── Zone de crop ─────────────────────────────────────────────────────────────
 .body {
   display: flex;
   gap: 12px;
   align-items: flex-start;
 }
 
-// ─── Zone de crop ─────────────────────────────────────────────────────────────
 .cropArea {
   position: relative;
   user-select: none;
@@ -64,7 +66,7 @@
 
 .overlayTop, .overlayBottom, .overlayLeft, .overlayRight {
   position: absolute;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.52);
   pointer-events: none;
 }
 .overlayTop    { top: 0; left: 0; right: 0; }
@@ -72,55 +74,42 @@
 .overlayLeft   { left: 0; }
 .overlayRight  { right: 0; }
 
-// ─── Crop box ─────────────────────────────────────────────────────────────────
 .cropBox {
   position: absolute;
-  border: 2px solid rgba(255, 255, 255, 0.9);
   box-sizing: border-box;
   cursor: move;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 
-.thirdV { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.25); }
-.thirdH { position: absolute; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.25); }
-
-.corner {
-  position: absolute;
-  width: 12px; height: 12px;
-  border-color: white; border-style: solid;
+.thirdV {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: rgba(180, 180, 180, 0.7);
+  box-shadow: 1px 0 0 rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
-.cornerTL { top: 0; left: 0;    border-width: 2px 0 0 2px; }
-.cornerTR { top: 0; right: 0;   border-width: 2px 2px 0 0; }
-.cornerBL { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-.cornerBR { bottom: 0; right: 0;border-width: 0 2px 2px 0; }
+.thirdH {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: rgba(180, 180, 180, 0.7);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
 
-// ─── Slider zoom vertical ─────────────────────────────────────────────────────
-.zoomPanel {
+// ─── Section crédits ──────────────────────────────────────────────────────────
+.creditSection {
+  // S'adapte à la largeur du crop area
+  width: 100%;
+  // Override du margin-top interne d'ImageSourceControl (déjà dans le modal)
+  > * { margin-top: 0 !important; }
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+.footer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 4px;
-}
-
-.zoomLabel { font-size: 14px; }
-
-.zoomSlider {
-  writing-mode: vertical-lr;
-  direction: rtl;
-  height: 160px;
-  cursor: pointer;
-  accent-color: var(--accent-purple);
-}
-
-.zoomValue {
-  font-size: 10px;
-  color: var(--text-muted);
-  font-family: 'DM Mono', monospace;
-}
-
-// ─── Actions ─────────────────────────────────────────────────────────────────
-.actions {
-  display: flex;
-  gap: 10px;
   justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
 }

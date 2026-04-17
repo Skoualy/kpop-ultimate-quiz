@@ -15,6 +15,7 @@ import type { GroupForm } from './GroupInfoStep.types'
 import styles from './GroupInfoStep.module.scss'
 import { GeneratedIdInputControl } from '@/shared/Controls/GeneratedIdInputControl'
 import { resolveGroupCover } from '@/shared/utils/placeholder'
+import { ImageCreditInput } from '@/shared/models/AssetCredit'
 
 export function validateGroupInfo(form: GroupForm, existingGroups: Group[], isEdit: boolean): string[] {
   const errors: string[] = []
@@ -156,6 +157,7 @@ export function GroupInfoStep({
               placeholderImage={resolveGroupCover({ id: form.id, coverImage: form.coverImage })}
               onChange={(v) => upd('coverImage', v)}
               onFileChange={(f) => upd('coverFile', f)}
+              onCreditChange={(credit: ImageCreditInput) => upd('coverCredit', credit)}
               aspectRatio="1/1"
               hint="600x600 px · webp"
             />

@@ -1,4 +1,5 @@
 import type { GroupCategory, GroupStatus, Generation } from '@/shared/models'
+import type { ImageCreditInput } from '@/shared/models/AssetCredit'
 
 export interface GroupForm {
   id: string
@@ -13,6 +14,8 @@ export interface GroupForm {
   coverFile: File | null
   fandomName: string
   notes: string
+  /** Informations de crédit pour la cover du groupe */
+  coverCredit: ImageCreditInput
 }
 
 export function emptyGroupForm(): GroupForm {
@@ -29,5 +32,10 @@ export function emptyGroupForm(): GroupForm {
     coverFile: null,
     fandomName: '',
     notes: '',
+    coverCredit: {
+      sourceType: 'wikimedia',
+      originalFileName: null,
+      transformReport: null,
+    },
   }
 }

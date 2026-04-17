@@ -16,7 +16,7 @@
   align-items: center;
   gap: 16px;
   position: sticky;
-  top: 0;
+  bottom: 0;
   z-index: 100;
   flex-shrink: 0;
 }
@@ -63,7 +63,10 @@
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   background: none;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -93,7 +96,9 @@
   transition: background 0.15s;
   flex-shrink: 0;
 
-  &:hover { background: rgba(255, 255, 255, 0.12); }
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
 }
 
 // ─── Page container ───────────────────────────────────────────────────────────

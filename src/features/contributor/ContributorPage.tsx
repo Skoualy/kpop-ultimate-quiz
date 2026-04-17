@@ -15,6 +15,7 @@ import { ExportStep } from './components/steps/ExportStep'
 import type { ExportBundle } from './components/steps/ExportStep'
 
 import type { GroupCategory, LanguageCode, MemberRole } from '@/shared/models'
+import type { BundleCreditEntry } from '@/shared/models/BundleCreditEntry'
 import { GENDER_BY_CATEGORY, PARENT_ELIGIBLE_CATEGORIES } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
 import { getGroupCoverPath, getIdolPortraitPath } from '@/shared/utils/assets'
@@ -61,6 +62,7 @@ export default function ContributorPage() {
           coverFile: null,
           fandomName: editGroup.fandomName ?? '',
           notes: editGroup.notes ?? '',
+          coverCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
         }
       : emptyGroupForm(),
   )
@@ -83,6 +85,7 @@ export default function ContributorPage() {
         resolutionMode: 'existing',
         existingIdolId: m.idolId,
         generatedId: m.idolId,
+        portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
       }
     })
   })
@@ -154,6 +157,7 @@ export default function ContributorPage() {
         resolutionMode: 'existing' as const,
         existingIdolId: member.idolId,
         generatedId: member.idolId,
+        portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
       }
     })
   }
@@ -196,6 +200,7 @@ export default function ContributorPage() {
       coverFile: null,
       fandomName: editGroup.fandomName ?? '',
       notes: editGroup.notes ?? '',
+      coverCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
     })
 
     setMembers(buildEditableMembersFromGroup())
@@ -314,6 +319,36 @@ export default function ContributorPage() {
     return [...new Set(roles)]
   }
 
+  function buildCredits(
+    groupId: string,
+    coverImage: string,
+    coverCredit: GroupForm['coverCredit'],
+    normalizedMembersList: EditableMember[],
+    idolsBlockList: Array<{ id: string; portrait: string | null }>,
+  ): BundleCreditEntry[] {
+    const credits: BundleCreditEntry[] = []
+
+    if (coverImage && coverCredit) {
+      credits.push({ entityType: 'group', entityId: groupId, assetType: 'cover', creditInput: coverCredit })
+    }
+
+    for (const idol of idolsBlockList) {
+      const member = normalizedMembersList.find(
+        (m) => (m.resolutionMode === 'existing' && m.existingIdolId === idol.id) || m.generatedId === idol.id,
+      )
+      if (member?.portrait && member.portraitCredit && idol.id) {
+        credits.push({
+          entityType: 'idol',
+          entityId: idol.id,
+          assetType: 'portrait',
+          creditInput: member.portraitCredit,
+        })
+      }
+    }
+
+    return credits
+  }
+
   function handleGenerate() {
     const gender = GENDER_BY_CATEGORY[effectiveCategory]
 
@@ -380,6 +415,7 @@ export default function ContributorPage() {
       group: groupBlock,
       idols: idolsBlock.map(({ _file, ...idol }) => idol),
       newLabels,
+      credits: buildCredits(form.id, form.coverImage, form.coverCredit, normalizedMembers, idolsBlock),
     }
 
     const groupJson = JSON.stringify(bundleData, null, 2)

@@ -1,4 +1,5 @@
 import type { MemberRole, NationalityCode, MemberStatus, GroupCategory } from '@/shared/models'
+import type { ImageCreditInput } from '@/shared/models/AssetCredit'
 import { slugify } from '@/shared/utils/slug'
 import { getIdolPlaceholderPath } from '@/shared/utils/assets'
 
@@ -13,6 +14,8 @@ export interface EditableMember {
   resolutionMode: 'new' | 'existing'
   existingIdolId: string | null
   generatedId: string
+  /** Informations de crédit pour le portrait de l'idole */
+  portraitCredit: ImageCreditInput
 }
 
 export function emptyMember(status: MemberStatus = 'current'): EditableMember {
@@ -27,6 +30,11 @@ export function emptyMember(status: MemberStatus = 'current'): EditableMember {
     resolutionMode: 'new',
     existingIdolId: null,
     generatedId: '',
+    portraitCredit: {
+      sourceType: 'wikimedia',
+      originalFileName: null,
+      transformReport: null,
+    },
   }
 }
 
@@ -41,6 +49,11 @@ export function resetMember(member: EditableMember): EditableMember {
     resolutionMode: 'new',
     existingIdolId: null,
     generatedId: '',
+    portraitCredit: {
+      sourceType: 'wikimedia',
+      originalFileName: null,
+      transformReport: null,
+    },
   }
 }
 
@@ -48,21 +61,15 @@ export function getMemberPlaceholderByCategory(groupCategory: GroupCategory): st
   if (groupCategory === 'boyGroup' || groupCategory === 'maleSoloist') {
     return getIdolPlaceholderPath('m')
   }
-
   return getIdolPlaceholderPath('f')
 }
 
 export function buildUniqueIdolId(name: string, usedIds: string[]): string {
   const base = slugify(name.trim())
   if (!base) return ''
-
   if (!usedIds.includes(base)) return base
-
   let i = 2
-  while (usedIds.includes(`${base}-${i}`)) {
-    i += 1
-  }
-
+  while (usedIds.includes(`${base}-${i}`)) { i += 1 }
   return `${base}-${i}`
 }
 
@@ -71,50 +78,22 @@ interface ValidateMembersOptions {
   isSubunit?: boolean
 }
 
-export function validateMembers(
-  members: EditableMember[],
-  { isSoloist = false, isSubunit = false }: ValidateMembersOptions = {},
-): string[] {
+export function validateMembers(members: EditableMember[], options: ValidateMembersOptions = {}): string[] {
   const errors: string[] = []
-  const current = members.filter((m) => m.status === 'current')
+  const { isSoloist = false, isSubunit = false } = options
 
-  if (isSoloist) {
-    if (current.length === 0) errors.push('Au moins un membre actuel est requis')
-  } else if (current.length < 2) {
-    errors.push('Au moins deux membres actuels sont requis pour un groupe / sub-unit')
-  }
+  if (isSubunit) return errors
 
-  for (const m of members) {
-    if (!m.name.trim()) {
-      errors.push("Un membre n'a pas de nom de scène")
-      break
-    }
-  }
-
-  if (isSubunit) {
-    return errors
-  }
-
-  if (isSoloist) {
-    const soloist = current[0]
-    if (soloist && !soloist.roles.some((r) => r === 'vocal' || r === 'rapper')) {
-      errors.push('Un soloist doit avoir au moins le rôle vocal ou rapper')
-    }
+  if (members.length === 0) {
+    errors.push('Au moins un membre est requis')
     return errors
   }
 
   for (const m of members) {
-    if (m.roles.length === 0) {
-      errors.push(`"${m.name.trim() || 'Un membre'}" doit avoir au moins un rôle`)
-    }
+    if (!m.name.trim()) errors.push('Tous les membres doivent avoir un nom')
+    if (!isSoloist && m.roles.length === 0) errors.push(`${m.name || 'Un membre'} n'a aucun rôle attribué`)
+    if (!m.generatedId && !m.existingIdolId) errors.push(`${m.name || 'Un membre'} n'a pas d'ID généré`)
   }
-
-  const leaderCount = current.filter((m) => m.roles.includes('leader')).length
-  if (leaderCount > 1) errors.push('Le rôle Leader ne peut être attribué qu\'à un seul membre')
-
-  const maknaeCount = current.filter((m) => m.roles.includes('maknae')).length
-  if (maknaeCount > 1) errors.push('Le rôle Maknae ne peut être attribué qu\'à un seul membre')
 
   return [...new Set(errors)]
 }
-

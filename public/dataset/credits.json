@@ -1,0 +1,648 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "lastUpdated": "2026-04-17T18:26:20.624105Z",
+    "summary": {
+      "total": 17,
+      "valid": 16,
+      "invalid": 1,
+      "bySourceType": {
+        "wikimedia": 17
+      },
+      "validationRate": 94.1
+    }
+  },
+  "credits": [
+    {
+      "id": "group/ive/cover",
+      "entityType": "group",
+      "entityId": "ive",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Ive_Logo.jpg",
+      "commonsTitle": "File:Ive Logo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ive_Logo.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Ive_Logo.jpg",
+      "author": "Starship Entertainment",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 640,
+        "height": 640
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Ive_Logo.jpg / par Starship Entertainment / (Public domain)",
+      "validation": {
+        "isValid": false,
+        "status": "missing_license_url",
+        "errors": [],
+        "warnings": [
+          "URL de licence manquante"
+        ]
+      }
+    },
+    {
+      "id": "group/twice/cover",
+      "entityType": "group",
+      "entityId": "twice",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "TWICE_LOGO.jpg",
+      "commonsTitle": "File:TWICE LOGO.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TWICE_LOGO.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/TWICE_LOGO.jpg",
+      "author": "love to hate me",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 564,
+        "height": 564
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "TWICE_LOGO.jpg / par love to hate me / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/chaeyoung/portrait",
+      "entityType": "idol",
+      "entityId": "chaeyoung",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20220121—Chaeyoung_채영_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "commonsTitle": "File:20220121—Chaeyoung 채영 Campaign Film, Pearlygates x Twice 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20220121—Chaeyoung_채영_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ca/20220121%E2%80%94Chaeyoung_%EC%B1%84%EC%98%81_Campaign_Film%2C_Pearlygates_x_Twice_2022.jpg",
+      "author": "파리게이츠",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1316,
+        "height": 1536
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20220121—Chaeyoung_채영_Campaign_Film,_Pearlygates_x_Twice_2022.jpg / par 파리게이츠 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/dahyun/portrait",
+      "entityType": "idol",
+      "entityId": "dahyun",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20220121—Dahyun_다현_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "commonsTitle": "File:20220121—Dahyun 다현 Campaign Film, Pearlygates x Twice 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20220121—Dahyun_다현_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/20220121%E2%80%94Dahyun_%EB%8B%A4%ED%98%84_Campaign_Film%2C_Pearlygates_x_Twice_2022.jpg",
+      "author": "파리게이츠",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 748,
+        "height": 751
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20220121—Dahyun_다현_Campaign_Film,_Pearlygates_x_Twice_2022.jpg / par 파리게이츠 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/gaeul/portrait",
+      "entityType": "idol",
+      "entityId": "gaeul",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Ive_Gaeul_at_Seoul_Fashion_Week,_1_September_2025_04.png",
+      "commonsTitle": "File:Ive Gaeul at Seoul Fashion Week, 1 September 2025 04.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ive_Gaeul_at_Seoul_Fashion_Week,_1_September_2025_04.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Ive_Gaeul_at_Seoul_Fashion_Week%2C_1_September_2025_04.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 871
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Ive_Gaeul_at_Seoul_Fashion_Week,_1_September_2025_04.png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jeongyeon/portrait",
+      "entityType": "idol",
+      "entityId": "jeongyeon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "TWICE_Jeongyeon_VETERAN_2_September_2024.jpg",
+      "commonsTitle": "File:TWICE Jeongyeon VETERAN 2 September 2024.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TWICE_Jeongyeon_VETERAN_2_September_2024.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/TWICE_Jeongyeon_VETERAN_2_September_2024.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 810,
+        "height": 1080
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "TWICE_Jeongyeon_VETERAN_2_September_2024.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jihyo/portrait",
+      "entityType": "idol",
+      "entityId": "jihyo",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Park_Jihyo_for_Pearly_Gates_Korea_02.jpg",
+      "commonsTitle": "File:Park Jihyo for Pearly Gates Korea 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Park_Jihyo_for_Pearly_Gates_Korea_02.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Park_Jihyo_for_Pearly_Gates_Korea_02.jpg",
+      "author": "Pearly Gates Korea",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1280,
+        "height": 1439
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Park_Jihyo_for_Pearly_Gates_Korea_02.jpg / par Pearly Gates Korea / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/leeseo/portrait",
+      "entityType": "idol",
+      "entityId": "leeseo",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony,_January_8,_2026_(2).png",
+      "commonsTitle": "File:Leeseo of Ive at the HAHS Graduation Ceremony, January 8, 2026 (2).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony,_January_8,_2026_(2).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony%2C_January_8%2C_2026_%282%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 876
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony,_January_8,_2026_(2).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/liz/portrait",
+      "entityType": "idol",
+      "entityId": "liz",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "IVE_Liz_'아는형님'_녹화_출근길_IVE_'Knowing_Bros'_on_the_way_to_work_April_6,_2023.jpg",
+      "commonsTitle": "File:IVE Liz '아는형님' 녹화 출근길 IVE 'Knowing Bros' on the way to work April 6, 2023.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:IVE_Liz_'아는형님'_녹화_출근길_IVE_'Knowing_Bros'_on_the_way_to_work_April_6,_2023.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/IVE_Liz_%27%EC%95%84%EB%8A%94%ED%98%95%EB%8B%98%27_%EB%85%B9%ED%99%94_%EC%B6%9C%EA%B7%BC%EA%B8%B8_IVE_%27Knowing_Bros%27_on_the_way_to_work_April_6%2C_2023.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 640,
+        "height": 906
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "IVE_Liz_'아는형님'_녹화_출근길_IVE_'Knowing_Bros'_on_the_way_to_work_April_6,_2023.jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/mina/portrait",
+      "entityType": "idol",
+      "entityId": "mina",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Mina_H&M_Rokh_2.jpg",
+      "commonsTitle": "File:Mina H&M Rokh 2.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mina_H&M_Rokh_2.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Mina_H%26M_Rokh_2.jpg",
+      "author": "TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 684,
+        "height": 1000
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Mina_H&M_Rokh_2.jpg / par TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/momo/portrait",
+      "entityType": "idol",
+      "entityId": "momo",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "TWICE_MOMO_April_2024.jpg",
+      "commonsTitle": "File:TWICE MOMO April 2024.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TWICE_MOMO_April_2024.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/TWICE_MOMO_April_2024.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1620,
+        "height": 2160
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "TWICE_MOMO_April_2024.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/nayeon/portrait",
+      "entityType": "idol",
+      "entityId": "nayeon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Nayeon_in_November_2025.png",
+      "commonsTitle": "File:Nayeon in November 2025.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nayeon_in_November_2025.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Nayeon_in_November_2025.png",
+      "author": "TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 771,
+        "height": 1080
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Nayeon_in_November_2025.png / par TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/rei/portrait",
+      "entityType": "idol",
+      "entityId": "rei",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Ive's_Rei_at_Ralph_Lauren_Hannam_store_opening,_26_March_2025_02.png",
+      "commonsTitle": "File:Ive's Rei at Ralph Lauren Hannam store opening, 26 March 2025 02.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ive's_Rei_at_Ralph_Lauren_Hannam_store_opening,_26_March_2025_02.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Ive%27s_Rei_at_Ralph_Lauren_Hannam_store_opening%2C_26_March_2025_02.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 886
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Ive's_Rei_at_Ralph_Lauren_Hannam_store_opening,_26_March_2025_02.png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/sana/portrait",
+      "entityType": "idol",
+      "entityId": "sana",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20220121—Sana_사나_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "commonsTitle": "File:20220121—Sana 사나 Campaign Film, Pearlygates x Twice 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20220121—Sana_사나_Campaign_Film,_Pearlygates_x_Twice_2022.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/20220121%E2%80%94Sana_%EC%82%AC%EB%82%98_Campaign_Film%2C_Pearlygates_x_Twice_2022.jpg",
+      "author": "파리게이츠",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 640,
+        "height": 754
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20220121—Sana_사나_Campaign_Film,_Pearlygates_x_Twice_2022.jpg / par 파리게이츠 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/tzuyu/portrait",
+      "entityType": "idol",
+      "entityId": "tzuyu",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240305_Chou_Tzuyu_周子瑜_03.jpg",
+      "commonsTitle": "File:20240305 Chou Tzuyu 周子瑜 03.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240305_Chou_Tzuyu_周子瑜_03.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/20240305_Chou_Tzuyu_%E5%91%A8%E5%AD%90%E7%91%9C_03.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1049,
+        "height": 1398
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240305_Chou_Tzuyu_周子瑜_03.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/wonyoung/portrait",
+      "entityType": "idol",
+      "entityId": "wonyoung",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Jang_Won-young_of_Ive,_October_15,_2025_(2).png",
+      "commonsTitle": "File:Jang Won-young of Ive, October 15, 2025 (2).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jang_Won-young_of_Ive,_October_15,_2025_(2).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Jang_Won-young_of_Ive%2C_October_15%2C_2025_%282%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 953
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Jang_Won-young_of_Ive,_October_15,_2025_(2).png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yujin/portrait",
+      "entityType": "idol",
+      "entityId": "yujin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "An_Yujin_at_the_2025_'Love_Your_W'_W_Korea_Event.png",
+      "commonsTitle": "File:An Yujin at the 2025 'Love Your W' W Korea Event.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:An_Yujin_at_the_2025_'Love_Your_W'_W_Korea_Event.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/An_Yujin_at_the_2025_%27Love_Your_W%27_W_Korea_Event.png",
+      "author": "https://www.youtube.com/@_TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 918
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "An_Yujin_at_the_2025_'Love_Your_W'_W_Korea_Event.png / par https://www.youtube.com/@_TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ]
+}

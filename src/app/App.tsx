@@ -2,11 +2,12 @@ import { useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useAppContext } from '@/context/AppContext'
 import { Layout, GameShell } from '@/shared/Layout'
-import ConfigPage      from '@/features/config/ConfigPage'
-import GroupsPage      from '@/features/groups/GroupsPage'
+import ConfigPage from '@/features/config/ConfigPage'
+import GroupsPage from '@/features/groups/GroupsPage'
 import ContributorPage from '@/features/contributor/ContributorPage'
-import BlindTestPage   from '@/features/blind-test/BlindTestPage'
-import SaveOnePage     from '@/features/save-one/SaveOnePage'
+import BlindTestPage from '@/features/blind-test/BlindTestPage'
+import SaveOnePage from '@/features/save-one/SaveOnePage'
+import CreditsPage from '@/features/credits/CreditsPage'
 
 function AppRoutes() {
   const location = useLocation()
@@ -17,7 +18,7 @@ function AppRoutes() {
       <GameShell>
         <Routes>
           <Route path="/game/blind-test" element={<BlindTestPage />} />
-          <Route path="/game/save-one"   element={<SaveOnePage />} />
+          <Route path="/game/save-one" element={<SaveOnePage />} />
         </Routes>
       </GameShell>
     )
@@ -26,11 +27,12 @@ function AppRoutes() {
   return (
     <Layout>
       <Routes>
-        <Route path="/"                     element={<ConfigPage />} />
-        <Route path="/groups"               element={<GroupsPage />} />
-        <Route path="/contributor"          element={<ContributorPage />} />
+        <Route path="/" element={<ConfigPage />} />
+        <Route path="/groups" element={<GroupsPage />} />
+        <Route path="/contributor" element={<ContributorPage />} />
         <Route path="/contributor/:groupId" element={<ContributorPage />} />
-        <Route path="*"                     element={<Navigate to="/" replace />} />
+        <Route path="/credits" element={<CreditsPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
   )

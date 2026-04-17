@@ -1,0 +1,149 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  margin-top: 8px;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ─── Source options ──────────────────────────────────────────────────────── */
+
+.sourceOptions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sourceOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+}
+
+/* Active state per type */
+.sourceOptionActive.optWikimedia {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.sourceOptionActive.optOfficial {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: var(--accent-purple);
+  color: #c4b5fd;
+}
+
+.sourceOptionActive.optUnknown {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.optIcon { font-size: 13px; }
+.optLabel { white-space: nowrap; }
+
+/* ─── Filename field ──────────────────────────────────────────────────────── */
+
+.filenameField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filenameLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.required { color: var(--accent-pink); }
+
+.filenameInput {
+  font-size: 13px !important;
+  font-family: 'DM Mono', monospace !important;
+}
+
+.filenameHint {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.link {
+  color: var(--accent-purple);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ─── Transform details ───────────────────────────────────────────────────── */
+
+.transformDetails {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.transformSummary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-secondary);
+  user-select: none;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+  &::before { content: '▸ '; }
+}
+
+details[open] .transformSummary::before { content: '▾ '; }
+
+.transformList {
+  margin: 6px 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  list-style: disc;
+}
+
+/* ─── Unknown warning ─────────────────────────────────────────────────────── */
+
+.unknownWarn {
+  font-size: 11px;
+  color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  margin: 0;
+  line-height: 1.4;
+}

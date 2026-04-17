@@ -7,6 +7,7 @@ import { BadgeGroupControl } from '@/shared/Controls/BadgeGroupControl'
 import { SelectNationalityControl } from '@/shared/Controls/SelectNationalityControl'
 import { ImagePickerControl } from '@/shared/Controls/ImagePickerControl'
 import { GeneratedIdInputControl } from '@/shared/Controls/GeneratedIdInputControl'
+import type { ImageCreditInput } from '@/shared/models/AssetCredit'
 import { ROLES, ROLE_LABELS } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
 import type { MemberRole, NationalityCode, GroupCategory } from '@/shared/models'
@@ -328,6 +329,7 @@ export function MembersStep({
                   resolutionMode: 'existing' as const,
                   existingIdolId: id,
                   generatedId: id,
+                  portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
                 }
               })
 
@@ -609,6 +611,7 @@ function MemberCard({
               placeholderImage={memberPlaceholderImage}
               onChange={(v) => onUpdate({ portrait: v })}
               onFileChange={(f) => onUpdate({ portraitFile: f })}
+              onCreditChange={(credit: ImageCreditInput) => onUpdate({ portraitCredit: credit })}
               aspectRatio="400/533"
               hint="400×533 px · webp"
               disabled={lockPortrait}
