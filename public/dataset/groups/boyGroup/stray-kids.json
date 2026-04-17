@@ -7,62 +7,88 @@
   "debutYear": 2018,
   "status": "active",
   "company": "JYP Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/stray-kids/cover.webp",
   "members": [
     {
       "idolId": "bang-chan",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "rapper",
+        "vocal",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "kim-woo-jin",
+      "status": "former",
+      "roles": [
+        "dancer",
+        "mainVocal"
       ]
     },
     {
       "idolId": "lee-know",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "rapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "changbin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "dancer"
       ]
     },
     {
       "idolId": "hyunjin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual",
+        "rapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "han",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "mainVocal",
+        "mainRapper"
       ]
     },
     {
       "idolId": "felix",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "rapper"
       ]
     },
     {
       "idolId": "seungmin",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "i-n",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "maknae",
+        "dancer"
       ]
     }
   ],
@@ -71,93 +97,133 @@
       {
         "id": "district-9",
         "title": "District 9",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+District+9+MV",
+        "youtubeUrl": "https://youtu.be/u6unJQownW4?si=RwfKbCa7Ftesu4B7",
         "isDebutSong": true
+      },
+      {
+        "id": "walking-on-water",
+        "title": "Walking On Water",
+        "youtubeUrl": "https://youtu.be/ovHoY8UBIu8?si=-TFmrwtPTYZAqFr_"
+      },
+      {
+        "id": "stray-kids",
+        "title": "Stray Kids",
+        "youtubeUrl": "https://youtu.be/kMxuLQWMOLc?si=BerSThopLV2l5Dmj"
+      },
+      {
+        "id": "chk-chk-boom",
+        "title": "Chk Chk Boom",
+        "youtubeUrl": "https://youtu.be/0P0aQreFs8w?si=kukFcOoRdSQeCPLE"
+      },
+      {
+        "id": "lalalala",
+        "title": "LALALALA",
+        "youtubeUrl": "https://youtu.be/dBDkYofMUs4?si=xkKdP0uhVrKtL_j9"
+      },
+      {
+        "id": "time-out",
+        "title": "Time Out",
+        "youtubeUrl": "https://youtu.be/ukIGxgdbqqI?si=_XmjjiqRas1RBU_8"
+      },
+      {
+        "id": "you-can-stay",
+        "title": "You can STAY",
+        "youtubeUrl": "https://youtu.be/En4jap4MPbY?si=367FNZ77StyTvtV4"
+      },
+      {
+        "id": "astronaut",
+        "title": "Astronaut",
+        "youtubeUrl": "https://youtu.be/ZnpEBYvgiAU?si=oDX9UN1pFe_pFVXX"
+      },
+      {
+        "id": "grrr",
+        "title": "Grrr",
+        "youtubeUrl": "https://youtu.be/Sy3ERg7OCWo?si=zQWqm8lyRwglPTeL"
       },
       {
         "id": "my-pace",
         "title": "My Pace",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+My+Pace+MV"
+        "youtubeUrl": "https://youtu.be/pok5yDw77uM?si=o7wZ48O2RcAV3dla"
       },
       {
         "id": "i-am-you",
         "title": "I Am You",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+I+Am+You+MV"
+        "youtubeUrl": "https://youtu.be/CNfodZluR-Q?si=Wl4I3H8tEqkccKTJ"
       },
       {
         "id": "miroh",
         "title": "MIROH",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+MIROH+MV"
+        "youtubeUrl": "https://youtu.be/Dab4EENTW5I?si=Fk0zm7VaC1dus0Qe"
       },
       {
         "id": "side-effects",
         "title": "Side Effects",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Side+Effects+MV"
+        "youtubeUrl": "https://youtu.be/5rPluw_-Eb4?si=SD4yiTaywTXLQrVo"
       },
       {
         "id": "levanter",
         "title": "Levanter",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Levanter+MV"
+        "youtubeUrl": "https://youtu.be/Fpgd3ac3_nM?si=y6FjZIgMDUfiPkIz"
       },
       {
         "id": "god-s-menu",
         "title": "God's Menu",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+God%27s+Menu+MV"
+        "youtubeUrl": "https://youtu.be/TQTlCHxyuu8?si=yng5VIQ4nt6LaisN"
+      },
+      {
+        "id": "double-knot",
+        "title": "Double Knot",
+        "youtubeUrl": "https://youtu.be/UWoyeuwj9c0?si=ApDznshVBxZDEpi3"
       },
       {
         "id": "back-door",
         "title": "Back Door",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Back+Door+MV"
+        "youtubeUrl": "https://youtu.be/X-uJtV8ScYk?si=kj-ipF90zm12i96d"
       },
       {
         "id": "thunderous",
         "title": "Thunderous",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Thunderous+MV"
+        "youtubeUrl": "https://youtu.be/EaswWiwMVs8?si=ZBILdR8c0f0Zed--"
       },
       {
         "id": "maniac",
         "title": "Maniac",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Maniac+MV"
+        "youtubeUrl": "https://youtu.be/OvioeS1ZZ7o?si=LWC9ECY4BBmMdDoC"
       },
       {
         "id": "case-143",
         "title": "Case 143",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Case+143+MV"
+        "youtubeUrl": "https://youtu.be/jYSlpC6Ud2A?si=5aW1Kv9t9-4hmQRe"
       },
       {
         "id": "s-class",
         "title": "S-Class",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+S-Class+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "double-knot",
-        "title": "Double Knot",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Double+Knot+MV"
-      },
-      {
-        "id": "hellevator",
-        "title": "Hellevator",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Hellevator+MV"
-      },
-      {
-        "id": "grow-up",
-        "title": "Grow Up",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Grow+Up+MV"
+        "youtubeUrl": "https://youtu.be/JsOOis4bBFg?si=0bcHVNlhNjuB8kdZ"
       },
       {
         "id": "get-cool",
         "title": "Get Cool",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Get+Cool+MV"
+        "youtubeUrl": "https://youtu.be/BcXwZEbOvpo?si=yBlUgxiulLTP3G6S"
+      },
+      {
+        "id": "grow-up",
+        "title": "Grow Up",
+        "youtubeUrl": "https://youtu.be/a4jiotDjHe4?si=aYKBN1b6udsp0_yM"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "hellevator",
+        "title": "Hellevator",
+        "youtubeUrl": "https://youtu.be/AdfIfFGCqgo?si=cRiNx7N7QRc62Coe"
       },
       {
         "id": "victory-song",
         "title": "Victory Song",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Stray+Kids+Victory+Song+MV"
+        "youtubeUrl": "https://youtu.be/Fy3zu0WsTLM?si=D7f3I8ZmlLF5PoDD"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "STAY",
   "notes": null
 }

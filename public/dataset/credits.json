@@ -1,18 +1,53 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-17T18:26:20.624105Z",
+    "lastUpdated": "2026-04-17T22:21:00.516488Z",
     "summary": {
-      "total": 17,
-      "valid": 16,
+      "total": 34,
+      "valid": 33,
       "invalid": 1,
       "bySourceType": {
-        "wikimedia": 17
+        "wikimedia": 34
       },
-      "validationRate": 94.1
+      "validationRate": 97.1
     }
   },
   "credits": [
+    {
+      "id": "group/gfriend/cover",
+      "entityType": "group",
+      "entityId": "gfriend",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Flower_Bud_logo.svg",
+      "commonsTitle": "File:Flower Bud logo.svg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flower_Bud_logo.svg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Flower_Bud_logo.svg",
+      "author": "Source Music",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage"
+      ],
+      "originalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Flower_Bud_logo.svg / par Source Music / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
     {
       "id": "group/ive/cover",
       "entityType": "group",
@@ -53,6 +88,43 @@
       }
     },
     {
+      "id": "group/stray-kids/cover",
+      "entityType": "group",
+      "entityId": "stray-kids",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Stray_Kids_ODDINARY_jpe.jpg",
+      "commonsTitle": "File:Stray Kids ODDINARY jpe.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stray_Kids_ODDINARY_jpe.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Stray_Kids_ODDINARY_jpe.jpg",
+      "author": "Skz1233456pe",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 500,
+        "height": 500
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Stray_Kids_ODDINARY_jpe.jpg / par Skz1233456pe / (CC BY-SA 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "group/twice/cover",
       "entityType": "group",
       "entityId": "twice",
@@ -82,6 +154,43 @@
         "height": 600
       },
       "attribution": "TWICE_LOGO.jpg / par love to hate me / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/bang-chan/portrait",
+      "entityType": "idol",
+      "entityId": "bang-chan",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Stray_Kids_Bang_Chan_W_Korea_October_2024.jpg",
+      "commonsTitle": "File:Stray Kids Bang Chan W Korea October 2024.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stray_Kids_Bang_Chan_W_Korea_October_2024.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Stray_Kids_Bang_Chan_W_Korea_October_2024.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 639,
+        "height": 852
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Stray_Kids_Bang_Chan_W_Korea_October_2024.jpg / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -127,6 +236,43 @@
       }
     },
     {
+      "id": "idol/changbin/portrait",
+      "entityType": "idol",
+      "entityId": "changbin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Changbin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "commonsTitle": "File:Changbin of Stray Kids at the 40th Golden Disc Awards, January 10, 2026 (1).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Changbin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Changbin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 929
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Changbin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/dahyun/portrait",
       "entityType": "idol",
       "entityId": "dahyun",
@@ -164,6 +310,80 @@
       }
     },
     {
+      "id": "idol/eunha/portrait",
+      "entityType": "idol",
+      "entityId": "eunha",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240827_Eunha_은하_02.jpg",
+      "commonsTitle": "File:20240827 Eunha 은하 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240827_Eunha_은하_02.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/20240827_Eunha_%EC%9D%80%ED%95%98_02.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 570,
+        "height": 700
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240827_Eunha_은하_02.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/felix/portrait",
+      "entityType": "idol",
+      "entityId": "felix",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Felix_of_Stray_Kids,_March_7,_2025.png",
+      "commonsTitle": "File:Felix of Stray Kids, March 7, 2025.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Felix_of_Stray_Kids,_March_7,_2025.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Felix_of_Stray_Kids%2C_March_7%2C_2025.png",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 805,
+        "height": 1071
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Felix_of_Stray_Kids,_March_7,_2025.png / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/gaeul/portrait",
       "entityType": "idol",
       "entityId": "gaeul",
@@ -193,6 +413,117 @@
         "height": 533
       },
       "attribution": "Ive_Gaeul_at_Seoul_Fashion_Week,_1_September_2025_04.png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/han/portrait",
+      "entityType": "idol",
+      "entityId": "han",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Han_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "commonsTitle": "File:Han of Stray Kids at the 40th Golden Disc Awards, January 10, 2026 (1).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Han_of_Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 1145,
+        "height": 1631
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Han_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/hyunjin/portrait",
+      "entityType": "idol",
+      "entityId": "hyunjin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Hyunjin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "commonsTitle": "File:Hyunjin of Stray Kids at the 40th Golden Disc Awards, January 10, 2026 (1).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyunjin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Hyunjin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 960,
+        "height": 1442
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Hyunjin_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/i-n/portrait",
+      "entityType": "idol",
+      "entityId": "i-n",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "I.N_of_Stray_Kids_at_the_Incheon_Airport,_February_25,_2026_(1).png",
+      "commonsTitle": "File:I.N of Stray Kids at the Incheon Airport, February 25, 2026 (1).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:I.N_of_Stray_Kids_at_the_Incheon_Airport,_February_25,_2026_(1).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/I.N_of_Stray_Kids_at_the_Incheon_Airport%2C_February_25%2C_2026_%281%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 869
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "I.N_of_Stray_Kids_at_the_Incheon_Airport,_February_25,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -267,6 +598,80 @@
         "height": 533
       },
       "attribution": "Park_Jihyo_for_Pearly_Gates_Korea_02.jpg / par Pearly Gates Korea / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/kim-woo-jin/portrait",
+      "entityType": "idol",
+      "entityId": "kim-woo-jin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Kim_Woojin_at_the_2019_Golden_Disc_Awards.png",
+      "commonsTitle": "File:Kim Woojin at the 2019 Golden Disc Awards.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_Woojin_at_the_2019_Golden_Disc_Awards.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Kim_Woojin_at_the_2019_Golden_Disc_Awards.png",
+      "author": "Newsen",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 960,
+        "height": 1344
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Kim_Woojin_at_the_2019_Golden_Disc_Awards.png / par Newsen / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/lee-know/portrait",
+      "entityType": "idol",
+      "entityId": "lee-know",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Lee_Know_of_Stray_Kids_at_Incheon_Airport,_May_3,_2024.png",
+      "commonsTitle": "File:Lee Know of Stray Kids at Incheon Airport, May 3, 2024.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lee_Know_of_Stray_Kids_at_Incheon_Airport,_May_3,_2024.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Lee_Know_of_Stray_Kids_at_Incheon_Airport%2C_May_3%2C_2024.png",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 809
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Lee_Know_of_Stray_Kids_at_Incheon_Airport,_May_3,_2024.png / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -534,6 +939,117 @@
       }
     },
     {
+      "id": "idol/seungmin/portrait",
+      "entityType": "idol",
+      "entityId": "seungmin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Seungmin_of_Stray_Kids,_March_20,_2025.png",
+      "commonsTitle": "File:Seungmin of Stray Kids, March 20, 2025.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seungmin_of_Stray_Kids,_March_20,_2025.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Seungmin_of_Stray_Kids%2C_March_20%2C_2025.png",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 844
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Seungmin_of_Stray_Kids,_March_20,_2025.png / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/sinb/portrait",
+      "entityType": "idol",
+      "entityId": "sinb",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "SinB_August_2024_(3x4_cropped).jpg",
+      "commonsTitle": "File:SinB August 2024 (3x4 cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SinB_August_2024_(3x4_cropped).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/SinB_August_2024_%283x4_cropped%29.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 787,
+        "height": 1047
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "SinB_August_2024_(3x4_cropped).jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/sowon/portrait",
+      "entityType": "idol",
+      "entityId": "sowon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Kim_So-won_December_2019_(3x4_cropped).jpg",
+      "commonsTitle": "File:Kim So-won December 2019 (3x4 cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_So-won_December_2019_(3x4_cropped).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Kim_So-won_December_2019_%283x4_cropped%29.jpg",
+      "author": "친한친구",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 960,
+        "height": 1269
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Kim_So-won_December_2019_(3x4_cropped).jpg / par 친한친구 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/tzuyu/portrait",
       "entityType": "idol",
       "entityId": "tzuyu",
@@ -563,6 +1079,43 @@
         "height": 533
       },
       "attribution": "20240305_Chou_Tzuyu_周子瑜_03.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/umji/portrait",
+      "entityType": "idol",
+      "entityId": "umji",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Umji_August_2024_(3x4_cropped).jpg",
+      "commonsTitle": "File:Umji August 2024 (3x4 cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Umji_August_2024_(3x4_cropped).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Umji_August_2024_%283x4_cropped%29.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 387,
+        "height": 498
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Umji_August_2024_(3x4_cropped).jpg / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -608,6 +1161,43 @@
       }
     },
     {
+      "id": "idol/yerin/portrait",
+      "entityType": "idol",
+      "entityId": "yerin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "230825_YERIN(예린)_뮤직뱅크_출근길.jpg",
+      "commonsTitle": "File:230825 YERIN(예린) 뮤직뱅크 출근길.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:230825_YERIN(예린)_뮤직뱅크_출근길.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/230825_YERIN%28%EC%98%88%EB%A6%B0%29_%EB%AE%A4%EC%A7%81%EB%B1%85%ED%81%AC_%EC%B6%9C%EA%B7%BC%EA%B8%B8.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 832,
+        "height": 1062
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "230825_YERIN(예린)_뮤직뱅크_출근길.jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/yujin/portrait",
       "entityType": "idol",
       "entityId": "yujin",
@@ -637,6 +1227,43 @@
         "height": 533
       },
       "attribution": "An_Yujin_at_the_2025_'Love_Your_W'_W_Korea_Event.png / par https://www.youtube.com/@_TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yuju/portrait",
+      "entityType": "idol",
+      "entityId": "yuju",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Yuju_at_Seoul_Fashion_Week_2023.jpg",
+      "commonsTitle": "File:Yuju at Seoul Fashion Week 2023.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yuju_at_Seoul_Fashion_Week_2023.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Yuju_at_Seoul_Fashion_Week_2023.jpg",
+      "author": "TenAsia",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 640,
+        "height": 681
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Yuju_at_Seoul_Fashion_Week_2023.jpg / par TenAsia / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",

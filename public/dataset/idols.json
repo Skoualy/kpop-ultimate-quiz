@@ -95,7 +95,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "au",
-    "portrait": "../../assets/idols/bang-chan/portrait.webp",
+    "portrait": "/assets/idols/bang-chan/portrait.webp",
     "notes": null
   },
   {
@@ -149,7 +149,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/changbin/portrait.webp",
+    "portrait": "/assets/idols/changbin/portrait.webp",
     "notes": null
   },
   {
@@ -335,10 +335,10 @@
   {
     "id": "eunha",
     "name": "Eunha",
-    "primaryGroupId": "viviz",
+    "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/eunha/portrait.webp",
+    "portrait": "/assets/idols/eunha/portrait.webp",
     "notes": null
   },
   {
@@ -356,7 +356,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "au",
-    "portrait": "../../assets/idols/felix/portrait.webp",
+    "portrait": "/assets/idols/felix/portrait.webp",
     "notes": null
   },
   {
@@ -419,7 +419,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/han/portrait.webp",
+    "portrait": "/assets/idols/han/portrait.webp",
     "notes": null
   },
   {
@@ -563,7 +563,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hyunjin/portrait.webp",
+    "portrait": "/assets/idols/hyunjin/portrait.webp",
     "notes": null
   },
   {
@@ -581,7 +581,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/i-n/portrait.webp",
+    "portrait": "/assets/idols/i-n/portrait.webp",
     "notes": null
   },
   {
@@ -1035,6 +1035,15 @@
     "notes": null
   },
   {
+    "id": "kim-woo-jin",
+    "name": "Kim Woojin",
+    "primaryGroupId": "stray-kids",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "/assets/idols/kim-woo-jin/portrait.webp",
+    "notes": null
+  },
+  {
     "id": "kyuhyun",
     "name": "Kyuhyun",
     "primaryGroupId": "super-junior",
@@ -1067,7 +1076,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/lee-know/portrait.webp",
+    "portrait": "/assets/idols/lee-know/portrait.webp",
     "notes": null
   },
   {
@@ -1517,7 +1526,7 @@
     "primaryGroupId": "stray-kids",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seungmin/portrait.webp",
+    "portrait": "/assets/idols/seungmin/portrait.webp",
     "notes": null
   },
   {
@@ -1550,10 +1559,10 @@
   {
     "id": "sinb",
     "name": "SinB",
-    "primaryGroupId": "viviz",
+    "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/sinb/portrait.webp",
+    "portrait": "/assets/idols/sinb/portrait.webp",
     "notes": null
   },
   {
@@ -1625,7 +1634,7 @@
     "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/sowon/portrait.webp",
+    "portrait": "/assets/idols/sowon/portrait.webp",
     "notes": null
   },
   {
@@ -1793,10 +1802,10 @@
   {
     "id": "umji",
     "name": "Umji",
-    "primaryGroupId": "viviz",
+    "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/umji/portrait.webp",
+    "portrait": "/assets/idols/umji/portrait.webp",
     "notes": null
   },
   {
@@ -1949,7 +1958,7 @@
     "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yerin/portrait.webp",
+    "portrait": "/assets/idols/yerin/portrait.webp",
     "notes": null
   },
   {
@@ -2075,7 +2084,7 @@
     "primaryGroupId": "gfriend",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yuju/portrait.webp",
+    "portrait": "/assets/idols/yuju/portrait.webp",
     "notes": null
   },
   {

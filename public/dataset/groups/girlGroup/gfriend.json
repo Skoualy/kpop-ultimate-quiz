@@ -7,48 +7,60 @@
   "debutYear": 2015,
   "status": "inactive",
   "company": "Source Music",
-  "coverImage": null,
+  "coverImage": "/assets/groups/gfriend/cover.webp",
   "members": [
     {
       "idolId": "sowon",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "leader",
+        "dancer",
+        "visual",
+        "rapper"
       ]
     },
     {
       "idolId": "yerin",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual",
+        "dancer"
       ]
     },
     {
       "idolId": "eunha",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
-      ]
-    },
-    {
-      "idolId": "yuju",
-      "status": "former",
-      "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "sinb",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer",
+        "visual"
+      ]
+    },
+    {
+      "idolId": "yuju",
+      "status": "current",
+      "roles": [
+        "dancer",
+        "mainVocal"
       ]
     },
     {
       "idolId": "umji",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "maknae"
       ]
     }
   ],
@@ -57,83 +69,126 @@
       {
         "id": "glass-bead",
         "title": "Glass Bead",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Glass+Bead+MV",
+        "youtubeUrl": "https://youtu.be/GU7icQFVzHo?si=u4XmAb-A_BTBChhs",
         "isDebutSong": true
+      },
+      {
+        "id": "crossroads",
+        "title": "Crossroads",
+        "youtubeUrl": "https://youtu.be/kx5TWKPE5sU?si=6r7ooKWgcul-gltQ"
+      },
+      {
+        "id": "fallin-light-jp",
+        "title": "Fallin' Light",
+        "youtubeUrl": "https://youtu.be/mc274HUFhQQ?si=rnRLh-hM0Bfvaon-",
+        "language": "jp"
+      },
+      {
+        "id": "fever",
+        "title": "Fever",
+        "youtubeUrl": "https://youtu.be/Zll7O1v63aY?si=Gx6EZB3eANX8j6Vl"
+      },
+      {
+        "id": "summer-rain",
+        "title": "Summer Rain",
+        "youtubeUrl": "https://youtu.be/ZsYwEV_ge4Y?si=Qvw5dCztkHXaucoV"
+      },
+      {
+        "id": "flower-jp",
+        "title": "Flower",
+        "youtubeUrl": "https://youtu.be/gMHP8ZXvuMM?si=f6bXr10jZxeVcr5u",
+        "language": "jp"
+      },
+      {
+        "id": "apple",
+        "title": "Apple",
+        "youtubeUrl": "https://youtu.be/XQSse3b2ge4?si=hPvrrmk-MxRJ44L9"
+      },
+      {
+        "id": "season-of-memories",
+        "title": "Season Of Memories",
+        "youtubeUrl": "https://youtu.be/DxMu1pv8b9Y?si=atqfjhiWH9o-qCAs"
       },
       {
         "id": "me-gustas-tu",
         "title": "Me Gustas Tu",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Me+Gustas+Tu+MV"
+        "youtubeUrl": "https://youtu.be/YYHyAIFG3iI?si=45RnNJDdBient6-7"
       },
       {
         "id": "rough",
         "title": "Rough",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Rough+MV"
+        "youtubeUrl": "https://youtu.be/r_6q_-d-7Sk?si=hqmcxxtoemVvVVYT"
       },
       {
         "id": "navillera",
         "title": "Navillera",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Navillera+MV"
+        "youtubeUrl": "https://youtu.be/1ZhDsPdvl6c?si=Y3_UdOdIeGWq9cPM"
       },
       {
         "id": "fingertip",
         "title": "Fingertip",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Fingertip+MV"
+        "youtubeUrl": "https://youtu.be/i1n_1jrUEjU?si=8Q66Tko0fl5ZDobg"
       },
       {
         "id": "love-whisper",
         "title": "Love Whisper",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Love+Whisper+MV"
+        "youtubeUrl": "https://youtu.be/lnXXfYA91Y8?si=wOHMrFJ5pWuVTDAu"
       },
       {
         "id": "sunny-summer",
         "title": "Sunny Summer",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Sunny+Summer+MV"
+        "youtubeUrl": "https://youtu.be/M9P90QTo_uE?si=hD5NwyNEwTgpj1v3"
       },
       {
         "id": "time-for-the-moon-night",
         "title": "Time for the Moon Night",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Time+for+the+Moon+Night+MV"
+        "youtubeUrl": "https://youtu.be/_XyBa8QsVQU?si=_sOTzQ4ZggtLmCp_"
       },
       {
         "id": "sunrise",
         "title": "Sunrise",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Sunrise+MV"
+        "youtubeUrl": "https://youtu.be/iciFwCnsyY4?si=N7rVgK76HvWJDywF"
       },
       {
         "id": "mago",
         "title": "Mago",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Mago+MV"
+        "youtubeUrl": "https://youtu.be/LmBYPXGqtss?si=VfFH2hAQBsLvDk5X"
+      },
+      {
+        "id": "memoria-jp",
+        "title": "Memoria",
+        "youtubeUrl": "https://youtu.be/YTWwz6R6jy0?si=kgGWdR6X1w3iE-u1",
+        "language": "jp"
       }
     ],
     "bSides": [
       {
+        "id": "three-of-cups",
+        "title": "Three Of Cups",
+        "youtubeUrl": "https://youtu.be/2DEW2c17i3Y?si=T28DwLYCiarz0u5W"
+      },
+      {
         "id": "crush",
         "title": "Crush",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Crush+MV"
+        "youtubeUrl": "https://youtu.be/sA7InlHFSKI?si=xs8LYoTfRDgEVHRK"
       },
       {
         "id": "compass",
         "title": "Compass",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Compass+MV"
+        "youtubeUrl": "https://youtu.be/0N3iR72BdaA?si=Ah34SDXgKRnbAY6k"
       },
       {
         "id": "fall-in-love",
         "title": "Fall in Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Fall+in+Love+MV"
-      },
-      {
-        "id": "memoria",
-        "title": "Memoria",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Memoria+MV"
+        "youtubeUrl": "https://youtu.be/Zp8DVqaO06A?si=DWYGyZTIy6P6nYIC"
       },
       {
         "id": "mr-blue",
         "title": "Mr Blue",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=GFriend+Mr+Blue+MV"
+        "youtubeUrl": "https://youtu.be/ngWmKsIODS8?si=wqKPORaKuioFLUeh"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "BUDDY",
   "notes": null
 }
