@@ -329,7 +329,13 @@ export function MembersStep({
                   resolutionMode: 'existing' as const,
                   existingIdolId: id,
                   generatedId: id,
-                  portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
+                  portraitCredit: {
+                    sourceType: 'wikimedia' as const,
+                    originalFileName: null,
+                    sourceUrl: null,
+                    aiModified: false,
+                    transformReport: null,
+                  },
                 }
               })
 
@@ -612,6 +618,7 @@ function MemberCard({
               onChange={(v) => onUpdate({ portrait: v })}
               onFileChange={(f) => onUpdate({ portraitFile: f })}
               onCreditChange={(credit: ImageCreditInput) => onUpdate({ portraitCredit: credit })}
+              currentCredit={member.portraitCredit}
               aspectRatio="400/533"
               hint="400×533 px · webp"
               disabled={lockPortrait}

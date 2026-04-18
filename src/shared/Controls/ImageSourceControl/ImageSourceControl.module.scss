@@ -9,10 +9,7 @@
   margin-top: 8px;
 }
 
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
+.disabled { opacity: 0.5; pointer-events: none; }
 
 .title {
   font-size: 12px;
@@ -23,13 +20,9 @@
   margin: 0;
 }
 
-/* ─── Source options ──────────────────────────────────────────────────────── */
+/* ─── Source buttons ──────────────────────────────────────────────────────── */
 
-.sourceOptions {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.sourceOptions { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .sourceOption {
   display: inline-flex;
@@ -44,41 +37,33 @@
   color: var(--text-secondary);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
-
   &:hover { border-color: var(--accent-purple); color: var(--text-primary); }
 }
 
-/* Active state per type */
-.sourceOptionActive.optWikimedia {
+.sourceOptionActive.opt_wikimedia {
   background: rgba(16, 185, 129, 0.12);
   border-color: #10b981;
   color: #10b981;
 }
-
-.sourceOptionActive.optOfficial {
+.sourceOptionActive.opt_other {
   background: rgba(124, 58, 237, 0.12);
   border-color: var(--accent-purple);
   color: #c4b5fd;
 }
-
-.sourceOptionActive.optUnknown {
+.sourceOptionActive.opt_unknown {
   background: rgba(245, 158, 11, 0.12);
   border-color: var(--color-warning);
   color: var(--color-warning);
 }
 
-.optIcon { font-size: 13px; }
+.optIcon  { font-size: 13px; }
 .optLabel { white-space: nowrap; }
 
-/* ─── Filename field ──────────────────────────────────────────────────────── */
+/* ─── Fields ──────────────────────────────────────────────────────────────── */
 
-.filenameField {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+.field { display: flex; flex-direction: column; gap: 4px; }
 
-.filenameLabel {
+.fieldLabel {
   font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
@@ -89,15 +74,26 @@
 
 .required { color: var(--accent-pink); }
 
-.filenameInput {
+.monoInput {
   font-size: 13px !important;
   font-family: 'DM Mono', monospace !important;
 }
 
-.filenameHint {
+.inputError {
+  border-color: var(--color-danger) !important;
+  &:focus { outline-color: var(--color-danger); }
+}
+
+.fieldHint {
   font-size: 11px;
   color: var(--text-muted);
   line-height: 1.5;
+  margin: 0;
+}
+
+.errorMsg {
+  font-size: 11px;
+  color: var(--color-danger);
   margin: 0;
 }
 
@@ -107,33 +103,22 @@
   text-underline-offset: 2px;
 }
 
-/* ─── Transform details ───────────────────────────────────────────────────── */
+/* ─── Checkbox IA ──────────────────────────────────────────────────────────── */
 
-.transformDetails {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.transformSummary {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--text-secondary);
-  user-select: none;
-  list-style: none;
-
-  &::-webkit-details-marker { display: none; }
-  &::before { content: '▸ '; }
-}
-
-details[open] .transformSummary::before { content: '▾ '; }
-
-.transformList {
-  margin: 6px 0 0 16px;
+.checkboxRow {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  list-style: disc;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
 }
+.checkboxDisabled { opacity: 0.45; cursor: not-allowed; }
+.checkbox {
+  width: 14px; height: 14px;
+  accent-color: var(--accent-purple);
+  cursor: pointer; flex-shrink: 0;
+}
+.checkboxLabel { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
 
 /* ─── Unknown warning ─────────────────────────────────────────────────────── */
 

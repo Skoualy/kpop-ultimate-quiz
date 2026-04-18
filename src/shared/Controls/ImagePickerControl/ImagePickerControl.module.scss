@@ -21,13 +21,17 @@
   transition: border-color 0.15s;
   width: 100%;
 
-  &:hover { border-color: var(--accent-purple); }
+  &:hover {
+    border-color: var(--accent-purple);
+  }
 }
 
 .pickerDisabled {
   opacity: 0.5;
   cursor: not-allowed;
-  &:hover { border-color: var(--border-strong); }
+  &:hover {
+    border-color: var(--border-strong);
+  }
 }
 
 .preview {
@@ -47,7 +51,9 @@
   font-size: 12px;
   font-weight: 600;
   color: transparent;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 
   .picker:hover & {
     background: rgba(0, 0, 0, 0.45);
@@ -73,7 +79,33 @@
   line-height: 1;
   font-family: inherit;
 
-  &:hover { background: #ef4444; }
+  &:hover {
+    background: #ef4444;
+  }
+}
+
+.editBtn {
+  position: absolute;
+  top: 6px;
+  left: 6px; /* ← haut gauche */
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  font-family: inherit;
+  z-index: 2;
+
+  &:hover {
+    background: var(--accent-purple);
+  }
 }
 
 .empty {
@@ -85,7 +117,10 @@
   pointer-events: none;
 }
 
-.icon { font-size: 32px; opacity: 0.35; }
+.icon {
+  font-size: 32px;
+  opacity: 0.35;
+}
 
 .hint {
   font-size: 11px;
@@ -93,4 +128,6 @@
   line-height: 1.4;
 }
 
-.fileInput { display: none; }
+.fileInput {
+  display: none;
+}

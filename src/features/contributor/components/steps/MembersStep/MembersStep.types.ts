@@ -33,6 +33,8 @@ export function emptyMember(status: MemberStatus = 'current'): EditableMember {
     portraitCredit: {
       sourceType: 'wikimedia',
       originalFileName: null,
+      sourceUrl: null,
+      aiModified: false,
       transformReport: null,
     },
   }
@@ -52,6 +54,8 @@ export function resetMember(member: EditableMember): EditableMember {
     portraitCredit: {
       sourceType: 'wikimedia',
       originalFileName: null,
+      sourceUrl: null,
+      aiModified: false,
       transformReport: null,
     },
   }
@@ -69,7 +73,9 @@ export function buildUniqueIdolId(name: string, usedIds: string[]): string {
   if (!base) return ''
   if (!usedIds.includes(base)) return base
   let i = 2
-  while (usedIds.includes(`${base}-${i}`)) { i += 1 }
+  while (usedIds.includes(`${base}-${i}`)) {
+    i += 1
+  }
   return `${base}-${i}`
 }
 

@@ -113,6 +113,11 @@
     ],
     "bSides": [
       {
+        "id": "can-t-be-broken",
+        "title": "Can't Be Broken",
+        "youtubeUrl": "https://youtu.be/Sw496sELb_s?si=msDz157XOEjl3_LG"
+      },
+      {
         "id": "back-together",
         "title": "Back Together",
         "youtubeUrl": "https://youtu.be/b7ielliQuTs?si=-J_9qkHUByMlx5RC"

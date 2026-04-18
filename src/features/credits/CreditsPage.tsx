@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import type { AssetCredit, CreditsDataset } from '@/shared/models/AssetCredit'
 import styles from './CreditsPage.module.scss'
 
-// ─── Helper ───────────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function ValidationBadge({ credit }: { credit: AssetCredit }) {
   const { validation } = credit
@@ -10,7 +10,7 @@ function ValidationBadge({ credit }: { credit: AssetCredit }) {
     return <span className={[styles.badge, styles.badgeOk].join(' ')}>✓ Valide</span>
   }
   if (validation.status === 'manual_review_required') {
-    return <span className={[styles.badge, styles.badgeWarn].join(' ')}>⚠ Revue requise</span>
+    return <span className={[styles.badge, styles.badgeWarn].join(' ')}>⚠ Revue</span>
   }
   return <span className={[styles.badge, styles.badgeError].join(' ')}>✗ Invalide</span>
 }
@@ -20,21 +20,43 @@ function SourceBadge({ type }: { type: AssetCredit['sourceType'] }) {
     <span className={[
       styles.badge,
       type === 'wikimedia' ? styles.badgeWikimedia :
-      type === 'official'  ? styles.badgeOfficial  : styles.badgeUnknown,
+      type === 'other'     ? styles.badgeOther     : styles.badgeUnknown,
     ].join(' ')}>
-      {type === 'wikimedia' ? '🌐 Wikimedia' : type === 'official' ? '🏢 Officielle' : '❓ Inconnue'}
+      {type === 'wikimedia' ? '🌐 Wikimedia' : type === 'other' ? '🔗 Autre' : '❓ Inconnue'}
     </span>
+  )
+}
+
+function TransformBadges({ credit }: { credit: AssetCredit }) {
+  const tags: { label: string; variant: string }[] = []
+  if (credit.aiModified) tags.push({ label: '🤖 IA', variant: 'ai' })
+  if (credit.modified && credit.modifications.length > 0) {
+    credit.modifications.forEach((m) => tags.push({ label: m, variant: 'edit' }))
+  }
+  if (tags.length === 0) return <span className={styles.missing}>—</span>
+  return (
+    <div className={styles.transformTags}>
+      {tags.map((t) => (
+        <span key={t.label} className={[styles.transformTag, styles[`tag_${t.variant}`]].join(' ')}>
+          {t.label}
+        </span>
+      ))}
+    </div>
   )
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+type EntityFilter   = 'all' | 'idol' | 'group'
+type ValidityFilter = 'all' | 'invalid'
+
 export default function CreditsPage() {
-  const [dataset, setDataset] = useState<CreditsDataset | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [filter, setFilter] = useState<'all' | 'idol' | 'group'>('all')
-  const [search, setSearch] = useState('')
+  const [dataset, setDataset]             = useState<CreditsDataset | null>(null)
+  const [isLoading, setIsLoading]         = useState(true)
+  const [error, setError]                 = useState<string | null>(null)
+  const [entityFilter, setEntityFilter]   = useState<EntityFilter>('all')
+  const [validityFilter, setValidityFilter] = useState<ValidityFilter>('all')
+  const [search, setSearch]               = useState('')
 
   useEffect(() => {
     fetch('/dataset/credits.json')
@@ -47,27 +69,33 @@ export default function CreditsPage() {
       .finally(() => setIsLoading(false))
   }, [])
 
-  const credits = dataset?.credits ?? []
+  const credits      = dataset?.credits ?? []
+  const validCount   = credits.filter((c) => c.validation.isValid).length
+  const invalidCount = credits.filter((c) => !c.validation.isValid).length
+
+  // Clic sur le compteur invalide → toggle filtre
+  function handleInvalidClick() {
+    setValidityFilter((v) => v === 'invalid' ? 'all' : 'invalid')
+  }
 
   const filtered = credits.filter((c) => {
-    if (filter !== 'all' && c.entityType !== filter) return false
+    if (entityFilter !== 'all' && c.entityType !== entityFilter) return false
+    if (validityFilter === 'invalid' && c.validation.isValid) return false
     if (search) {
       const q = search.toLowerCase()
       return (
-        c.entityId.includes(q) ||
-        c.author?.toLowerCase().includes(q) ||
-        c.originalFileName?.toLowerCase().includes(q) ||
-        c.license?.toLowerCase().includes(q)
+        c.entityId.toLowerCase().includes(q) ||
+        (c.author?.toLowerCase().includes(q) ?? false) ||
+        (c.originalFileName?.toLowerCase().includes(q) ?? false) ||
+        (c.license?.toLowerCase().includes(q) ?? false)
       )
     }
     return true
   })
 
-  const validCount   = credits.filter((c) => c.validation.isValid).length
-  const invalidCount = credits.filter((c) => !c.validation.isValid).length
-
   return (
     <div className={styles.page}>
+
       {/* Header */}
       <div className={styles.header}>
         <div>
@@ -76,6 +104,7 @@ export default function CreditsPage() {
             Sources et licences de toutes les images utilisées dans K-Pop Ultimate Quiz.
           </p>
         </div>
+
         {!isLoading && dataset && (
           <div className={styles.stats}>
             <div className={styles.stat}>
@@ -87,10 +116,20 @@ export default function CreditsPage() {
               <span className={styles.statLabel}>valides</span>
             </div>
             {invalidCount > 0 && (
-              <div className={styles.stat}>
+              <button
+                type="button"
+                className={[
+                  styles.statClickable,
+                  validityFilter === 'invalid' ? styles.statClickableActive : '',
+                ].join(' ')}
+                onClick={handleInvalidClick}
+                title={validityFilter === 'invalid' ? 'Afficher tout' : 'Filtrer les invalides'}
+              >
                 <span className={[styles.statValue, styles.statErr].join(' ')}>{invalidCount}</span>
-                <span className={styles.statLabel}>à vérifier</span>
-              </div>
+                <span className={styles.statLabel}>
+                  à vérifier {validityFilter === 'invalid' ? '✕' : '↗'}
+                </span>
+              </button>
             )}
           </div>
         )}
@@ -98,9 +137,9 @@ export default function CreditsPage() {
 
       {/* Loading / Error */}
       {isLoading && <p className={styles.center}>Chargement…</p>}
-      {error   && <p className={styles.center} style={{ color: 'var(--color-danger)' }}>{error}</p>}
+      {error && <p className={styles.center} style={{ color: 'var(--color-danger)' }}>{error}</p>}
 
-      {/* Filters */}
+      {/* Filtres */}
       {!isLoading && !error && (
         <div className={styles.filters}>
           <input
@@ -110,24 +149,41 @@ export default function CreditsPage() {
             onChange={(e) => setSearch(e.target.value)}
             style={{ maxWidth: 320 }}
           />
+
+          {/* Filtre entité */}
           {(['all', 'idol', 'group'] as const).map((f) => (
             <button
               key={f}
               type="button"
-              className={['btn', filter === f ? 'btn--primary' : 'btn--secondary', 'btn--sm'].join(' ')}
-              onClick={() => setFilter(f)}
+              className={['btn', entityFilter === f ? 'btn--primary' : 'btn--secondary', 'btn--sm'].join(' ')}
+              onClick={() => setEntityFilter(f)}
             >
               {f === 'all' ? 'Tout' : f === 'idol' ? 'Idoles' : 'Groupes'}
             </button>
           ))}
+
+          {/* Indicateur filtre invalide actif */}
+          {validityFilter === 'invalid' && (
+            <button
+              type="button"
+              className={['btn', 'btn--sm', styles.filterActive].join(' ')}
+              onClick={() => setValidityFilter('all')}
+            >
+              ✕ Invalides seulement
+            </button>
+          )}
         </div>
       )}
 
-      {/* Credits table */}
+      {/* Table */}
       {!isLoading && !error && (
         <div className={styles.tableWrap}>
           {filtered.length === 0 ? (
-            <p className={styles.center}>Aucun crédit trouvé.</p>
+            <p className={styles.center}>
+              {validityFilter === 'invalid'
+                ? '✅ Aucune image invalide !'
+                : 'Aucun crédit trouvé.'}
+            </p>
           ) : (
             <table className={styles.table}>
               <thead>
@@ -137,6 +193,7 @@ export default function CreditsPage() {
                   <th>Source</th>
                   <th>Auteur</th>
                   <th>Licence</th>
+                  <th>Transformations</th>
                   <th>Statut</th>
                   <th>Attribution</th>
                 </tr>
@@ -154,12 +211,7 @@ export default function CreditsPage() {
                     <td>
                       <SourceBadge type={credit.sourceType} />
                       {credit.sourceUrl && (
-                        <a
-                          href={credit.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.link}
-                        >
+                        <a href={credit.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
                           ↗
                         </a>
                       )}
@@ -173,14 +225,16 @@ export default function CreditsPage() {
                           <a href={credit.licenseUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
                             {credit.license}
                           </a>
-                        ) : (
-                          <span>{credit.license}</span>
-                        )
-                      ) : (
-                        <span className={styles.missing}>—</span>
+                        ) : credit.license
+                      ) : <span className={styles.missing}>—</span>}
+                    </td>
+                    <td><TransformBadges credit={credit} /></td>
+                    <td>
+                      <ValidationBadge credit={credit} />
+                      {!credit.validation.isValid && credit.validation.errors.length > 0 && (
+                        <p className={styles.validationError}>{credit.validation.errors[0]}</p>
                       )}
                     </td>
-                    <td><ValidationBadge credit={credit} /></td>
                     <td className={styles.attribution}>
                       {credit.attribution ?? <span className={styles.missing}>—</span>}
                     </td>
@@ -192,7 +246,6 @@ export default function CreditsPage() {
         </div>
       )}
 
-      {/* Last updated */}
       {dataset && (
         <p className={styles.lastUpdated}>
           Dernière mise à jour : {new Date(dataset.meta.lastUpdated).toLocaleDateString('fr-FR')}

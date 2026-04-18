@@ -173,3 +173,84 @@
   color: var(--text-muted);
   text-align: center;
 }
+
+/* ─── Transform tags ──────────────────────────────────────────────────────── */
+
+.transformTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.transformTag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.tag_ai {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.3);
+  color: #c4b5fd;
+}
+
+.tag_edit {
+  background: rgba(180, 180, 180, 0.08);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+/* ─── Cliquable stat ──────────────────────────────────────────────────────── */
+
+.statClickable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+
+  &:hover {
+    border-color: var(--color-danger);
+    background: rgba(239,68,68,0.06);
+  }
+}
+
+.statClickableActive {
+  border-color: var(--color-danger) !important;
+  background: rgba(239,68,68,0.1) !important;
+}
+
+/* ─── Filter active badge ─────────────────────────────────────────────────── */
+
+.filterActive {
+  background: rgba(239,68,68,0.1) !important;
+  border-color: var(--color-danger) !important;
+  color: var(--color-danger) !important;
+}
+
+/* ─── Validation error detail ─────────────────────────────────────────────── */
+
+.validationError {
+  font-size: 10px;
+  color: var(--color-danger);
+  margin: 3px 0 0;
+  opacity: 0.8;
+}
+
+/* ─── Source badge other ──────────────────────────────────────────────────── */
+.badgeOther {
+  background: rgba(124,58,237,0.10);
+  border-color: rgba(124,58,237,0.25);
+  color: #c4b5fd;
+}

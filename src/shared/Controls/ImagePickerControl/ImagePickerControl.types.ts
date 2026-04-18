@@ -5,17 +5,13 @@ export interface ImagePickerControlProps {
   placeholderImage?: string
   onChange: (dataUrl: string) => void
   onFileChange?: (file: File | null) => void
-  /**
-   * Appelé après chaque crop confirmé avec le rapport de transformation
-   * (dimensions, crop, conversion webp).
-   */
   onTransformReport?: (report: ImageTransformReport) => void
-  /**
-   * Appelé après chaque crop confirmé avec les infos de crédit déclarées
-   * dans le modal (sourceType, originalFileName) + le rapport de transformation
-   * fusionné dedans.
-   */
   onCreditChange?: (credit: ImageCreditInput) => void
+  /**
+   * Crédit courant — pré-remplit le modal en mode édition (bouton ✎).
+   * Si non fourni, le modal s'ouvre avec une valeur vide.
+   */
+  currentCredit?: ImageCreditInput | null
   label?: string
   hint?: string
   aspectRatio?: string

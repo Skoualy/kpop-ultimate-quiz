@@ -16,12 +16,22 @@ import type { ExportBundle } from './components/steps/ExportStep'
 
 import type { GroupCategory, LanguageCode, MemberRole } from '@/shared/models'
 import type { BundleCreditEntry } from '@/shared/models/BundleCreditEntry'
+import type { AssetCredit, ImageCreditInput } from '@/shared/models/AssetCredit'
 import { GENDER_BY_CATEGORY, PARENT_ELIGIBLE_CATEGORIES } from '@/shared/constants'
 import { slugify } from '@/shared/utils/slug'
 import { getGroupCoverPath, getIdolPortraitPath } from '@/shared/utils/assets'
 import styles from './ContributorPage.module.scss'
 
 const TABS = ['① Infos groupe', '② Membres', '③ Musiques', '④ Export']
+
+/** Crédit vide par défaut — utilisé quand aucune entrée n'existe dans credits.json */
+const EMPTY_CREDIT: ImageCreditInput = {
+  sourceType:       'wikimedia',
+  originalFileName: null,
+  sourceUrl:        null,
+  transformReport:  null,
+  aiModified:       false,
+}
 
 interface ContributorDraft {
   form: GroupForm
@@ -62,7 +72,7 @@ export default function ContributorPage() {
           coverFile: null,
           fandomName: editGroup.fandomName ?? '',
           notes: editGroup.notes ?? '',
-          coverCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
+          coverCredit: { ...EMPTY_CREDIT },
         }
       : emptyGroupForm(),
   )
@@ -85,7 +95,7 @@ export default function ContributorPage() {
         resolutionMode: 'existing',
         existingIdolId: m.idolId,
         generatedId: m.idolId,
-        portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
+        portraitCredit: { ...EMPTY_CREDIT },
       }
     })
   })
@@ -157,7 +167,7 @@ export default function ContributorPage() {
         resolutionMode: 'existing' as const,
         existingIdolId: member.idolId,
         generatedId: member.idolId,
-        portraitCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
+        portraitCredit: { ...EMPTY_CREDIT },
       }
     })
   }
@@ -200,7 +210,7 @@ export default function ContributorPage() {
       coverFile: null,
       fandomName: editGroup.fandomName ?? '',
       notes: editGroup.notes ?? '',
-      coverCredit: { sourceType: 'wikimedia' as const, originalFileName: null, transformReport: null },
+      coverCredit: { ...EMPTY_CREDIT },
     })
 
     setMembers(buildEditableMembersFromGroup())
@@ -228,6 +238,59 @@ export default function ContributorPage() {
     setMaxStep(3)
     initializedEditGroupIdRef.current = groupId
   }, [groupId, editGroup, idolMap])
+
+  // ── Chargement des crédits existants depuis credits.json (mode édition) ─────
+
+  useEffect(() => {
+    if (!isEdit || !editGroup) return
+
+    fetch('/dataset/credits.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        const allCredits: AssetCredit[] = data?.credits ?? []
+        if (allCredits.length === 0) return
+
+        // Crédit de la cover du groupe
+        const coverEntry = allCredits.find(
+          (c) => c.entityType === 'group' && c.entityId === editGroup.id && c.assetType === 'cover',
+        )
+        if (coverEntry) {
+          const credit: ImageCreditInput = {
+            sourceType:       coverEntry.sourceType,
+            originalFileName: coverEntry.originalFileName,
+            sourceUrl:        coverEntry.sourceUrl ?? null,
+            transformReport:  null,
+            aiModified:       coverEntry.aiModified ?? false,
+          }
+          setForm((prev) => ({ ...prev, coverCredit: credit }))
+        }
+
+        // Crédits des portraits des idoles
+        setMembers((prev) =>
+          prev.map((m) => {
+            const idolId = m.existingIdolId || m.generatedId
+            if (!idolId) return m
+            const portraitEntry = allCredits.find(
+              (c) => c.entityType === 'idol' && c.entityId === idolId && c.assetType === 'portrait',
+            )
+            if (!portraitEntry) return m
+            return {
+              ...m,
+              portraitCredit: {
+                sourceType:       portraitEntry.sourceType,
+                originalFileName: portraitEntry.originalFileName,
+                sourceUrl:        portraitEntry.sourceUrl ?? null,
+                transformReport:  null,
+                aiModified:       portraitEntry.aiModified ?? false,
+              } satisfies ImageCreditInput,
+            }
+          }),
+        )
+      })
+      .catch(() => {
+        // credits.json peut ne pas encore exister — pas d'erreur
+      })
+  }, [isEdit, editGroup?.id])
 
   function makeDefaultMembersForStructure(nextCategory: GroupCategory, nextParentGroupId: string): EditableMember[] {
     const nextIsSoloist = nextCategory === 'femaleSoloist' || nextCategory === 'maleSoloist'

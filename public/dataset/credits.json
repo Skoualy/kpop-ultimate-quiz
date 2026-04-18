@@ -1,25 +1,59 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-18T10:35:41.370913Z",
+    "lastUpdated": "2026-04-18T19:03:01.739658Z",
     "summary": {
-      "total": 41,
-      "valid": 41,
-      "invalid": 0,
+      "total": 60,
+      "valid": 57,
+      "invalid": 3,
       "bySourceType": {
-        "wikimedia": 41
+        "wikimedia": 60
       },
-      "validationRate": 100.0
+      "validationRate": 95.0
     }
   },
   "credits": [
+    {
+      "id": "group/blackpink/cover",
+      "entityType": "group",
+      "entityId": "blackpink",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Logo_of_Blackpink.svg",
+      "commonsTitle": "File:Logo of Blackpink.svg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo_of_Blackpink.svg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Logo_of_Blackpink.svg",
+      "author": "Original: YG Entertainment Vector:  Lệ Xuân",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
+      "originalImage": {
+        "format": "image/png",
+        "width": 640,
+        "height": 640
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Logo_of_Blackpink.svg / par Original: YG Entertainment Vector:  Lệ Xuân / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
     {
       "id": "group/everglow/cover",
       "entityType": "group",
       "entityId": "everglow",
       "assetType": "cover",
       "sourceType": "wikimedia",
-      "originalFileName": "Everglow_Logo.png",
+      "originalFileName": "Everglow Logo.png",
       "commonsTitle": "File:Everglow Logo.png",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Everglow_Logo.png",
       "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Everglow_Logo.png",
@@ -27,11 +61,8 @@
       "license": "Public domain",
       "licenseUrl": null,
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
       "originalImage": {
         "format": "image/png",
         "width": 1024,
@@ -42,7 +73,7 @@
         "width": 600,
         "height": 600
       },
-      "attribution": "Everglow_Logo.png / par Yuehua Entertainment / (Public domain)",
+      "attribution": "Everglow Logo.png / par Yuehua Entertainment / (Public domain)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -64,11 +95,7 @@
       "license": "Public domain",
       "licenseUrl": null,
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 865,
@@ -101,11 +128,7 @@
       "license": "Public domain",
       "licenseUrl": null,
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 864,
@@ -117,6 +140,74 @@
         "height": 600
       },
       "attribution": "Ive_logo_(1).svg / par Starship Entertainment / Ive / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "group/mamamoo/cover",
+      "entityType": "group",
+      "entityId": "mamamoo",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Logo_of_mamamoo.jpg",
+      "commonsTitle": "File:Logo of mamamoo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo_of_mamamoo.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Logo_of_mamamoo.jpg",
+      "author": "Mamamoo",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": ["recadrage", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 600,
+        "height": 600
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Logo_of_mamamoo.jpg / par Mamamoo / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "group/oh-my-girl/cover",
+      "entityType": "group",
+      "entityId": "oh-my-girl",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "OH_MY_GIRL_Logo.png",
+      "commonsTitle": "File:OH MY GIRL Logo.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:OH_MY_GIRL_Logo.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/OH_MY_GIRL_Logo.png",
+      "author": "WM娛樂",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 1000,
+        "height": 1000
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "OH_MY_GIRL_Logo.png / par WM娛樂 / (Public domain)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -138,11 +229,7 @@
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 500,
@@ -175,11 +262,7 @@
       "license": "Public domain",
       "licenseUrl": null,
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 564,
@@ -212,15 +295,12 @@
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
       "originalImage": {
-        "format": "image/jpeg",
-        "width": 1590,
-        "height": 2048
+        "format": "image/png",
+        "width": 1024,
+        "height": 1237
       },
       "finalImage": {
         "format": "image/webp",
@@ -228,6 +308,40 @@
         "height": 533
       },
       "attribution": "20240127 Everglow Amsterdam concert 110 Aisha.jpg / par Robbie Klinkenberg / (CC BY-SA 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/arin/portrait",
+      "entityType": "idol",
+      "entityId": "arin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20230804_Oh_My_Girl's_Arin_아린_06.png",
+      "commonsTitle": "File:20230804 Oh My Girl's Arin 아린 06.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20230804_Oh_My_Girl's_Arin_아린_06.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/20230804_Oh_My_Girl%27s_Arin_%EC%95%84%EB%A6%B0_06.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 440,
+        "height": 488
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20230804_Oh_My_Girl's_Arin_아린_06.png / par 티비텐 TV10 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -249,11 +363,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 639,
@@ -286,11 +396,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 1316,
@@ -323,11 +429,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -360,11 +462,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 748,
@@ -397,15 +495,12 @@
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
       "originalImage": {
         "format": "image/jpeg",
-        "width": 1932,
-        "height": 2048
+        "width": 1449,
+        "height": 1440
       },
       "finalImage": {
         "format": "image/webp",
@@ -434,11 +529,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 570,
@@ -471,11 +562,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 805,
@@ -508,11 +595,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -545,11 +628,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 1145,
@@ -561,6 +640,74 @@
         "height": 533
       },
       "attribution": "Han_of_Stray_Kids_at_the_40th_Golden_Disc_Awards,_January_10,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/hwasa/portrait",
+      "entityType": "idol",
+      "entityId": "hwasa",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240712_Hwasa_(화사).jpg_(2).jpg",
+      "commonsTitle": "File:20240712 Hwasa (화사).jpg (2).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240712_Hwasa_(화사).jpg_(2).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/20240712_Hwasa_%28%ED%99%94%EC%82%AC%29.jpg_%282%29.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1328,
+        "height": 1763
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240712_Hwasa_(화사).jpg_(2).jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/hyojung/portrait",
+      "entityType": "idol",
+      "entityId": "hyojung",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Hyojung_in_January_2026.png",
+      "commonsTitle": "File:Hyojung in January 2026.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyojung_in_January_2026.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Hyojung_in_January_2026.png",
+      "author": "TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 549,
+        "height": 531
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Hyojung_in_January_2026.png / par TV10 / (CC BY 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -582,11 +729,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 960,
@@ -619,11 +762,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -635,6 +774,74 @@
         "height": 533
       },
       "attribution": "I.N_of_Stray_Kids_at_the_Incheon_Airport,_February_25,_2026_(1).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/j/portrait",
+      "entityType": "idol",
+      "entityId": "j",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "160424_여의도_IFC몰_오마이걸_팬싸인회_진이_01.jpg",
+      "commonsTitle": "File:160424 여의도 IFC몰 오마이걸 팬싸인회 진이 01.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:160424_여의도_IFC몰_오마이걸_팬싸인회_진이_01.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/160424_%EC%97%AC%EC%9D%98%EB%8F%84_IFC%EB%AA%B0_%EC%98%A4%EB%A7%88%EC%9D%B4%EA%B1%B8_%ED%8C%AC%EC%8B%B8%EC%9D%B8%ED%9A%8C_%EC%A7%84%EC%9D%B4_01.jpg",
+      "author": "Lockheed (147 Company)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 960,
+        "height": 1325
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "160424_여의도_IFC몰_오마이걸_팬싸인회_진이_01.jpg / par Lockheed (147 Company) / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jennie/portrait",
+      "entityType": "idol",
+      "entityId": "jennie",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Blackpink's_Jennie_in_Chanel_Coco_Crush,_July_3,_2024_(1).png",
+      "commonsTitle": "File:Blackpink's Jennie in Chanel Coco Crush, July 3, 2024 (1).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blackpink's_Jennie_in_Chanel_Coco_Crush,_July_3,_2024_(1).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Blackpink%27s_Jennie_in_Chanel_Coco_Crush%2C_July_3%2C_2024_%281%29.png",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 1551,
+        "height": 1535
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Blackpink's_Jennie_in_Chanel_Coco_Crush,_July_3,_2024_(1).png / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -656,11 +863,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 810,
@@ -672,6 +875,40 @@
         "height": 533
       },
       "attribution": "TWICE_Jeongyeon_VETERAN_2_September_2024.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jiho/portrait",
+      "entityType": "idol",
+      "entityId": "jiho",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "180929_누리꿈스퀘어_팬사인회_지호_(4).jpg",
+      "commonsTitle": "File:180929 누리꿈스퀘어 팬사인회 지호 (4).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:180929_누리꿈스퀘어_팬사인회_지호_(4).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/180929_%EB%88%84%EB%A6%AC%EA%BF%88%EC%8A%A4%ED%80%98%EC%96%B4_%ED%8C%AC%EC%82%AC%EC%9D%B8%ED%9A%8C_%EC%A7%80%ED%98%B8_%284%29.jpg",
+      "author": "by 현재승희중",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 481,
+        "height": 558
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "180929_누리꿈스퀘어_팬사인회_지호_(4).jpg / par by 현재승희중 / (CC BY 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -693,11 +930,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 1280,
@@ -709,6 +942,40 @@
         "height": 533
       },
       "attribution": "Park_Jihyo_for_Pearly_Gates_Korea_02.jpg / par Pearly Gates Korea / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jisoo/portrait",
+      "entityType": "idol",
+      "entityId": "jisoo",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240226_Kim_Jisoo_김지수_02.jpg",
+      "commonsTitle": "File:20240226 Kim Jisoo 김지수 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240226_Kim_Jisoo_김지수_02.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/20240226_Kim_Jisoo_%EA%B9%80%EC%A7%80%EC%88%98_02.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1135,
+        "height": 1342
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240226_Kim_Jisoo_김지수_02.jpg / par 티비텐 TV10 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -730,11 +997,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 960,
@@ -767,11 +1030,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -804,11 +1063,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -820,6 +1075,40 @@
         "height": 533
       },
       "attribution": "Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony,_January_8,_2026_(2).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/lisa/portrait",
+      "entityType": "idol",
+      "entityId": "lisa",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240314_Lisa_Manoban_13.jpg",
+      "commonsTitle": "File:20240314 Lisa Manoban 13.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240314_Lisa_Manoban_13.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/20240314_Lisa_Manoban_13.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 982,
+        "height": 1172
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240314_Lisa_Manoban_13.jpg / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -841,15 +1130,12 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
       "originalImage": {
         "format": "image/jpeg",
-        "width": 640,
-        "height": 906
+        "width": 1024,
+        "height": 1536
       },
       "finalImage": {
         "format": "image/webp",
@@ -878,15 +1164,12 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
       "originalImage": {
-        "format": "image/jpeg",
+        "format": "image/png",
         "width": 1552,
-        "height": 2049
+        "height": 1769
       },
       "finalImage": {
         "format": "image/webp",
@@ -894,6 +1177,40 @@
         "height": 533
       },
       "attribution": "MiaEverglow.png / par NINE STARS / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/mimi/portrait",
+      "entityType": "idol",
+      "entityId": "mimi",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Kim_Mi-hyun_(김미현)_210522.jpg",
+      "commonsTitle": "File:Kim Mi-hyun (김미현) 210522.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_Mi-hyun_(김미현)_210522.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Kim_Mi-hyun_%28%EA%B9%80%EB%AF%B8%ED%98%84%29_210522.jpg",
+      "author": "SBS Radio",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1415,
+        "height": 1685
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Kim_Mi-hyun_(김미현)_210522.jpg / par SBS Radio / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -915,11 +1232,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 684,
@@ -952,11 +1265,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 1620,
@@ -968,6 +1277,40 @@
         "height": 533
       },
       "attribution": "TWICE_MOMO_April_2024.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/moonbyul/portrait",
+      "entityType": "idol",
+      "entityId": "moonbyul",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Moonbyul l210502.png",
+      "commonsTitle": "File:Moonbyul l210502.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moonbyul_l210502.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Moonbyul_l210502.png",
+      "author": "BRANDNEW MUSIC",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
+      "originalImage": {
+        "format": "image/png",
+        "width": 1024,
+        "height": 1536
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Moonbyul l210502.png / par BRANDNEW MUSIC / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -989,11 +1332,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 771,
@@ -1026,11 +1365,7 @@
       "license": "CC BY 1.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 888,
@@ -1063,11 +1398,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -1079,6 +1410,40 @@
         "height": 533
       },
       "attribution": "Ive's_Rei_at_Ralph_Lauren_Hannam_store_opening,_26_March_2025_02.png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/rose/portrait",
+      "entityType": "idol",
+      "entityId": "rose",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Blackpink_Rosé_Rimowa_2.jpg",
+      "commonsTitle": "File:Blackpink Rosé Rimowa 2.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blackpink_Rosé_Rimowa_2.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Blackpink_Ros%C3%A9_Rimowa_2.jpg",
+      "author": "TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 699,
+        "height": 938
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Blackpink_Rosé_Rimowa_2.jpg / par TV10 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1100,11 +1465,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 640,
@@ -1116,6 +1477,40 @@
         "height": 533
       },
       "attribution": "20220121—Sana_사나_Campaign_Film,_Pearlygates_x_Twice_2022.jpg / par 파리게이츠 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/seunghee/portrait",
+      "entityType": "idol",
+      "entityId": "seunghee",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "220618_오마이걸_승희.jpg",
+      "commonsTitle": "File:220618 오마이걸 승희.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:220618_오마이걸_승희.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/220618_%EC%98%A4%EB%A7%88%EC%9D%B4%EA%B1%B8_%EC%8A%B9%ED%9D%AC.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 790,
+        "height": 1276
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "220618_오마이걸_승희.jpg / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1137,11 +1532,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -1174,11 +1565,7 @@
       "license": "CC BY 1.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 960,
@@ -1211,11 +1598,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 787,
@@ -1227,6 +1610,40 @@
         "height": 533
       },
       "attribution": "SinB_August_2024_(3x4_cropped).jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/solar/portrait",
+      "entityType": "idol",
+      "entityId": "solar",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Mamamoo_솔라(Solar)_in_May_2024_02.png",
+      "commonsTitle": "File:Mamamoo 솔라(Solar) in May 2024 02.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mamamoo_솔라(Solar)_in_May_2024_02.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Mamamoo_%EC%86%94%EB%9D%BC%28Solar%29_in_May_2024_02.png",
+      "author": "SBS Radio 에라오",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 1972,
+        "height": 2739
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Mamamoo_솔라(Solar)_in_May_2024_02.png / par SBS Radio 에라오 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1248,11 +1665,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 960,
@@ -1285,11 +1698,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 1049,
@@ -1322,11 +1731,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 387,
@@ -1338,6 +1743,40 @@
         "height": 533
       },
       "attribution": "Umji_August_2024_(3x4_cropped).jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/wheein/portrait",
+      "entityType": "idol",
+      "entityId": "wheein",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Wheein_in_2022.jpg",
+      "commonsTitle": "File:Wheein in 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wheein_in_2022.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Wheein_in_2022.jpg",
+      "author": "THEL1VE",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": true,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Wheein_in_2022.jpg / par THEL1VE / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1359,11 +1798,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -1396,11 +1831,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 832,
@@ -1433,11 +1864,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 1280,
@@ -1449,6 +1876,74 @@
         "height": 533
       },
       "attribution": "220109_Everglow_Yiren_Return_of_the_Girl_Fansign.png / par mang2goon / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yooa/portrait",
+      "entityType": "idol",
+      "entityId": "yooa",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "240824_Oh_My_Girl_Yooa_@Han_River_Busking.jpg",
+      "commonsTitle": "File:240824 Oh My Girl Yooa @Han River Busking.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:240824_Oh_My_Girl_Yooa_@Han_River_Busking.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/240824_Oh_My_Girl_Yooa_%40Han_River_Busking.jpg",
+      "author": "sublimitas viii",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1793,
+        "height": 1531
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "240824_Oh_My_Girl_Yooa_@Han_River_Busking.jpg / par sublimitas viii / (CC BY-SA 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yubin/portrait",
+      "entityType": "idol",
+      "entityId": "yubin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "230108_WKBL_올스타전_유빈_(1).jpg",
+      "commonsTitle": "File:230108 WKBL 올스타전 유빈 (1).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:230108_WKBL_올스타전_유빈_(1).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/230108_WKBL_%EC%98%AC%EC%8A%A4%ED%83%80%EC%A0%84_%EC%9C%A0%EB%B9%88_%281%29.jpg",
+      "author": "코코볼",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1074,
+        "height": 978
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "230108_WKBL_올스타전_유빈_(1).jpg / par 코코볼 / (CC BY 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1470,11 +1965,7 @@
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/png",
         "width": 640,
@@ -1507,11 +1998,7 @@
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": true,
-      "modifications": [
-        "recadrage",
-        "redimensionnement",
-        "conversion webp"
-      ],
+      "modifications": ["recadrage", "redimensionnement", "conversion webp"],
       "originalImage": {
         "format": "image/jpeg",
         "width": 640,

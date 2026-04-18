@@ -55,8 +55,19 @@ def _strip_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text).strip()
 
 
+def _normalize_wikimedia_filename(filename: str) -> str:
+    """Retire le suffixe .png parasite des fichiers SVG exportés par Wikimedia.
+    Ex: 'File:Logo.svg.png' → 'File:Logo.svg'
+    """
+    if filename.endswith('.svg.png'):
+        return filename[:-4]  # retire '.png'
+    return filename
+
+
 def query_wikimedia(filename: str) -> Optional[dict]:
-    title = filename if filename.startswith("File:") else f"File:{filename}"
+    filename = _normalize_wikimedia_filename(filename)
+    clean_filename = filename[:-4] if filename.endswith('.svg.png') else filename
+    title = clean_filename if clean_filename.startswith("File:") else f"File:{clean_filename}"
     params = {
         "action": "query", "format": "json", "titles": title,
         "prop": "imageinfo", "iiprop": "url|user|extmetadata",
@@ -158,8 +169,11 @@ def _process_credit_entry(raw: dict, group_id: str) -> dict:
     asset_type       = raw.get("assetType", "cover")
     credit_input     = raw.get("creditInput", {})
     source_type      = credit_input.get("sourceType", "unknown")
-    original_fname   = credit_input.get("originalFileName")
+    _raw_fname       = credit_input.get("originalFileName")
+    original_fname   = _normalize_wikimedia_filename(_raw_fname) if _raw_fname else None
     transform_report = credit_input.get("transformReport")
+    ai_modified      = bool(credit_input.get("aiModified", False))
+    input_source_url = credit_input.get("sourceUrl")
 
     modifications = []
     if transform_report:
@@ -178,6 +192,8 @@ def _process_credit_entry(raw: dict, group_id: str) -> dict:
         "author":           None, "license":   None, "licenseUrl": None,
         "modified":         bool(modifications),
         "modifications":    modifications,
+        "aiModified":       ai_modified,
+        "sourceUrl":        input_source_url if source_type == "other" else None,
         "originalImage":    _build_image_dims(transform_report, "original"),
         "finalImage":       _build_image_dims(transform_report, "final"),
         "attribution":      None,
