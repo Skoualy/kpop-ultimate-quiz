@@ -1,18 +1,55 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-17T22:21:00.516488Z",
+    "lastUpdated": "2026-04-18T10:35:41.370913Z",
     "summary": {
-      "total": 34,
-      "valid": 33,
-      "invalid": 1,
+      "total": 41,
+      "valid": 41,
+      "invalid": 0,
       "bySourceType": {
-        "wikimedia": 34
+        "wikimedia": 41
       },
-      "validationRate": 97.1
+      "validationRate": 100.0
     }
   },
   "credits": [
+    {
+      "id": "group/everglow/cover",
+      "entityType": "group",
+      "entityId": "everglow",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Everglow_Logo.png",
+      "commonsTitle": "File:Everglow Logo.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Everglow_Logo.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Everglow_Logo.png",
+      "author": "Yuehua Entertainment",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Everglow_Logo.png / par Yuehua Entertainment / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
     {
       "id": "group/gfriend/cover",
       "entityType": "group",
@@ -28,12 +65,14 @@
       "licenseUrl": null,
       "modified": true,
       "modifications": [
-        "recadrage"
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
       ],
       "originalImage": {
-        "format": "image/webp",
-        "width": 600,
-        "height": 600
+        "format": "image/png",
+        "width": 865,
+        "height": 865
       },
       "finalImage": {
         "format": "image/webp",
@@ -54,11 +93,11 @@
       "entityId": "ive",
       "assetType": "cover",
       "sourceType": "wikimedia",
-      "originalFileName": "Ive_Logo.jpg",
-      "commonsTitle": "File:Ive Logo.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ive_Logo.jpg",
-      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Ive_Logo.jpg",
-      "author": "Starship Entertainment",
+      "originalFileName": "Ive_logo_(1).svg",
+      "commonsTitle": "File:Ive logo (1).svg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ive_logo_(1).svg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Ive_logo_%281%29.svg",
+      "author": "Starship Entertainment / Ive",
       "license": "Public domain",
       "licenseUrl": null,
       "modified": true,
@@ -68,23 +107,21 @@
         "conversion webp"
       ],
       "originalImage": {
-        "format": "image/jpeg",
-        "width": 640,
-        "height": 640
+        "format": "image/png",
+        "width": 864,
+        "height": 864
       },
       "finalImage": {
         "format": "image/webp",
         "width": 600,
         "height": 600
       },
-      "attribution": "Ive_Logo.jpg / par Starship Entertainment / (Public domain)",
+      "attribution": "Ive_logo_(1).svg / par Starship Entertainment / Ive / (Public domain)",
       "validation": {
-        "isValid": false,
-        "status": "missing_license_url",
+        "isValid": true,
+        "status": "ok",
         "errors": [],
-        "warnings": [
-          "URL de licence manquante"
-        ]
+        "warnings": []
       }
     },
     {
@@ -154,6 +191,43 @@
         "height": 600
       },
       "attribution": "TWICE_LOGO.jpg / par love to hate me / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/aisha/portrait",
+      "entityType": "idol",
+      "entityId": "aisha",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240127 Everglow Amsterdam concert 110 Aisha.jpg",
+      "commonsTitle": "File:20240127 Everglow Amsterdam concert 110 Aisha.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240127_Everglow_Amsterdam_concert_110_Aisha.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/d/de/20240127_Everglow_Amsterdam_concert_110_Aisha.jpg",
+      "author": "Robbie Klinkenberg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1590,
+        "height": 2048
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240127 Everglow Amsterdam concert 110 Aisha.jpg / par Robbie Klinkenberg / (CC BY-SA 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -302,6 +376,43 @@
         "height": 533
       },
       "attribution": "20220121—Dahyun_다현_Campaign_Film,_Pearlygates_x_Twice_2022.jpg / par 파리게이츠 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/e-u/portrait",
+      "entityType": "idol",
+      "entityId": "e-u",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "20240127 Everglow Amsterdam concert 064 EU.jpg",
+      "commonsTitle": "File:20240127 Everglow Amsterdam concert 064 EU.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20240127_Everglow_Amsterdam_concert_064_EU.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/20240127_Everglow_Amsterdam_concert_064_EU.jpg",
+      "author": "Robbie Klinkenberg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1932,
+        "height": 2048
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "20240127 Everglow Amsterdam concert 064 EU.jpg / par Robbie Klinkenberg / (CC BY-SA 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -754,6 +865,43 @@
       }
     },
     {
+      "id": "idol/mia/portrait",
+      "entityType": "idol",
+      "entityId": "mia",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "MiaEverglow.png",
+      "commonsTitle": "File:MiaEverglow.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MiaEverglow.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/MiaEverglow.png",
+      "author": "NINE STARS",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 1552,
+        "height": 2049
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "MiaEverglow.png / par NINE STARS / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/mina/portrait",
       "entityType": "idol",
       "entityId": "mina",
@@ -865,6 +1013,43 @@
       }
     },
     {
+      "id": "idol/onda/portrait",
+      "entityType": "idol",
+      "entityId": "onda",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "251207_Everglow_Hong_Kong_fanmeeting_Onda_(4).jpg",
+      "commonsTitle": "File:251207 Everglow Hong Kong fanmeeting Onda (4).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:251207_Everglow_Hong_Kong_fanmeeting_Onda_(4).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/251207_Everglow_Hong_Kong_fanmeeting_Onda_%284%29.jpg",
+      "author": "Syeononda",
+      "license": "CC BY 1.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 888,
+        "height": 1364
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "251207_Everglow_Hong_Kong_fanmeeting_Onda_(4).jpg / par Syeononda / (CC BY 1.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/rei/portrait",
       "entityType": "idol",
       "entityId": "rei",
@@ -968,6 +1153,43 @@
         "height": 533
       },
       "attribution": "Seungmin_of_Stray_Kids,_March_20,_2025.png / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/sihyeon/portrait",
+      "entityType": "idol",
+      "entityId": "sihyeon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "251207_Everglow_Hong_Kong_fanmeeting_Sihyeon_(2).jpg",
+      "commonsTitle": "File:251207 Everglow Hong Kong fanmeeting Sihyeon (2).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:251207_Everglow_Hong_Kong_fanmeeting_Sihyeon_(2).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/251207_Everglow_Hong_Kong_fanmeeting_Sihyeon_%282%29.jpg",
+      "author": "Syeononda",
+      "license": "CC BY 1.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 960,
+        "height": 1440
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "251207_Everglow_Hong_Kong_fanmeeting_Sihyeon_(2).jpg / par Syeononda / (CC BY 1.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -1190,6 +1412,43 @@
         "height": 533
       },
       "attribution": "230825_YERIN(예린)_뮤직뱅크_출근길.jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yiren/portrait",
+      "entityType": "idol",
+      "entityId": "yiren",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "220109_Everglow_Yiren_Return_of_the_Girl_Fansign.png",
+      "commonsTitle": "File:220109 Everglow Yiren Return of the Girl Fansign.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:220109_Everglow_Yiren_Return_of_the_Girl_Fansign.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/220109_Everglow_Yiren_Return_of_the_Girl_Fansign.png",
+      "author": "mang2goon",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "originalImage": {
+        "format": "image/png",
+        "width": 1280,
+        "height": 1577
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "220109_Everglow_Yiren_Return_of_the_Girl_Fansign.png / par mang2goon / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",

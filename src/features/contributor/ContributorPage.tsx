@@ -321,14 +321,17 @@ export default function ContributorPage() {
 
   function buildCredits(
     groupId: string,
-    coverImage: string,
+    coverFile: File | null,
     coverCredit: GroupForm['coverCredit'],
     normalizedMembersList: EditableMember[],
     idolsBlockList: Array<{ id: string; portrait: string | null }>,
   ): BundleCreditEntry[] {
     const credits: BundleCreditEntry[] = []
 
-    if (coverImage && coverCredit) {
+    // N'inclure le crédit cover QUE si une nouvelle image a été uploadée.
+    // En mode édition sans changement d'image, coverFile est null →
+    // le crédit existant dans credits.json est préservé (pas d'upsert).
+    if (coverFile && coverCredit) {
       credits.push({ entityType: 'group', entityId: groupId, assetType: 'cover', creditInput: coverCredit })
     }
 
@@ -336,7 +339,10 @@ export default function ContributorPage() {
       const member = normalizedMembersList.find(
         (m) => (m.resolutionMode === 'existing' && m.existingIdolId === idol.id) || m.generatedId === idol.id,
       )
-      if (member?.portrait && member.portraitCredit && idol.id) {
+      // N'inclure le crédit portrait QUE si une nouvelle image a été uploadée
+      // (portraitFile !== null). Si l'image n'a pas été modifiée, portraitFile
+      // est null → le crédit validé existant dans credits.json est préservé.
+      if (member?.portraitFile && member.portraitCredit && idol.id) {
         credits.push({
           entityType: 'idol',
           entityId: idol.id,
@@ -415,7 +421,7 @@ export default function ContributorPage() {
       group: groupBlock,
       idols: idolsBlock.map(({ _file, ...idol }) => idol),
       newLabels,
-      credits: buildCredits(form.id, form.coverImage, form.coverCredit, normalizedMembers, idolsBlock),
+      credits: buildCredits(form.id, form.coverFile, form.coverCredit, normalizedMembers, idolsBlock),
     }
 
     const groupJson = JSON.stringify(bundleData, null, 2)
