@@ -7,48 +7,67 @@
   "debutYear": 2022,
   "status": "active",
   "company": "JYP Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/nmixx/cover.webp",
   "members": [
-    {
-      "idolId": "lily",
-      "status": "current",
-      "roles": [
-        "vocal"
-      ]
-    },
     {
       "idolId": "haewon",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainVocal",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "j-2",
+      "status": "former",
+      "roles": [
+        "vocal",
+        "rapper",
+        "dancer"
+      ]
+    },
+    {
+      "idolId": "lily",
+      "status": "current",
+      "roles": [
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "sullyoon",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "bae",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer"
       ]
     },
     {
       "idolId": "jiwoo-2",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "dancer"
       ]
     },
     {
       "idolId": "kyujin",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer",
+        "rapper",
+        "maknae"
       ]
     }
   ],
@@ -57,63 +76,108 @@
       {
         "id": "o-o",
         "title": "O.O",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+O.O+MV",
+        "youtubeUrl": "https://youtu.be/3GWscde8rM8?si=tX-3EQeYzz1x1m4Z",
         "isDebutSong": true
+      },
+      {
+        "id": "love-is-lonely",
+        "title": "Love Is Lonely",
+        "youtubeUrl": "https://youtu.be/zhrT1cmQ9zA?si=5ewZbQfYLzUe7SvN"
+      },
+      {
+        "id": "roller-coaster",
+        "title": "Roller Coaster",
+        "youtubeUrl": "https://youtu.be/fqBAzCH4-9g?si=6AfyOlrQ2nPtMPgi"
+      },
+      {
+        "id": "cool",
+        "title": "Cool",
+        "youtubeUrl": "https://youtu.be/4wKU9oIXnTI?si=PL3U4upsRRioPpY9"
+      },
+      {
+        "id": "reality-hurts",
+        "title": "Reality Hurts",
+        "youtubeUrl": "https://youtu.be/y4LlcShv9xs?si=NoAfOVfvRcDxGPCI"
+      },
+      {
+        "id": "blue-valentine",
+        "title": "Blue Valentine",
+        "youtubeUrl": "https://youtu.be/EmeW6li6bbo?si=w9U2TLsZZzGYqOtV"
+      },
+      {
+        "id": "know-about-me",
+        "title": "Know About Me",
+        "youtubeUrl": "https://youtu.be/aFrQIJ5cbRc?si=8sEAh0Vamyvy2pM2"
       },
       {
         "id": "dice",
         "title": "Dice",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Dice+MV"
+        "youtubeUrl": "https://youtu.be/p1bjnyDqI9k?si=7C6AhMuAM9ylfqQL"
       },
       {
         "id": "young-dumb-stupid",
         "title": "Young Dumb Stupid",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Young+Dumb+Stupid+MV"
+        "youtubeUrl": "https://youtu.be/5eh6Vj_vVg4?si=5DeeouvXBD6717h1"
       },
       {
         "id": "love-me-like-this",
         "title": "Love Me Like This",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Love+Me+Like+This+MV"
-      },
-      {
-        "id": "party-o-clock",
-        "title": "Party O Clock",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Party+O+Clock+MV"
-      },
-      {
-        "id": "sonar-breaker",
-        "title": "Sonar Breaker",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Sonar+Breaker+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "tank",
-        "title": "Tank",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Tank+MV"
-      },
-      {
-        "id": "paxxword",
-        "title": "PAXXWORD",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+PAXXWORD+MV"
-      },
-      {
-        "id": "cool",
-        "title": "COOL",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+COOL+MV"
-      },
-      {
-        "id": "dash",
-        "title": "Dash",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Dash+MV"
+        "youtubeUrl": "https://youtu.be/EDnwWcFpObo?si=SgbSb4vjLnDh00-6"
       },
       {
         "id": "secret-of-sweet-oasis",
         "title": "Secret Of Sweet Oasis",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=NMIXX+Secret+Of+Sweet+Oasis+MV"
+        "youtubeUrl": "https://youtu.be/H8nXC5KzfbQ?si=GlG1ZipbVZC6P8Zo"
+      },
+      {
+        "id": "party-o-clock",
+        "title": "Party O Clock",
+        "youtubeUrl": "https://youtu.be/Rd2wppggYxo?si=F-dZD2lq7Dl17Nib"
+      },
+      {
+        "id": "sonar-breaker",
+        "title": "Sonar Breaker",
+        "youtubeUrl": "https://youtu.be/MMtRxcy8PX0?si=ZQIoQiE4v2Lc9c8Y"
+      },
+      {
+        "id": "paxxword",
+        "title": "PAXXWORD",
+        "youtubeUrl": "https://youtu.be/lH_n29wkT_4?si=-UJN1J0-vxI8uBTK"
+      },
+      {
+        "id": "dash",
+        "title": "Dash",
+        "youtubeUrl": "https://youtu.be/7UecFm_bSTU?si=Ir9ODjY4JTyh712N"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "boom",
+        "title": "BOOM",
+        "youtubeUrl": "https://youtu.be/h-7ag-IkUdE?si=77pSEsMrTsKjzpu8"
+      },
+      {
+        "id": "beat-beat",
+        "title": "BEAT BEAT",
+        "youtubeUrl": "https://youtu.be/zaXETgj2a0U?si=w0hvGriGXfPcAZxD"
+      },
+      {
+        "id": "xoxo",
+        "title": "XOXO",
+        "youtubeUrl": "https://youtu.be/FjMmFPLpScU?si=YbfWrRzi7xAMoZ9c"
+      },
+      {
+        "id": "tank",
+        "title": "Tank",
+        "youtubeUrl": "https://youtu.be/lSqWEhrSZAM?si=YPiHj88N6_aq9gSG"
+      },
+      {
+        "id": "run-for-roses",
+        "title": "Run For Roses",
+        "youtubeUrl": "https://youtu.be/j6tKIdt9K9M?si=P98pZ7NSyj0ynAV3"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "NSWER",
   "notes": null
 }

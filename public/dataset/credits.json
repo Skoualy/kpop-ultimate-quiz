@@ -1,16 +1,16 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-19T00:54:35.557028Z",
+    "lastUpdated": "2026-04-19T11:57:09.000826Z",
     "summary": {
-      "total": 95,
-      "valid": 89,
+      "total": 103,
+      "valid": 97,
       "invalid": 6,
       "bySourceType": {
         "other": 2,
-        "wikimedia": 93
+        "wikimedia": 101
       },
-      "validationRate": 93.7
+      "validationRate": 94.2
     }
   },
   "credits": [
@@ -358,6 +358,44 @@
       }
     },
     {
+      "id": "group/nmixx/cover",
+      "entityType": "group",
+      "entityId": "nmixx",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "NMIXX_logo.svg",
+      "commonsTitle": "File:NMIXX logo.svg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:NMIXX_logo.svg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/NMIXX_logo.svg",
+      "author": "Original: SM Entertainment Vector:  lannne",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 700,
+        "height": 700
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "NMIXX_logo.svg / par Original: SM Entertainment Vector:  lannne / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "group/oh-my-girl/cover",
       "entityType": "group",
       "entityId": "oh-my-girl",
@@ -608,6 +646,44 @@
         "errors": [
           "originalFileName requis pour source wikimedia"
         ],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/bae/portrait",
+      "entityType": "idol",
+      "entityId": "bae",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "250627_Bae_(NMIXX)_Airport_Departure.jpg",
+      "commonsTitle": "File:250627 Bae (NMIXX) Airport Departure.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:250627_Bae_(NMIXX)_Airport_Departure.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/250627_Bae_%28NMIXX%29_Airport_Departure.jpg",
+      "author": "티비텐 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 748,
+        "height": 1003
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "250627_Bae_(NMIXX)_Airport_Departure.jpg / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
         "warnings": []
       }
     },
@@ -1133,6 +1209,44 @@
       }
     },
     {
+      "id": "idol/haewon/portrait",
+      "entityType": "idol",
+      "entityId": "haewon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Haewon_for_Marie_Claire_Korea.jpg",
+      "commonsTitle": "File:Haewon for Marie Claire Korea.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Haewon_for_Marie_Claire_Korea.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Haewon_for_Marie_Claire_Korea.jpg",
+      "author": "Marie Claire Korea",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 2160,
+        "height": 2160
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Haewon_for_Marie_Claire_Korea.jpg / par Marie Claire Korea / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/han/portrait",
       "entityType": "idol",
       "entityId": "han",
@@ -1510,6 +1624,44 @@
       }
     },
     {
+      "id": "idol/j-2/portrait",
+      "entityType": "idol",
+      "entityId": "j-2",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Jini_at_the_Seoul_Fashion_Week_2024_02.jpg",
+      "commonsTitle": "File:Jini at the Seoul Fashion Week 2024 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jini_at_the_Seoul_Fashion_Week_2024_02.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jini_at_the_Seoul_Fashion_Week_2024_02.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 960,
+        "height": 1365
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Jini_at_the_Seoul_Fashion_Week_2024_02.jpg / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/jennie/portrait",
       "entityType": "idol",
       "entityId": "jennie",
@@ -1774,6 +1926,44 @@
       }
     },
     {
+      "id": "idol/jiwoo-2/portrait",
+      "entityType": "idol",
+      "entityId": "jiwoo-2",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Jiwoo_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg",
+      "commonsTitle": "File:Jiwoo di Musinsa Beauty Festa Pop-Up Store 2025.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jiwoo_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Jiwoo_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg",
+      "author": "티비텐 TV10 TV10",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 650,
+        "height": 818
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Jiwoo_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg / par 티비텐 TV10 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/joy/portrait",
       "entityType": "idol",
       "entityId": "joy",
@@ -1877,6 +2067,44 @@
       }
     },
     {
+      "id": "idol/kyujin/portrait",
+      "entityType": "idol",
+      "entityId": "kyujin",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "250627_Kyujin_(NMIXX)_Airport_Departure.jpg",
+      "commonsTitle": "File:250627 Kyujin (NMIXX) Airport Departure.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:250627_Kyujin_(NMIXX)_Airport_Departure.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/250627_Kyujin_%28NMIXX%29_Airport_Departure.jpg",
+      "author": "https://www.youtube.com/@_TV10",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 816,
+        "height": 1088
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "250627_Kyujin_(NMIXX)_Airport_Departure.jpg / par https://www.youtube.com/@_TV10 / (CC BY-SA 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/lee-know/portrait",
       "entityType": "idol",
       "entityId": "lee-know",
@@ -1943,6 +2171,44 @@
         "height": 533
       },
       "attribution": "Leeseo_of_Ive_at_the_HAHS_Graduation_Ceremony,_January_8,_2026_(2).png / par 티비텐 TV10 / (CC BY 4.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/lily/portrait",
+      "entityType": "idol",
+      "entityId": "lily",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "NMIXX's_Lily_2023.png",
+      "commonsTitle": "File:NMIXX's Lily 2023.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:NMIXX's_Lily_2023.png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/NMIXX%27s_Lily_2023.png",
+      "author": "Marie Claire Korea",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 499,
+        "height": 616
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "NMIXX's_Lily_2023.png / par Marie Claire Korea / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -2935,6 +3201,44 @@
         "height": 533
       },
       "attribution": "20230905_(G)i-dle's_Soyeon_03.png / par 티비텐 TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/sullyoon/portrait",
+      "entityType": "idol",
+      "entityId": "sullyoon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Sullyoon_(설윤)_2024_06.jpg",
+      "commonsTitle": "File:Sullyoon (설윤) 2024 06.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sullyoon_(설윤)_2024_06.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Sullyoon_%28%EC%84%A4%EC%9C%A4%29_2024_06.jpg",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 607,
+        "height": 719
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Sullyoon_(설윤)_2024_06.jpg / par 티비텐 / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",

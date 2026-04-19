@@ -68,7 +68,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/bae/portrait.webp",
+    "portrait": "/assets/idols/bae/portrait.webp",
     "notes": null
   },
   {
@@ -410,7 +410,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/haewon/portrait.webp",
+    "portrait": "/assets/idols/haewon/portrait.webp",
     "notes": null
   },
   {
@@ -636,6 +636,15 @@
     "gender": "f",
     "nationality": "kr",
     "portrait": "/assets/idols/j/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "j-2",
+    "name": "Jini",
+    "primaryGroupId": "nmixx",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "/assets/idols/j-2/portrait.webp",
     "notes": null
   },
   {
@@ -869,7 +878,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jiwoo-2/portrait.webp",
+    "portrait": "/assets/idols/jiwoo-2/portrait.webp",
     "notes": null
   },
   {
@@ -1058,7 +1067,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/kyujin/portrait.webp",
+    "portrait": "/assets/idols/kyujin/portrait.webp",
     "notes": null
   },
   {
@@ -1103,7 +1112,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "au",
-    "portrait": "../../assets/idols/lily/portrait.webp",
+    "portrait": "/assets/idols/lily/portrait.webp",
     "notes": null
   },
   {
@@ -1697,7 +1706,7 @@
     "primaryGroupId": "nmixx",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/sullyoon/portrait.webp",
+    "portrait": "/assets/idols/sullyoon/portrait.webp",
     "notes": null
   },
   {
