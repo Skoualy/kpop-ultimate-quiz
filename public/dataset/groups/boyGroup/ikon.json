@@ -6,34 +6,41 @@
   "generation": "3",
   "debutYear": 2015,
   "status": "active",
-  "company": "YG Entertainment",
-  "coverImage": null,
+  "company": "143 ENTERTAINMENT",
+  "coverImage": "/assets/groups/ikon/cover.webp",
   "members": [
     {
       "idolId": "jinhwan",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer",
+        "leader"
       ]
     },
     {
       "idolId": "yunhyeong",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "visual"
       ]
     },
     {
       "idolId": "bobby",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "visual"
       ]
     },
     {
       "idolId": "donghyuk",
       "status": "current",
       "roles": [
+        "mainDancer",
         "vocal"
       ]
     },
@@ -41,21 +48,25 @@
       "idolId": "jun-e",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "dancer"
       ]
     },
     {
       "idolId": "chanwoo",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "maknae"
       ]
     },
     {
       "idolId": "b-i",
       "status": "former",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer",
+        "rapper"
       ]
     }
   ],
@@ -64,73 +75,113 @@
       {
         "id": "my-type",
         "title": "My Type",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+My+Type+MV",
+        "youtubeUrl": "https://youtu.be/ZS6vfv4sszg?si=urhtDVQaoLxvaBdK",
         "isDebutSong": true
+      },
+      {
+        "id": "but-you",
+        "title": "But You",
+        "youtubeUrl": "https://youtu.be/r5n1GCY-nYQ?si=YF2y6Tn_zDScJtjB"
+      },
+      {
+        "id": "panorama",
+        "title": "Panorama",
+        "youtubeUrl": "https://youtu.be/DZMvTz5ixYo?si=IGpvmYx9qMXhVwGj"
+      },
+      {
+        "id": "why-why-why",
+        "title": "Why Why Why",
+        "youtubeUrl": "https://youtu.be/DslHQto2V7I?si=LkDEHwrdlsA2c32b"
+      },
+      {
+        "id": "u-mad",
+        "title": "U Mad",
+        "youtubeUrl": "https://youtu.be/DGXbNENEpwM?si=L9T8LQwZJXTYS7r7"
+      },
+      {
+        "id": "dive",
+        "title": "Dive",
+        "youtubeUrl": "https://youtu.be/brP5M0o4hi8?si=0R913LlrSYubR8SU"
+      },
+      {
+        "id": "goodbye-road",
+        "title": "Goodbye Road",
+        "youtubeUrl": "https://youtu.be/2O6dRaBbFoo?si=AdFkpzqthICjUlq6"
+      },
+      {
+        "id": "b-day",
+        "title": "B-Day",
+        "youtubeUrl": "https://youtu.be/DvDPinu7pVY?si=PS-bJaEpwSsyMg2g"
+      },
+      {
+        "id": "athem",
+        "title": "ATHEM",
+        "youtubeUrl": "https://youtu.be/qdD7ciXKfzE?si=A6RWjH4OmuyXBqQq"
       },
       {
         "id": "rhythm-ta",
         "title": "Rhythm Ta",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Rhythm+Ta+MV"
+        "youtubeUrl": "https://youtu.be/tYI5CriE6XU?si=aTdpVV2EBbZU6pKK"
       },
       {
-        "id": "dumb-dumber",
+        "id": "dumb-and-dumber",
         "title": "Dumb & Dumber",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Dumb+%26+Dumber+MV"
+        "youtubeUrl": "https://youtu.be/QjZkpm7_kRk?si=iThoyRl7COvkdePv"
       },
       {
         "id": "apology",
         "title": "Apology",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Apology+MV"
+        "youtubeUrl": "https://youtu.be/blSCDrx0CDA?si=H_JyloKUzEQher-I"
       },
       {
         "id": "what-s-wrong",
         "title": "What's Wrong",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+What%27s+Wrong+MV"
+        "youtubeUrl": "https://youtu.be/KS2UujCafvQ?si=-ixnniJSJsfNjQDZ"
       },
       {
         "id": "bling-bling",
         "title": "Bling Bling",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Bling+Bling+MV"
+        "youtubeUrl": "https://youtu.be/GUFw8wTzF_I?si=T9htZdXWVmOLj8jO"
       },
       {
         "id": "love-scenario",
         "title": "Love Scenario",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Love+Scenario+MV"
+        "youtubeUrl": "https://youtu.be/vecSVX1QYbQ?si=sQHswf3GmUywSY-_"
+      },
+      {
+        "id": "airplane",
+        "title": "Airplane",
+        "youtubeUrl": "https://youtu.be/ORzHsIWx8UQ?si=Q0p2YS1PTfwP4fQC"
       },
       {
         "id": "killing-me",
         "title": "Killing Me",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Killing+Me+MV"
+        "youtubeUrl": "https://youtu.be/RyVS7R9PN6U?si=uTIc1WOtCVY5NnwD"
       }
     ],
     "bSides": [
       {
-        "id": "airplane",
-        "title": "Airplane",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Airplane+MV"
-      },
-      {
         "id": "best-friend",
         "title": "Best Friend",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Best+Friend+MV"
+        "youtubeUrl": "https://youtu.be/k71q9jOuYIo?si=UGpMUwPtliX7fk-t"
       },
       {
         "id": "don-t-let-me-know",
         "title": "Don't Let Me Know",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Don%27t+Let+Me+Know+MV"
+        "youtubeUrl": "https://youtu.be/_kP_q7Nxa6E?si=CiTdETWa7wSkaXC2"
       },
       {
         "id": "i-miss-you-so-bad",
         "title": "I Miss You So Bad",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+I+Miss+You+So+Bad+MV"
+        "youtubeUrl": "https://youtu.be/cmxHcdFoPRo?si=kD9_jaZTfqyeBVYA"
       },
       {
         "id": "just-go",
         "title": "Just Go",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=iKON+Just+Go+MV"
+        "youtubeUrl": "https://youtu.be/2opr_FFUVgY?si=UuV2jGdzvk6paJx7"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "iKONIC",
   "notes": null
 }

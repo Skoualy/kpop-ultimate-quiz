@@ -7,54 +7,64 @@
   "debutYear": 2012,
   "status": "inactive",
   "company": "FNC Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/aoa/cover.webp",
   "members": [
     {
-      "idolId": "choa",
-      "status": "former",
-      "roles": [
-        "vocal"
-      ]
-    },
-    {
       "idolId": "jimin",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
-      ]
-    },
-    {
-      "idolId": "yuna",
-      "status": "former",
-      "roles": [
-        "vocal"
+        "vocal",
+        "mainRapper",
+        "leader"
       ]
     },
     {
       "idolId": "hyejeong",
-      "status": "former",
+      "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "dancer",
+        "visual"
       ]
     },
     {
-      "idolId": "mina",
-      "status": "former",
-      "roles": [
-        "vocal"
-      ]
-    },
-    {
-      "idolId": "chanmi",
-      "status": "former",
+      "idolId": "yuna",
+      "status": "current",
       "roles": [
         "vocal"
       ]
     },
     {
       "idolId": "seolhyun",
+      "status": "current",
+      "roles": [
+        "vocal",
+        "dancer",
+        "visual"
+      ]
+    },
+    {
+      "idolId": "chanmi",
+      "status": "current",
+      "roles": [
+        "mainDancer",
+        "vocal",
+        "maknae",
+        "rapper"
+      ]
+    },
+    {
+      "idolId": "choa",
       "status": "former",
       "roles": [
+        "mainVocal"
+      ]
+    },
+    {
+      "idolId": "m",
+      "status": "former",
+      "roles": [
+        "rapper",
         "vocal"
       ]
     }
@@ -64,68 +74,78 @@
       {
         "id": "elvis",
         "title": "Elvis",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Elvis+MV",
+        "youtubeUrl": "https://youtu.be/e5KOIrBcwj8?si=6AiPxyV9hi8-_XYc",
         "isDebutSong": true
+      },
+      {
+        "id": "bing-bing",
+        "title": "Bing Bing",
+        "youtubeUrl": "https://youtu.be/e50F8MreYig?si=NYa4HFpRv3BEnztI"
+      },
+      {
+        "id": "good-luck",
+        "title": "Good Luck",
+        "youtubeUrl": "https://youtu.be/gZusjfI8PdQ?si=QIlRWuJwJKMwEVMA"
+      },
+      {
+        "id": "bingle-bangle",
+        "title": "Bingle Bangle",
+        "youtubeUrl": "https://youtu.be/UpvVb5pUEFQ?si=_yj9zLjM8PP7XsoA"
+      },
+      {
+        "id": "come-see-me",
+        "title": "Come See Me",
+        "youtubeUrl": "https://youtu.be/ixxWWKX4S_8?si=AUyO23at-HlzrIEk"
       },
       {
         "id": "confused",
         "title": "Confused",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Confused+MV"
+        "youtubeUrl": "https://youtu.be/R1-BTf3_Mys?si=M4JIfUlDRrK6flsH"
       },
       {
         "id": "miniskirt",
         "title": "Miniskirt",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Miniskirt+MV"
+        "youtubeUrl": "https://youtu.be/q6f-LLM1H6U?si=txBjFnnjpvWuFDjy"
       },
       {
         "id": "short-hair",
         "title": "Short Hair",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Short+Hair+MV"
+        "youtubeUrl": "https://youtu.be/N5wzkQvzp4c?si=izETAZB88q01VVX5"
       },
       {
         "id": "like-a-cat",
         "title": "Like a Cat",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Like+a+Cat+MV"
+        "youtubeUrl": "https://youtu.be/qEYOyZVWlzs?si=3yZemvECuuXZPoOV"
       },
       {
         "id": "heart-attack",
         "title": "Heart Attack",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Heart+Attack+MV"
+        "youtubeUrl": "https://youtu.be/1pBgMBBsv4k?si=7Xt_nPw45DnTLHo0"
       },
       {
         "id": "excuse-me",
         "title": "Excuse Me",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Excuse+Me+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "bingle-bangle",
-        "title": "Bingle Bangle",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Bingle+Bangle+MV"
-      },
-      {
-        "id": "10-seconds",
-        "title": "10 Seconds",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+10+Seconds+MV"
-      },
-      {
-        "id": "under-the-sky",
-        "title": "Under the Sky",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Under+the+Sky+MV"
-      },
-      {
-        "id": "my-song",
-        "title": "My Song",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+My+Song+MV"
+        "youtubeUrl": "https://youtu.be/NRlDo3JuzfI?si=mB9OHSQ03ZmgDnBs"
       },
       {
         "id": "get-out",
         "title": "Get Out",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=AOA+Get+Out+MV"
+        "youtubeUrl": "https://youtu.be/9sn_g7aWGoU?si=CIEk0UO07So-xybP"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "10-seconds",
+        "title": "10 Seconds",
+        "youtubeUrl": "https://youtu.be/Uha9ZM0Leps?si=8m3sShR_TbLC51V8"
+      },
+      {
+        "id": "my-song",
+        "title": "My Song",
+        "youtubeUrl": "https://youtu.be/sO5DF6L_gAo?si=L3Vdv7SCx4v6hNej"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Elvis",
   "notes": null
 }

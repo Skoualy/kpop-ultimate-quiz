@@ -241,6 +241,9 @@ export default function ContributorPage() {
 
   // ── Chargement des crédits existants depuis credits.json (mode édition) ─────
 
+  /** Crédits tels que chargés depuis credits.json — sert de référence pour détecter les modifications */
+  const loadedCreditsRef = useRef<Record<string, ImageCreditInput>>({})
+
   useEffect(() => {
     if (!isEdit || !editGroup) return
 
@@ -249,6 +252,8 @@ export default function ContributorPage() {
       .then((data) => {
         const allCredits: AssetCredit[] = data?.credits ?? []
         if (allCredits.length === 0) return
+
+        const loaded: Record<string, ImageCreditInput> = {}
 
         // Crédit de la cover du groupe
         const coverEntry = allCredits.find(
@@ -262,6 +267,7 @@ export default function ContributorPage() {
             transformReport:  null,
             aiModified:       coverEntry.aiModified ?? false,
           }
+          loaded[`group/${editGroup.id}/cover`] = credit
           setForm((prev) => ({ ...prev, coverCredit: credit }))
         }
 
@@ -274,22 +280,21 @@ export default function ContributorPage() {
               (c) => c.entityType === 'idol' && c.entityId === idolId && c.assetType === 'portrait',
             )
             if (!portraitEntry) return m
-            return {
-              ...m,
-              portraitCredit: {
-                sourceType:       portraitEntry.sourceType,
-                originalFileName: portraitEntry.originalFileName,
-                sourceUrl:        portraitEntry.sourceUrl ?? null,
-                transformReport:  null,
-                aiModified:       portraitEntry.aiModified ?? false,
-              } satisfies ImageCreditInput,
+            const credit: ImageCreditInput = {
+              sourceType:       portraitEntry.sourceType,
+              originalFileName: portraitEntry.originalFileName,
+              sourceUrl:        portraitEntry.sourceUrl ?? null,
+              transformReport:  null,
+              aiModified:       portraitEntry.aiModified ?? false,
             }
+            loaded[`idol/${idolId}/portrait`] = credit
+            return { ...m, portraitCredit: credit }
           }),
         )
+
+        loadedCreditsRef.current = loaded
       })
-      .catch(() => {
-        // credits.json peut ne pas encore exister — pas d'erreur
-      })
+      .catch(() => { /* credits.json peut ne pas encore exister */ })
   }, [isEdit, editGroup?.id])
 
   function makeDefaultMembersForStructure(nextCategory: GroupCategory, nextParentGroupId: string): EditableMember[] {
@@ -390,11 +395,29 @@ export default function ContributorPage() {
     idolsBlockList: Array<{ id: string; portrait: string | null }>,
   ): BundleCreditEntry[] {
     const credits: BundleCreditEntry[] = []
+    const loaded = loadedCreditsRef.current
 
-    // N'inclure le crédit cover QUE si une nouvelle image a été uploadée.
-    // En mode édition sans changement d'image, coverFile est null →
-    // le crédit existant dans credits.json est préservé (pas d'upsert).
-    if (coverFile && coverCredit) {
+    /**
+     * Un crédit est inclus dans le bundle si :
+     * - Le fichier a été re-uploadé (nouvelle image), OU
+     * - Les métadonnées du crédit ont changé par rapport au crédit chargé depuis credits.json.
+     *
+     * Cela permet de mettre à jour le nom Wikimedia, le flag IA, etc. sans re-upload,
+     * tout en ne pas écraser les crédits validés des images non touchées.
+     */
+    function creditChanged(key: string, current: ImageCreditInput): boolean {
+      const original = loaded[key]
+      if (!original) return true  // pas encore de crédit → toujours inclure
+      return (
+        current.sourceType       !== original.sourceType       ||
+        current.originalFileName !== original.originalFileName ||
+        current.sourceUrl        !== original.sourceUrl        ||
+        current.aiModified       !== original.aiModified
+      )
+    }
+
+    const coverKey = `group/${groupId}/cover`
+    if (coverCredit && (coverFile !== null || creditChanged(coverKey, coverCredit))) {
       credits.push({ entityType: 'group', entityId: groupId, assetType: 'cover', creditInput: coverCredit })
     }
 
@@ -402,14 +425,14 @@ export default function ContributorPage() {
       const member = normalizedMembersList.find(
         (m) => (m.resolutionMode === 'existing' && m.existingIdolId === idol.id) || m.generatedId === idol.id,
       )
-      // N'inclure le crédit portrait QUE si une nouvelle image a été uploadée
-      // (portraitFile !== null). Si l'image n'a pas été modifiée, portraitFile
-      // est null → le crédit validé existant dans credits.json est préservé.
-      if (member?.portraitFile && member.portraitCredit && idol.id) {
+      if (!member || !member.portraitCredit || !idol.id) continue
+
+      const portraitKey = `idol/${idol.id}/portrait`
+      if (member.portraitFile !== null || creditChanged(portraitKey, member.portraitCredit)) {
         credits.push({
           entityType: 'idol',
-          entityId: idol.id,
-          assetType: 'portrait',
+          entityId:   idol.id,
+          assetType:  'portrait',
           creditInput: member.portraitCredit,
         })
       }

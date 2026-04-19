@@ -59,7 +59,7 @@
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/b-i/portrait.webp",
+    "portrait": "/assets/idols/b-i/portrait.webp",
     "notes": null
   },
   {
@@ -104,7 +104,7 @@
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/bobby/portrait.webp",
+    "portrait": null,
     "notes": null
   },
   {
@@ -158,16 +158,16 @@
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/chanmi/portrait.webp",
+    "portrait": "/assets/idols/chanmi/portrait.webp",
     "notes": null
   },
   {
     "id": "chanwoo",
-    "name": "Chanwoo",
+    "name": "Chan",
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/chanwoo/portrait.webp",
+    "portrait": "/assets/idols/chanwoo/portrait.webp",
     "notes": null
   },
   {
@@ -199,11 +199,11 @@
   },
   {
     "id": "choa",
-    "name": "ChoA",
+    "name": "Choa",
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/choa/portrait.webp",
+    "portrait": "/assets/idols/choa/portrait.webp",
     "notes": null
   },
   {
@@ -289,11 +289,11 @@
   },
   {
     "id": "donghyuk",
-    "name": "Donghyuk",
+    "name": "DK",
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/donghyuk/portrait.webp",
+    "portrait": "/assets/idols/donghyuk/portrait.webp",
     "notes": null
   },
   {
@@ -518,7 +518,7 @@
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hyejeong/portrait.webp",
+    "portrait": "/assets/idols/hyejeong/portrait.webp",
     "notes": null
   },
   {
@@ -788,7 +788,7 @@
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jimin/portrait.webp",
+    "portrait": "/assets/idols/jimin/portrait.webp",
     "notes": null
   },
   {
@@ -811,11 +811,11 @@
   },
   {
     "id": "jinhwan",
-    "name": "Jinhwan",
+    "name": "Jay",
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jinhwan/portrait.webp",
+    "portrait": "/assets/idols/jinhwan/portrait.webp",
     "notes": null
   },
   {
@@ -937,11 +937,11 @@
   },
   {
     "id": "jun-e",
-    "name": "Jun e",
+    "name": "Ju-ne",
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jun-e/portrait.webp",
+    "portrait": "/assets/idols/jun-e/portrait.webp",
     "notes": null
   },
   {
@@ -1122,6 +1122,15 @@
     "gender": "f",
     "nationality": "kr",
     "portrait": "/assets/idols/liz/portrait.webp",
+    "notes": null
+  },
+  {
+    "id": "m",
+    "name": "Mina",
+    "primaryGroupId": "aoa",
+    "gender": "f",
+    "nationality": "kr",
+    "portrait": "/assets/idols/m/portrait.webp",
     "notes": null
   },
   {
@@ -1472,7 +1481,7 @@
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seolhyun/portrait.webp",
+    "portrait": "/assets/idols/seolhyun/portrait.webp",
     "notes": null
   },
   {
@@ -2093,7 +2102,7 @@
     "primaryGroupId": "aoa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yuna/portrait.webp",
+    "portrait": "/assets/idols/yuna/portrait.webp",
     "notes": null
   },
   {
@@ -2116,11 +2125,11 @@
   },
   {
     "id": "yunhyeong",
-    "name": "Yunhyeong",
+    "name": "Song",
     "primaryGroupId": "ikon",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yunhyeong/portrait.webp",
+    "portrait": "/assets/idols/yunhyeong/portrait.webp",
     "notes": null
   },
   {
