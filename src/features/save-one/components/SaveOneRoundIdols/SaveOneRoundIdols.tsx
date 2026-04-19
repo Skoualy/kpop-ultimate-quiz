@@ -1,32 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { IdolCard } from '../IdolCard'
 import { TimerBar } from '../TimerBar'
-import { CriterionBadge } from '../CriterionBadge'
 import { useGameTimer } from '../../hooks/useGameTimer'
 import type { SaveOneRoundIdolsProps } from './SaveOneRoundIdols.types'
 import type { IdolItem } from '../../SaveOnePage.types'
 import styles from './SaveOneRoundIdols.module.scss'
 
-function cardSize(count: number): 'sm' | 'md' | 'lg' {
-  if (count <= 2) return 'lg'
-  if (count <= 3) return 'md'
-  return 'sm'
-}
-
-function gridClass(count: number): string {
-  if (count === 2) return styles.grid2
-  if (count === 3) return styles.grid3
-  if (count === 4) return styles.grid4
-  return styles.grid5
-}
-
 export function SaveOneRoundIdols({
   idols,
   timerSeconds,
   timerKey,
-  activeCriterion,
-  playerName,
-  playerIndex = 0,
   onChoose,
   onPass,
   onTimeout,
@@ -52,44 +35,27 @@ export function SaveOneRoundIdols({
     onChoose(idolId, Date.now() - startRef.current)
   }
 
-  const handlePass = () => {
-    if (chosen) return
-    setChosen('__pass__')
-    onPass(Date.now() - startRef.current)
-  }
-
-  const size = cardSize(idols.length)
-
   return (
     <div className={styles.root}>
-      {/* Nom du joueur — au-dessus du badge critère */}
-      {playerName && (
-        <div className={styles.playerNameRow}>
-          <span className={[styles.playerName, playerIndex === 1 ? styles.playerNameP2 : styles.playerNameP1].join(' ')}>{playerName}</span>
-        </div>
-      )}
-      {/* Badge critère — centré au-dessus des cartes */}
-      <div className={styles.criterionRow}>
-        <CriterionBadge criterion={activeCriterion} />
+      {/* Timer — espace toujours réservé */}
+      <div className={styles.timerSlot}>
+        {timerSeconds > 0 && (
+          <TimerBar
+            percentLeft={chosen ? 100 : percentLeft}
+            remainingSeconds={chosen ? timerSeconds : remaining}
+            totalSeconds={timerSeconds}
+            className={styles.timer}
+          />
+        )}
       </div>
 
-      {/* Timer */}
-      {timerSeconds > 0 && (
-        <TimerBar
-          percentLeft={chosen ? 100 : percentLeft}
-          remainingSeconds={chosen ? timerSeconds : remaining}
-          totalSeconds={timerSeconds}
-          className={styles.timer}
-        />
-      )}
-
-      {/* Grille de cards */}
-      <div className={[styles.grid, gridClass(idols.length)].join(' ')}>
+      {/* Grille — cards toujours à 260px */}
+      <div className={styles.grid}>
         {idols.map((idol: IdolItem) => (
           <IdolCard
             key={idol.idolId}
             idol={idol}
-            size={size}
+            size="lg"
             disabled={chosen !== null}
             onClick={handleChoose}
           />

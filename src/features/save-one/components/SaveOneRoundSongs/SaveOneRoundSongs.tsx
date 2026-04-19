@@ -19,7 +19,6 @@ export function SaveOneRoundSongs({
   onPass,
   onTimeout,
 }: SaveOneRoundSongsProps) {
-  // activeIdx : index de l'extrait affiché dans l'iframe (null = aucun iframe)
   const [activeIdx, setActiveIdx]               = useState<number | null>(0)
   const [revealedCount, setRevealedCount]       = useState(1)
   const [sequenceComplete, setSequenceComplete] = useState(false)
@@ -29,9 +28,7 @@ export function SaveOneRoundSongs({
   const startRef      = useRef(Date.now())
   const advanceFnRef  = useRef<() => void>(() => {})
   const iframeRef     = useRef<HTMLIFrameElement>(null)
-  // Capture du dernier index joué par J1 — transmis tel quel à J2
   const lastIdxRef    = useRef<number>(0)
-  // Vrai si on affiche l'iframe figée (J2 sans autoplay, ou post-choix)
   const [frozenIdx, setFrozenIdx] = useState<number | null>(null)
 
   // ── Reset à chaque timerKey ───────────────────────────────────────────────
@@ -41,14 +38,12 @@ export function SaveOneRoundSongs({
     setVideoError(false)
 
     if (player2Mode) {
-      // J2 : montrer le dernier extrait joué par J1, figé (pas d'autoplay)
       setActiveIdx(null)
       setFrozenIdx(lastIdxRef.current)
       setRevealedCount(songs.length)
       setSequenceComplete(true)
       startRef.current = Date.now()
     } else {
-      // J1 : séquence normale
       setActiveIdx(0)
       setFrozenIdx(null)
       setRevealedCount(1)
@@ -56,37 +51,29 @@ export function SaveOneRoundSongs({
     }
   }, [timerKey, player2Mode, songs.length])
 
-  // Chrono J1 : part quand la séquence se termine
   useEffect(() => {
     if (sequenceComplete && !player2Mode) {
       startRef.current = Date.now()
     }
   }, [sequenceComplete, player2Mode])
 
-  // ── Fade audio out via postMessage ──────────────────────────────────────────
+  // ── Fade audio out ────────────────────────────────────────────────────────
 
   const fadeOutAndAdvance = () => {
     const iframe = iframeRef.current
-    if (!iframe?.contentWindow) {
-      advanceFnRef.current()
-      return
-    }
-    // Volume fade: 100→0 en 400ms par incréments de 50ms
+    if (!iframe?.contentWindow) { advanceFnRef.current(); return }
     let vol = 80
     const step = () => {
       vol -= 16
       iframe.contentWindow?.postMessage(
-        JSON.stringify({ event: 'command', func: 'setVolume', args: [Math.max(0, vol)] }),
-        '*'
+        JSON.stringify({ event: 'command', func: 'setVolume', args: [Math.max(0, vol)] }), '*'
       )
       if (vol > 0) {
         setTimeout(step, 50)
       } else {
-        // Restaurer le volume pour le prochain extrait
         setTimeout(() => {
           iframe.contentWindow?.postMessage(
-            JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }),
-            '*'
+            JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*'
           )
           advanceFnRef.current()
         }, 100)
@@ -95,7 +82,7 @@ export function SaveOneRoundSongs({
     step()
   }
 
-  // ── Avancement de la séquence J1 ─────────────────────────────────────────
+  // ── Avancement séquence J1 ────────────────────────────────────────────────
 
   const advanceSequence = () => {
     if (player2Mode) return
@@ -107,7 +94,6 @@ export function SaveOneRoundSongs({
         setRevealedCount((c) => Math.max(c, next + 1))
         return next
       }
-      // Tous les extraits joués
       setSequenceComplete(true)
       setRevealedCount(songs.length)
       return currentIdx
@@ -116,7 +102,6 @@ export function SaveOneRoundSongs({
 
   advanceFnRef.current = advanceSequence
 
-  // Timer JS : avancement automatique J1
   useEffect(() => {
     if (player2Mode || sequenceComplete || activeIdx === null) return
     const buffer = activeIdx === 0 ? 1500 : 800
@@ -134,14 +119,14 @@ export function SaveOneRoundSongs({
     resetKey: timerKey,
   })
 
-  // ── Gestion erreur vidéo ──────────────────────────────────────────────────
+  // ── Gestion erreur ─────────────────────────────────────────────────────────
 
   const handleVideoError = () => {
     setVideoError(true)
     if (!player2Mode) advanceFnRef.current()
   }
 
-  // ── Passer l'extrait en cours (J1 uniquement, pendant la séquence) ────────
+  // ── Passer extrait (J1 pendant séquence) ──────────────────────────────────
 
   const handleSkipClip = () => {
     if (player2Mode || sequenceComplete) return
@@ -153,8 +138,8 @@ export function SaveOneRoundSongs({
   const handleChoose = (songId: string) => {
     if (!sequenceComplete || chosen) return
     setChosen(songId)
-    setActiveIdx(null)    // coupe l'autoplay
-    setFrozenIdx(null)    // coupe aussi l'iframe figée
+    setActiveIdx(null)
+    setFrozenIdx(null)
     onChoose(songId, Date.now() - startRef.current)
   }
 
@@ -164,7 +149,6 @@ export function SaveOneRoundSongs({
     setFrozenIdx(null)
     setVideoError(false)
     if (idx === activeIdx) {
-      // Remount via null→idx
       setActiveIdx(null)
       requestAnimationFrame(() => setActiveIdx(idx))
     } else {
@@ -172,36 +156,24 @@ export function SaveOneRoundSongs({
     }
   }
 
-  // Quelle chanson afficher dans l'iframe ?
-  // - J1 pendant séquence ou replay : activeIdx (avec autoplay)
-  // - J2 : frozenIdx (sans autoplay), ou activeIdx si replay demandé
-  const iframeIdx     = activeIdx !== null ? activeIdx : null
-  const showFrozen    = player2Mode && frozenIdx !== null && activeIdx === null
-  const displayIdx    = iframeIdx ?? (showFrozen ? frozenIdx : null)
-  const useAutoplay   = !player2Mode || activeIdx !== null  // frozen = pas d'autoplay
-  const currentSong   = displayIdx !== null ? songs[displayIdx] : null
+  const iframeIdx   = activeIdx !== null ? activeIdx : null
+  const showFrozen  = player2Mode && frozenIdx !== null && activeIdx === null
+  const displayIdx  = iframeIdx ?? (showFrozen ? frozenIdx : null)
+  const useAutoplay = !player2Mode || activeIdx !== null
+  const currentSong = displayIdx !== null ? songs[displayIdx] : null
 
   const playerBadgeClass = playerIndex === 1 ? styles.playerNameP2 : styles.playerNameP1
 
   return (
     <div className={styles.root}>
-      {/* Nom du joueur */}
+      {/* Badge joueur (2J) */}
       {playerName && (
         <div className={styles.playerNameRow}>
           <span className={[styles.playerName, playerBadgeClass].join(' ')}>{playerName}</span>
         </div>
       )}
 
-      {/* Label chanson en cours (J1, pendant séquence) */}
-      {!player2Mode && !sequenceComplete && currentSong && (
-        <div className={styles.nowPlaying}>
-          <span className={styles.nowPlayingIcon}>♪</span>
-          <span className={styles.nowPlayingTitle}>{currentSong.title}</span>
-          <span className={styles.nowPlayingCounter}>{(activeIdx ?? 0) + 1} / {songs.length}</span>
-        </div>
-      )}
-
-      {/* YouTube iframe */}
+      {/* Iframe YouTube */}
       <div className={styles.iframeWrapper} ref={(el) => { iframeRef.current = el?.querySelector('iframe') ?? null }}>
         {currentSong && !videoError && !chosen ? (
           <YouTubePlayer
@@ -218,26 +190,19 @@ export function SaveOneRoundSongs({
         ) : null}
       </div>
 
-      {/* Bouton "Passer cet extrait" — J1 pendant la séquence uniquement */}
-      {!player2Mode && !sequenceComplete && (
-        <div className={styles.skipClipRow}>
-          <button className={styles.skipClipBtn} onClick={handleSkipClip} type="button">
-            ⏭ Passer cet extrait
-          </button>
-        </div>
-      )}
+      {/* Timer — slot toujours réservé */}
+      <div className={styles.timerSlot}>
+        {sequenceComplete && timerSeconds > 0 && (
+          <TimerBar
+            percentLeft={chosen ? 100 : percentLeft}
+            remainingSeconds={chosen ? timerSeconds : remaining}
+            totalSeconds={timerSeconds}
+            className={styles.timer}
+          />
+        )}
+      </div>
 
-      {/* Timer (après séquence complète) */}
-      {sequenceComplete && timerSeconds > 0 && (
-        <TimerBar
-          percentLeft={chosen ? 100 : percentLeft}
-          remainingSeconds={chosen ? timerSeconds : remaining}
-          totalSeconds={timerSeconds}
-          className={styles.timer}
-        />
-      )}
-
-      {/* Miniatures */}
+      {/* Miniatures — chaque card gère son propre bouton Passer/Rejouer */}
       <div className={[styles.thumbnails, styles[`cols${songs.length}`]].join(' ')}>
         {songs.map((song, idx) => (
           <SongThumbnail
@@ -245,10 +210,14 @@ export function SaveOneRoundSongs({
             song={song}
             revealed={idx < revealedCount}
             replayEnabled={sequenceComplete && idx < revealedCount && !chosen}
-            isPlaying={!player2Mode && idx === activeIdx && !sequenceComplete}
+            isPlaying={idx === activeIdx}
+            isSequencePlaying={!sequenceComplete}
             disabled={!sequenceComplete || !!chosen}
             onChoose={handleChoose}
             onReplay={handleReplay}
+            // Passer est disponible sur toutes les cards pendant la séquence,
+            // mais n'est ACTIVÉ que sur la card en lecture (isPlaying).
+            onSkip={!player2Mode && !sequenceComplete ? handleSkipClip : undefined}
           />
         ))}
       </div>

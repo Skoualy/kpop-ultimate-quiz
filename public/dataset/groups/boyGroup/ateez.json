@@ -71,98 +71,99 @@
       {
         "id": "pirate-king",
         "title": "Pirate King",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Pirate+King+MV",
+        "youtubeUrl": "https://youtu.be/RqJ1rH9M5G0?si=i3pTeSerNpj3r2tn",
         "isDebutSong": true
       },
       {
         "id": "treasure",
         "title": "Treasure",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Treasure+MV"
+        "youtubeUrl": "https://youtu.be/tLV83ndOwz4?si=jmzOmDvAY3cgYMLa"
       },
       {
         "id": "say-my-name",
         "title": "Say My Name",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Say+My+Name+MV"
+        "youtubeUrl": "https://youtu.be/nKU4OVH18mE?si=z_GHNPZhPejq30zh"
       },
       {
         "id": "wave",
         "title": "Wave",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Wave+MV"
+        "youtubeUrl": "https://youtu.be/FIInyEWWW-s?si=yTBX-S7lQHKtFt3j"
       },
       {
         "id": "wonderland",
         "title": "Wonderland",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Wonderland+MV"
+        "youtubeUrl": "https://youtu.be/Z_BhMhZpAug?si=SzqsW6QHw7aduyeQ"
       },
       {
         "id": "answer",
         "title": "Answer",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Answer+MV"
+        "youtubeUrl": "https://youtu.be/yW7wZX3DUaY?si=aUWevmgQfT6WP9ml"
       },
       {
         "id": "inception",
         "title": "Inception",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Inception+MV"
+        "youtubeUrl": "https://youtu.be/2NArH91kHoQ?si=wBbo05YGgJsN9CuM"
       },
       {
         "id": "fireworks",
         "title": "Fireworks",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Fireworks+MV"
+        "youtubeUrl": "https://youtu.be/xtcVwuauVV0?si=AOs0wFGC-99kdfpY"
       },
       {
         "id": "deja-vu",
         "title": "Deja Vu",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Deja+Vu+MV"
+        "youtubeUrl": "https://youtu.be/nlnMDttgTbk?si=zYkMHga3ubljLU52"
       },
       {
         "id": "turbulence",
         "title": "Turbulence",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Turbulence+MV"
+        "youtubeUrl": "https://youtu.be/80WvAnsHOdM?si=KUDkRtPz9Oob917v"
       },
       {
         "id": "guerilla",
         "title": "Guerilla",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Guerilla+MV"
+        "youtubeUrl": "https://youtu.be/2HcVZm_4qAI?si=NAeo7RNP9wsmAtiF"
       },
       {
         "id": "halazia",
         "title": "Halazia",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Halazia+MV"
+        "youtubeUrl": "https://youtu.be/SszP3hlQ55Y?si=F8_pSSfPp9noLp9B"
       },
       {
         "id": "bouncy",
         "title": "Bouncy",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Bouncy+MV"
-      }
-    ],
-    "bSides": [
-      {
-        "id": "aurora",
-        "title": "Aurora",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Aurora+MV"
+        "youtubeUrl": "https://youtu.be/U0G5OA6ZH5w?si=JmNO19xhWptNnkK9"
       },
       {
         "id": "thanxx",
         "title": "Thanxx",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Thanxx+MV"
+        "youtubeUrl": "https://youtu.be/K7LY9Ta0eiY?si=6-A3Ghn0vmv-kG9G"
       },
       {
-        "id": "utopia",
+        "id": "aurora",
+        "title": "Aurora",
+        "youtubeUrl": "https://youtu.be/7wcM9Eq3UbI?si=68g4Ohky2IVNfVEA"
+      }
+    ],
+    "bSides": [
+      {
+        "id": "utopia-jp",
         "title": "Utopia",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Utopia+MV"
+        "youtubeUrl": "https://youtu.be/ZLQm-8Z6C8M?si=1n4KOXoqdBNwwEtH",
+        "language": "jp"
       },
       {
         "id": "desire",
         "title": "Desire",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+Desire+MV"
+        "youtubeUrl": "https://youtu.be/bBpIH4OgeOo?si=YFDyoZNLGdFQvjdp"
       },
       {
         "id": "if-without-you",
         "title": "If Without You",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ATEEZ+If+Without+You+MV"
+        "youtubeUrl": "https://youtu.be/79qPlVpIEys?si=DtIThK3mka09n4lr"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "Atiny",
   "notes": null
 }

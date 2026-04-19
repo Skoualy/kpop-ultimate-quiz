@@ -2,14 +2,21 @@ import type { SongItem } from '../../SaveOnePage.types'
 
 export interface SongThumbnailProps {
   song: SongItem
-  /** Whether the thumbnail image is visible (false = blurred placeholder) */
+  /** Thumbnail visible (false = placeholder flouté) */
   revealed: boolean
-  /** Whether the replay button is clickable */
+  /** Replay actif (après séquence complète, card non choisie) */
   replayEnabled: boolean
-  /** Whether this card is currently playing in the iframe */
+  /** Cette card est en train de jouer dans l'iframe */
   isPlaying?: boolean
-  /** Disabled = can't be clicked to choose */
+  /** La séquence d'extraits est encore en cours (non terminée) */
+  isSequencePlaying?: boolean
+  /** Disabled = ne peut pas être cliqué pour choisir */
   disabled?: boolean
   onChoose: (songId: string) => void
   onReplay: (song: SongItem) => void
+  /**
+   * Passer l'extrait en cours — uniquement disponible quand isSequencePlaying && isPlaying.
+   * Si absent, le bouton Passer n'est pas rendu.
+   */
+  onSkip?: () => void
 }

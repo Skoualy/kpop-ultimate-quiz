@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-lg);
-  /* Bordure marquée avec dégradé simulé via box-shadow + border */
   border: 1.5px solid var(--border-strong);
   background: var(--bg-card);
   box-shadow:
@@ -41,9 +40,8 @@
   pointer-events: none;
 }
 
-/* ─── Portrait padding + wrap ─────────────────────────────────────────────── */
+/* ─── Portrait ────────────────────────────────────────────────────────────── */
 
-/* Padding visible autour du portrait = la bordure de la card est visible de tous les côtés */
 .portraitPad {
   padding: 8px 8px 0 8px;
   background: var(--bg-card);
@@ -102,7 +100,6 @@
   margin: 0;
 }
 
-/* Badge ancien membre — sous le nom de groupe, clairement visible mais secondaire */
 .formerBadge {
   display: inline-block;
   margin-top: 4px;
@@ -119,26 +116,27 @@
   font-style: italic;
 }
 
-/* ─── Tailles (+20% vs v1) ────────────────────────────────────────────────── */
-
-/* 2 choix */
-.lg { width: min(288px, 100%); }
-
-/* 3 choix */
-.md { width: min(240px, 100%); }
-
-/* 4–5 choix */
-.sm {
-  width: min(200px, 100%);
-  .name  { font-size: 14px; }
-  .group { font-size: 12px; }
-  .info  { padding: 8px 9px 10px; }
+/* ─── Taille fixe — identique quelle que soit la grille ─────────────────── */
+/*
+ * Toutes les cards ont exactement 260px.
+ * Le grid en flex-wrap + justify-content:center gère la mise en page.
+ * flex-shrink:0 empêche le rétrécissement même dans un conteneur étroit.
+ */
+.lg, .md, .sm {
+  width: 260px;
 }
 
 /* ─── Responsive ──────────────────────────────────────────────────────────── */
 
+@media (max-width: 900px) {
+  .lg, .md, .sm { width: 220px; }
+  .name  { font-size: 14px; }
+  .group { font-size: 12px; }
+}
+
 @media (max-width: 600px) {
-  .lg { width: min(200px, 45vw); }
-  .md { width: min(165px, 40vw); }
-  .sm { width: min(140px, 35vw); }
+  .lg, .md, .sm { width: min(160px, 44vw); }
+  .name  { font-size: 13px; }
+  .group { font-size: 12px; }
+  .info  { padding: 8px 9px 10px; }
 }

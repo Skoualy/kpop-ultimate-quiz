@@ -11,7 +11,9 @@ export function Layout({ children }: LayoutProps) {
     <div className={styles.shell}>
       <header className={styles.header}>
         <div className={styles.headerTitle}>
-          <span className={styles.headerName}>🎵 K-Pop Ultimate Quiz</span>
+          <span className={styles.headerName}>
+            <span>🎵</span> K-Pop Ultimate Quiz
+          </span>
           <span className={styles.headerSubtitle}>© Skoualy</span>
         </div>
 

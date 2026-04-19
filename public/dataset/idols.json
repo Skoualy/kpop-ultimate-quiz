@@ -473,7 +473,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hongjoong/portrait.webp",
+    "portrait": "/assets/idols/hongjoong/portrait.webp",
     "notes": null
   },
   {
@@ -887,7 +887,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jongho/portrait.webp",
+    "portrait": "/assets/idols/jongho/portrait.webp",
     "notes": null
   },
   {
@@ -1202,7 +1202,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/mingi/portrait.webp",
+    "portrait": "/assets/idols/mingi/portrait.webp",
     "notes": null
   },
   {
@@ -1454,7 +1454,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/san/portrait.webp",
+    "portrait": "/assets/idols/san/portrait.webp",
     "notes": null
   },
   {
@@ -1499,7 +1499,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seonghwa/portrait.webp",
+    "portrait": "/assets/idols/seonghwa/portrait.webp",
     "notes": null
   },
   {
@@ -1913,7 +1913,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wooyoung/portrait.webp",
+    "portrait": "/assets/idols/wooyoung/portrait.webp",
     "notes": null
   },
   {
@@ -1958,7 +1958,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yeosang/portrait.webp",
+    "portrait": "/assets/idols/yeosang/portrait.webp",
     "notes": null
   },
   {
@@ -2129,7 +2129,7 @@
     "primaryGroupId": "ateez",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yunho/portrait.webp",
+    "portrait": "/assets/idols/yunho/portrait.webp",
     "notes": null
   },
   {

@@ -6,14 +6,13 @@
   border-radius: var(--radius-md);
   border: 1.5px solid var(--border-strong);
   background: var(--bg-card);
-  box-shadow:
-    var(--shadow-card),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+  /* Flex item : remplit l'espace disponible */
   flex: 1 1 0;
   min-width: 0;
-  max-width: 200px;
+  /* Pas de max-width fixe — laisse la grille décider */
 }
 
 .clickable {
@@ -36,17 +35,9 @@
 
 /* ─── États ──────────────────────────────────────────────────────────────── */
 
-.hidden {
-  opacity: 0.45;
-  filter: saturate(0.3);
-}
-
-.revealed {
-  opacity: 1;
-  animation: revealCard 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.playing {
+.hidden   { opacity: 0.45; filter: saturate(0.3); }
+.revealed { opacity: 1; animation: revealCard 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.playing  {
   border-color: var(--accent-purple);
   box-shadow:
     var(--shadow-card),
@@ -66,32 +57,26 @@
 }
 
 .image {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.25s ease;
 }
 
 .placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  opacity: 0.4;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); opacity: 0.4;
 }
 
 .playingRing {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   box-shadow: inset 0 0 0 2px var(--accent-purple);
   pointer-events: none;
   animation: pulse 1.2s ease-in-out infinite;
 }
 
-/* ─── Info ────────────────────────────────────────────────────────────────── */
+/* ─── Texte ───────────────────────────────────────────────────────────────── */
 
 .info {
   padding: 8px 10px 4px;
@@ -100,7 +85,7 @@
 }
 
 .title {
-  font-size: 13px;      /* était 12px */
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.4;
@@ -112,7 +97,7 @@
 }
 
 .group {
-  font-size: 12px;      /* était 11px */
+  font-size: 12px;
   color: var(--text-secondary);
   margin: 0;
   white-space: nowrap;
@@ -120,36 +105,54 @@
   text-overflow: ellipsis;
 }
 
-.titleHidden,
-.groupHidden {
-  color: var(--text-muted);
-  font-size: 13px;
-  opacity: 0.3;
-  margin: 0 0 2px;
+.titleHidden, .groupHidden {
+  color: var(--text-muted); font-size: 13px; opacity: 0.3; margin: 0 0 2px;
 }
 
-/* ─── Replay ──────────────────────────────────────────────────────────────── */
+/* ─── Bouton d'action (Passer / Rejouer) ─────────────────────────────────── */
 
-.replayWrap {
-  padding: 6px 10px 8px;
+/* Conteneur hauteur fixe — évite le saut de layout */
+.actionWrap {
+  padding: 5px 8px 8px;
   flex-shrink: 0;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
 }
 
-.replay {
+.actionBtn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+/* Bouton Passer — rose/danger pendant la séquence */
+.skipBtn {
+  color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+
+  &:hover:not(:disabled) {
+    background: var(--color-danger);
+    color: #fff;
+    border-color: var(--color-danger);
+  }
+}
+
+/* Bouton Rejouer — violet après séquence */
+.replayBtn {
   color: var(--accent-purple);
   background: rgba(124, 58, 237, 0.1);
   border: 1px solid rgba(124, 58, 237, 0.3);
-  border-radius: var(--radius-pill);
-  padding: 4px 10px;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-  width: 100%;
-  justify-content: center;
 
   &:hover:not(:disabled) {
     background: var(--accent-purple);
@@ -158,7 +161,7 @@
   }
 }
 
-.replayDisabled {
+.actionDisabled {
   opacity: 0.25;
   cursor: not-allowed;
   pointer-events: none;

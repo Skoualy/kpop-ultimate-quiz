@@ -34,12 +34,18 @@
 }
 
 .headerName {
+  display: flex;
+  align-items: center;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
   line-height: 1.2;
   white-space: nowrap;
+  /* Gradient identique au logo GameHeader */
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .headerSubtitle {

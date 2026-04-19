@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
+import { GameHeader } from '@/shared/Layout/GameHeader'
+import { GameHud } from '@/shared/Components/GameHud'
 import { PlayerTransitionOverlay } from './components/PlayerTransitionOverlay'
 import { RoundTransition } from './components/RoundTransition'
 import { SaveOneRoundIdols } from './components/SaveOneRoundIdols'
@@ -10,12 +12,22 @@ import { useSaveOneGame } from './hooks/useSaveOneGame'
 import type { IdolItem, SongItem } from './SaveOnePage.types'
 import styles from './SaveOnePage.module.scss'
 
-const GAMEPLAY_MODE_LABELS: Record<string, string> = {
-  classic:   'Classique',
-  chill:     'Chill',
-  spectator: 'Spectateur',
-  hardcore:  'Hardcore',
-  custom:    'Personnalisé',
+const CRITERIA_LABELS: Record<string, string> = {
+  all: 'Tous', beauty: 'Beauté', personality: 'Personnalité',
+  voice: 'Voix', performance: 'Performance', leadership: 'Leadership',
+  aegyo: 'Aegyo', random: 'Aléatoire',
+}
+const ROLE_LABELS: Record<string, string> = {
+  leader: 'Leader', mainVocal: 'V. Principale', vocal: 'Vocal',
+  mainDancer: 'D. Principal', dancer: 'Danseur', mainRapper: 'R. Principal',
+  rapper: 'Rappeur', visual: 'Visual', maknae: 'Maknae',
+}
+const SONG_TYPE_LABELS: Record<string, string> = {
+  all: 'Tous types', titles: 'Titres', bSides: 'B-sides', debutSongs: 'Débuts',
+}
+const GAMEPLAY_LABELS: Record<string, string> = {
+  classic: 'Classique', chill: 'Chill', spectator: 'Spectateur',
+  hardcore: 'Hardcore', custom: 'Personnalisé',
 }
 
 export default function SaveOnePage() {
@@ -23,20 +35,9 @@ export default function SaveOnePage() {
   const { config } = useGameContext()
 
   const {
-    phase,
-    isLoading,
-    error,
-    rounds,
-    results,
-    currentRoundIndex,
-    currentPlayer,
-    timerKey,
-    choose,
-    pass,
-    timeout,
-    skipPlayerTransition,
-    skipRoundTransition,
-    restart,
+    phase, isLoading, error, rounds, results,
+    currentRoundIndex, currentPlayer, timerKey,
+    choose, pass, timeout, skipPlayerTransition, skipRoundTransition, restart,
   } = useSaveOneGame(config)
 
   const goToConfig = useCallback(() => navigate('/'), [navigate])
@@ -49,22 +50,41 @@ export default function SaveOnePage() {
   const activePlayer = currentPlayer === 0 ? p1Name : p2Name
   const isIdols      = config.category === 'idols'
   const isSongs      = config.category === 'songs'
+  const isPlaying    = phase === 'playing'
+  const isCustom     = config.gamePlayMode === 'custom'
 
-  // Seule la phase 'playing' affiche le contenu de jeu.
-  // Pendant les transitions, le composant de jeu est démonté → iframes stoppées.
-  const isPlaying = phase === 'playing'
+  // ── Options HUD ──────────────────────────────────────────────────────────
+
+  const hudOptions = [
+    { label: 'Drops', value: config.drops },
+    // Timer TOUJOURS affiché même si désactivé
+    config.timerSeconds > 0
+      ? { label: 'Timer', value: `${config.timerSeconds}s` }
+      : { label: 'Timer', value: 'Off' },
+    isSongs ? { label: 'Extrait', value: `${config.clipDuration}s` } : null,
+  ]
+
+  // Critère pour le badge gradient (mode custom idoles, hors 'all')
+  const hudCriterion: string | null = (isCustom && isIdols && config.criterion !== 'all')
+    ? (CRITERIA_LABELS[config.criterion] ?? config.criterion)
+    : null
+
+  // Options supplémentaires textuelles (rôles, type chansons)
+  const hudExtras: string[] = []
+  if (isCustom && isIdols && config.roleFilters.length > 0)
+    hudExtras.push(config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', '))
+  if (isCustom && isSongs && config.songType !== 'all')
+    hudExtras.push(SONG_TYPE_LABELS[config.songType] ?? config.songType)
+
+  // ── Chargement / erreur / pool vide ──────────────────────────────────────
 
   if (isLoading) {
     return (
       <div className={styles.page}>
-        <div className={styles.center}>
-          <div className={styles.spinner} />
-          <p>Chargement du pool…</p>
-        </div>
+        <div className={styles.center}><div className={styles.spinner} /><p>Chargement du pool…</p></div>
       </div>
     )
   }
-
   if (error) {
     return (
       <div className={styles.page}>
@@ -76,93 +96,70 @@ export default function SaveOnePage() {
       </div>
     )
   }
-
   if (!isLoading && rounds.length === 0) {
     return (
       <div className={styles.page}>
         <div className={styles.center}>
-          <p className={styles.emptyWarn}>
-            ⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.
-          </p>
+          <p className={styles.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
           <button className={styles.retryBtn} onClick={goToConfig}>← Retour à la config</button>
         </div>
       </div>
     )
   }
 
+  // ── Résumé ────────────────────────────────────────────────────────────────
+
   if (phase === 'summary') {
     return (
       <div className={[styles.page, styles.pageSummary].join(' ')}>
-        <SaveOneSummary
-          rounds={rounds}
-          results={results}
-          config={config}
-          onRestart={restart}
-          onBackToConfig={goToConfig}
-        />
+        <SaveOneSummary rounds={rounds} results={results} config={config} onRestart={restart} onBackToConfig={goToConfig} />
       </div>
     )
   }
 
+  // ── Jeu ───────────────────────────────────────────────────────────────────
+
   return (
     <div className={styles.page}>
 
-      {/* ── Barre unique : back / infos centrées / pass ── */}
-      <header className={styles.header}>
-        <button className={styles.backBtn} onClick={goToConfig}>← Config</button>
+      {/* Header générique */}
+      <GameHeader
+        onBack={goToConfig}
+        onAction={() => pass()}
+        actionLabel="⏭ Passer le round"
+        actionDisabled={!isPlaying}
+        playerName={twoPlayer && isPlaying ? activePlayer : undefined}
+        playerIndex={currentPlayer}
+      />
 
-        {/* Centre : tout groupé */}
-        <div className={styles.headerCenter}>
-          {/* Progression rounds */}
-          <div className={styles.roundPill}>
-            <span className={styles.roundPillLabel}>Round</span>
-            <span className={styles.roundPillValue}>
-              {currentRoundIndex + 1}
-              <span className={styles.roundPillTotal}> / {totalRounds}</span>
-            </span>
-          </div>
-
-          {/* Séparateur */}
-          <span className={styles.headerSep}>·</span>
-
-          {/* Mode */}
-          <span className={[styles.infoPill, styles.infoPillAccent].join(' ')}>Save One</span>
-          <span className={styles.infoPill}>{isIdols ? 'Idoles' : 'Chansons'}</span>
-          <span className={styles.infoPill}>Drop {config.drops}</span>
-          {config.timerSeconds > 0 && (
-            <span className={styles.infoPill}>⏱ {config.timerSeconds}s</span>
-          )}
-          {isSongs && (
-            <span className={styles.infoPill}>▶ {config.clipDuration}s</span>
-          )}
-        </div>
-
-        {/* Bouton Passer — top-right */}
-        <button
-          className={[styles.passBtn, !isPlaying ? styles.passBtnHidden : ''].join(' ')}
-          onClick={() => pass()}
-          disabled={!isPlaying}
-          title="Passer ce round"
-        >
-          ⏭ Passer
-        </button>
-      </header>
-
-      {/* ── Contenu de jeu — démonté pendant les transitions ── */}
+      {/* Zone de jeu */}
       <main className={styles.content}>
+
+        {/* HUD générique */}
+        <GameHud
+          quizType="Save One"
+          category={isIdols ? 'Idoles' : 'Chansons'}
+          gameMode={GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode}
+          currentRound={currentRoundIndex + 1}
+          totalRounds={totalRounds}
+          options={hudOptions}
+          criterion={hudCriterion}
+          twoPlayer={twoPlayer}
+        />
+
+        {/* Contenu de jeu — démonté pendant transitions */}
         {isPlaying && currentRound && isIdols && (
           <SaveOneRoundIdols
             idols={currentRound.items as IdolItem[]}
             timerSeconds={config.timerSeconds}
             timerKey={timerKey}
-            playerName={twoPlayer ? activePlayer : undefined}
-            playerIndex={currentPlayer}
             activeCriterion={currentRound.activeCriterion}
             onChoose={(id, ms) => choose(id, ms)}
             onPass={(ms) => pass(ms)}
             onTimeout={timeout}
           />
         )}
+
         {isPlaying && currentRound && isSongs && (
           <SaveOneRoundSongs
             songs={currentRound.items as SongItem[]}
@@ -178,27 +175,14 @@ export default function SaveOnePage() {
           />
         )}
 
-        {/* Pendant les transitions, afficher un fond neutre */}
-        {!isPlaying && phase !== 'summary' && (
-          <div className={styles.transitionBlank} />
-        )}
+        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />}
       </main>
 
-      {/* ── Transition entre rounds (overlay plein écran) ── */}
       {phase === 'roundTransition' && (
-        <RoundTransition
-          roundNumber={currentRoundIndex + 1}
-          totalRounds={totalRounds}
-          onDone={skipRoundTransition}
-        />
+        <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />
       )}
-
-      {/* ── Transition entre joueurs (overlay plein écran) ── */}
       {phase === 'playerTransition' && (
-        <PlayerTransitionOverlay
-          playerName={p2Name}
-          onSkip={skipPlayerTransition}
-        />
+        <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />
       )}
     </div>
   )

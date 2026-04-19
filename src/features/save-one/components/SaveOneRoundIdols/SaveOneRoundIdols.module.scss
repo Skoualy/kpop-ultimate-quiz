@@ -2,74 +2,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 12px;
   width: 100%;
   flex: 1;
-  justify-content: center;
 }
 
-.timer {
+/* ─── Timer slot (hauteur toujours réservée) ─────────────────────────────── */
+
+.timerSlot {
   width: 100%;
-  max-width: 560px;
+  max-width: 700px;
+  min-height: 26px;
+  display: flex;
+  align-items: center;
 }
 
-/* ─── Grid variants ──────────────────────────────────────────────────────────── */
+.timer { width: 100%; }
+
+/* ─── Grille — taille fixe, centrée, prend max largeur disponible ────────── */
 
 .grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 28px;
+  gap: 20px;
   width: 100%;
+  align-content: flex-start;
 }
 
-.grid2 { gap: 28px; }
-.grid3 { gap: 20px; }
-.grid4 { gap: 14px; }
-.grid5 { gap: 10px; }
-
-/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 600px) {
-  .grid {
-    gap: 10px;
-  }
-}
-
-/* ─── Criterion badge centré au-dessus des cards ─────────────────────────── */
-
-.criterionRow {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 4px;
-  min-height: 28px; /* réserve la hauteur même quand badge absent (criterion='all') */
-}
-
-/* ─── Player name row ─────────────────────────────────────────────────────── */
-.playerNameRow {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.playerName {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: var(--radius-pill);
-  padding: 4px 16px;
-}
-
-.playerNameP1 {
-  color: #c4b5fd;
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.35);
-}
-
-.playerNameP2 {
-  color: #f9a8d4;
-  background: rgba(233, 30, 140, 0.12);
-  border: 1px solid rgba(233, 30, 140, 0.35);
+  .grid { gap: 10px; }
 }

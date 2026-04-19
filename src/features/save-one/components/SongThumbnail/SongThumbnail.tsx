@@ -5,10 +5,12 @@ export function SongThumbnail({
   song,
   revealed,
   replayEnabled,
-  isPlaying,
+  isPlaying = false,
+  isSequencePlaying = false,
   disabled,
   onChoose,
   onReplay,
+  onSkip,
 }: SongThumbnailProps) {
   const handleChoose = () => {
     if (!disabled && revealed) onChoose(song.songId)
@@ -19,12 +21,34 @@ export function SongThumbnail({
     if (replayEnabled) onReplay(song)
   }
 
+  const handleSkip = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (isPlaying && onSkip) onSkip()
+  }
+
+  /*
+   * Logique du bouton d'action en bas de la card :
+   *
+   *  Séquence en cours (isSequencePlaying) :
+   *    → Card en lecture (isPlaying) : "⏭ Passer" ACTIVÉ
+   *    → Autres cards               : "⏭ Passer" DÉSACTIVÉ (grisé)
+   *
+   *  Séquence terminée (!isSequencePlaying) && non choisie (!disabled) :
+   *    → "↺ Rejouer" ACTIVÉ si replayEnabled
+   *    → "↺ Rejouer" DÉSACTIVÉ si !replayEnabled
+   *
+   *  Card choisie (disabled) : pas de bouton
+   */
+  const showSkip    = isSequencePlaying
+  const showReplay  = !isSequencePlaying && !disabled
+  const skipEnabled = isPlaying && !!onSkip
+
   return (
     <div
       className={[
         styles.card,
-        revealed ? styles.revealed : styles.hidden,
-        isPlaying ? styles.playing : '',
+        revealed   ? styles.revealed  : styles.hidden,
+        isPlaying  ? styles.playing   : '',
         !disabled && revealed ? styles.clickable : '',
       ].join(' ')}
       onClick={handleChoose}
@@ -32,7 +56,7 @@ export function SongThumbnail({
       tabIndex={!disabled && revealed ? 0 : -1}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleChoose() }}
     >
-      {/* Thumbnail image area */}
+      {/* Thumbnail */}
       <div className={styles.imageWrap}>
         {revealed ? (
           <img
@@ -53,12 +77,10 @@ export function SongThumbnail({
             </svg>
           </div>
         )}
-
-        {/* Playing indicator */}
         {isPlaying && <div className={styles.playingRing} />}
       </div>
 
-      {/* Text info — always reserve space even when hidden */}
+      {/* Texte */}
       <div className={styles.info}>
         {revealed ? (
           <>
@@ -73,21 +95,38 @@ export function SongThumbnail({
         )}
       </div>
 
-      {/* Replay button — always occupies same space */}
-      <div className={styles.replayWrap}>
-        <button
-          type="button"
-          className={[styles.replay, !replayEnabled ? styles.replayDisabled : ''].join(' ')}
-          onClick={handleReplay}
-          disabled={!replayEnabled}
-          aria-label={`Rejouer ${song.title}`}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M1 4v6h6" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M3.51 15a9 9 0 1 0 .49-5.17L1 10" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Rejouer
-        </button>
+      {/* Bouton d'action — hauteur toujours réservée */}
+      <div className={styles.actionWrap}>
+        {showSkip && (
+          <button
+            type="button"
+            className={[styles.actionBtn, styles.skipBtn, !skipEnabled ? styles.actionDisabled : ''].join(' ')}
+            onClick={handleSkip}
+            disabled={!skipEnabled}
+            aria-label="Passer cet extrait"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 4l12 8-12 8V4z" />
+              <rect x="18" y="4" width="3" height="16" rx="1" />
+            </svg>
+            Passer
+          </button>
+        )}
+        {showReplay && (
+          <button
+            type="button"
+            className={[styles.actionBtn, styles.replayBtn, !replayEnabled ? styles.actionDisabled : ''].join(' ')}
+            onClick={handleReplay}
+            disabled={!replayEnabled}
+            aria-label={`Rejouer ${song.title}`}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M1 4v6h6" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3.51 15a9 9 0 1 0 .49-5.17L1 10" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Rejouer
+          </button>
+        )}
       </div>
     </div>
   )
