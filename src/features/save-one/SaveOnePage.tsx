@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
-import { GameHeader } from '@/shared/Layout/GameHeader'
+import { AppHeader, GameCenterSlot } from '@/shared/Layout/AppHeader'
 import { GameHud } from '@/shared/Components/GameHud'
 import { PlayerTransitionOverlay } from './components/PlayerTransitionOverlay'
 import { RoundTransition } from './components/RoundTransition'
@@ -11,6 +11,8 @@ import { SaveOneSummary } from './components/SaveOneSummary'
 import { useSaveOneGame } from './hooks/useSaveOneGame'
 import type { IdolItem, SongItem } from './SaveOnePage.types'
 import styles from './SaveOnePage.module.scss'
+
+// ─── Mappings ─────────────────────────────────────────────────────────────────
 
 const CRITERIA_LABELS: Record<string, string> = {
   all: 'Tous', beauty: 'Beauté', personality: 'Personnalité',
@@ -29,6 +31,8 @@ const GAMEPLAY_LABELS: Record<string, string> = {
   classic: 'Classique', chill: 'Chill', spectator: 'Spectateur',
   hardcore: 'Hardcore', custom: 'Personnalisé',
 }
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function SaveOnePage() {
   const navigate   = useNavigate()
@@ -56,38 +60,44 @@ export default function SaveOnePage() {
   // ── Options HUD ──────────────────────────────────────────────────────────
 
   const hudOptions = [
-    { label: 'Drops', value: config.drops },
-    // Timer TOUJOURS affiché même si désactivé
-    config.timerSeconds > 0
-      ? { label: 'Timer', value: `${config.timerSeconds}s` }
-      : { label: 'Timer', value: 'Off' },
-    isSongs ? { label: 'Extrait', value: `${config.clipDuration}s` } : null,
+    { labelOption: 'Type de quiz', optionValue: 'Save One' },
+    { labelOption: 'Catégorie',    optionValue: isIdols ? 'Idoles' : 'Chansons' },
+    { labelOption: 'Mode de jeu',  optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
+    { labelOption: 'Drops',        optionValue: config.drops },
+    // Timer toujours affiché
+    { labelOption: 'Timer',        optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
+    // Extrait uniquement pour les chansons
+    isSongs ? { labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
+    // Rôles (mode custom idoles)
+    isCustom && isIdols && config.roleFilters.length > 0
+      ? { labelOption: 'Rôles', optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', ') }
+      : null,
+    // Type chansons (mode custom chansons)
+    isCustom && isSongs && config.songType !== 'all'
+      ? { labelOption: 'Type', optionValue: SONG_TYPE_LABELS[config.songType] ?? config.songType }
+      : null,
   ]
 
-  // Critère pour le badge gradient (mode custom idoles, hors 'all')
-  const hudCriterion: string | null = (isCustom && isIdols && config.criterion !== 'all')
+  // Critère (mode custom idoles, hors 'all')
+  const hudCriterion = (isCustom && isIdols && config.criterion !== 'all')
     ? (CRITERIA_LABELS[config.criterion] ?? config.criterion)
     : null
 
-  // Options supplémentaires textuelles (rôles, type chansons)
-  const hudExtras: string[] = []
-  if (isCustom && isIdols && config.roleFilters.length > 0)
-    hudExtras.push(config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', '))
-  if (isCustom && isSongs && config.songType !== 'all')
-    hudExtras.push(SONG_TYPE_LABELS[config.songType] ?? config.songType)
-
-  // ── Chargement / erreur / pool vide ──────────────────────────────────────
+  // ── États de chargement / erreur / vide ──────────────────────────────────
 
   if (isLoading) {
     return (
       <div className={styles.page}>
+        <AppHeader />
         <div className={styles.center}><div className={styles.spinner} /><p>Chargement du pool…</p></div>
       </div>
     )
   }
+
   if (error) {
     return (
       <div className={styles.page}>
+        <AppHeader />
         <div className={styles.center}>
           <p className={styles.errorTitle}>Erreur</p>
           <p className={styles.errorMsg}>{error}</p>
@@ -96,9 +106,11 @@ export default function SaveOnePage() {
       </div>
     )
   }
+
   if (!isLoading && rounds.length === 0) {
     return (
       <div className={styles.page}>
+        <AppHeader />
         <div className={styles.center}>
           <p className={styles.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
           <button className={styles.retryBtn} onClick={goToConfig}>← Retour à la config</button>
@@ -112,6 +124,7 @@ export default function SaveOnePage() {
   if (phase === 'summary') {
     return (
       <div className={[styles.page, styles.pageSummary].join(' ')}>
+        <AppHeader />
         <SaveOneSummary rounds={rounds} results={results} config={config} onRestart={restart} onBackToConfig={goToConfig} />
       </div>
     )
@@ -122,32 +135,33 @@ export default function SaveOnePage() {
   return (
     <div className={styles.page}>
 
-      {/* Header générique */}
-      <GameHeader
-        onBack={goToConfig}
-        onAction={() => pass()}
-        actionLabel="⏭ Passer le round"
-        actionDisabled={!isPlaying}
-        playerName={twoPlayer && isPlaying ? activePlayer : undefined}
-        playerIndex={currentPlayer}
+      {/* Header universel — center = back | round | pass */}
+      <AppHeader
+        centerSlot={
+          <GameCenterSlot
+            onBack={goToConfig}
+            onAction={() => pass()}
+            actionLabel="⏭ Passer le round"
+            actionDisabled={!isPlaying}
+            currentRound={currentRoundIndex + 1}
+            totalRounds={totalRounds}
+          />
+        }
       />
 
       {/* Zone de jeu */}
       <main className={styles.content}>
 
-        {/* HUD générique */}
+        {/* HUD — options + critère + joueur actif 2J */}
         <GameHud
-          quizType="Save One"
-          category={isIdols ? 'Idoles' : 'Chansons'}
-          gameMode={GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode}
-          currentRound={currentRoundIndex + 1}
-          totalRounds={totalRounds}
           options={hudOptions}
           criterion={hudCriterion}
           twoPlayer={twoPlayer}
+          activePlayerName={twoPlayer && isPlaying ? activePlayer : undefined}
+          activePlayerIndex={currentPlayer as 0 | 1}
         />
 
-        {/* Contenu de jeu — démonté pendant transitions */}
+        {/* Idoles */}
         {isPlaying && currentRound && isIdols && (
           <SaveOneRoundIdols
             idols={currentRound.items as IdolItem[]}
@@ -160,6 +174,7 @@ export default function SaveOnePage() {
           />
         )}
 
+        {/* Chansons — playerName uniquement en Songs (affiche dans iframe zone) */}
         {isPlaying && currentRound && isSongs && (
           <SaveOneRoundSongs
             songs={currentRound.items as SongItem[]}
@@ -167,8 +182,8 @@ export default function SaveOnePage() {
             timerSeconds={config.timerSeconds}
             timerKey={timerKey}
             player2Mode={twoPlayer && currentPlayer === 1}
-            playerName={twoPlayer ? activePlayer : undefined}
-            playerIndex={currentPlayer}
+            playerName={undefined}
+            playerIndex={currentPlayer as 0 | 1}
             onChoose={(id, ms) => choose(id, ms)}
             onPass={(ms) => pass(ms)}
             onTimeout={timeout}

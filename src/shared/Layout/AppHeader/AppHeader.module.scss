@@ -1,0 +1,285 @@
+/* ─── Shell header ───────────────────────────────────────────────────────── */
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 20px;
+  height: 52px;
+  gap: 0;
+  background: #260d47;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+:global([data-theme='light']) .header {
+  background: rgba(240, 217, 255, 0.95);
+  border-bottom-color: rgba(124, 58, 237, 0.15);
+}
+
+/* ─── Logo ───────────────────────────────────────────────────────────────── */
+
+.left {
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+}
+
+.logoBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: inherit;
+  text-decoration: none;
+
+  &:hover .logoText {
+    opacity: 0.8;
+  }
+}
+
+.logoIcon {
+  font-size: 18px;
+  line-height: 1;
+  /* L'emoji garde sa couleur propre */
+  -webkit-text-fill-color: initial;
+}
+
+.logoText {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity 0.15s;
+}
+
+/* ─── Centre ─────────────────────────────────────────────────────────────── */
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+}
+
+/* ─── Droite ─────────────────────────────────────────────────────────────── */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 16px;
+}
+
+/* ─── Slot : PageHeader (nom de la page) ─────────────────────────────────── */
+
+.pageTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Slot : GameCenter (back | round | pass) ────────────────────────────── */
+
+.gameCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 8px;
+  gap: 32px;
+}
+
+/* Boutons nav jeu */
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+:global([data-theme='light']) .navBtn {
+  background: rgba(124, 58, 237, 0.06);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--text-secondary);
+  &:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.35);
+  }
+}
+
+.passBtn {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: rgba(239, 68, 68, 0.8);
+  &:hover {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
+.navBtnDisabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Badge round */
+.roundBadge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  //background: rgba(255, 255, 255, 0.07);
+  //border: 1.5px solid rgba(255, 255, 255, 0.12);
+  //border-radius: var(--radius-pill);
+  padding: 5px 20px;
+  white-space: nowrap;
+}
+
+// :global([data-theme='light']) .roundBadge {
+//   background: rgba(124, 58, 237, 0.08);
+//   border-color: rgba(124, 58, 237, 0.25);
+// }
+
+.roundLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+}
+
+.roundVal {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.roundSep {
+  font-size: 14px;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.roundTotal {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ─── Slot : ConfigHeader (nav links) ───────────────────────────────────── */
+
+.configNav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.configNavLink {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: none;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--bg-pill);
+  }
+}
+
+.configNavLinkActive {
+  color: var(--accent-pink) !important;
+}
+
+/* ─── Bouton thème ───────────────────────────────────────────────────────── */
+
+.themeBtn {
+  background: var(--bg-pill);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 5px 9px;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.15s;
+  font-family: inherit;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 12px;
+  }
+  .logoText {
+    font-size: 13px;
+  }
+  .configNav {
+    gap: 0;
+  }
+  .configNavLink {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  .roundVal {
+    font-size: 17px;
+  }
+  .navBtn {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    display: none;
+  }
+}

@@ -5,10 +5,10 @@ export interface LayoutProps {
 }
 
 export interface PageContainerProps {
-  children:   ReactNode
-  title?:     string
-  subtitle?:  string
-  actions?:   ReactNode
-  wide?:      boolean   // max-width: 100% (pour les pages jeu plein écran)
+  children: ReactNode
+  title?: string
+  subtitle?: string
+  actions?: ReactNode
+  wide?: boolean
   className?: string
 }

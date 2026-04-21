@@ -1,3 +1,5 @@
 export { Layout, PageContainer } from './Layout'
 export { GameShell } from './GameShell'
+export { AppHeader, PageHeaderSlot, GameCenterSlot, ConfigHeaderSlot } from './AppHeader'
 export type { LayoutProps, PageContainerProps } from './Layout.types'
+export type { AppHeaderProps, PageHeaderSlotProps, GameCenterSlotProps } from './AppHeader/AppHeader.types'

@@ -1,113 +1,19 @@
 // ─── App shell ────────────────────────────────────────────────────────────────
+
 .shell {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
-.header {
-  background: #260d47; //rgba(11, 13, 26, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 24px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  flex-shrink: 0;
-}
-
-:global([data-theme='light']) .header {
-  background: rgba(240, 217, 255, 0.923);
-  border-bottom-color: rgba(124, 58, 237, 0.15);
-}
-
-.headerTitle {
+.main {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.headerName {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  white-space: nowrap;
-  /* Gradient identique au logo GameHeader */
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.headerSubtitle {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1;
-  padding: 4px;
-}
-
-// ─── Nav ──────────────────────────────────────────────────────────────────────
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.navLink {
-  font-size: 13px;
-  color: var(--text-secondary);
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid transparent;
-  background: none;
-  transition:
-    color 0.15s,
-    border-color 0.15s,
-    background 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-  text-decoration: none;
-
-  &:hover {
-    color: var(--text-primary);
-    border-color: var(--border-strong);
-    background: var(--bg-pill);
-  }
-}
-
-.navLinkActive {
-  color: var(--accent-pink) !important;
-}
-
-.themeBtn {
-  background: var(--bg-pill);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  padding: 6px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  line-height: 1;
-  transition: background 0.15s;
-  flex-shrink: 0;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.12);
-  }
 }
 
 // ─── Page container ───────────────────────────────────────────────────────────
+
 .pageContainer {
   flex: 1;
   padding: 28px 28px 48px;
@@ -120,7 +26,8 @@
   max-width: 100%;
 }
 
-// ─── Page header ──────────────────────────────────────────────────────────────
+// ─── Page header (titre + actions dans la page, sous la AppHeader) ────────────
+
 .pageHeader {
   display: flex;
   align-items: flex-start;

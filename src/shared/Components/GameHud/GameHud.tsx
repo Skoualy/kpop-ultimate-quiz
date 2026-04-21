@@ -1,71 +1,65 @@
+import { GameOptionBadge } from '@/shared/Components/GameOptionBadge'
 import type { GameHudProps } from './GameHud.types'
 import styles from './GameHud.module.scss'
 
 /**
  * HUD générique pour tous les modes de quiz.
  *
- * Card divisée en 2 sections horizontales :
- *   Section 1 — infos principales : type · round · mode
- *   Section 2 — options : drops, timer, extrait + critère (badge) + 2J
+ * Section 1 — ligne de badges séparés par ·, critère en fin mis en valeur.
+ * Section 2 — (mode 2J uniquement) joueur dont c'est le tour.
  */
 export function GameHud({
-  quizType,
-  category,
-  gameMode,
-  currentRound,
-  totalRounds,
   options,
   criterion,
   twoPlayer = false,
+  activePlayerName,
+  activePlayerIndex = 0,
 }: GameHudProps) {
   const visibleOptions = options.filter(Boolean) as NonNullable<(typeof options)[number]>[]
 
-  return (
-    <div className={styles.card}>
+  const playerClass = activePlayerIndex === 1 ? styles.playerP2 : styles.playerP1
 
-      {/* ── Section 1 : infos principales ── */}
+  return (
+    <div className={styles.hud}>
+      {/* ── Section 1 : badges options + critère ── */}
       <div className={styles.section1}>
-        <span className={[styles.typeTag, styles.typeTagAccent].join(' ')}>{quizType}</span>
-        <span className={styles.typeTag}>{category}</span>
-        <span className={styles.sep} aria-hidden>·</span>
-        <div className={styles.roundBadge} aria-label={`Round ${currentRound} sur ${totalRounds}`}>
-          <span className={styles.roundLabel}>Round</span>
-          <span className={styles.roundVal}>{currentRound}</span>
-          <span className={styles.roundTotal}>/ {totalRounds}</span>
-        </div>
-        <span className={styles.sep} aria-hidden>·</span>
-        <span className={styles.modeTag}>{gameMode}</span>
+        {twoPlayer && activePlayerName && (
+          <span className={styles.playerTurn}>
+            <span className={[styles.playerName, playerClass].join(' ')}>{activePlayerName}</span>
+          </span>
+        )}
       </div>
 
-      {/* ── Section 2 : options ── */}
+      {/* ── Section 2 : joueur actif (mode 2J uniquement) ── */}
+
       <div className={styles.section2}>
-        {/* Options drops/timer/extrait */}
-        {visibleOptions.map((opt) => (
-          <span key={opt.label} className={styles.opt}>
-            <span className={styles.optLabel}>{opt.label}</span>
-            <span className={styles.optVal}>{opt.value}</span>
+        {visibleOptions.map((opt, i) => (
+          <span key={i} className={styles.optWrapper}>
+            {i > 0 && (
+              <span className={styles.sep} aria-hidden>
+                ·
+              </span>
+            )}
+            <GameOptionBadge labelOption={opt.labelOption} optionValue={opt.optionValue} />
           </span>
         ))}
 
-        {/* Séparateur si options + extras */}
-        {visibleOptions.length > 0 && (criterion || twoPlayer) && (
-          <span className={styles.sep2} aria-hidden>·</span>
-        )}
-
-        {/* Critère — style badge gradient comme CriterionBadge */}
+        {/* Critère — dernier, style badge gradient mis en valeur */}
         {criterion && (
-          <span className={styles.criterionBadge}>
-            <span className={styles.criterionIcon}>🎯</span>
-            <span className={styles.criterionText}>Critère · {criterion}</span>
-          </span>
-        )}
-
-        {/* Indicateur 2 joueurs */}
-        {twoPlayer && (
-          <span className={styles.twoPlayerTag}>👥 2 Joueurs</span>
+          <>
+            {visibleOptions.length > 0 && (
+              <span className={styles.sep} aria-hidden>
+                ·
+              </span>
+            )}
+            <span className={styles.criterionBadge}>
+              <span className={styles.criterionIcon}>🎯</span>
+              <span className={styles.criterionLabel}>Critère</span>
+              <span className={styles.criterionValue}>{criterion}</span>
+            </span>
+          </>
         )}
       </div>
-
     </div>
   )
 }

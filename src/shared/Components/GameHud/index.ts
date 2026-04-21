@@ -1,2 +1,2 @@
 export { GameHud } from './GameHud'
-export type { GameHudProps, GameHudOption } from './GameHud.types'
+export type { GameHudProps, HudOption } from './GameHud.types'

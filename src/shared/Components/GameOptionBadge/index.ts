@@ -1,0 +1,1 @@
+export { GameOptionBadge } from './GameOptionBadge'
