@@ -1,7 +1,7 @@
-import { GameOptionBadge } from '@/shared/Components/GameOptionBadge'
+import { GameOption } from '@/shared/Components/GameOption'
 import type { GameHudProps } from './GameHud.types'
+import { GameHudHeader } from './GameHudHeader'
 import styles from './GameHud.module.scss'
-
 /**
  * HUD générique pour tous les modes de quiz.
  *
@@ -11,23 +11,28 @@ import styles from './GameHud.module.scss'
 export function GameHud({
   options,
   criterion,
-  twoPlayer = false,
-  activePlayerName,
-  activePlayerIndex = 0,
+  onBack,
+  onAction,
+  actionDisabled,
+  currentRound,
+  totalRounds,
+  activePlayerIndex,
 }: GameHudProps) {
   const visibleOptions = options.filter(Boolean) as NonNullable<(typeof options)[number]>[]
-
   const playerClass = activePlayerIndex === 1 ? styles.playerP2 : styles.playerP1
 
   return (
     <div className={styles.hud}>
       {/* ── Section 1 : badges options + critère ── */}
       <div className={styles.section1}>
-        {twoPlayer && activePlayerName && (
-          <span className={styles.playerTurn}>
-            <span className={[styles.playerName, playerClass].join(' ')}>{activePlayerName}</span>
-          </span>
-        )}
+        <GameHudHeader
+          onBack={onBack}
+          onAction={onAction}
+          actionLabel="⏭ Passer le round"
+          actionDisabled={actionDisabled}
+          currentRound={currentRound}
+          totalRounds={totalRounds}
+        />
       </div>
 
       {/* ── Section 2 : joueur actif (mode 2J uniquement) ── */}
@@ -37,10 +42,10 @@ export function GameHud({
           <span key={i} className={styles.optWrapper}>
             {i > 0 && (
               <span className={styles.sep} aria-hidden>
-                ·
+                |
               </span>
             )}
-            <GameOptionBadge labelOption={opt.labelOption} optionValue={opt.optionValue} />
+            <GameOption labelOption={opt.labelOption} optionValue={opt.optionValue} />
           </span>
         ))}
 
@@ -49,7 +54,7 @@ export function GameHud({
           <>
             {visibleOptions.length > 0 && (
               <span className={styles.sep} aria-hidden>
-                ·
+                |
               </span>
             )}
             <span className={styles.criterionBadge}>

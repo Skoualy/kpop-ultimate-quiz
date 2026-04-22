@@ -11,26 +11,127 @@
   overflow: hidden;
 }
 
-/* ─── Section 1 : badges ─────────────────────────────────────────────────── */
+/* ─── Section 1 ─────────────────────────────────────────────────── */
 
 .section1 {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  //flex-wrap: wrap;
+  gap: 16px;
+  padding: 8px 16px;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.gameCenter {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  padding: 10px 20px;
+  width: 100%;
+  padding: 0 8px;
+  gap: 32px;
+}
+
+/* Boutons nav jeu */
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  flex-shrink: 0;
+  justify-content: center;
+
+  &:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+:global([data-theme='light']) .navBtn {
+  background: rgba(124, 58, 237, 0.06);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--text-secondary);
+  &:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.35);
+  }
+}
+
+.navBtn.passBtn {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: rgba(239, 68, 68, 0.8);
+  &:hover {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
+.navBtnDisabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Badge round */
+.roundBadge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 4px 16px;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.roundLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+}
+
+.roundVal {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.roundSep {
+  font-size: 14px;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.roundTotal {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .optWrapper {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  //gap: 8px;
 }
 
 /* Séparateur entre badges */
 .sep {
-  font-size: 15px;
+  font-size: 18px;
+  padding: 0px 8px;
   color: var(--text-muted);
   opacity: 0.5;
   user-select: none;
@@ -76,7 +177,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 20px;
+  padding: 2px 16px;
   border-top: 1px solid var(--border);
   //color: #c4b5fd;
   background: rgba(124, 58, 237, 0.15);

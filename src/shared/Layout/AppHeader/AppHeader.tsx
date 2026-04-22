@@ -61,53 +61,6 @@ export function PageHeaderSlot({ title }: { title: string }) {
 
 // ─── Slot central : jeu — back | round | action ───────────────────────────────
 
-export function GameCenterSlot({
-  onBack,
-  backLabel = '← Config',
-  onAction,
-  actionLabel = '⏭ Passer le round',
-  actionDisabled = false,
-  currentRound,
-  totalRounds,
-}: {
-  onBack: () => void
-  backLabel?: string
-  onAction?: () => void
-  actionLabel?: string
-  actionDisabled?: boolean
-  currentRound: number
-  totalRounds: number
-}) {
-  return (
-    <div className={styles.gameCenter}>
-      {/* Extrémité gauche */}
-      <button type="button" className={styles.navBtn} onClick={onBack}>
-        {backLabel}
-      </button>
-
-      {/* Badge Round — milieu absolu */}
-      <div className={styles.roundBadge}>
-        <span className={styles.roundLabel}>Round</span>
-        <span className={styles.roundVal}>{currentRound}</span>
-        <span className={styles.roundSep}>/</span>
-        <span className={styles.roundTotal}>{totalRounds}</span>
-      </div>
-
-      {/* Extrémité droite */}
-      {onAction && (
-        <button
-          type="button"
-          className={[styles.navBtn, styles.passBtn, actionDisabled ? styles.navBtnDisabled : ''].join(' ')}
-          onClick={onAction}
-          disabled={actionDisabled}
-        >
-          {actionLabel}
-        </button>
-      )}
-    </div>
-  )
-}
-
 // ─── Slot droit : nav pages normales ─────────────────────────────────────────
 
 import { NavLink } from 'react-router-dom'

@@ -20,14 +20,3 @@ export interface PageHeaderSlotProps {
   /** Nom de la page courante — affiché au centre de la header */
   title: string
 }
-
-/** Props du slot central pour les pages de jeu */
-export interface GameCenterSlotProps {
-  onBack: () => void
-  backLabel?: string
-  onAction?: () => void
-  actionLabel?: string
-  actionDisabled?: boolean
-  currentRound: number
-  totalRounds: number
-}

@@ -1,2 +1,2 @@
-export { AppHeader, PageHeaderSlot, GameCenterSlot, ConfigHeaderSlot } from './AppHeader'
-export type { AppHeaderProps, PageHeaderSlotProps, GameCenterSlotProps } from './AppHeader.types'
+export { AppHeader, PageHeaderSlot, ConfigHeaderSlot } from './AppHeader'
+export type { AppHeaderProps, PageHeaderSlotProps } from './AppHeader.types'

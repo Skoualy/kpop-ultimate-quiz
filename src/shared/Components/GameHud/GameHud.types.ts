@@ -1,8 +1,20 @@
+import { GameConfig } from '@/shared/models'
+
 export interface HudOption {
   /** Label affiché avant la valeur (optionnel). Ex: "Mode de jeu" */
   labelOption?: string
   /** Valeur affichée. Ex: "Personnalisé", "3", "Off" */
   optionValue: string | number
+}
+
+export interface GameHudHeaderProps {
+  onBack: () => void
+  backLabel?: string
+  onAction?: () => void
+  actionLabel?: string
+  actionDisabled?: boolean
+  currentRound: number
+  totalRounds: number
 }
 
 export interface GameHudProps {
@@ -12,6 +24,13 @@ export interface GameHudProps {
    * Les null/undefined sont ignorés.
    */
   options: (HudOption | null | undefined)[]
+  onBack: () => void
+  backLabel?: string
+  onAction?: () => void
+  actionLabel?: string
+  actionDisabled?: boolean
+  currentRound: number
+  totalRounds: number
 
   /**
    * Critère actif — affiché en dernier avec le style badge gradient (mis en valeur).

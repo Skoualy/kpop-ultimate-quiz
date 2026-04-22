@@ -1,0 +1,63 @@
+.root {
+  display: inline-flex;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  background: var(--bg-surface);
+  flex-shrink: 0;
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+/* ─── Bouton ──────────────────────────────────────────────────────────────── */
+
+.btn {
+  flex: 1;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border-strong);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+
+  &:last-child { border-right: none; }
+
+  &:hover:not(.btnActive):not(.btnDisabled) {
+    background: var(--bg-card);
+    color: var(--text-secondary);
+  }
+}
+
+.btnActive {
+  background: rgba(124, 58, 237, 0.15);
+  color: #c4b5fd;
+  cursor: default;
+}
+
+.btnDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ─── Tailles ─────────────────────────────────────────────────────────────── */
+
+.sm .btn {
+  font-size: 11px;
+  padding: 4px 12px;
+}
+
+/* Thème clair */
+:global([data-theme='light']) {
+  .btnActive {
+    background: rgba(124, 58, 237, 0.12);
+    color: #6d28d9;
+  }
+}
