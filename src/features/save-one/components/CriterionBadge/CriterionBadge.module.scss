@@ -2,25 +2,25 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px 5px 9px;
+  padding: 6px 12px 6px 10px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
   box-shadow: 0 0 12px color-mix(in srgb, var(--accent-purple) 40%, transparent);
   color: #fff;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.02em;
   white-space: nowrap;
   user-select: none;
 }
 
 .emoji {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1;
 }
 
 .label {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 11px;
+  font-size: 12px;
 }

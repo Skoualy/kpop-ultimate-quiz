@@ -13,9 +13,9 @@ interface GameOptionProps {
  */
 export function GameOption({ labelOption, optionValue }: GameOptionProps) {
   return (
-    <span className={styles.option}>
+    <div className={styles.option}>
       {labelOption && <span className={styles.label}>{labelOption}</span>}
       <span className={styles.value}>{optionValue}</span>
-    </span>
+    </div>
   )
 }

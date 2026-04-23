@@ -33,7 +33,7 @@ export function CriterionBadge({ criterion }: CriterionBadgeProps) {
   return (
     <div className={styles.badge}>
       <span className={styles.emoji}>{CRITERION_EMOJI[criterion]}</span>
-      <span className={styles.label}>Critère · {CRITERION_LABELS[criterion]}</span>
+      <span className={styles.label}>{CRITERION_LABELS[criterion]}</span>
     </div>
   )
 }

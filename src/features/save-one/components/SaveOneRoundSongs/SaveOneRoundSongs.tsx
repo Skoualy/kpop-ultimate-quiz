@@ -19,16 +19,16 @@ export function SaveOneRoundSongs({
   onPass,
   onTimeout,
 }: SaveOneRoundSongsProps) {
-  const [activeIdx, setActiveIdx]               = useState<number | null>(0)
-  const [revealedCount, setRevealedCount]       = useState(1)
+  const [activeIdx, setActiveIdx] = useState<number | null>(0)
+  const [revealedCount, setRevealedCount] = useState(1)
   const [sequenceComplete, setSequenceComplete] = useState(false)
-  const [chosen, setChosen]                     = useState<string | null>(null)
-  const [videoError, setVideoError]             = useState(false)
+  const [chosen, setChosen] = useState<string | null>(null)
+  const [videoError, setVideoError] = useState(false)
 
-  const startRef      = useRef(Date.now())
-  const advanceFnRef  = useRef<() => void>(() => {})
-  const iframeRef     = useRef<HTMLIFrameElement>(null)
-  const lastIdxRef    = useRef<number>(0)
+  const startRef = useRef(Date.now())
+  const advanceFnRef = useRef<() => void>(() => {})
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const lastIdxRef = useRef<number>(0)
   const [frozenIdx, setFrozenIdx] = useState<number | null>(null)
 
   // ── Reset à chaque timerKey ───────────────────────────────────────────────
@@ -61,20 +61,22 @@ export function SaveOneRoundSongs({
 
   const fadeOutAndAdvance = () => {
     const iframe = iframeRef.current
-    if (!iframe?.contentWindow) { advanceFnRef.current(); return }
+    if (!iframe?.contentWindow) {
+      advanceFnRef.current()
+      return
+    }
     let vol = 80
     const step = () => {
       vol -= 16
       iframe.contentWindow?.postMessage(
-        JSON.stringify({ event: 'command', func: 'setVolume', args: [Math.max(0, vol)] }), '*'
+        JSON.stringify({ event: 'command', func: 'setVolume', args: [Math.max(0, vol)] }),
+        '*',
       )
       if (vol > 0) {
         setTimeout(step, 50)
       } else {
         setTimeout(() => {
-          iframe.contentWindow?.postMessage(
-            JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*'
-          )
+          iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*')
           advanceFnRef.current()
         }, 100)
       }
@@ -156,25 +158,16 @@ export function SaveOneRoundSongs({
     }
   }
 
-  const iframeIdx   = activeIdx !== null ? activeIdx : null
-  const showFrozen  = player2Mode && frozenIdx !== null && activeIdx === null
-  const displayIdx  = iframeIdx ?? (showFrozen ? frozenIdx : null)
+  const iframeIdx = activeIdx !== null ? activeIdx : null
+  const showFrozen = player2Mode && frozenIdx !== null && activeIdx === null
+  const displayIdx = iframeIdx ?? (showFrozen ? frozenIdx : null)
   const useAutoplay = !player2Mode || activeIdx !== null
   const currentSong = displayIdx !== null ? songs[displayIdx] : null
 
-  const playerBadgeClass = playerIndex === 1 ? styles.playerNameP2 : styles.playerNameP1
-
   return (
     <div className={styles.root}>
-      {/* Badge joueur (2J) */}
-      {playerName && (
-        <div className={styles.playerNameRow}>
-          <span className={[styles.playerName, playerBadgeClass].join(' ')}>{playerName}</span>
-        </div>
-      )}
-
       {/* Iframe YouTube */}
-      <div className={styles.iframeWrapper} ref={(el) => { iframeRef.current = el?.querySelector('iframe') ?? null }}>
+      <div className={styles.iframeWrapper}>
         {currentSong && !videoError && !chosen ? (
           <YouTubePlayer
             key={`yt-${timerKey}-p${playerIndex}-${displayIdx}-${useAutoplay ? 'auto' : 'frozen'}`}
@@ -186,7 +179,10 @@ export function SaveOneRoundSongs({
             className={styles.player}
           />
         ) : videoError ? (
-          <div className={styles.videoError}><span>⚠️</span><p>Vidéo indisponible</p></div>
+          <div className={styles.videoError}>
+            <span>⚠️</span>
+            <p>Vidéo indisponible</p>
+          </div>
         ) : null}
       </div>
 

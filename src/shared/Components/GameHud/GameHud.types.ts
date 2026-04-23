@@ -1,4 +1,4 @@
-import { GameConfig } from '@/shared/models'
+import { GameConfig, SaveOneCriterion } from '@/shared/models'
 
 export interface HudOption {
   /** Label affiché avant la valeur (optionnel). Ex: "Mode de jeu" */
@@ -36,7 +36,7 @@ export interface GameHudProps {
    * Critère actif — affiché en dernier avec le style badge gradient (mis en valeur).
    * Absent ou null = non affiché.
    */
-  criterion?: string | null
+  criterion?: SaveOneCriterion | null
 
   /**
    * Mode 2 joueurs : affiche une section 2 avec le joueur dont c'est le tour.

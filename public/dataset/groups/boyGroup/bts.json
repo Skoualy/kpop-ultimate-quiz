@@ -7,55 +7,64 @@
   "debutYear": 2013,
   "status": "active",
   "company": "BigHit Entertainment",
-  "coverImage": null,
+  "coverImage": "/assets/groups/bts/cover.webp",
   "members": [
     {
       "idolId": "rm",
       "status": "current",
       "roles": [
-        "vocal"
+        "leader",
+        "mainRapper"
       ]
     },
     {
-      "idolId": "jin",
+      "idolId": "j-3",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual"
       ]
     },
     {
       "idolId": "suga",
       "status": "current",
       "roles": [
-        "vocal"
+        "rapper"
       ]
     },
     {
       "idolId": "j-hope",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "rapper",
+        "mainDancer"
       ]
     },
     {
       "idolId": "jimin-2",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "mainDancer"
       ]
     },
     {
       "idolId": "v",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "visual"
       ]
     },
     {
       "idolId": "jungkook",
       "status": "current",
       "roles": [
-        "vocal"
+        "mainVocal",
+        "rapper",
+        "dancer",
+        "maknae"
       ]
     }
   ],
@@ -64,108 +73,103 @@
       {
         "id": "no-more-dream",
         "title": "No More Dream",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+No+More+Dream+MV",
+        "youtubeUrl": "https://youtu.be/rBG5L7UsUxA?si=aHbnYN0IYM5Vi0Hx",
         "isDebutSong": true
       },
       {
         "id": "boy-in-luv",
         "title": "Boy In Luv",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Boy+In+Luv+MV"
+        "youtubeUrl": "https://youtu.be/m8MfJg68oCs?si=rBnJS_6UHxj65sNW"
       },
       {
         "id": "i-need-u",
         "title": "I Need U",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+I+Need+U+MV"
+        "youtubeUrl": "https://youtu.be/jjskoRh8GTE?si=y4xMbVEk8ThVxJmA"
       },
       {
         "id": "fire",
         "title": "Fire",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Fire+MV"
+        "youtubeUrl": "https://youtu.be/4ujQOR2DMFM?si=rlJomR6h6hWaNsxW"
       },
       {
-        "id": "blood-sweat-tears",
+        "id": "blood-sweat-and-tears",
         "title": "Blood Sweat & Tears",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Blood+Sweat+%26+Tears+MV"
+        "youtubeUrl": "https://youtu.be/hmE9f-TEutc?si=-HRLVCpLMoXPBRKA"
       },
       {
         "id": "spring-day",
         "title": "Spring Day",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Spring+Day+MV"
+        "youtubeUrl": "https://youtu.be/xEeFrLSkMm8?si=MxdtWzY3uUZkOTbH"
       },
       {
         "id": "dna",
         "title": "DNA",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+DNA+MV"
+        "youtubeUrl": "https://youtu.be/MBdVXkSdhwU?si=nB5fXO0K-zzJTvZ5"
       },
       {
         "id": "fake-love",
         "title": "Fake Love",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Fake+Love+MV"
+        "youtubeUrl": "https://youtu.be/7C2z4GqqS5E?si=RoQXY6uHxlUwM3Ca"
       },
       {
         "id": "idol",
         "title": "Idol",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Idol+MV"
+        "youtubeUrl": "https://youtu.be/pBuZEGYXA6E?si=tivmbczg4_XGZNoE"
       },
       {
         "id": "boy-with-luv",
         "title": "Boy With Luv",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Boy+With+Luv+MV"
+        "youtubeUrl": "https://youtu.be/XsX3ATc3FbA?si=EnGvKbal0A4eXW81"
       },
       {
         "id": "on",
         "title": "On",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+On+MV"
+        "youtubeUrl": "https://youtu.be/mPVDGOVjRQ0?si=MbpZoqTRb1L_hO9K"
       },
       {
         "id": "dynamite",
         "title": "Dynamite",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Dynamite+MV"
+        "youtubeUrl": "https://youtu.be/gdZLi9oWNZg?si=INqCWHB1sX-sJpyY"
       },
       {
         "id": "butter",
         "title": "Butter",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Butter+MV"
+        "youtubeUrl": "https://youtu.be/WMweEpGlu_U?si=lVs0gHOWM9xpSNKh"
       },
       {
         "id": "permission-to-dance",
         "title": "Permission to Dance",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Permission+to+Dance+MV"
+        "youtubeUrl": "https://youtu.be/CuklIb9d3fI?si=A8ijOKV9ta4t24kr"
       },
       {
         "id": "yet-to-come",
         "title": "Yet to Come",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Yet+to+Come+MV"
+        "youtubeUrl": "https://youtu.be/kXpOEzNZ8hQ?si=YGfiD5l6Jsb5Ouz2"
       }
     ],
     "bSides": [
       {
         "id": "dope",
         "title": "Dope",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Dope+MV"
-      },
-      {
-        "id": "home",
-        "title": "Home",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Home+MV"
+        "youtubeUrl": "https://youtu.be/j-URsRB5s_A?si=zujLyirbd9upSDBO"
       },
       {
         "id": "black-swan",
         "title": "Black Swan",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Black+Swan+MV"
+        "youtubeUrl": "https://youtu.be/_36O75VSuLY?si=H5aJDdnSUqLZ4XEh"
       },
       {
         "id": "pied-piper",
         "title": "Pied Piper",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Pied+Piper+MV"
+        "youtubeUrl": "https://youtu.be/mz8cX-Ai0lE?si=Ps88_KEIFG7VUdgH"
       },
       {
-        "id": "run",
-        "title": "Run",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=BTS+Run+MV"
+        "id": "run-bts",
+        "title": "Run BTS",
+        "youtubeUrl": "https://youtu.be/ssD6mzewGVo?si=kbRuZ78m16QyeWY4"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "A.R.M.Y",
   "notes": null
 }
