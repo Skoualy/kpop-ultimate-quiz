@@ -18,8 +18,6 @@ import {
   TIMER_OPTIONS,
   getAvailableRolesForCriterion,
   filterRolesForCriterion,
-  LANGUAGES,
-  LANGUAGE_LABELS,
 } from '@/shared/constants'
 import type {
   Group,
@@ -31,7 +29,6 @@ import type {
   Generation,
   RoleCriterion,
   GameConfig,
-  LanguageCode,
   LanguageOption,
 } from '@/shared/models'
 import { useConfigPreparation, type PreparationStatus } from '@/features/save-one/hooks/useConfigPreparation'
@@ -82,6 +79,8 @@ const ARTIST_MODE_OPTIONS = [
   { value: 'byFilter' as ArtistSelectionMode, label: 'Par filtres' },
   { value: 'manual' as ArtistSelectionMode, label: 'Manuel' },
 ]
+
+const songLanguageOptions = ConfigPageServices.buildSongLanguageOptions()
 
 function genIcon(g: Group) {
   return g.category === 'girlGroup' || g.category === 'femaleSoloist' ? '♀' : '♂'
@@ -567,8 +566,8 @@ export default function ConfigPage() {
                     <div className={styles.optionGroup}>
                       <span className={styles.fieldLabel}>Langue</span>
                       <BadgeGroupControl<LanguageOption>
-                        options={ConfigPageServices.buildSongLanguageOptions()}
-                        value={[defaultOptionValue]}
+                        options={songLanguageOptions}
+                        value={[config.songLanguage]}
                         onChange={(v) => setConfig({ songLanguage: v[0] ?? defaultOptionValue })}
                         size="sm"
                       />
