@@ -179,7 +179,6 @@ export default function SaveOnePage() {
         {/* HUD — options + critère + joueur actif 2J */}
         <GameHud
           options={hudOptions}
-          criterion={hudCriterion}
           twoPlayer={twoPlayer}
           activePlayerName={twoPlayer && isPlaying ? activePlayer : undefined}
           activePlayerIndex={currentPlayer as 0 | 1}
@@ -198,7 +197,6 @@ export default function SaveOnePage() {
             timerKey={timerKey}
             activeCriterion={currentRound.activeCriterion}
             onChoose={(id, ms) => choose(id, ms)}
-            onPass={(ms) => pass(ms)}
             onTimeout={timeout}
           />
         )}
@@ -218,8 +216,8 @@ export default function SaveOnePage() {
             onTimeout={timeout}
           />
         )}
-
-        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />}
+        {/*
+        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />} */}
       </main>
 
       {phase === 'roundTransition' && (

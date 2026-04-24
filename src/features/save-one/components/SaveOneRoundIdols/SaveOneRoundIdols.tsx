@@ -5,13 +5,14 @@ import { useGameTimer } from '../../hooks/useGameTimer'
 import type { SaveOneRoundIdolsProps } from './SaveOneRoundIdols.types'
 import type { IdolItem } from '../../SaveOnePage.types'
 import styles from './SaveOneRoundIdols.module.scss'
+import { CriterionBadge } from '../CriterionBadge'
 
 export function SaveOneRoundIdols({
   idols,
   timerSeconds,
   timerKey,
+  activeCriterion,
   onChoose,
-  onPass,
   onTimeout,
 }: SaveOneRoundIdolsProps) {
   const startRef = useRef(Date.now())
@@ -37,6 +38,9 @@ export function SaveOneRoundIdols({
 
   return (
     <div className={styles.root}>
+      {/* Critère — dernier, style badge gradient mis en valeur */}
+      {activeCriterion && <CriterionBadge criterion={activeCriterion} />}
+
       {/* Timer — espace toujours réservé */}
       <div className={styles.timerSlot}>
         {timerSeconds > 0 && (
@@ -52,13 +56,7 @@ export function SaveOneRoundIdols({
       {/* Grille — cards toujours à 260px */}
       <div className={styles.grid}>
         {idols.map((idol: IdolItem) => (
-          <IdolCard
-            key={idol.idolId}
-            idol={idol}
-            size="lg"
-            disabled={chosen !== null}
-            onClick={handleChoose}
-          />
+          <IdolCard key={idol.idolId} idol={idol} size="lg" disabled={chosen !== null} onClick={handleChoose} />
         ))}
       </div>
     </div>

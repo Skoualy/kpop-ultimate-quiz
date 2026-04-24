@@ -2,6 +2,7 @@ import { GameOption } from '@/shared/Components/GameOption'
 import type { GameHudProps } from './GameHud.types'
 import { GameHudHeader } from './GameHudHeader'
 import styles from './GameHud.module.scss'
+import { CriterionBadge } from '@/features/save-one/components/CriterionBadge'
 /**
  * HUD générique pour tous les modes de quiz.
  *
@@ -14,6 +15,7 @@ export function GameHud({
   onBack,
   onAction,
   actionDisabled,
+  activePlayerName,
   currentRound,
   totalRounds,
   activePlayerIndex,
@@ -47,20 +49,17 @@ export function GameHud({
             <GameOption labelOption={opt.labelOption} optionValue={opt.optionValue} />
           </span>
         ))}
-
-        {/* Critère — dernier, style badge gradient mis en valeur */}
-        {criterion && (
+        {activePlayerName && (
           <>
             {visibleOptions.length > 0 && (
               <span className={styles.sep} aria-hidden>
                 |
               </span>
             )}
-            <span className={styles.criterionBadge}>
-              <span className={styles.criterionIcon}>🎯</span>
-              <span className={styles.criterionLabel}>Critère</span>
-              <span className={styles.criterionValue}>{criterion}</span>
-            </span>
+            <div className={styles.playerNameRow}>
+              <span className={styles.playerLabel}>Joueur</span>
+              <span className={[styles.playerName, playerClass].join(' ')}>{activePlayerName}</span>
+            </div>
           </>
         )}
       </div>

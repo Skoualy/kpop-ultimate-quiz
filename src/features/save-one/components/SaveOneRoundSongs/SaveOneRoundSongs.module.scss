@@ -41,7 +41,7 @@
 
 .iframeWrapper {
   width: 100%;
-  max-width: 640px;
+  max-width: 720px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -87,7 +87,7 @@
 
 .timerSlot {
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   min-height: 26px;
   display: flex;
   align-items: center;
@@ -113,7 +113,7 @@
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .thumbnails {
     gap: 8px;
     max-width: 100%;

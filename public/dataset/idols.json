@@ -648,12 +648,21 @@
     "notes": null
   },
   {
+    "id": "j-3",
+    "name": "Jin",
+    "primaryGroupId": "bts",
+    "gender": "m",
+    "nationality": "kr",
+    "portrait": "/assets/idols/j-3/portrait.webp",
+    "notes": null
+  },
+  {
     "id": "j-hope",
     "name": "J-Hope",
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/j-hope/portrait.webp",
+    "portrait": "/assets/idols/j-hope/portrait.webp",
     "notes": null
   },
   {
@@ -806,7 +815,7 @@
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jimin-2/portrait.webp",
+    "portrait": "/assets/idols/jimin-2/portrait.webp",
     "notes": null
   },
   {
@@ -968,7 +977,7 @@
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jungkook/portrait.webp",
+    "portrait": "/assets/idols/jungkook/portrait.webp",
     "notes": null
   },
   {
@@ -1382,7 +1391,7 @@
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/rm/portrait.webp",
+    "portrait": "/assets/idols/rm/portrait.webp",
     "notes": null
   },
   {
@@ -1688,7 +1697,7 @@
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/suga/portrait.webp",
+    "portrait": "/assets/idols/suga/portrait.webp",
     "notes": null
   },
   {
@@ -1832,7 +1841,7 @@
     "primaryGroupId": "bts",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/v/portrait.webp",
+    "portrait": "/assets/idols/v/portrait.webp",
     "notes": null
   },
   {
