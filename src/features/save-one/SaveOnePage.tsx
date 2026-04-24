@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
 import { AppHeader } from '@/shared/Layout/AppHeader'
 import { GameHud } from '@/shared/Components/GameHud'
-import { PlayerTransitionOverlay } from './components/PlayerTransitionOverlay'
-import { RoundTransition } from './components/RoundTransition'
+import { PlayerTransitionOverlay } from '../../shared/Components/PlayerTransitionOverlay'
+import { RoundTransition } from '../../shared/Components/RoundTransition'
 import { SaveOneRoundIdols } from './components/SaveOneRoundIdols'
 import { SaveOneRoundSongs } from './components/SaveOneRoundSongs'
 import { SaveOneSummary } from './components/SaveOneSummary'
@@ -107,8 +107,8 @@ export default function SaveOnePage() {
   ]
 
   // Critère (mode custom idoles, hors 'all')
-  const hudCriterion =
-    isCustom && isIdols && config.criterion !== 'all' ? (CRITERIA_LABELS[config.criterion] ?? config.criterion) : null
+  // const hudCriterion =
+  //   isCustom && isIdols && config.criterion !== 'all' ? (CRITERIA_LABELS[config.criterion] ?? config.criterion) : null
 
   // ── États de chargement / erreur / vide ──────────────────────────────────
 
@@ -183,7 +183,7 @@ export default function SaveOnePage() {
           activePlayerName={twoPlayer && isPlaying ? activePlayer : undefined}
           activePlayerIndex={currentPlayer as 0 | 1}
           onBack={goToConfig}
-          onAction={() => pass()}
+          onPass={() => pass()}
           actionDisabled={!isPlaying}
           currentRound={currentRoundIndex + 1}
           totalRounds={totalRounds}
@@ -216,8 +216,8 @@ export default function SaveOnePage() {
             onTimeout={timeout}
           />
         )}
-        {/*
-        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />} */}
+
+        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />}
       </main>
 
       {phase === 'roundTransition' && (

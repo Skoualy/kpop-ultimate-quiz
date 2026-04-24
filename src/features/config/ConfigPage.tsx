@@ -31,7 +31,7 @@ import type {
   GameConfig,
   LanguageOption,
 } from '@/shared/models'
-import { useConfigPreparation, type PreparationStatus } from '@/features/save-one/hooks/useConfigPreparation'
+import { useConfigPreparation, type PreparationStatus } from '@/shared/hooks/useConfigPreparation'
 import type { MaxRoundsResult } from '@/features/save-one/helpers/poolScopeRules'
 import type { GamePlayMode } from '@/shared/constants'
 import styles from './ConfigPage.module.scss'
@@ -82,6 +82,13 @@ const ARTIST_MODE_OPTIONS = [
 
 const songLanguageOptions = ConfigPageServices.buildSongLanguageOptions()
 
+/** Route de jeu par mode — centralisé pour éviter le switch inline */
+const GAME_ROUTES: Record<string, string> = {
+  saveOne: '/game/save-one',
+  blindTest: '/game/blind-test',
+  quickVote: '/game/quick-vote',
+}
+
 function genIcon(g: Group) {
   return g.category === 'girlGroup' || g.category === 'femaleSoloist' ? '♀' : '♂'
 }
@@ -103,7 +110,7 @@ function applyGroupFilters(groups: Group[], gen: GenFilter, cat: CatFilter, year
   })
 }
 
-// ─── Composant ────────────────────────────────────────────────────────────────
+// ─── Composant principal ──────────────────────────────────────────────────────
 
 export default function ConfigPage() {
   const navigate = useNavigate()
@@ -186,7 +193,6 @@ export default function ConfigPage() {
     )
   }, [allGroups])
 
-  // Groupes filtrés par filtres (mode byFilter)
   const byFilterGroups = useMemo(
     () => applyGroupFilters(allGroups, genFilter, catFilter, yearFilter, labelFilter),
     [allGroups, genFilter, catFilter, yearFilter, labelFilter],
@@ -197,14 +203,12 @@ export default function ConfigPage() {
     [allGroups, config.selectedGroupIds],
   )
 
-  // Groupes affichés dans la grille de tuiles (selon le mode)
   const displayedGroups = useMemo(() => {
     if (artistMode === defaultOptionValue) return allGroups
     if (artistMode === 'byFilter') return byFilterGroups
     return selectedGroups
   }, [artistMode, allGroups, byFilterGroups, selectedGroups])
 
-  // Groupes disponibles pour le dual-list (mode Manuel)
   const availableForList = useMemo(
     () =>
       allGroups
@@ -215,7 +219,7 @@ export default function ConfigPage() {
 
   const availableRoles = useMemo(() => getAvailableRolesForCriterion(config.criterion, ROLES), [config.criterion])
 
-  // ── Handlers ────────────────────────────────────────────────────────────────
+  // ── Handlers ─────────────────────────────────────────────────────────────────
 
   function handlePlayModeChange(mode: GamePlayMode) {
     const preset = GAME_PLAY_MODE_MAP[mode]
@@ -236,20 +240,19 @@ export default function ConfigPage() {
     setConfig({ criterion, roleFilters: cleaned })
   }
 
-  /** Change le mode de sélection des artistes */
   function handleArtistModeChange(mode: ArtistSelectionMode) {
     setArtistMode(mode)
     if (mode === defaultOptionValue) {
       // Tous = selectedGroupIds vide (le game engine utilisera tous les groupes)
-      setConfig({ selectedGroupIds: [] })
-    } else if (mode === 'byFilter') {
-      // Appliquer immédiatement les filtres courants
-      setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
+      if (mode === defaultOptionValue) {
+        setConfig({ selectedGroupIds: [] })
+      } else if (mode === 'byFilter') {
+        setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
+      }
+      // mode 'manual' → garder selectedGroupIds tel quel
     }
-    // mode 'manual' → garder selectedGroupIds tel quel
   }
 
-  /** Changer un filtre en mode byFilter → mettre à jour selectedGroupIds */
   function handleFilterChange(update: { gen?: GenFilter; cat?: CatFilter; year?: string; label?: string }) {
     const newGen = update.gen ?? genFilter
     const newCat = update.cat ?? catFilter
@@ -267,7 +270,7 @@ export default function ConfigPage() {
     }
   }
 
-  // ── Dual-list transfers ─────────────────────────────────────────────────────
+  // ── Dual-list transfers ───────────────────────────────────────────────────────
 
   function addGroup(id: string) {
     if (!config.selectedGroupIds.includes(id)) setConfig({ selectedGroupIds: [...config.selectedGroupIds, id] })
@@ -306,16 +309,18 @@ export default function ConfigPage() {
     })
   }
 
-  // ── canLaunch ───────────────────────────────────────────────────────────────
+  // ── canLaunch + launch ────────────────────────────────────────────────────────
 
   const canLaunch = !twoPlayerInvalid && (isCustom ? prepared : true)
 
   function launch() {
     if (!canLaunch) return
-    navigate(config.mode === 'blindTest' ? '/game/blind-test' : '/game/save-one')
+    // CHANGEMENT : navigation centralisée via GAME_ROUTES (support quickVote)
+    const route = GAME_ROUTES[config.mode] ?? '/game/save-one'
+    navigate(route)
   }
 
-  // ── Render ──────────────────────────────────────────────────────────────────
+  // ── Render ────────────────────────────────────────────────────────────────────
 
   return (
     <PageContainer>
@@ -343,7 +348,7 @@ export default function ConfigPage() {
         </div>
       </div>
 
-      {/* ── Banners préparation ── */}
+      {/* ── Banners préparation (mode Personnalisé uniquement) ── */}
       {isCustom && <PrepBanner status={prepStatus} result={prepResult} error={prepError} styles={styles} />}
 
       {/* ══ CHOIX DU JEU ══ */}
@@ -359,6 +364,8 @@ export default function ConfigPage() {
                 onChange={(e) => setConfig({ mode: e.target.value as QuizMode })}
               >
                 <option value="saveOne">Save One</option>
+                {/* CHANGEMENT : Quick Vote ajouté entre Save One et Blind Test */}
+                <option value="quickVote">Quick Vote</option>
                 <option value="blindTest">Blind Test</option>
                 <option value="tournament" disabled>
                   Tournoi — bientôt disponible
@@ -399,6 +406,7 @@ export default function ConfigPage() {
         <p className={styles.sectionTitle}>Options de la partie</p>
         <ConfigCard>
           <div className={styles.fieldsRow}>
+            {/* Drops — Save One uniquement (Quick Vote = 1 item/round implicite, Blind Test sans drops) */}
             {isSaveOne && (
               <div className={styles.field}>
                 <span className={styles.fieldLabel}>Drops (1–3)</span>
@@ -455,7 +463,7 @@ export default function ConfigPage() {
                   value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
                   disabled={!playMode.clipEditable}
                   onChange={(e) =>
-                    setConfig({ clipDuration: Math.max(1, Math.min(15, parseInt(e.target.value) || 5)) })
+                    setConfig({ clipDuration: Math.max(1, Math.min(15, parseInt(e.target.value) || 1)) })
                   }
                 />
                 {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
@@ -508,7 +516,7 @@ export default function ConfigPage() {
         <div className={styles.section}>
           <p className={styles.sectionTitle}>Options supplémentaires</p>
 
-          {/* Critère / Rôles / Type chansons */}
+          {/* Critère / Rôles / Type chansons / Langue */}
           {(isIdols || isSongs) && (
             <ConfigCard>
               <div className={styles.advancedSection}>
@@ -578,7 +586,7 @@ export default function ConfigPage() {
             </ConfigCard>
           )}
 
-          {/* ── Sélection des artistes ── */}
+          {/* Sélection des artistes */}
           <ArtistSelector
             artistMode={artistMode}
             onArtistModeChange={handleArtistModeChange}
@@ -642,8 +650,7 @@ function PrepBanner({
             <strong className={styles.prepBannerTitle}>Rounds ajustés</strong>
             <span className={styles.prepBannerText}>
               Nombre de rounds réduit à <strong>{result.maxRounds}</strong> pour garantir des rounds complets sans
-              répétition.
-              {result.clampMessage && <> {result.clampMessage}</>}
+              répétition.{result.clampMessage && <> {result.clampMessage}</>}
             </span>
           </div>
         </div>
@@ -880,10 +887,9 @@ function ArtistSelector({
           <SegmentedControl options={ARTIST_MODE_OPTIONS} value={artistMode} onChange={onArtistModeChange} />
         </div>
 
-        {/* Filtres — uniquement en mode byFilter */}
+        {/* Filtres — mode byFilter uniquement */}
         {artistMode === 'byFilter' && (
           <div className={styles.artistFilters}>
-            {/* Génération */}
             <FilterBadgeGroupControl
               options={genFilterOptions}
               value={[genFilter]}
@@ -891,7 +897,6 @@ function ArtistSelector({
               single
               size="sm"
             />
-            {/* Catégorie */}
             <FilterBadgeGroupControl
               options={catFilterOptions}
               value={[catFilter]}
@@ -899,7 +904,6 @@ function ArtistSelector({
               single
               size="sm"
             />
-            {/* Année + Label en ligne */}
             <div className={styles.artistFilterRow}>
               <select
                 className={styles.groupFilterSelect}
@@ -971,13 +975,12 @@ function ArtistSelector({
           </>
         )}
 
-        {/* Dual-listbox — mode Manuel uniquement (secondaire) */}
+        {/* Dual-listbox — mode Manuel uniquement (sélection avancée) */}
         {artistMode === 'manual' && !loading && (
           <>
             <div className={styles.dualListHeader}>
               <span className={styles.dualListTitle}>Sélection avancée</span>
             </div>
-            {/* Recherche texte (mode Manuel uniquement) */}
             <div className={styles.groupSearchRow}>
               <input
                 className={styles.groupSearch}
@@ -1048,7 +1051,7 @@ function ArtistSelector({
   )
 }
 
-// ─── GroupRow (inchangé) ──────────────────────────────────────────────────────
+// ─── GroupRow ─────────────────────────────────────────────────────────────────
 
 function GroupRow({
   group,
@@ -1072,14 +1075,10 @@ function GroupRow({
       onClick={onClick}
       onDoubleClick={onDoubleClick}
     >
+      <span className={styles.listItemIcon}>{genIcon(group)}</span>
       <span className={styles.listItemName}>{group.name}</span>
-      <span className={styles.listItemMeta}>
-        {group.parentGroupId && <span className={[styles.rowBadge, styles.rowBadgeSubunit].join(' ')}>SUB</span>}
-        {isSoloist && <span className={[styles.rowBadge, styles.rowBadgeSoloist].join(' ')}>SOLO</span>}
-        <span className={styles.listItemMetaText}>
-          {genIcon(group)} Gen{group.generation}
-        </span>
-      </span>
+      {group.parentGroupId && <span className={styles.badgeSub}>SUB</span>}
+      {isSoloist && <span className={styles.badgeSolo}>SOLO</span>}
     </div>
   )
 }

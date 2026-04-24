@@ -2,7 +2,6 @@ import { GameOption } from '@/shared/Components/GameOption'
 import type { GameHudProps } from './GameHud.types'
 import { GameHudHeader } from './GameHudHeader'
 import styles from './GameHud.module.scss'
-import { CriterionBadge } from '@/features/save-one/components/CriterionBadge'
 /**
  * HUD générique pour tous les modes de quiz.
  *
@@ -11,9 +10,8 @@ import { CriterionBadge } from '@/features/save-one/components/CriterionBadge'
  */
 export function GameHud({
   options,
-  criterion,
   onBack,
-  onAction,
+  onPass,
   actionDisabled,
   activePlayerName,
   currentRound,
@@ -29,7 +27,7 @@ export function GameHud({
       <div className={styles.section1}>
         <GameHudHeader
           onBack={onBack}
-          onPass={onAction}
+          onPass={onPass}
           actionDisabled={actionDisabled}
           currentRound={currentRound}
           totalRounds={totalRounds}

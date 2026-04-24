@@ -1,4 +1,4 @@
-import type { SongItem } from '../../SaveOnePage.types'
+import type { SongItem } from '../../../features/save-one/SaveOnePage.types'
 
 export interface SongThumbnailProps {
   song: SongItem

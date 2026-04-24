@@ -17,7 +17,11 @@ import { CANONICAL_TIMESTAMPS, pickCanonicalTimestamp } from './timestampHelper'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type SongModeKey = 'saveOne-songs' | 'blindTest-songs'
+/**
+ * Clés de mode pour la mémoire session chansons.
+ * CHANGEMENT : 'quickVote-songs' ajouté pour le nouveau mode Quick Vote.
+ */
+export type SongModeKey = 'saveOne-songs' | 'blindTest-songs' | 'quickVote-songs'
 
 export interface SongMemoryEntry {
   /** Round session où la musique a été vue pour la dernière fois */

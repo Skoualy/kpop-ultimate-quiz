@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react'
 import type { GameConfig } from '@/shared/models'
 import { groupService } from '@/shared/services/groupService'
-import { computeMaxRounds, type MaxRoundsResult } from '../helpers/poolScopeRules'
+import { computeMaxRounds, type MaxRoundsResult } from '../../features/save-one/helpers/poolScopeRules'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

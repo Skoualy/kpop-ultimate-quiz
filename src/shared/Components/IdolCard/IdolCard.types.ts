@@ -1,4 +1,4 @@
-import type { IdolItem } from '../../SaveOnePage.types'
+import type { IdolItem } from '../../../features/save-one/SaveOnePage.types'
 
 export interface IdolCardProps {
   idol: IdolItem

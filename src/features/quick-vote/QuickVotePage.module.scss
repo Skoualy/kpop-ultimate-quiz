@@ -1,0 +1,55 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-base);
+  overflow: hidden;
+  position: relative;
+}
+
+.pageSummary {
+  overflow-y: auto;
+}
+
+/* Zone de contenu — prend tout l'espace sous le HUD */
+// .main {
+//   flex:           1;
+//   display:        flex;
+//   flex-direction: column;
+//   align-items:    center;
+//   overflow-y:     auto;
+//   padding:        0.5rem 0;
+// }
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Padding haut/bas plus généreux — cards verticalement centrées */
+  padding: 12px 24px 12px;
+  gap: 20px;
+  min-height: 0;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* États de chargement / erreur */
+.stateMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 1rem;
+  color: var(--color-text-muted, #aaa);
+  text-align: center;
+  padding: 2rem;
+}
+
+.errorText {
+  color: #ff6b8a;
+  font-size: 0.95rem;
+  max-width: 360px;
+}

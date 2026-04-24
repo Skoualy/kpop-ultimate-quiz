@@ -30,15 +30,27 @@ import type { Group, MemberRole, SaveOneCriterion } from '@/shared/models'
 import { resolveEffectiveRoles, estimateIdolPoolSize, estimateSongPoolSize } from './poolSizeEstimator'
 
 type SongType = 'all' | 'titles' | 'bSides' | 'debutSongs'
-type QuizMode = 'saveOne' | 'blindTest'
+
+/**
+ * Mode pris en compte par les règles de scope.
+ * quickVote = saveOne avec dropCount = 0 (toujours 1 item/round).
+ */
+type QuizMode = 'saveOne' | 'blindTest' | 'quickVote'
 
 // ─── Items par round ──────────────────────────────────────────────────────────
 
+/**
+ * Nombre d'items attendus par round selon le mode.
+ * - quickVote : toujours 1, dropCount ignoré
+ * - blindTest : 1 solo, 2 en mode 2 joueurs
+ * - saveOne   : dropCount + 1
+ */
 export function computeItemsPerRound(
-  mode: QuizMode,
-  dropCount: number,
+  mode:       QuizMode,
+  dropCount:  number,
   twoPlayers: boolean,
 ): number {
+  if (mode === 'quickVote') return 1
   if (mode === 'blindTest') return twoPlayers ? 2 : 1
   return dropCount + 1
 }
@@ -75,7 +87,6 @@ export function computeMaxRoundsForGroups(groupCounts: number[], K: number): num
   const N = groupCounts.length
   if (N === 0 || K === 0) return 0
 
-  // Groupes sans items → pas valides
   const validCounts = groupCounts.filter((c) => c > 0)
   if (validCounts.length === 0) return 0
 
@@ -86,14 +97,11 @@ export function computeMaxRoundsForGroups(groupCounts: number[], K: number): num
   let maxBalanced: number
 
   if (K <= N) {
-    // Chaque groupe tourne à une fréquence de K/N rounds
-    // → round max pour le groupe i = floor(count[i] × N / K)
     maxBalanced = Math.min(...validCounts.map((c) => Math.floor((c * N) / K)))
   } else {
-    // Pire cas : les groupes avec le moins d'items reçoivent les slots supplémentaires
-    const sorted    = [...validCounts].sort((a, b) => a - b)  // ASC : plus petit = plus de slots
-    const base      = Math.floor(K / N)
-    const extra     = K % N  // les `extra` premiers groupes (triés ASC) reçoivent 1 slot de plus
+    const sorted = [...validCounts].sort((a, b) => a - b)
+    const base   = Math.floor(K / N)
+    const extra  = K % N
     let min = Infinity
     for (let i = 0; i < sorted.length; i++) {
       const slots = base + (i < extra ? 1 : 0)
@@ -117,15 +125,17 @@ export interface MaxRoundsResult {
 }
 
 export interface MaxRoundsInput {
-  mode:        QuizMode
-  category:    'idols' | 'songs'
-  groups:      Group[]
-  drops:       number
-  rounds:      number
-  twoPlayers:  boolean
-  criterion:   SaveOneCriterion
-  roleFilters: MemberRole[]
-  songType:    SongType
+  mode:         QuizMode
+  category:     'idols' | 'songs'
+  groups:       Group[]
+  drops:        number
+  rounds:       number
+  twoPlayers:   boolean
+  criterion:    SaveOneCriterion
+  roleFilters:  MemberRole[]
+  songType:     SongType
+  /** Optionnel — réservé pour le filtre langue futur */
+  songLanguage?: string
 }
 
 export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
@@ -133,52 +143,25 @@ export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
 
   const K = computeItemsPerRound(mode, drops, twoPlayers)
 
-  // Scope total
   const scopeSize = category === 'idols'
     ? estimateIdolPoolSize(groups, criterion, roleFilters)
     : estimateSongPoolSize(groups, songType)
 
-  // Counts par groupe (groupes avec au moins 1 item dans le scope)
   const effectiveRoles = resolveEffectiveRoles(criterion, roleFilters)
-  const groupCounts = groups
+  const groupCounts    = groups
     .map((g) => category === 'idols'
       ? countIdolsInGroup(g, effectiveRoles)
       : countSongsInGroup(g, songType))
     .filter((c) => c > 0)
 
-  // maxRounds calculé par analyse Fair Queue
   const maxRounds = groupCounts.length > 0
     ? computeMaxRoundsForGroups(groupCounts, K)
     : (scopeSize > 0 ? Math.floor(scopeSize / K) : 0)
 
-  const effectiveMax = Math.max(0, maxRounds)
-  const wasClamped   = rounds > effectiveMax
-
+  const wasClamped   = maxRounds < rounds
   const clampMessage = wasClamped
-    ? buildClampMessage(scopeSize, effectiveMax, groups, mode, twoPlayers)
+    ? `Nombre de rounds réduit à ${maxRounds} (scope disponible insuffisant pour ${rounds} rounds).`
     : undefined
 
-  return { maxRounds: effectiveMax, scopeSize, itemsPerRound: K, wasClamped, clampMessage }
-}
-
-function buildClampMessage(
-  scopeSize:  number,
-  maxRounds:  number,
-  groups:     Group[],
-  mode:       QuizMode,
-  twoPlayers: boolean,
-): string {
-  const maxStr = `${maxRounds} round${maxRounds > 1 ? 's' : ''}`
-
-  if (mode === 'blindTest' && twoPlayers) {
-    return `Blind Test 2 joueurs — 2 musiques distinctes par round nécessaires, maximum ${maxStr}.`
-  }
-  if (groups.length === 2) {
-    return `${groups[0].name} vs ${groups[1].name} — maximum ${maxStr} pour garantir un duel équilibré sans répétition.`
-  }
-  return `${scopeSize} item${scopeSize > 1 ? 's' : ''} disponible${scopeSize > 1 ? 's' : ''} — maximum ${maxStr} pour garantir des rounds complets sans répétition.`
-}
-
-export function clampRounds(rounds: number, maxRounds: number): number {
-  return Math.min(Math.max(1, rounds), Math.max(1, maxRounds))
+  return { maxRounds, scopeSize, itemsPerRound: K, wasClamped, clampMessage }
 }

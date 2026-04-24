@@ -29,10 +29,10 @@ export type SaveOneCriterion =
   | 'aegyo'
   | 'random'
 
-// ─── Game enums (alignés sur le legacy) ──────────────────────────────────────
+// ─── Game enums ───────────────────────────────────────────────────────────────
 
-/** Mode de jeu */
-export type QuizMode = 'saveOne' | 'blindTest' | 'spectator' | 'chill'
+/** Mode de jeu principal — quickVote ajouté */
+export type QuizMode = 'saveOne' | 'blindTest' | 'quickVote' | 'spectator' | 'chill'
 
 /** Catégorie de contenu jouable */
 export type QuizCategory = 'idols' | 'songs'

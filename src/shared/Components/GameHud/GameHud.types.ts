@@ -23,9 +23,7 @@ export interface GameHudProps {
    */
   options: (HudOption | null | undefined)[]
   onBack: () => void
-  backLabel?: string
-  onAction?: () => void
-  actionLabel?: string
+  onPass?: () => void
   actionDisabled?: boolean
   currentRound: number
   totalRounds: number

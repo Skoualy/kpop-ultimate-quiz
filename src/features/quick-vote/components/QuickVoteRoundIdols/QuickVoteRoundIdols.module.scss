@@ -1,0 +1,79 @@
+.root {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            1.5rem;
+  padding:        1rem 1.5rem 2rem;
+  width:          100%;
+}
+
+.timerSlot {
+  width:      100%;
+  max-width:  480px;
+  min-height: 12px;
+}
+
+.timer { width: 100%; }
+
+/* Card centrée — même largeur max que les cards Save One */
+.cardWrapper {
+  display:         flex;
+  justify-content: center;
+  width:           100%;
+}
+
+/* Boutons de vote */
+.voteButtons {
+  display:   flex;
+  gap:       1.5rem;
+  width:     100%;
+  max-width: 520px;
+}
+
+.voteBtn {
+  flex:           1;
+  padding:        1rem 1.5rem;
+  border:         2px solid transparent;
+  border-radius:  12px;
+  font-size:      1.25rem;
+  font-weight:    700;
+  letter-spacing: 0.04em;
+  cursor:         pointer;
+  transition:     transform 0.1s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+
+  &:not(:disabled):hover {
+    transform:  translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor:  not-allowed;
+  }
+}
+
+/* Vote négatif */
+.voteBtn--negative {
+  background:   rgba(220, 50, 80, 0.15);
+  border-color: rgba(220, 50, 80, 0.5);
+  color:        #ff6b8a;
+
+  &.voteBtn--active {
+    background:   rgba(220, 50, 80, 0.35);
+    border-color: #ff6b8a;
+    opacity:      1;
+  }
+}
+
+/* Vote positif */
+.voteBtn--positive {
+  background:   rgba(50, 200, 120, 0.15);
+  border-color: rgba(50, 200, 120, 0.5);
+  color:        #5df5a0;
+
+  &.voteBtn--active {
+    background:   rgba(50, 200, 120, 0.35);
+    border-color: #5df5a0;
+    opacity:      1;
+  }
+}

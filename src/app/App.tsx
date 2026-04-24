@@ -7,10 +7,11 @@ import GroupsPage from '@/features/groups/GroupsPage'
 import ContributorPage from '@/features/contributor/ContributorPage'
 import BlindTestPage from '@/features/blind-test/BlindTestPage'
 import SaveOnePage from '@/features/save-one/SaveOnePage'
+import QuickVotePage from '@/features/quick-vote/QuickVotePage'
 import CreditsPage from '@/features/credits/CreditsPage'
 
 function AppRoutes() {
-  const location = useLocation()
+  const location  = useLocation()
   const isGamePage = location.pathname.startsWith('/game/')
 
   if (isGamePage) {
@@ -18,7 +19,9 @@ function AppRoutes() {
       <GameShell>
         <Routes>
           <Route path="/game/blind-test" element={<BlindTestPage />} />
-          <Route path="/game/save-one" element={<SaveOnePage />} />
+          <Route path="/game/save-one"   element={<SaveOnePage />} />
+          {/* Quick Vote — même GameShell que les autres modes */}
+          <Route path="/game/quick-vote" element={<QuickVotePage />} />
         </Routes>
       </GameShell>
     )
@@ -27,12 +30,12 @@ function AppRoutes() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<ConfigPage />} />
-        <Route path="/groups" element={<GroupsPage />} />
-        <Route path="/contributor" element={<ContributorPage />} />
+        <Route path="/"                     element={<ConfigPage />} />
+        <Route path="/groups"               element={<GroupsPage />} />
+        <Route path="/contributor"          element={<ContributorPage />} />
         <Route path="/contributor/:groupId" element={<ContributorPage />} />
-        <Route path="/credits" element={<CreditsPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/credits"              element={<CreditsPage />} />
+        <Route path="*"                     element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
   )

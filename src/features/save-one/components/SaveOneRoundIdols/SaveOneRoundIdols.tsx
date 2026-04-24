@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { IdolCard } from '../IdolCard'
-import { TimerBar } from '../TimerBar'
-import { useGameTimer } from '../../hooks/useGameTimer'
+import { IdolCard } from '../../../../shared/Components/IdolCard'
+import { TimerBar } from '../../../../shared/Components/TimerBar'
+import { useGameTimer } from '../../../../shared/hooks/useGameTimer'
 import type { SaveOneRoundIdolsProps } from './SaveOneRoundIdols.types'
 import type { IdolItem } from '../../SaveOnePage.types'
 import styles from './SaveOneRoundIdols.module.scss'
-import { CriterionBadge } from '../CriterionBadge'
+import { CriterionBadge } from '../../../../shared/Components/CriterionBadge'
 
 export function SaveOneRoundIdols({
   idols,
