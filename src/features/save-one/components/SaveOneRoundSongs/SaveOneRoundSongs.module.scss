@@ -100,11 +100,12 @@
 /* ─── Miniatures ─────────────────────────────────────────────────────────── */
 
 .thumbnails {
-  display: flex;
-  gap: 14px;
+  display: inline-flex;
+  gap: 16px;
   justify-content: center;
   width: 100%;
-  max-width: 620px;
+  max-width: 600px;
+  flex-wrap: wrap;
 }
 
 /* Les cards s'étendent pour remplir la largeur disponible */

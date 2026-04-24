@@ -26,7 +26,16 @@ export function PoolSizeWarningBanner({ config, groups, onAdapt }: PoolSizeWarni
         : estimateSongPoolSize(groups, config.songType)
 
     return checkPoolFeasibility(poolSize, config.drops, config.rounds)
-  }, [groups, config.category, config.criterion, config.roleFilters, config.songType, config.drops, config.rounds])
+  }, [
+    groups,
+    config.category,
+    config.criterion,
+    config.roleFilters,
+    config.songType,
+    config.songLanguage,
+    config.drops,
+    config.rounds,
+  ])
 
   // Tout est OK → rien à afficher
   if (check.ok && check.maxRoundsNoRecycle >= config.rounds) return null
@@ -38,8 +47,7 @@ export function PoolSizeWarningBanner({ config, groups, onAdapt }: PoolSizeWarni
         <span className={styles.icon}>⚠️</span>
         <div className={styles.body}>
           <p className={styles.msg}>
-            Pool vide — aucun élément ne correspond aux filtres actuels.
-            Élargissez vos groupes ou retirez des filtres.
+            Pool vide — aucun élément ne correspond aux filtres actuels. Élargissez vos groupes ou retirez des filtres.
           </p>
         </div>
       </div>
@@ -47,7 +55,7 @@ export function PoolSizeWarningBanner({ config, groups, onAdapt }: PoolSizeWarni
   }
 
   // Pool trop petit pour les rounds/drops configurés → recyclage forcé ou impossible
-  const adaptDrops  = check.minDrops
+  const adaptDrops = check.minDrops
   const adaptRounds = check.minRounds
 
   return (
@@ -55,8 +63,8 @@ export function PoolSizeWarningBanner({ config, groups, onAdapt }: PoolSizeWarni
       <span className={styles.icon}>⚠️</span>
       <div className={styles.body}>
         <p className={styles.msg}>
-          Les options configurées ({config.rounds} rounds, Drop {config.drops}) dépassent la taille du pool ({check.poolSize} éléments).
-          La partie sera jouable mais avec recyclage fréquent.
+          Les options configurées ({config.rounds} rounds, Drop {config.drops}) dépassent la taille du pool (
+          {check.poolSize} éléments). La partie sera jouable mais avec recyclage fréquent.
           {adaptDrops !== config.drops || adaptRounds !== config.rounds ? (
             <> Souhaitez-vous adapter la configuration ?</>
           ) : null}

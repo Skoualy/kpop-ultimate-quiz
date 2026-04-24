@@ -24,7 +24,7 @@
 
 ---
 
-## v0.6.1 — Correctifs Save One & système de crédits images *(version actuelle)*
+## v0.6.1 — Correctifs Save One & système de crédits images
 
 > Objectif : stabiliser Save One, améliorer la config et poser le système de traçabilité des images.
 
@@ -70,7 +70,7 @@
 - [x] `merge-credits.py` : chemin dataset résolu depuis `REPO_ROOT` (cohérent avec `merge-bundle.py`)
 - [x] `CreditsPage` : tableau public, filtre invalides cliquable sur le compteur, colonne transformations (🤖 IA + techniques), première erreur de validation affichée
 - [x] `public/dataset/credits.json` : fichier scaffold initialisé
-- [x] Footer : `© Skoualy · v0.6.1 · Crédits images` sur toutes les pages Layout
+- [x] Footer : `© Skoualy · {version} · Crédits images` sur toutes les pages Layout
 
 ### 🔄 Correctifs restants / connus
 
@@ -80,7 +80,50 @@
 
 ---
 
-## v0.7 — Blind Test & polish
+## v0.6.2 — Ajustement UI Save One avec ajout d'un Game HUD & correctifs algorithme de pool _*(version actuelle)*_
+
+> Objectif : Finaliser Save One, améliorer la logique des pools et la UI (config + jeux)
+
+### 🔄 UI — Ajouts de nouveaux controls génériques
+
+- [x] Ajout d'un **SegmentedControl** réutilisable
+- [ ] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
+- [ ] Ajout d'un composant **TilesGrid** réutilisable
+
+### ✅ Config — Amélioration de la logique des pools
+
+- [x] Amélioration de la **logique de pool des idoles** et musiques pour rendre les pools plus cohérents et équilibrés
+- [x] Ajustement auto des rounds via un nouveau bouton **Préparer de la partie** qui valide la config avant d'autoriser à lancer la partie
+- [x] Calculer et appliquer le **clamp des rounds avant lancement** afin d’éviter toute surprise pour le joueur au démarrage de la partie.
+- [x] Interdire tout **round dégradé** en cours de partie, notamment les changements implicites de drop count ou les rounds incomplets.
+- [x] Bloquer les **configurations impossibles** si le scope ne permet pas de générer au moins un round complet cohérent.
+
+### ✅ Jeu - Données extraits musicaux stockés en session pour améliorer l'algo de tirage aléatoire
+
+- [x] Appliquer un **tirage pondéré direct** pour les musiques entre parties afin de réduire les répétitions de session sans filtrage post-tirage.
+- [x] Stocker en session les **timestamps canoniques** (`60`, `90`, `120`) pour la rotation des musiques et ne jamais persister une valeur de lecture ajustée.
+
+### 🔄 Config — Amélioration UI
+
+- [x] Ajout d'un **WarningMessage** pour afficher le feedback de validation de la partie
+- [x] Integration du **SegmentedControl** pour gérer le type de sélection des groupes avec les valeurs **Tous / Par filtres / Manuel** pour supprimer l’ambiguïté de l’ancienne dual listbox.
+- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des groupes
+- [ ] Brider le champ **rounds** après préparation en fonction du scope validé et afficher un état warning visuel tant que la limite est active.
+- [ ] Remplacer les **number inputs** de configuration les plus adaptés par des **sliders** pour rendre les options de partie plus ludiques et plus lisibles.
+- [ ] Ajouter un nouveau filtre musique **Langue** (`Tous`, `Coréen`, `Japonais`, `Anglais`) dans les options supplémentaires.
+
+### ✅ Save One — Finalisation de la UI
+
+- [x] Ajout d'un control Game HUD génériaue et intégration dans le save one
+- [x] Ajustement et amélioration de la UI du save one
+
+### 🔄 UI - Nommage et correctifs
+
+- [x] Introduire un **placeholder artiste** distinct du placeholder idole pour mieux différencier visuellement les visuels de logo/cover et les portraits.
+- [ ] Remplacer dans l’UI le terme **groupe** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
+- [ ] Mettre en place une stratégie **anti-scroll vertical** en jeu basée sur la compaction adaptative de l’interface
+
+## v0.7 — Blind Test, Smash Or Pass & Amélioration du contributor
 
 > Objectif : compléter le second mode de jeu et consolider l'UX globale.
 
@@ -91,6 +134,7 @@
 - [ ] Blind Test — mode 1J & 2J
 - [ ] Résumé Blind Test (score, meilleure réponse, erreurs)
 - [ ] Blind Test — filtres catégorie / rôles / type chansons
+- [ ] Conserver la règle qu’en **Blind Test** il ne doit y avoir **aucune répétition** dans une même partie, y compris en mode 2 joueurs.
 
 ### Config & UX
 
@@ -105,11 +149,11 @@
 
 ---
 
-## v0.8 — Mode Tournoi & dataset enrichi
+## v0.8 — Finalisation du dataset de base, Polish UI & Déploiement de la Beta
 
-> Objectif : introduire le troisième mode de jeu et enrichir le dataset.
+> Objectif : introduire le mode de jeu et enrichir le dataset.
 
-### Mode Tournoi *(bientôt disponible)*
+### Mode Tournoi _(bientôt disponible)_
 
 - [ ] Définir les règles du mode Tournoi
 - [ ] Implémenter le Tournoi — idoles
@@ -128,7 +172,7 @@
 
 ---
 
-## v0.9 — Profils, XP & collections *(preview)*
+## v0.9 — Profils, XP & collections _(preview)_
 
 > Objectif : ajouter une couche de progression et de personnalisation.
 
@@ -144,7 +188,7 @@
 - [ ] Niveaux et paliers débloquables
 - [ ] Affichage XP dans le résumé de partie
 
-### Collections de cartes *(optionnel / à décider)*
+### Collections de cartes _(optionnel / à décider)_
 
 - [ ] Concept de cartes d'idoles collectibles
 - [ ] Déblocage via parties jouées
@@ -178,7 +222,7 @@
 - [ ] Guide de contribution (ajout de groupes, merge Python)
 - [ ] Changelog complet v0.6 → v1.0
 
-### Nice to have *(si temps)*
+### Nice to have _(si temps)_
 
 - [ ] Mode hors-ligne (service worker basique)
 - [ ] Partage de résultats (screenshot ou lien)
@@ -201,17 +245,17 @@
 
 ## Notes & décisions techniques
 
-| Date | Décision | Raison |
-|------|----------|--------|
-| — | React Context à la place de Zustand | Besoin de state global simple, pas de complexité supplémentaire |
-| — | YouTube IFrame API (postMessage) pour les extraits | Pas de backend, solution 100% frontend |
-| — | Dataset statique servi via Nginx / fetch() | Cohérence dev/prod, pas de backend nécessaire |
-| — | Déploiement Raspberry Pi 4 (abandon Electron) | Application web > desktop pour la flexibilité |
-| 2026-04 | `key={modalKey}` sur `ImageCropModal` | Seule solution fiable pour passer `initialCredit` à jour — évite les stale closures de `useEffect` |
-| 2026-04 | Crédits images dans le bundle contributor | Traçabilité légale des sources (Wikimedia CC, presse) requise avant release publique |
-| — | <!-- Ajouter vos décisions ici --> | — |
+| Date    | Décision                                           | Raison                                                                                             |
+| ------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| —       | React Context à la place de Zustand                | Besoin de state global simple, pas de complexité supplémentaire                                    |
+| —       | YouTube IFrame API (postMessage) pour les extraits | Pas de backend, solution 100% frontend                                                             |
+| —       | Dataset statique servi via Nginx / fetch()         | Cohérence dev/prod, pas de backend nécessaire                                                      |
+| —       | Déploiement Raspberry Pi 4 (abandon Electron)      | Application web > desktop pour la flexibilité                                                      |
+| 2026-04 | `key={modalKey}` sur `ImageCropModal`              | Seule solution fiable pour passer `initialCredit` à jour — évite les stale closures de `useEffect` |
+| 2026-04 | Crédits images dans le bundle contributor          | Traçabilité légale des sources (Wikimedia CC, presse) requise avant release publique               |
+| —       | <!-- Ajouter vos décisions ici -->                 | —                                                                                                  |
 
 ---
 
-*Dernière mise à jour : avril 2026*
-*Version actuelle du projet : **v0.6.1***
+_Dernière mise à jour : avril 2026_
+\*Version actuelle du projet : **v0.6.1\***

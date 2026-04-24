@@ -174,9 +174,6 @@ export default function SaveOnePage() {
 
   return (
     <div className={styles.page}>
-      {/* Header universel — center = back | round | pass */}
-      <AppHeader />
-
       {/* Zone de jeu */}
       <main className={styles.content}>
         {/* HUD — options + critère + joueur actif 2J */}

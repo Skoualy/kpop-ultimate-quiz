@@ -9,9 +9,7 @@ export interface HudOption {
 
 export interface GameHudHeaderProps {
   onBack: () => void
-  backLabel?: string
-  onAction?: () => void
-  actionLabel?: string
+  onPass?: () => void
   actionDisabled?: boolean
   currentRound: number
   totalRounds: number

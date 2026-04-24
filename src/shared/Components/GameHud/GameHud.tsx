@@ -27,8 +27,7 @@ export function GameHud({
       <div className={styles.section1}>
         <GameHudHeader
           onBack={onBack}
-          onAction={onAction}
-          actionLabel="⏭ Passer le round"
+          onPass={onAction}
           actionDisabled={actionDisabled}
           currentRound={currentRound}
           totalRounds={totalRounds}

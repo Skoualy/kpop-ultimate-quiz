@@ -3,9 +3,7 @@ import { GameHudHeaderProps } from './GameHud.types'
 
 export function GameHudHeader({
   onBack,
-  backLabel = '← Retour config',
-  onAction,
-  actionLabel = '⏭ Passer round',
+  onPass: onAction,
   actionDisabled = false,
   currentRound,
   totalRounds,
@@ -14,7 +12,7 @@ export function GameHudHeader({
     <>
       {/* Extrémité gauche */}
       <button type="button" className={styles.navBtn} onClick={onBack}>
-        {backLabel}
+        ← Config
       </button>
 
       {/* Badge Round — milieu absolu */}
@@ -33,7 +31,7 @@ export function GameHudHeader({
           onClick={onAction}
           disabled={actionDisabled}
         >
-          {actionLabel}
+          ⏭ Passer
         </button>
       )}
     </>

@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, Dispatch, SetStateAction } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
 import { useGroupList } from '@/shared/hooks/useGroupList'
@@ -18,6 +18,8 @@ import {
   TIMER_OPTIONS,
   getAvailableRolesForCriterion,
   filterRolesForCriterion,
+  LANGUAGES,
+  LANGUAGE_LABELS,
 } from '@/shared/constants'
 import type {
   Group,
@@ -29,11 +31,14 @@ import type {
   Generation,
   RoleCriterion,
   GameConfig,
+  LanguageCode,
+  LanguageOption,
 } from '@/shared/models'
 import { useConfigPreparation, type PreparationStatus } from '@/features/save-one/hooks/useConfigPreparation'
 import type { MaxRoundsResult } from '@/features/save-one/helpers/poolScopeRules'
 import type { GamePlayMode } from '@/shared/constants'
 import styles from './ConfigPage.module.scss'
+import { ConfigPageServices } from './ConfigPage.services'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -42,6 +47,8 @@ type GenFilter = 'all' | Generation
 type CatFilter = 'all' | 'girlGroup' | 'boyGroup' | 'femaleSoloist' | 'maleSoloist' | 'subunit'
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
+
+const defaultOptionValue = 'all'
 
 const SONG_TYPE_OPTIONS: { value: SongType; label: string }[] = [
   { value: 'all', label: 'Tous' },
@@ -151,21 +158,21 @@ export default function ConfigPage() {
   const availableGens = useMemo<GenFilter[]>(() => {
     const gens = new Set<Generation>(allGroups.map((g) => g.generation as Generation))
     const order: Generation[] = ['1', '2', '3', '4', '5']
-    return ['all', ...order.filter((g) => gens.has(g))]
+    return [defaultOptionValue, ...order.filter((g) => gens.has(g))]
   }, [allGroups])
 
   const availableYears = useMemo(() => {
     const years = [...new Set(allGroups.map((g) => String(g.debutYear)))].sort()
-    return ['all', ...years]
+    return [defaultOptionValue, ...years]
   }, [allGroups])
 
   const availableLabels = useMemo(() => {
     const labels = [...new Set(allGroups.map((g) => g.company).filter(Boolean))].sort()
-    return ['all', ...labels]
+    return [defaultOptionValue, ...labels]
   }, [allGroups])
 
   const genFilterOptions = useMemo(
-    () => availableGens.map((g) => ({ value: g, label: g === 'all' ? 'Toutes gen.' : `Gen ${g}` })),
+    () => availableGens.map((g) => ({ value: g, label: g === defaultOptionValue ? 'Toutes gen.' : `Gen ${g}` })),
     [availableGens],
   )
 
@@ -173,7 +180,10 @@ export default function ConfigPage() {
     const cats = new Set(allGroups.map((g) => g.category))
     const hasSubunit = allGroups.some((g) => !!g.parentGroupId)
     return CAT_FILTER_OPTIONS.filter(
-      (o) => o.value === 'all' || cats.has(o.value as Group['category']) || (o.value === 'subunit' && hasSubunit),
+      (o) =>
+        o.value === defaultOptionValue ||
+        cats.has(o.value as Group['category']) ||
+        (o.value === 'subunit' && hasSubunit),
     )
   }, [allGroups])
 
@@ -190,7 +200,7 @@ export default function ConfigPage() {
 
   // Groupes affichés dans la grille de tuiles (selon le mode)
   const displayedGroups = useMemo(() => {
-    if (artistMode === 'all') return allGroups
+    if (artistMode === defaultOptionValue) return allGroups
     if (artistMode === 'byFilter') return byFilterGroups
     return selectedGroups
   }, [artistMode, allGroups, byFilterGroups, selectedGroups])
@@ -230,7 +240,7 @@ export default function ConfigPage() {
   /** Change le mode de sélection des artistes */
   function handleArtistModeChange(mode: ArtistSelectionMode) {
     setArtistMode(mode)
-    if (mode === 'all') {
+    if (mode === defaultOptionValue) {
       // Tous = selectedGroupIds vide (le game engine utilisera tous les groupes)
       setConfig({ selectedGroupIds: [] })
     } else if (mode === 'byFilter') {
@@ -510,7 +520,7 @@ export default function ConfigPage() {
                       <BadgeGroupControl<SaveOneCriterion>
                         options={CRITERIA_LIST.map((c) => ({ value: c, label: CRITERIA_LABELS[c] }))}
                         value={[config.criterion]}
-                        onChange={(v) => handleCriterionChange(v[0] ?? 'all')}
+                        onChange={(v) => handleCriterionChange(v[0] ?? defaultOptionValue)}
                         size="sm"
                       />
                     </div>
@@ -521,15 +531,19 @@ export default function ConfigPage() {
                       </div>
                       <BadgeGroupControl<RoleCriterion>
                         options={[
-                          { value: 'all', label: 'Tous' },
+                          { value: defaultOptionValue, label: 'Tous' },
                           ...availableRoles.map((r) => ({ value: r as RoleCriterion, label: ROLE_LABELS[r] })),
                         ]}
-                        value={config.roleFilters.length === 0 ? ['all'] : (config.roleFilters as RoleCriterion[])}
+                        value={
+                          config.roleFilters.length === 0
+                            ? [defaultOptionValue]
+                            : (config.roleFilters as RoleCriterion[])
+                        }
                         onChange={(vals) => {
-                          if (vals.includes('all') && config.roleFilters.length > 0) {
+                          if (vals.includes(defaultOptionValue) && config.roleFilters.length > 0) {
                             setConfig({ roleFilters: [] })
                           } else {
-                            setConfig({ roleFilters: vals.filter((v) => v !== 'all') as MemberRole[] })
+                            setConfig({ roleFilters: vals.filter((v) => v !== defaultOptionValue) as MemberRole[] })
                           }
                         }}
                         isMultiselect
@@ -545,24 +559,17 @@ export default function ConfigPage() {
                       <BadgeGroupControl<SongType>
                         options={SONG_TYPE_OPTIONS}
                         value={[config.songType]}
-                        onChange={(v) => setConfig({ songType: v[0] ?? 'all' })}
+                        onChange={(v) => setConfig({ songType: v[0] ?? defaultOptionValue })}
                         size="sm"
                       />
                     </div>
                     {/* Filtre langue — UI ready, nécessite ajout de songLanguage dans GameConfig + pool builder */}
                     <div className={styles.optionGroup}>
                       <span className={styles.fieldLabel}>Langue</span>
-                      <BadgeGroupControl<string>
-                        options={[
-                          { value: 'all', label: 'Tous' },
-                          { value: 'korean', label: 'Coréen' },
-                          { value: 'japanese', label: 'Japonais' },
-                          { value: 'english', label: 'Anglais' },
-                        ]}
-                        value={['all']}
-                        onChange={() => {
-                          /* TODO: wired to config.songLanguage when added to GameConfig */
-                        }}
+                      <BadgeGroupControl<LanguageOption>
+                        options={ConfigPageServices.buildSongLanguageOptions()}
+                        value={[defaultOptionValue]}
+                        onChange={(v) => setConfig({ songLanguage: v[0] ?? defaultOptionValue })}
                         size="sm"
                       />
                     </div>
