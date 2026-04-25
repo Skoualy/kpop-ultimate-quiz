@@ -265,7 +265,7 @@ def process_bundle(bundle_path: Path) -> list[dict]:
     results    = []
     total      = len(raw_credits)
 
-    print(f"  📋 {total} crédit(s) à traiter pour le groupe '{group_id}'")
+    print(f"  📋 {total} crédit(s) à traiter pour l\'artiste '{group_id}'")
 
     for i, raw in enumerate(raw_credits, 1):
         entity_type      = raw.get("entityType", "group")

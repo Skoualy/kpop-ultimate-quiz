@@ -47,7 +47,7 @@ export function PoolSizeWarningBanner({ config, groups, onAdapt }: PoolSizeWarni
         <span className={styles.icon}>⚠️</span>
         <div className={styles.body}>
           <p className={styles.msg}>
-            Pool vide — aucun élément ne correspond aux filtres actuels. Élargissez vos groupes ou retirez des filtres.
+            Pool vide — aucun élément ne correspond aux filtres actuels. Élargissez vos artistes ou retirez des filtres.
           </p>
         </div>
       </div>

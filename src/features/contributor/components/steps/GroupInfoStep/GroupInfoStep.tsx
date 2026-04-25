@@ -19,9 +19,9 @@ import type { ImageCreditInput } from '@/shared/models/AssetCredit'
 
 export function validateGroupInfo(form: GroupForm, existingGroups: Group[], isEdit: boolean): string[] {
   const errors: string[] = []
-  if (!form.name.trim()) errors.push('Le nom du groupe est requis')
+  if (!form.name.trim()) errors.push("Le nom de l'artiste est requis")
   else if (!isEdit && existingGroups.some((g) => g.id === form.id))
-    errors.push(`Un groupe avec l'ID "${form.id}" existe déjà`)
+    errors.push(`Un artiste avec l'ID "${form.id}" existe déjà`)
 
   const year = parseInt(form.debutYear)
   if (!form.debutYear || isNaN(year) || year < 1990 || year > new Date().getFullYear()) {
@@ -152,7 +152,7 @@ export function GroupInfoStep({
         <div className={styles.mainLayout}>
           <div className={styles.coverCol}>
             <ImagePickerControl
-              label="Cover du groupe"
+              label="Cover de l'artiste"
               value={form.coverImage}
               placeholderImage={resolveGroupCover({ id: form.id, coverImage: form.coverImage })}
               onChange={(v) => upd('coverImage', v)}
@@ -170,7 +170,7 @@ export function GroupInfoStep({
                 {isEdit ? (
                   <>
                     <label className={styles.label}>
-                      Nom du groupe <span className={styles.required}>*</span>
+                      Nom de l'artiste <span className={styles.required}>*</span>
                     </label>
                     <input
                       className="input"
@@ -181,7 +181,7 @@ export function GroupInfoStep({
                   </>
                 ) : (
                   <GeneratedIdInputControl
-                    label="Nom du groupe"
+                    label="Nom de l'artiste"
                     required
                     value={form.name}
                     onChange={(value) =>
@@ -230,7 +230,7 @@ export function GroupInfoStep({
                     </option>
                   ))}
                 </select>
-                {parentGroup && <span className={styles.infoMsg}>✦ Catégorie forcée depuis le groupe parent</span>}
+                {parentGroup && <span className={styles.infoMsg}>✦ Catégorie forcée depuis l\'artiste parent</span>}
               </div>
 
               <div className={styles.field}>
@@ -244,7 +244,7 @@ export function GroupInfoStep({
                   style={{ opacity: isEdit || isSoloist ? 0.4 : 1 }}
                   onChange={(e) => applyParentGroupChange(e.target.value)}
                 >
-                  <option value="">— Aucun (groupe indépendant)</option>
+                  <option value="">— Aucun (artiste indépendant)</option>
                   {[...topLevelGroups]
                     .filter((g) => PARENT_ELIGIBLE_CATEGORIES.includes(g.category))
                     .sort((a, b) => a.name.localeCompare(b.name))

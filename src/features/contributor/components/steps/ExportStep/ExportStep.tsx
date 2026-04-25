@@ -72,7 +72,7 @@ export function ExportStep({
         ),
       )
 
-      // Cover groupe
+      // Cover artiste
       if (bundle.coverFile) {
         zip.file(`assets/groups/${bundle.groupId}/cover.webp`, bundle.coverFile)
       } else if (bundle.coverSource) {
@@ -147,9 +147,9 @@ export function ExportStep({
         <div className={styles.summaryCard}>
           <div className={styles.summaryTitle}>Vérifier avant export</div>
           <div className={styles.summaryScroll}>
-            {/* Section 1 : Infos groupe */}
+            {/* Section 1 : Infos artiste */}
             <div className={styles.summarySection}>
-              <div className={styles.summarySectionTitle}>① Infos groupe</div>
+              <div className={styles.summarySectionTitle}>① Infos artiste</div>
               <Row k="Nom" v={form.name || '—'} />
               <Row k="ID" v={form.id || '—'} />
               <Row k="Catégorie" v={form.category} />
@@ -217,7 +217,7 @@ export function ExportStep({
         <div className={styles.actionsCard}>
           <div className={styles.actionsTitle}>Télécharger & envoyer</div>
           <p className={styles.actionsDesc}>
-            Le ZIP contiendra le bundle JSON, la cover du groupe et les portraits des membres. Envoie-le à
+            Le ZIP contiendra le bundle JSON, la cover de l'artiste et les portraits des membres. Envoie-le à
             l'administrateur pour intégration.
           </p>
           {bundle && <div className={styles.zipReady}>✅ Bundle prêt — {bundle.groupId}.zip</div>}

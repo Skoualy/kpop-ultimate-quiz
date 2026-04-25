@@ -120,7 +120,7 @@ function PlayerStatContent({
         </div>
       )}
 
-      {/* Podium groupes */}
+      {/* Podium artistes */}
       {topGroups.length > 0 && (
         <div className={styles.statRow}>
           <span className={styles.statIcon}>🏆</span>

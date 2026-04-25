@@ -37,7 +37,7 @@ function getCategoryBadgeVariant(category: GroupCategory) {
 }
 
 function getStatusBadgeVariant(status: GroupStatus) {
-  return status === 'active' ? 'success' as const : 'danger' as const
+  return status === 'active' ? ('success' as const) : ('danger' as const)
 }
 
 function mapGroupToCard(group: GroupCardViewModel['raw']): GroupCardViewModel {
@@ -77,8 +77,8 @@ export default function GroupsPage() {
 
   const visibleCategoryOptions = useMemo(() => {
     const datasetCategories = new Set(allCards.map((group) => group.category))
-    return CATEGORY_OPTIONS.filter((option) =>
-      option.value === 'all' || datasetCategories.has(option.value as GroupCategory),
+    return CATEGORY_OPTIONS.filter(
+      (option) => option.value === 'all' || datasetCategories.has(option.value as GroupCategory),
     )
   }, [allCards])
 
@@ -86,9 +86,7 @@ export default function GroupsPage() {
     const datasetGenerations = new Set(allCards.map((group) => group.generation))
     return [
       { value: 'all' as const, label: 'Toutes gen.' },
-      ...GENERATIONS
-        .filter((gen) => datasetGenerations.has(gen))
-        .map((gen) => ({ value: gen, label: `Gen ${gen}` })),
+      ...GENERATIONS.filter((gen) => datasetGenerations.has(gen)).map((gen) => ({ value: gen, label: `Gen ${gen}` })),
     ]
   }, [allCards])
 
@@ -127,21 +125,25 @@ export default function GroupsPage() {
 
   return (
     <PageContainer
-      title="Gestion des groupes"
-      subtitle="Clique sur un groupe pour modifier ses informations dans le contributor."
-      actions={(
+      title="Gestion des artistes"
+      subtitle="Clique sur un artiste pour modifier ses informations dans le contributor."
+      actions={
         <div className={styles.headerActions}>
-          <ButtonControl variant="ghost" size="sm" onClick={() => navigate('/')}>← Retour au quiz</ButtonControl>
-          <ButtonControl variant="primary" size="sm" onClick={() => navigate('/contributor')}>✦ Nouveau groupe</ButtonControl>
+          <ButtonControl variant="ghost" size="sm" onClick={() => navigate('/')}>
+            ← Retour au quiz
+          </ButtonControl>
+          <ButtonControl variant="primary" size="sm" onClick={() => navigate('/contributor')}>
+            ✦ Nouveau artiste
+          </ButtonControl>
         </div>
-      )}
+      }
     >
       <div className={styles.page}>
         <div className={styles.searchRow}>
           <input
             className={['input', styles.searchInput].join(' ')}
             type="text"
-            placeholder="Rechercher un groupe..."
+            placeholder="Rechercher un artiste..."
             value={filters.search}
             onChange={(event) => updateFilter('search', event.target.value)}
           />
@@ -162,7 +164,7 @@ export default function GroupsPage() {
               value={[filters.generation]}
               onChange={(values) => updateFilter('generation', values[0] ?? 'all')}
             />
-            <span className={styles.count}>{filteredGroups.length} groupe(s)</span>
+            <span className={styles.count}>{filteredGroups.length} artiste(s)</span>
           </div>
 
           <FilterBadgeGroupControl
@@ -175,21 +177,23 @@ export default function GroupsPage() {
 
         {loading && (
           <Card className={styles.stateCard}>
-            <LoadingSpinner label="Chargement des groupes..." />
+            <LoadingSpinner label="Chargement des artistes..." />
           </Card>
         )}
 
         {!loading && error && (
           <Card className={styles.stateCard}>
-            <p className={styles.stateTitle}>Impossible de charger les groupes</p>
+            <p className={styles.stateTitle}>Impossible de charger les artistes</p>
             <p>{error}</p>
-            <ButtonControl variant="secondary" size="sm" onClick={refetch}>Réessayer</ButtonControl>
+            <ButtonControl variant="secondary" size="sm" onClick={refetch}>
+              Réessayer
+            </ButtonControl>
           </Card>
         )}
 
         {!loading && !error && filteredGroups.length === 0 && (
           <Card className={styles.stateCard}>
-            <p className={styles.stateTitle}>Aucun groupe trouvé</p>
+            <p className={styles.stateTitle}>Aucun artiste trouvé</p>
             <p>Essaie de modifier les filtres ou la recherche.</p>
           </Card>
         )}
@@ -214,22 +218,30 @@ export default function GroupsPage() {
                     <div>
                       <h2 className={styles.cardName}>{group.name}</h2>
                       <div className={styles.badges}>
-                        <Badge variant={getCategoryBadgeVariant(group.category)}>{CATEGORY_LABELS[group.category]}</Badge>
-                        <Badge variant={getStatusBadgeVariant(group.status)}>{group.status === 'active' ? 'Actif' : 'Inactif'}</Badge>
+                        <Badge variant={getCategoryBadgeVariant(group.category)}>
+                          {CATEGORY_LABELS[group.category]}
+                        </Badge>
+                        <Badge variant={getStatusBadgeVariant(group.status)}>
+                          {group.status === 'active' ? 'Actif' : 'Inactif'}
+                        </Badge>
                         <Badge variant="teal">Gen {group.generation}</Badge>
                       </div>
                     </div>
                   </div>
 
                   <div className={styles.meta}>
-                    <span>🏢 <strong>{group.company || 'N/A'}</strong></span>
+                    <span>
+                      🏢 <strong>{group.company || 'N/A'}</strong>
+                    </span>
                   </div>
 
                   <hr className={styles.separator} />
 
                   <div className={styles.cardFooter}>
                     <span className={styles.membersCount}>👥 {group.currentMembersCount} membre(s) actuel(s)</span>
-                    <ButtonControl size="sm" onClick={() => navigate(`/contributor/${group.id}`)}>✏️ Modifier</ButtonControl>
+                    <ButtonControl size="sm" onClick={() => navigate(`/contributor/${group.id}`)}>
+                      ✏️ Modifier
+                    </ButtonControl>
                   </div>
                 </Card>
               ))}

@@ -20,15 +20,15 @@ Il couvre :
 
 ### Source de vérité
 
-- **Index des groupes** : `dataset/groups/index.json`
-- **Groupes** : un fichier JSON par groupe dans `dataset/groups/{GroupCategory}/{groupId}.json`
+- **Index des artistes** : `dataset/groups/index.json`
+- **Groupes** : un fichier JSON par artiste dans `dataset/groups/{GroupCategory}/{groupId}.json`
 - **Idoles** : un fichier global unique dans `dataset/idols.json`
 - **Labels / agences** : un fichier global unique dans `dataset/labels.json`
-- **Appartenance d'une idole à un groupe** : stockée dans `group.members[]`
+- **Appartenance d'une idole à un artiste** : stockée dans `group.members[]`
 
-### Chargement des groupes
+### Chargement des artistes
 
-Le chargement des groupes se fait en deux temps :
+Le chargement des artistes se fait en deux temps :
 
 1. lecture de `dataset/groups/index.json`
 2. chargement du fichier détaillé via le couple `{category, id}`
@@ -41,10 +41,10 @@ Exemple :
 ### Règles structurantes
 
 - une **idole** représente une **personne unique**
-- un **groupe** représente une **entité jouable / discographique**
-- une **sub-unit** est un **groupe** avec un `parentGroupId`
-- un **soloist** est aussi un **groupe**
-- `primaryGroupId` sur l'idole est un **groupe de référence** pour l'affichage, la désambiguïsation et certains arbitrages gameplay
+- un **artiste** représente une **entité jouable / discographique**
+- une **sub-unit** est un **artiste** avec un `parentGroupId`
+- un **soloist** est aussi un **artiste**
+- `primaryGroupId` sur l'idole est un **artiste de référence** pour l'affichage, la désambiguïsation et certains arbitrages gameplay
 - `gender` sur l'idole est un **champ dérivé persisté**, jamais saisi manuellement
 
 ### Convention de nommage
@@ -179,14 +179,14 @@ export interface Idol {
 
 - type : `string`
 - obligatoire : **oui**
-- généré : **oui**, à la création initiale depuis le groupe courant
+- généré : **oui**, à la création initiale depuis l\'artiste courant
 - rôle :
-  - groupe de référence
+  - artiste de référence
   - affichage principal
   - désambiguïsation des homonymes
   - arbitrage Save One / pool final
   - préfiltrage contributor
-- validation : doit référencer un groupe existant
+- validation : doit référencer un artiste existant
 - note : ne représente **pas** toutes les appartenances réelles
 
 #### `gender`
@@ -346,7 +346,7 @@ export interface SongEntry {
   - exemples : `dolphin`, `dolphin-jp`, `the-feels-en`
   - suffixe incrémental si collision
 - validation :
-  - unique dans toute la discography du groupe (`titles` + `bSides`)
+  - unique dans toute la discography de l'artiste (`titles` + `bSides`)
   - minuscule
   - caractères recommandés : `[a-z0-9-]`
 
@@ -394,7 +394,7 @@ export interface Discography {
 
 ### Règles
 
-- obligatoire sur chaque groupe : **oui**
+- obligatoire sur chaque artiste : **oui**
 - champs obligatoires : `titles
 - une même chanson ne doit pas apparaître à la fois dans `titles` et `bSides`
 - les doublons sont évalués sur l'identifiant canonique de chanson (`SongEntry.id`)
@@ -451,7 +451,7 @@ export interface Group {
 - type : `GroupCategory`
 - obligatoire : **oui**
 - validation : enum stricte
-- règle sub-unit : si `parentGroupId !== null`, la catégorie doit être identique à celle du groupe parent
+- règle sub-unit : si `parentGroupId !== null`, la catégorie doit être identique à celle de l'artiste parent
 
 #### `parentGroupId`
 
@@ -459,15 +459,15 @@ export interface Group {
 - obligatoire : **oui**
 - valeur par défaut : `null`
 - validation :
-  - si non nul, doit référencer un groupe existant
-  - le parent ne doit pas être lui-même le groupe courant
-  - seuls des groupes de catégorie `girlGroup` ou `boyGroup` peuvent être parents
-  - un groupe ayant déjà un `parentGroupId` ne peut pas être utilisé comme parent
+  - si non nul, doit référencer un artiste existant
+  - le parent ne doit pas être lui-même l\'artiste courant
+  - seuls des artistes de catégorie `girlGroup` ou `boyGroup` peuvent être parents
+  - un artiste ayant déjà un `parentGroupId` ne peut pas être utilisé comme parent
   - un soloist ne peut jamais être proposé comme parent
 - règle UI contributor :
   - champ optionnel avec autosuggestion
-  - l'autosuggestion ne doit afficher que les groupes top-level de catégorie `girlGroup` ou `boyGroup`
-  - texte d'aide recommandé : "À renseigner uniquement si ce groupe est une sub-unit d'un autre groupe."
+  - l'autosuggestion ne doit afficher que les artistes top-level de catégorie `girlGroup` ou `boyGroup`
+  - texte d'aide recommandé : "À renseigner uniquement si cet artiste est une sub-unit d'un autre artiste."
 
 #### `generation`
 
@@ -509,7 +509,7 @@ export interface Group {
 
 - type : `GroupMember[]`
 - obligatoire : **oui**
-- validation : ids uniques dans le groupe
+- validation : ids uniques dans l\'artiste
 
 #### `discography`
 
@@ -547,7 +547,7 @@ export interface Group {
   - `vocal` implique aussi `mainVocal`
   - `rapper` implique aussi `mainRapper`
 
-### Soloist issu d'un groupe
+### Soloist issu d'un artiste
 
 - même structure qu'un soloist pur
 - l'idole doit être **réutilisée**, jamais dupliquée
@@ -559,16 +559,16 @@ export interface Group {
 - les membres doivent être choisis parmi les membres du parent côté contributor
 - les idoles sont **réutilisées**, jamais dupliquées
 - côté contributor UI, les rôles ne sont pas saisis localement pour une sub-unit
-- les rôles sont hérités depuis le groupe parent
+- les rôles sont hérités depuis l\'artiste parent
 - le dataset final doit tout de même contenir des `roles` complets sur chaque `GroupMember`
 - ces rôles hérités peuvent être matérialisés soit :
   - au moment de l'export contributor
   - soit au moment du merge Python
 - le résultat final doit rester conforme au type `GroupMember`
 
-### Nouveau groupe composé d'anciennes membres d'un autre groupe
+### Nouveau artiste composé d'anciennes membres d'un autre artiste
 
-- ce n'est **pas** une sub-unit si le groupe est autonome
+- ce n'est **pas** une sub-unit si l\'artiste est autonome
 - `parentGroupId = null`
 - les idoles existantes sont réutilisées si nécessaire
 
@@ -578,12 +578,12 @@ export interface Group {
 
 ### Formulaire principal
 
-Le point d'entrée principal reste le **formulaire groupe**.
+Le point d'entrée principal reste le **formulaire artiste**.
 
 La section membres gère deux couches :
 
 1. les infos propres à l'idole
-2. les infos d'appartenance au groupe
+2. les infos d'appartenance au artiste
 
 ### État UI recommandé pour un membre
 
@@ -623,12 +623,12 @@ Quand un nom est saisi :
 
 ### Préfiltrage par catégorie / gender
 
-Lorsqu'on rattache une idole existante à un groupe :
+Lorsqu'on rattache une idole existante à un artiste :
 
 - on déduit le `gender` attendu depuis `group.category`
 - on filtre en priorité les idoles ayant le même `gender`
 
-Dans le contributor, le placeholder portrait d’un membre est déterminé depuis la catégorie effective du groupe en cours :
+Dans le contributor, le placeholder portrait d’un membre est déterminé depuis la catégorie effective de l'artiste en cours :
 
 - `girlGroup` / `femaleSoloist` → `assets/placeholders/idol-female.webp`
 - `boyGroup` / `maleSoloist` → `assets/placeholders/idol-male.webp`
@@ -638,7 +638,7 @@ Cette logique réutilise le même principe de dérivation que pour `gender` sur 
 ### Gestion des sub-units dans le contributor
 
 - le formulaire expose directement `parentGroupId`
-- si `parentGroupId` est renseigné, le groupe est considéré comme une sub-unit
+- si `parentGroupId` est renseigné, l\'artiste est considéré comme une sub-unit
 - la catégorie est forcée depuis le parent
 - la sélection de membres existants est limitée aux membres du parent
 
@@ -650,8 +650,8 @@ Exemples :
 
 - changement de `category`
 - changement de `parentGroupId`
-- passage d'un groupe classique vers un soloist
-- passage d'une sub-unit vers un groupe indépendant
+- passage d'un artiste classique vers un soloist
+- passage d'une sub-unit vers un artiste indépendant
 
 Règle recommandée :
 
@@ -792,16 +792,16 @@ assets/
 
 Lorsqu'une image réelle n'est pas disponible, l'application doit utiliser les placeholders dédiés :
 
-- **groupe** :
+- **artiste** :
   - fallback : `assets/placeholders/group-cover.webp`
-- **idole d'un groupe ou soloist féminin** :
+- **idole d'un artiste ou soloist féminin** :
   - fallback : `assets/placeholders/idol-female.webp`
-- **idole d'un groupe ou soloist masculin** :
+- **idole d'un artiste ou soloist masculin** :
   - fallback : `assets/placeholders/idol-male.webp`
 
 ### Règles de résolution
 
-#### Cover de groupe
+#### Cover de artiste
 
 - si `group.coverImage` est défini et valide, l'utiliser
 - sinon utiliser `assets/placeholders/group-cover.webp`
@@ -829,16 +829,16 @@ Le merge Python doit :
 - ajouter / mettre à jour les idoles dans `dataset/idols.json`
 - ajouter / mettre à jour les labels dans `dataset/labels.json`
 - créer une entrée label si `group.company` ne correspond à aucun label existant
-- écrire / mettre à jour le groupe dans `dataset/groups/{GroupCategory}/{groupId}.json`
+- écrire / mettre à jour l\'artiste dans `dataset/groups/{GroupCategory}/{groupId}.json`
 - maintenir / regénérer `dataset/groups/index.json`
 - empêcher la duplication d'idoles déjà existantes
 - rejeter les références invalides (`parentGroupId`, `idolId`, enums, collisions incohérentes)
 - vérifier que `group.company` correspond à un label existant ou à un label fourni/créé
-- vérifier la cohérence entre `dataset/groups/index.json` et les fichiers détaillés de groupes
+- vérifier la cohérence entre `dataset/groups/index.json` et les fichiers détaillés de artistes
 
 ### Déduplication gameplay
 
-Si une même idole est présente dans plusieurs groupes, l'application doit la considérer comme **une seule personne** côté logique gameplay lorsque cela a du sens.
+Si une même idole est présente dans plusieurs artistes, l'application doit la considérer comme **une seule personne** côté logique gameplay lorsque cela a du sens.
 
 ---
 
@@ -885,10 +885,10 @@ La cible de déploiement n'est plus Electron. La cible principale est une applic
 - `language` absent = coréen implicite
 - `roles` obligatoires sur chaque `GroupMember`
 - `idolResolution` est un objet UI temporaire, jamais persisté dans le dataset final
-- les idoles sont des personnes uniques, réutilisées entre groupes quand c'est nécessaire
+- les idoles sont des personnes uniques, réutilisées entre artistes quand c'est nécessaire
 - `company` référence un label / agence principale unique
-- les groupes sont indexés dans `dataset/groups/index.json`
-- les fichiers groupes détaillés sont stockés dans `dataset/groups/{GroupCategory}/{groupId}.json`
+- les artistes sont indexés dans `dataset/groups/index.json`
+- les fichiers artistes détaillés sont stockés dans `dataset/groups/{GroupCategory}/{groupId}.json`
 - pour une sub-unit, les rôles sont hérités du parent et doivent être présents dans le dataset final
 - pour un soloist, l'UI contributor expose `vocal` / `rapper`, mais l'export enrichit les rôles avec `mainVocal` / `mainRapper`
 - `coverImage` ou `portrait` absents ne bloquent pas l'affichage : l'UI doit utiliser les placeholders dédiés
@@ -983,14 +983,14 @@ src/
 
 ### Routes
 
-| Route                   | Page              | Description                  |
-| ----------------------- | ----------------- | ---------------------------- |
-| `/`                     | `ConfigPage`      | Configuration d'une partie   |
-| `/groups`               | `GroupsPage`      | Gestion des groupes          |
-| `/contributor`          | `ContributorPage` | Création d'un nouveau groupe |
-| `/contributor/:groupId` | `ContributorPage` | Édition d'un groupe existant |
-| `/blind-test`           | `BlindTestPage`   | Partie Blind Test            |
-| `/save-one`             | `SaveOnePage`     | Partie Save One              |
+| Route                   | Page              | Description                   |
+| ----------------------- | ----------------- | ----------------------------- |
+| `/`                     | `ConfigPage`      | Configuration d'une partie    |
+| `/groups`               | `GroupsPage`      | Gestion des artistes          |
+| `/contributor`          | `ContributorPage` | Création d'un nouveau artiste |
+| `/contributor/:groupId` | `ContributorPage` | Édition d'un artiste existant |
+| `/blind-test`           | `BlindTestPage`   | Partie Blind Test             |
+| `/save-one`             | `SaveOnePage`     | Partie Save One               |
 
 ---
 
@@ -1052,7 +1052,7 @@ export interface AutoSuggestProps<T> {
 
 ### Usages prévus
 
-- `parentGroupId` dans le contributor (suggestions : groupes top-level)
+- `parentGroupId` dans le contributor (suggestions : artistes top-level)
 - `company` / label dans le contributor (suggestions : labels connus)
 - Recherche d'idole existante dans le contributor (future)
 
@@ -1176,7 +1176,7 @@ public/
 
 ### Structure de `groups/index.json`
 
-Le fichier `groups/index.json` contient une liste d'entrées minimales permettant de reconstruire le chemin de chaque groupe détaillé.
+Le fichier `groups/index.json` contient une liste d'entrées minimales permettant de reconstruire le chemin de chaque artiste détaillé.
 
 ```ts
 export interface GroupIndexEntry {

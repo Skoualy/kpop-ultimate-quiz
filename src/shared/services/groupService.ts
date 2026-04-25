@@ -20,14 +20,12 @@ async function getIndex(): Promise<GroupIndexEntry[]> {
 async function getAll(): Promise<Group[]> {
   const index = await getIndex()
   const results = await Promise.allSettled(
-    index.map(({ id, category }) =>
-      fetchJson<Group>(`${BASE}/groups/${category}/${id}.json`),
-    ),
+    index.map(({ id, category }) => fetchJson<Group>(`${BASE}/groups/${category}/${id}.json`)),
   )
 
   const rejectedCount = results.filter((entry) => entry.status === 'rejected').length
   if (rejectedCount === results.length && results.length > 0) {
-    throw new Error('Impossible de charger les groupes. Vérifie le dataset groups/index.json.')
+    throw new Error('Impossible de charger les artistes. Vérifie le dataset groups/index.json.')
   }
 
   return results

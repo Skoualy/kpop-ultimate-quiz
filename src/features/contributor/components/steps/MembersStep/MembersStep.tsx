@@ -307,7 +307,7 @@ export function MembersStep({
         <div className={styles.subunitPicker}>
           <div className={styles.subunitTitle}>Membres de {parentGroup.name}</div>
           <div className={styles.subunitHint}>
-            Sélectionne les membres qui participent à cette sub-unit. Les rôles seront hérités du groupe principal.
+            Sélectionne les membres qui participent à cette sub-unit. Les rôles seront hérités de l'artiste principal.
           </div>
           <BadgeGroupControl
             options={parentMemberOptions}

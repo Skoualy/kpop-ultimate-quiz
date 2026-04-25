@@ -19,7 +19,7 @@ import type { ImageCreditInput } from './AssetCredit'
 
 /**
  * Entrée de crédit dans le bundle contributor.
- * Une entrée par image (cover du groupe + portrait de chaque idole).
+ * Une entrée par image (cover de l'artiste + portrait de chaque idole).
  */
 export interface BundleCreditEntry {
   entityType: 'idol' | 'group'

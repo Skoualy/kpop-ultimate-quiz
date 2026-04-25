@@ -13,12 +13,12 @@
 
 - [x] Migration vers React 18 + TypeScript + Vite
 - [x] Architecture features / shared / context
-- [x] Dataset structuré (groupes, idoles, labels, discographie)
-- [x] ConfigPage — configuration complète d'une partie (mode, catégorie, drops, rounds, timer, 2J, critère, rôles, groupes)
+- [x] Dataset structuré (artistes, idoles, labels, discographie)
+- [x] ConfigPage — configuration complète d'une partie (mode, catégorie, drops, rounds, timer, 2J, critère, rôles, artistes)
 - [x] Save One — idoles (1J & 2J) avec pool, rounds, transitions, résumé
 - [x] Save One — chansons (1J & 2J) avec séquence YouTube, replay, fade audio
-- [x] Contributor — formulaire multi-étapes (infos groupe, membres, musiques, export)
-- [x] GroupsPage — liste et gestion des groupes
+- [x] Contributor — formulaire multi-étapes (infos artiste, membres, musiques, export)
+- [x] GroupsPage — liste et gestion des artistes
 - [x] Thème dark / light persisté
 - [x] Pipeline Python de migration des données (v2)
 
@@ -36,7 +36,7 @@
 - [x] Songs : replay J1 fonctionnel via état `activeIdx` unifié
 - [x] Songs : bouton "Passer cet extrait" pendant la séquence J1
 - [x] Songs : fondu audio (fade via `setVolume` postMessage) entre extraits
-- [x] Résumé 2J : deux colonnes côte-à-côte (J1 / J2) avec stats par joueur (choix le plus rapide, groupes favoris)
+- [x] Résumé 2J : deux colonnes côte-à-côte (J1 / J2) avec stats par joueur (choix le plus rapide, artistes favoris)
 - [x] ScrollTopControl : apparaît uniquement après scroll (seuil 150px)
 - [x] Badge critère centré au-dessus des cards idoles
 - [x] Badge nom du joueur (violet J1 / rose J2) au-dessus des cards et des miniatures chansons
@@ -106,8 +106,8 @@
 ### 🔄 Config — Amélioration UI
 
 - [x] Ajout d'un **WarningMessage** pour afficher le feedback de validation de la partie
-- [x] Integration du **SegmentedControl** pour gérer le type de sélection des groupes avec les valeurs **Tous / Par filtres / Manuel** pour supprimer l’ambiguïté de l’ancienne dual listbox.
-- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des groupes
+- [x] Integration du **SegmentedControl** pour gérer le type de sélection des artistes avec les valeurs **Tous / Par filtres / Manuel** pour supprimer l’ambiguïté de l’ancienne dual listbox.
+- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des artistes
 - [ ] Brider le champ **rounds** après préparation en fonction du scope validé et afficher un état warning visuel tant que la limite est active.
 - [ ] Remplacer les **number inputs** de configuration les plus adaptés par des **sliders** pour rendre les options de partie plus ludiques et plus lisibles.
 - [ ] Ajouter un nouveau filtre musique **Langue** (`Tous`, `Coréen`, `Japonais`, `Anglais`) dans les options supplémentaires.
@@ -120,7 +120,7 @@
 ### 🔄 UI - Nommage et correctifs
 
 - [x] Introduire un **placeholder artiste** distinct du placeholder idole pour mieux différencier visuellement les visuels de logo/cover et les portraits.
-- [ ] Remplacer dans l’UI le terme **groupe** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
+- [ ] Remplacer dans l’UI le terme **artiste** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
 - [ ] Mettre en place une stratégie **anti-scroll vertical** en jeu basée sur la compaction adaptative de l’interface
 
 ## v0.7 — Blind Test, Smash Or Pass & Amélioration du contributor
@@ -163,7 +163,7 @@
 ### Dataset & Contributor
 
 - [ ] <!-- Features contributor supplémentaires -->
-- [ ] <!-- Enrichissement dataset (nouvelles données, groupes, etc.) -->
+- [ ] <!-- Enrichissement dataset (nouvelles données, artistes, etc.) -->
 - [ ] Validation automatique des bundles côté Python
 
 ### UX
@@ -180,7 +180,7 @@
 
 - [ ] Création de profil (pseudo, avatar)
 - [ ] Historique des parties par profil
-- [ ] Statistiques globales (groupes les plus sauvés, win rate Blind Test…)
+- [ ] Statistiques globales (artistes les plus sauvés, win rate Blind Test…)
 
 ### Système XP
 
@@ -219,7 +219,7 @@
 ### Documentation
 
 - [ ] README utilisateur (installation, lancement, build)
-- [ ] Guide de contribution (ajout de groupes, merge Python)
+- [ ] Guide de contribution (ajout de artistes, merge Python)
 - [ ] Changelog complet v0.6 → v1.0
 
 ### Nice to have _(si temps)_

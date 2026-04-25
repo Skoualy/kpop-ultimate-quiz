@@ -22,15 +22,15 @@ import { slugify } from '@/shared/utils/slug'
 import { getGroupCoverPath, getIdolPortraitPath } from '@/shared/utils/assets'
 import styles from './ContributorPage.module.scss'
 
-const TABS = ['① Infos groupe', '② Membres', '③ Musiques', '④ Export']
+const TABS = ['① Infos artiste', '② Membres', '③ Musiques', '④ Export']
 
 /** Crédit vide par défaut — utilisé quand aucune entrée n'existe dans credits.json */
 const EMPTY_CREDIT: ImageCreditInput = {
-  sourceType:       'wikimedia',
+  sourceType: 'wikimedia',
   originalFileName: null,
-  sourceUrl:        null,
-  transformReport:  null,
-  aiModified:       false,
+  sourceUrl: null,
+  transformReport: null,
+  aiModified: false,
 }
 
 interface ContributorDraft {
@@ -255,17 +255,17 @@ export default function ContributorPage() {
 
         const loaded: Record<string, ImageCreditInput> = {}
 
-        // Crédit de la cover du groupe
+        // Crédit de la cover de l'artiste
         const coverEntry = allCredits.find(
           (c) => c.entityType === 'group' && c.entityId === editGroup.id && c.assetType === 'cover',
         )
         if (coverEntry) {
           const credit: ImageCreditInput = {
-            sourceType:       coverEntry.sourceType,
+            sourceType: coverEntry.sourceType,
             originalFileName: coverEntry.originalFileName,
-            sourceUrl:        coverEntry.sourceUrl ?? null,
-            transformReport:  null,
-            aiModified:       coverEntry.aiModified ?? false,
+            sourceUrl: coverEntry.sourceUrl ?? null,
+            transformReport: null,
+            aiModified: coverEntry.aiModified ?? false,
           }
           loaded[`group/${editGroup.id}/cover`] = credit
           setForm((prev) => ({ ...prev, coverCredit: credit }))
@@ -281,11 +281,11 @@ export default function ContributorPage() {
             )
             if (!portraitEntry) return m
             const credit: ImageCreditInput = {
-              sourceType:       portraitEntry.sourceType,
+              sourceType: portraitEntry.sourceType,
               originalFileName: portraitEntry.originalFileName,
-              sourceUrl:        portraitEntry.sourceUrl ?? null,
-              transformReport:  null,
-              aiModified:       portraitEntry.aiModified ?? false,
+              sourceUrl: portraitEntry.sourceUrl ?? null,
+              transformReport: null,
+              aiModified: portraitEntry.aiModified ?? false,
             }
             loaded[`idol/${idolId}/portrait`] = credit
             return { ...m, portraitCredit: credit }
@@ -294,7 +294,9 @@ export default function ContributorPage() {
 
         loadedCreditsRef.current = loaded
       })
-      .catch(() => { /* credits.json peut ne pas encore exister */ })
+      .catch(() => {
+        /* credits.json peut ne pas encore exister */
+      })
   }, [isEdit, editGroup?.id])
 
   function makeDefaultMembersForStructure(nextCategory: GroupCategory, nextParentGroupId: string): EditableMember[] {
@@ -325,7 +327,7 @@ export default function ContributorPage() {
 
     if (hasMeaningfulMembers(members)) {
       const ok = window.confirm(
-        'Changer la catégorie ou le groupe parent va réinitialiser les membres déjà saisis. Continuer ?',
+        "Changer la catégorie ou l'artiste parent va réinitialiser les membres déjà saisis. Continuer ?",
       )
       if (!ok) return false
     }
@@ -407,12 +409,12 @@ export default function ContributorPage() {
      */
     function creditChanged(key: string, current: ImageCreditInput): boolean {
       const original = loaded[key]
-      if (!original) return true  // pas encore de crédit → toujours inclure
+      if (!original) return true // pas encore de crédit → toujours inclure
       return (
-        current.sourceType       !== original.sourceType       ||
+        current.sourceType !== original.sourceType ||
         current.originalFileName !== original.originalFileName ||
-        current.sourceUrl        !== original.sourceUrl        ||
-        current.aiModified       !== original.aiModified
+        current.sourceUrl !== original.sourceUrl ||
+        current.aiModified !== original.aiModified
       )
     }
 
@@ -431,8 +433,8 @@ export default function ContributorPage() {
       if (member.portraitFile !== null || creditChanged(portraitKey, member.portraitCredit)) {
         credits.push({
           entityType: 'idol',
-          entityId:   idol.id,
-          assetType:  'portrait',
+          entityId: idol.id,
+          assetType: 'portrait',
           creditInput: member.portraitCredit,
         })
       }
@@ -653,9 +655,9 @@ export default function ContributorPage() {
     <PageContainer>
       <div className={styles.pageHeader}>
         <div>
-          <h1 className={styles.pageTitle}>🎵 Proposer / Modifier un groupe</h1>
+          <h1 className={styles.pageTitle}>🎵 Proposer / Modifier un artiste</h1>
           <p className={styles.pageSubtitle}>
-            Remplis ce formulaire pour soumettre un nouveau groupe ou corriger un groupe existant.
+            Remplis ce formulaire pour soumettre un nouveau artiste ou corriger un artiste existant.
           </p>
         </div>
         <div className={styles.headerTools}>

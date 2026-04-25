@@ -17,7 +17,7 @@ const ARTIST_MODE_OPTIONS = [
   { value: 'manual' satisfies ArtistSelectionMode, label: 'Manuel' },
 ] as const
 
-// ─── Tile artiste ─────────────────────────────────────────────────────────────
+// ─── Til\'artiste ─────────────────────────────────────────────────────────────
 
 function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }) {
   const coverSrc = group.coverImage
@@ -70,10 +70,10 @@ function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }
 // ─── Composant principal ──────────────────────────────────────────────────────
 
 /**
- * ArtistSelector — sélection des groupes/artistes pour la configuration.
+ * ArtistSelector — sélection des artistes/artistes pour la configuration.
  *
  * 3 modes :
- * - Tous       : tous les groupes, aucune sélection personnalisée
+ * - Tous       : tous les artistes, aucune sélection personnalisée
  * - Par filtres: filtres génération / catégorie / année / label
  * - Manuel     : EntityAutoSuggest + grille de tiles avec suppression individuelle
  *
@@ -101,7 +101,7 @@ export function ArtistSelector({
   const displayedGroups = useMemo<Group[]>(() => {
     if (artistMode === 'all') return allGroups
     if (artistMode === 'byFilter') return byFilterGroups
-    // Manual : afficher uniquement les groupes sélectionnés manuellement
+    // Manual : afficher uniquement les artistes sélectionnés manuellement
     return manualSelectedIds.map((id) => allGroups.find((g) => g.id === id)).filter(Boolean) as Group[]
   }, [artistMode, allGroups, byFilterGroups, manualSelectedIds])
 
@@ -181,7 +181,7 @@ export function ArtistSelector({
       {artistMode === 'manual' && (
         <div className={styles.autosuggestWrapper}>
           <EntityAutoSuggest<Group>
-            placeholder="Rechercher un groupe ou artiste…"
+            placeholder="Rechercher un artiste…"
             items={allGroups}
             selectedIds={manualSelectedIds}
             onChange={onManualSelectionChange}

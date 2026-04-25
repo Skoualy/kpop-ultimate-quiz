@@ -13,7 +13,7 @@ export interface EntityAutoSuggestProps<T> {
   getId: (item: T) => EntityId
   getLabel: (item: T) => string
 
-  /** Métadonnée affichée en petit dans les suggestions (id, groupe, année…) */
+  /** Métadonnée affichée en petit dans les suggestions (id, artiste, année…) */
   getMeta?: (item: T) => string | undefined
 
   /** Id généré depuis la saisie courante — affiché en subtext si fourni */

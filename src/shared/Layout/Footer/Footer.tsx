@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.scss'
 
-const APP_VERSION = '0.6.1'
+const APP_VERSION = '0.6.2'
 
 export function Footer() {
   return (

@@ -10,7 +10,7 @@ Le projet est en transition depuis une ancienne base prototype vers une structur
 
 - un dataset structuré et extensible
 - un contributor multi-étapes
-- une page de gestion des groupes
+- une page de gestion des artistes
 - les fondations des modes de jeu **Save One** et **Blind Test**
 - une cible de déploiement principale sur **application web** (et non plus Electron)
 
@@ -158,8 +158,8 @@ public/
 
 ### Règles importantes
 
-- **`groups/index.json`** sert d’index minimal pour localiser les fichiers groupe
-- un **groupe** est stocké dans `groups/{GroupCategory}/{groupId}.json`
+- **`groups/index.json`** sert d’index minimal pour localiser les fichiers artiste
+- un **artiste** est stocké dans `groups/{GroupCategory}/{groupId}.json`
 - les **idoles** sont centralisées dans `idols.json`
 - les **labels / agences** sont centralisés dans `labels.json`
 
@@ -183,7 +183,7 @@ assets/
 
 Formats recommandés :
 
-- **cover groupe** : `600x600`
+- **cover artiste** : `600x600`
 - **portrait idole** : `400x533`
 - format image recommandé : **webp**
 
@@ -192,9 +192,9 @@ Formats recommandés :
 ## Principes métier du dataset
 
 - une **idole** représente une **personne unique**
-- un **groupe** représente une **entité jouable / discographique**
-- une **sub-unit** est un groupe avec `parentGroupId`
-- un **soloist** est aussi un groupe
+- un **artiste** représente une **entité jouable / discographique**
+- une **sub-unit** est un artiste avec `parentGroupId`
+- un **soloist** est aussi un artiste
 - pas de champ `solos` dans `discography`
 - `discography` contient uniquement :
   - `titles`
@@ -210,28 +210,28 @@ Formats recommandés :
 ### 1. Page de configuration
 
 - sélection du mode de jeu
-- sélection des groupes
+- sélection des artistes
 - filtres et paramètres de partie
 
 ### 2. Page Groupes
 
-- vue de tous les groupes
+- vue de tous les artistes
 - recherche / filtres
 - navigation vers l’édition contributor
 
 ### 3. Contributor
 
-Formulaire multi-étapes pour créer ou modifier un groupe :
+Formulaire multi-étapes pour créer ou modifier un artiste :
 
-- **Infos groupe**
+- **Infos artiste**
 - **Membres**
 - **Musiques**
 - **Export**
 
 Règles métier déjà intégrées :
 
-- une sub-unit réutilise les membres du groupe parent
-- un soloist est géré comme un groupe
+- une sub-unit réutilise les membres de l'artiste parent
+- un soloist est géré comme un artiste
 - une idole existante doit être réutilisée si c’est la même personne
 - l’export génère un **bundle de contribution** pour intégration ultérieure
 

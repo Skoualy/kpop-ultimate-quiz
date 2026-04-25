@@ -22,11 +22,11 @@ L'UI doit tenir sur un écran 16:9 standard sans scroll. Responsive smartphone r
 
 ## 3. Pool — Idoles
 
-- Unicité par `idol.id` — une idole n'apparaît qu'une seule fois dans le pool, même si plusieurs groupes liés sont sélectionnés
+- Unicité par `idol.id` — une idole n'apparaît qu'une seule fois dans le pool, même si plusieurs artistes liés sont sélectionnés
 - Recyclage autorisé après épuisement complet
-- Éviter autant que possible deux idoles du même groupe dans un même round
-- Si le nombre de groupes le permet : idéalement un groupe différent par choix dans un round
-- Si moins de groupes que de choix par round : équilibrer les apparitions entre rounds
+- Éviter autant que possible deux idoles du même artiste dans un même round
+- Si le nombre de artistes le permet : idéalement un artiste différent par choix dans un round
+- Si moins de artistes que de choix par round : équilibrer les apparitions entre rounds
 
 ---
 
@@ -54,8 +54,8 @@ L'UI doit tenir sur un écran 16:9 standard sans scroll. Responsive smartphone r
 ## 5. Pool — Chansons
 
 - Mêmes règles de sortie de pool que pour les idoles
-- Éviter les doublons de groupe dans un même round
-- Équilibrer les apparitions des groupes entre rounds
+- Éviter les doublons de artiste dans un même round
+- Équilibrer les apparitions des artistes entre rounds
 - Recyclage après épuisement uniquement
 
 ---
@@ -143,14 +143,17 @@ L'UI doit tenir sur un écran 16:9 standard sans scroll. Responsive smartphone r
 ## 11. Résumé de fin — 1 joueur
 
 Pour chaque round :
+
 - Mini card idole si choix effectué, OU miniature de chanson si choix effectué
 - Mention "Pass" ou "Timeout" si applicable
 
 Statistiques affichées :
+
 - Choix le plus rapide
 
-Podium des groupes les plus choisis : **affiché uniquement si pertinent**
-- Condition : au moins un groupe apparaît plusieurs fois, ET le classement apporte une information utile
+Podium des artistes les plus choisis : **affiché uniquement si pertinent**
+
+- Condition : au moins un artiste apparaît plusieurs fois, ET le classement apporte une information utile
 - En cas d'égalité : tie-break par rapidité
 
 ---
@@ -176,18 +179,18 @@ Podium des groupes les plus choisis : **affiché uniquement si pertinent**
 
 ## 14. Cas limites
 
-| Cas | Comportement attendu |
-|---|---|
-| Pool insuffisant (moins d'items que de choix par round) | Avertissement ou désactivation du lancement |
-| Recyclage après épuisement | Mélange aléatoire du pool initial, relance transparente |
-| Timer désactivé (`timerSeconds = 0`) | Pas de décompte, round sans limite de temps |
-| Timeout | Auto-pass, round marqué "timeout", aucune pénalité |
-| Idole marquée ancien membre | Mention "Ancien membre" affichée sur la card |
-| Même idole dans plusieurs groupes sélectionnés | Dédupliquée par `idol.id`, apparaît une seule fois dans le pool |
-| Vidéo indisponible ou lecture impossible | Placeholder affiché, bouton "Rejouer" désactivé pour cette chanson, round jouable |
-| Groupe surreprésenté si peu de groupes sélectionnés | Équilibrage entre rounds ; prévenir sans bloquer |
-| Podium sans information utile (tous groupes distincts, 1 apparition chacun) | Podium non affiché |
-| Deux joueurs, chansons : extraits déjà joués | Pas de relance automatique pour J2 ; uniquement via "Rejouer" |
+| Cas                                                                          | Comportement attendu                                                              |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Pool insuffisant (moins d'items que de choix par round)                      | Avertissement ou désactivation du lancement                                       |
+| Recyclage après épuisement                                                   | Mélange aléatoire du pool initial, relance transparente                           |
+| Timer désactivé (`timerSeconds = 0`)                                         | Pas de décompte, round sans limite de temps                                       |
+| Timeout                                                                      | Auto-pass, round marqué "timeout", aucune pénalité                                |
+| Idole marquée ancien membre                                                  | Mention "Ancien membre" affichée sur la card                                      |
+| Même idole dans plusieurs artistes sélectionnés                              | Dédupliquée par `idol.id`, apparaît une seule fois dans le pool                   |
+| Vidéo indisponible ou lecture impossible                                     | Placeholder affiché, bouton "Rejouer" désactivé pour cette chanson, round jouable |
+| Groupe surreprésenté si peu de artistes sélectionnés                         | Équilibrage entre rounds ; prévenir sans bloquer                                  |
+| Podium sans information utile (tous artistes distincts, 1 apparition chacun) | Podium non affiché                                                                |
+| Deux joueurs, chansons : extraits déjà joués                                 | Pas de relance automatique pour J2 ; uniquement via "Rejouer"                     |
 
 ---
 
@@ -197,28 +200,28 @@ Podium des groupes les plus choisis : **affiché uniquement si pertinent**
 
 ```ts
 interface SaveOneRound {
-  items:       IdolItem[] | SongItem[]   // dropCount + 1 items
-  chosenId:    string | null             // null = pass ou timeout
-  isTimeout:   boolean
-  timeMs:      number | null             // temps de réponse en ms
-  playerIndex: 0 | 1                    // 0 = J1, 1 = J2
+  items: IdolItem[] | SongItem[] // dropCount + 1 items
+  chosenId: string | null // null = pass ou timeout
+  isTimeout: boolean
+  timeMs: number | null // temps de réponse en ms
+  playerIndex: 0 | 1 // 0 = J1, 1 = J2
 }
 
 interface IdolItem {
-  idolId:       string
-  name:         string
-  groupName:    string
-  portrait:     string
-  isFormer:     boolean
+  idolId: string
+  name: string
+  groupName: string
+  portrait: string
+  isFormer: boolean
 }
 
 interface SongItem {
-  songId:       string
-  title:        string
-  groupName:    string
-  youtubeId:    string
+  songId: string
+  title: string
+  groupName: string
+  youtubeId: string
   thumbnailUrl: string
-  startTime:    number   // timestamp calculé en secondes
+  startTime: number // timestamp calculé en secondes
 }
 ```
 
@@ -226,14 +229,14 @@ interface SongItem {
 
 ```ts
 function computeStartTime(
-  duration: number,         // durée réelle ou 180 par défaut
-  clipDuration: number,     // durée de l'extrait en config
-  introMargin = 15,         // secondes évitées en début
-  outroMargin = 20          // secondes évitées en fin
+  duration: number, // durée réelle ou 180 par défaut
+  clipDuration: number, // durée de l'extrait en config
+  introMargin = 15, // secondes évitées en début
+  outroMargin = 20, // secondes évitées en fin
 ): number {
   const playable = duration - introMargin - outroMargin - clipDuration
   if (playable <= 0) return introMargin
-  const candidates = [1/3, 1/2, 2/3].map(r => introMargin + Math.floor(r * playable))
+  const candidates = [1 / 3, 1 / 2, 2 / 3].map((r) => introMargin + Math.floor(r * playable))
   return candidates[Math.floor(Math.random() * 3)]
 }
 ```
@@ -244,17 +247,13 @@ function computeStartTime(
 function buildIdolPool(
   groups: Group[],
   idols: Idol[],
-  filters: { roleFilters: MemberRole[]; criterion: SaveOneCriterion }
+  filters: { roleFilters: MemberRole[]; criterion: SaveOneCriterion },
 ): IdolItem[]
 // - Déduplique par idol.id
 // - Filtre par rôle si roleFilters non vide
 // - Mélange aléatoire
 
-function buildSongPool(
-  groups: Group[],
-  songs: Song[],
-  filters: { songType: SongType }
-): SongItem[]
+function buildSongPool(groups: Group[], songs: Song[], filters: { songType: SongType }): SongItem[]
 // - Filtre par type
 // - Calcule startTime pour chaque chanson
 // - Mélange aléatoire
@@ -263,12 +262,9 @@ function buildSongPool(
 ### Construction des rounds
 
 ```ts
-function buildRounds(
-  pool: (IdolItem | SongItem)[],
-  config: { rounds: number; dropCount: number }
-): Round[]
+function buildRounds(pool: (IdolItem | SongItem)[], config: { rounds: number; dropCount: number }): Round[]
 // - dropCount + 1 items par round
-// - Équilibrage des groupes dans chaque round
+// - Équilibrage des artistes dans chaque round
 // - Si pool épuisé avant la fin : recyclage avec re-mélange
 ```
 
@@ -276,20 +272,20 @@ function buildRounds(
 
 ## 16. Composants frontend suggérés
 
-| Composant | Responsabilité |
-|---|---|
-| `SaveOnePage` | Orchestration globale, état de jeu, gestion pool |
-| `SaveOneRoundIdols` | Affichage d'un round idoles (cards + timer) |
-| `SaveOneRoundSongs` | Affichage d'un round chansons (iframe + miniatures + séquence) |
-| `IdolCard` | Card idole pure (portrait, nom, groupe, badge ancien membre) |
-| `SongThumbnail` | Miniature chanson (image, titre, groupe, bouton Rejouer) |
-| `YouTubePlayer` | Wrapper iframe YouTube avec masquage UI et contrôle start/stop |
-| `RoundProgressBar` | Barre de progression rounds (N / total) |
-| `TimerBar` | Barre de timer animée |
-| `PlayerTransitionOverlay` | Overlay "Au tour de [Joueur X]" avec compte à rebours |
-| `RoundTransition` | Animation légère inter-rounds |
-| `SaveOneSummary` | Résumé fin de partie (solo ou 2J) |
-| `useIdolPool` | Hook construction + gestion pool idoles |
-| `useSongPool` | Hook construction + gestion pool chansons |
-| `useGameTimer` | Hook timer par round avec callback timeout |
-| `computeTimestamp` | Utilitaire pur calcul timestamp extrait |
+| Composant                 | Responsabilité                                                 |
+| ------------------------- | -------------------------------------------------------------- |
+| `SaveOnePage`             | Orchestration globale, état de jeu, gestion pool               |
+| `SaveOneRoundIdols`       | Affichage d'un round idoles (cards + timer)                    |
+| `SaveOneRoundSongs`       | Affichage d'un round chansons (iframe + miniatures + séquence) |
+| `IdolCard`                | Card idole pure (portrait, nom, artiste, badge ancien membre)  |
+| `SongThumbnail`           | Miniature chanson (image, titre, artiste, bouton Rejouer)      |
+| `YouTubePlayer`           | Wrapper iframe YouTube avec masquage UI et contrôle start/stop |
+| `RoundProgressBar`        | Barre de progression rounds (N / total)                        |
+| `TimerBar`                | Barre de timer animée                                          |
+| `PlayerTransitionOverlay` | Overlay "Au tour de [Joueur X]" avec compte à rebours          |
+| `RoundTransition`         | Animation légère inter-rounds                                  |
+| `SaveOneSummary`          | Résumé fin de partie (solo ou 2J)                              |
+| `useIdolPool`             | Hook construction + gestion pool idoles                        |
+| `useSongPool`             | Hook construction + gestion pool chansons                      |
+| `useGameTimer`            | Hook timer par round avec callback timeout                     |
+| `computeTimestamp`        | Utilitaire pur calcul timestamp extrait                        |

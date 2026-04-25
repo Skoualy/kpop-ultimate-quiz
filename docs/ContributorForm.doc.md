@@ -6,7 +6,7 @@
 
 ### Vue d'ensemble
 
-Le formulaire Contributor permet de créer ou modifier un groupe K-pop en 4 étapes séquentielles. Chaque étape doit être validée avant d'accéder à la suivante. En mode édition, toutes les étapes sont déverrouillées dès l'ouverture.
+Le formulaire Contributor permet de créer ou modifier un artiste K-pop en 4 étapes séquentielles. Chaque étape doit être validée avant d'accéder à la suivante. En mode édition, toutes les étapes sont déverrouillées dès l'ouverture.
 
 Les données saisies sont assemblées à l'export (étape 4) en un bundle JSON conforme à la spec v2 du dataset.
 
@@ -14,36 +14,37 @@ Les données saisies sont assemblées à l'export (étape 4) en un bundle JSON c
 
 ### Structure des étapes
 
-| # | Onglet | Validation requise |
-|---|---|---|
-| 1 | Infos groupe | Nom, Année, Génération, Label |
-| 2 | Membres | Au moins 1 membre actuel avec au moins 1 rôle |
-| 3 | Musiques | Au moins 1 title track avec titre et URL YouTube |
-| 4 | Export | Génération manuelle du JSON |
+| #   | Onglet        | Validation requise                               |
+| --- | ------------- | ------------------------------------------------ |
+| 1   | Infos artiste | Nom, Année, Génération, Label                    |
+| 2   | Membres       | Au moins 1 membre actuel avec au moins 1 rôle    |
+| 3   | Musiques      | Au moins 1 title track avec titre et URL YouTube |
+| 4   | Export        | Génération manuelle du JSON                      |
 
 Navigation : bouton **Suivant →** (valide l'étape) ou clic sur un onglet déjà déverrouillé. Le bouton **← Retour** ne revalide pas.
 
 ---
 
-### Onglet 1 — Infos groupe
+### Onglet 1 — Infos artiste
 
 Champs en grille 2 colonnes :
 
-| Champ | Obligatoire | Comportement |
-|---|---|---|
-| Nom du groupe | ✅ | Auto-génère l'ID slug + détection collision en temps réel |
-| Statut | ✅ | Select : Actif / Inactif |
-| Catégorie | ✅ | Forcée depuis le groupe parent si sub-unit |
-| Sub-unit de | ❌ | Désactivé si catégorie soloist — tri alphabétique |
-| Année de début | ✅ | 1990–présent |
-| Génération | ✅ | Auto-suggérée depuis l'année (badge "auto") — modifiable |
-| Label / Agence | ✅ | Autocomplete sur les labels existants — nouveau label signalé |
-| Nom de la fandom | ❌ | — |
-| Cover du groupe | ❌ | `ImagePickerControl` — 600×600 px WebP |
-| Notes | ❌ | Textarea libre |
+| Champ              | Obligatoire | Comportement                                                  |
+| ------------------ | ----------- | ------------------------------------------------------------- |
+| Nom de l'artiste   | ✅          | Auto-génère l'ID slug + détection collision en temps réel     |
+| Statut             | ✅          | Select : Actif / Inactif                                      |
+| Catégorie          | ✅          | Forcée depuis l\'artiste parent si sub-unit                   |
+| Sub-unit de        | ❌          | Désactivé si catégorie soloist — tri alphabétique             |
+| Année de début     | ✅          | 1990–présent                                                  |
+| Génération         | ✅          | Auto-suggérée depuis l'année (badge "auto") — modifiable      |
+| Label / Agence     | ✅          | Autocomplete sur les labels existants — nouveau label signalé |
+| Nom de la fandom   | ❌          | —                                                             |
+| Cover de l'artiste | ❌          | `ImagePickerControl` — 600×600 px WebP                        |
+| Notes              | ❌          | Textarea libre                                                |
 
 **Règles métier :**
-- Si un groupe parent est sélectionné → catégorie forcée + champ disabled
+
+- Si un artiste parent est sélectionné → catégorie forcée + champ disabled
 - Si catégorie = soloist → champ "Sub-unit de" disabled + reset automatique
 - ID généré = slugify(nom) — affiché en suffix de l'input nom
 - Collision d'ID → bordure rouge + message d'erreur + validation bloquée
@@ -53,6 +54,7 @@ Champs en grille 2 colonnes :
 ### Onglet 2 — Membres
 
 Deux sections :
+
 - **Membres actuels** (au moins un requis)
 - **Anciens membres** (optionnel) — masquée si sub-unit ou soloist
 
@@ -67,13 +69,15 @@ Chaque membre est affiché dans un `MemberCard` :
 ```
 
 **Champs :**
+
 - Nom de scène (requis)
 - Nationalité (`SelectNationalityControl` avec drapeaux)
 - Rôles (`BadgeGroupControl`, isMultiselect, required=true) : Leader / Main Vocal / Vocal / Main Dancer / Dancer / Main Rapper / Rapper / Visual / Maknae
 - Portrait (`ImagePickerControl`, 400×533, ratio 3:4)
 
 **Champs déduits automatiquement (non affichés) :**
-- `gender` → dérivé de la catégorie effective du groupe
+
+- `gender` → dérivé de la catégorie effective de l'artiste
 - `status` → `"current"` ou `"former"` selon la section
 
 ---
@@ -81,6 +85,7 @@ Chaque membre est affiché dans un `MemberCard` :
 ### Onglet 3 — Musiques
 
 Deux sections :
+
 - **Title tracks** (au moins un requis)
 - **B-sides** (optionnel) — masquée si sub-unit ou soloist
 
@@ -95,6 +100,7 @@ Chaque chanson est affichée dans un `SongInfoCard` :
 ```
 
 **Champs :**
+
 - Titre (requis) — auto-génère l'ID slug
 - URL YouTube (requis) — miniature affichée en temps réel via `YouTubeFrameControl`
 - Langue (`SelectLanguageControl`) : 🇰🇷 Coréen (défaut) / 🇯🇵 Japonais / 🇺🇸 Anglais
@@ -111,10 +117,15 @@ Chaque chanson est affichée dans un `SongInfoCard` :
 - **✏️ Modifier** → retourne à l'étape 3
 
 **Structure du bundle généré :**
+
 ```json
 {
-  "group": { /* Group complet */ },
-  "idols": [ /* Idol[] avec gender déduit */ ]
+  "group": {
+    /* Group complet */
+  },
+  "idols": [
+    /* Idol[] avec gender déduit */
+  ]
 }
 ```
 
@@ -122,23 +133,23 @@ Chaque chanson est affichée dans un `SongInfoCard` :
 
 ### Composants utilisés
 
-| Composant | Type | Usage |
-|---|---|---|
-| `BadgeGroupControl` | Control | Rôles membres (multi, required) |
-| `ImagePickerControl` | Control | Cover groupe + portraits membres |
-| `SelectNationalityControl` | Control | Nationalité membres |
-| `SelectLanguageControl` | Control | Langue chansons |
-| `YouTubeFrameControl` | Control | Miniature YouTube chansons |
-| `ToggleControl` | Control | Toggle "Chanson de début" |
-| `ContributorStep` | Component | Wrapper étape + affichage erreurs |
+| Composant                  | Type      | Usage                             |
+| -------------------------- | --------- | --------------------------------- |
+| `BadgeGroupControl`        | Control   | Rôles membres (multi, required)   |
+| `ImagePickerControl`       | Control   | Cover artiste + portraits membres |
+| `SelectNationalityControl` | Control   | Nationalité membres               |
+| `SelectLanguageControl`    | Control   | Langue chansons                   |
+| `YouTubeFrameControl`      | Control   | Miniature YouTube chansons        |
+| `ToggleControl`            | Control   | Toggle "Chanson de début"         |
+| `ContributorStep`          | Component | Wrapper étape + affichage erreurs |
 
 ---
 
 ### Routes
 
 ```
-/contributor              → création nouveau groupe
-/contributor/:groupId     → édition groupe existant
+/contributor              → création nouveau artiste
+/contributor/:groupId     → édition artiste existant
 ```
 
 ---
@@ -157,12 +168,12 @@ The entered data is assembled on export (step 4) into a JSON bundle conforming t
 
 ### Step structure
 
-| # | Tab | Required validation |
-|---|---|---|
-| 1 | Group info | Name, Year, Generation, Label |
-| 2 | Members | At least 1 current member with at least 1 role |
-| 3 | Music | At least 1 title track with title and YouTube URL |
-| 4 | Export | Manual JSON generation |
+| #   | Tab        | Required validation                               |
+| --- | ---------- | ------------------------------------------------- |
+| 1   | Group info | Name, Year, Generation, Label                     |
+| 2   | Members    | At least 1 current member with at least 1 role    |
+| 3   | Music      | At least 1 title track with title and YouTube URL |
+| 4   | Export     | Manual JSON generation                            |
 
 Navigation: **Next →** button (validates the step) or click on an already unlocked tab. The **← Back** button does not re-validate.
 
@@ -172,20 +183,21 @@ Navigation: **Next →** button (validates the step) or click on an already unlo
 
 Fields in 2-column grid:
 
-| Field | Required | Behavior |
-|---|---|---|
-| Group name | ✅ | Auto-generates slug ID + real-time collision detection |
-| Status | ✅ | Select: Active / Inactive |
-| Category | ✅ | Forced from parent group if sub-unit |
-| Sub-unit of | ❌ | Disabled if soloist category — alphabetically sorted |
-| Debut year | ✅ | 1990–present |
-| Generation | ✅ | Auto-suggested from year ("auto" badge) — editable |
-| Label / Agency | ✅ | Autocomplete from existing labels — new label flagged |
-| Fandom name | ❌ | — |
-| Group cover | ❌ | `ImagePickerControl` — 600×600 px WebP |
-| Notes | ❌ | Free textarea |
+| Field          | Required | Behavior                                               |
+| -------------- | -------- | ------------------------------------------------------ |
+| Group name     | ✅       | Auto-generates slug ID + real-time collision detection |
+| Status         | ✅       | Select: Active / Inactive                              |
+| Category       | ✅       | Forced from parent group if sub-unit                   |
+| Sub-unit of    | ❌       | Disabled if soloist category — alphabetically sorted   |
+| Debut year     | ✅       | 1990–present                                           |
+| Generation     | ✅       | Auto-suggested from year ("auto" badge) — editable     |
+| Label / Agency | ✅       | Autocomplete from existing labels — new label flagged  |
+| Fandom name    | ❌       | —                                                      |
+| Group cover    | ❌       | `ImagePickerControl` — 600×600 px WebP                 |
+| Notes          | ❌       | Free textarea                                          |
 
 **Business rules:**
+
 - If a parent group is selected → category forced + field disabled
 - If category = soloist → "Sub-unit of" field disabled + auto-reset
 - Generated ID = slugify(name) — shown as input suffix
@@ -196,18 +208,21 @@ Fields in 2-column grid:
 ### Tab 2 — Members
 
 Two sections:
+
 - **Current members** (at least one required)
 - **Former members** (optional) — hidden if sub-unit or soloist
 
 Each member is displayed in a `MemberCard`:
 
 **Fields:**
+
 - Stage name (required)
 - Nationality (`SelectNationalityControl` with flags)
 - Roles (`BadgeGroupControl`, isMultiselect, required=true)
 - Portrait (`ImagePickerControl`, 400×533, 3:4 ratio)
 
 **Auto-derived fields (not shown):**
+
 - `gender` → derived from effective group category
 - `status` → `"current"` or `"former"` based on section
 
@@ -216,12 +231,14 @@ Each member is displayed in a `MemberCard`:
 ### Tab 3 — Music
 
 Two sections:
+
 - **Title tracks** (at least one required)
 - **B-sides** (optional) — hidden if sub-unit or soloist
 
 Each song is displayed in a `SongInfoCard`:
 
 **Fields:**
+
 - Title (required) — auto-generates slug ID
 - YouTube URL (required) — thumbnail shown in real time via `YouTubeFrameControl`
 - Language (`SelectLanguageControl`): 🇰🇷 Korean (default) / 🇯🇵 Japanese / 🇺🇸 English
@@ -238,9 +255,14 @@ Each song is displayed in a `SongInfoCard`:
 - **✏️ Edit** → returns to step 3
 
 **Generated bundle structure:**
+
 ```json
 {
-  "group": { /* Complete Group */ },
-  "idols": [ /* Idol[] with derived gender */ ]
+  "group": {
+    /* Complete Group */
+  },
+  "idols": [
+    /* Idol[] with derived gender */
+  ]
 }
 ```

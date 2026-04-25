@@ -79,13 +79,13 @@ export function ConfigHeaderSlot() {
         to="/groups"
         className={({ isActive }) => [styles.configNavLink, isActive ? styles.configNavLinkActive : ''].join(' ')}
       >
-        📋 Gérer les groupes
+        📋 Gérer les artistes
       </NavLink>
       <NavLink
         to="/contributor"
         className={({ isActive }) => [styles.configNavLink, isActive ? styles.configNavLinkActive : ''].join(' ')}
       >
-        ✦ Proposer un groupe
+        ✦ Proposer un artiste
       </NavLink>
     </nav>
   )

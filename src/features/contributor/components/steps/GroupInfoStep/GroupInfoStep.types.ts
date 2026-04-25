@@ -14,7 +14,7 @@ export interface GroupForm {
   coverFile: File | null
   fandomName: string
   notes: string
-  /** Informations de crédit pour la cover du groupe */
+  /** Informations de crédit pour la cover de l'artiste */
   coverCredit: ImageCreditInput
 }
 
