@@ -1,4 +1,3 @@
-/* Cacher les éléments UI de YouTube qui apparaissent au survol */
 .wrapper {
   position: relative;
   width: 100%;
@@ -17,20 +16,22 @@
   height: 100%;
   border: none;
   display: block;
-
-  div[id='player-control-overlay'] {
-    display: none !important;
-  }
 }
 
-/* Transparent overlay blocks YT UI interactions (info cards, logo clicks, etc.) */
+/**
+ * Overlay transparent au-dessus de l'iframe.
+ *
+ * pointer-events: auto (changement clé) :
+ *   Tous les événements souris/touch sont capturés ici avant d'atteindre l'iframe.
+ *   → YouTube ne reçoit jamais de hover → player-control-overlay reste caché.
+ *   → Le CSS parent ne peut pas cibler player-control-overlay (cross-origin SOP).
+ *
+ * L'autoplay n'est pas affecté car il est géré par le paramètre URL (?autoplay=1),
+ * pas par un clic utilisateur.
+ */
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  pointer-events: none; /* let clicks through for the replay button outside */
-}
-
-div[id='player-control-overlay'] {
-  display: none;
+  pointer-events: auto;
 }

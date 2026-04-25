@@ -6,7 +6,6 @@ import styles from './YouTubePlayer.module.scss'
 // YouTube IFrame player states
 const YT_PLAYING = 1
 const YT_ENDED = 0
-const YT_ERROR_STATES = [-1] // unstarted after error = likely unavailable
 
 /**
  * Thin wrapper around the YouTube IFrame Player API (postMessage).
@@ -16,6 +15,12 @@ const YT_ERROR_STATES = [-1] // unstarted after error = likely unavailable
  * - Listen to `window.message` for `onStateChange` and `onError` from YT
  * - Use `playerapiid` to disambiguate events when multiple iframes exist
  * - Expose `replay()` via ref (seeks to startTime and replays)
+ *
+ * Masquage du player-control-overlay YouTube :
+ * - `controls=0` dans l'URL masque la barre de progression mais pas l'overlay
+ * - L'overlay (.overlay) intercepte tous les événements de pointeur avant qu'ils
+ *   n'atteignent l'iframe → YouTube ne reçoit jamais les hover/click → l'overlay
+ *   de contrôle ne s'affiche jamais. Injection CSS cross-origin impossible (SOP).
  */
 export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>(function YouTubePlayer(
   { videoId, startTime, endTime, onPlay, onClipEnd, onError, autoplay = true, className },
@@ -99,14 +104,21 @@ export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>
     <div className={[styles.wrapper, className].filter(Boolean).join(' ')}>
       <iframe
         ref={iframeRef}
-        key={`${videoId}-${startTime}`} // remount on video/time change
+        key={`${videoId}-${startTime}`}
         src={src}
         title="YouTube player"
         className={styles.iframe}
         allow="autoplay; encrypted-media"
         allowFullScreen={false}
-        sandbox="allow-scripts allow-same-origin"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
       />
+      {/*
+        Overlay transparent positionné au-dessus de l'iframe.
+        pointer-events: auto → capture tous les hover/click avant qu'ils
+        n'atteignent l'iframe → player-control-overlay YouTube ne se déclenche jamais.
+        L'autoplay fonctionne toujours via le paramètre URL, pas via click.
+      */}
+      <div className={styles.overlay} aria-hidden />
     </div>
   )
 })
