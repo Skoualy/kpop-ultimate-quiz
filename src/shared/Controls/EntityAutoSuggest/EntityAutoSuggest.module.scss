@@ -1,0 +1,190 @@
+.root {
+  display:        flex;
+  flex-direction: column;
+  gap:            6px;
+  position:       relative;
+  width:          100%;
+}
+
+.disabled {
+  opacity:        0.45;
+  pointer-events: none;
+}
+
+.label {
+  font-size:   12px;
+  font-weight: 600;
+  color:       var(--text-secondary);
+}
+
+/* ─── Wrapper input + chips ─────────────────────────────────────────────────── */
+
+.inputWrapper {
+  display:       flex;
+  flex-direction: column;
+  gap:           6px;
+}
+
+/* ─── Chips ─────────────────────────────────────────────────────────────────── */
+
+.chips {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       5px;
+}
+
+.chip {
+  display:       flex;
+  align-items:   center;
+  gap:           5px;
+  padding:       3px 8px 3px 10px;
+  border-radius: var(--radius-pill);
+  background:    var(--bg-pill);
+  border:        1px solid var(--border-strong);
+  font-size:     12px;
+  max-width:     180px;
+}
+
+.chipLabel {
+  font-weight:   600;
+  color:         var(--text-primary);
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+
+.chipMeta {
+  font-size: 10px;
+  color:     var(--text-muted);
+  flex-shrink: 0;
+}
+
+.chipRemove {
+  background:    none;
+  border:        none;
+  cursor:        pointer;
+  color:         var(--text-muted);
+  font-size:     14px;
+  line-height:   1;
+  padding:       0;
+  flex-shrink:   0;
+  border-radius: 50%;
+  width:         16px;
+  height:        16px;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  font-family:   inherit;
+
+  &:hover { color: var(--color-danger); background: rgba(239, 68, 68, 0.1); }
+}
+
+/* ─── Input ─────────────────────────────────────────────────────────────────── */
+
+.input {
+  width:         100%;
+  padding:       8px 12px;
+  border-radius: var(--radius-md);
+  border:        1px solid var(--border-strong);
+  background:    var(--bg-surface);
+  color:         var(--text-primary);
+  font-size:     13px;
+  font-family:   inherit;
+  outline:       none;
+  transition:    border-color 0.15s;
+
+  &:focus {
+    border-color: var(--accent-purple);
+    box-shadow:   0 0 0 2px rgba(139, 92, 246, 0.15);
+  }
+
+  &::placeholder { color: var(--text-muted); }
+}
+
+/* ─── Dropdown ───────────────────────────────────────────────────────────────── */
+
+.dropdown {
+  position:      absolute;
+  top:           100%;
+  left:          0;
+  right:         0;
+  z-index:       50;
+  margin-top:    4px;
+  background:    var(--bg-card);
+  border:        1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow:    var(--shadow-card);
+  overflow:      hidden;
+  list-style:    none;
+  padding:       4px 0;
+  max-height:    300px;
+  overflow-y:    auto;
+}
+
+/* ─── Option ─────────────────────────────────────────────────────────────────── */
+
+.option {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         8px 12px;
+  cursor:          pointer;
+  gap:             10px;
+  transition:      background 0.1s;
+
+  /* Toute la ligne est cliquable */
+  &:hover, &.optionActive {
+    background: var(--bg-surface);
+  }
+}
+
+.optionLabel {
+  font-size:   13px;
+  font-weight: 500;
+  color:       var(--text-primary);
+  flex:        1;
+  min-width:   0;
+  overflow:    hidden;
+  text-overflow: ellipsis;
+  white-space:  nowrap;
+}
+
+.optionMeta {
+  font-size:  11px;
+  color:      var(--text-muted);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Option de création — accent différent */
+.optionNew .optionLabel {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+
+/* ─── Message vide ───────────────────────────────────────────────────────────── */
+
+.emptyMsg {
+  position:      absolute;
+  top:           100%;
+  left:          0;
+  right:         0;
+  margin-top:    4px;
+  background:    var(--bg-card);
+  border:        1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding:       10px 12px;
+  font-size:     12px;
+  color:         var(--text-muted);
+  font-style:    italic;
+  z-index:       50;
+}
+
+/* ─── Helper text ────────────────────────────────────────────────────────────── */
+
+.helperText {
+  font-size:  11px;
+  color:      var(--text-muted);
+  margin:     0;
+  font-style: italic;
+}

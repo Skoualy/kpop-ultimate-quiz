@@ -26,9 +26,13 @@
   cursor: pointer;
   font-family: inherit;
   white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 
-  &:last-child { border-right: none; }
+  &:last-child {
+    border-right: none;
+  }
 
   &:hover:not(.btnActive):not(.btnDisabled) {
     background: var(--bg-card);

@@ -8,7 +8,6 @@ import { SongThumbnail } from '@/shared/Components/SongThumbnail/SongThumbnail'
 
 export function QuickVoteRoundSongs({
   song,
-  clipDuration,
   timerSeconds,
   timerKey,
   voteLabel,

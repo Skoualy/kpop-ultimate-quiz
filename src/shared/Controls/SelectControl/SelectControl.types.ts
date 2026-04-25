@@ -1,17 +1,14 @@
-import type { SelectHTMLAttributes } from 'react'
-
 export interface SelectOption<T extends string = string> {
   value: T
   label: string
+  disabled?: boolean
 }
 
-export interface SelectControlProps<T extends string = string>
-  extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'> {
-  options:    SelectOption<T>[]
-  value:      T
-  onChange:   (value: T) => void
-  label?:     string
-  hint?:      string
-  error?:     string
-  fullWidth?: boolean
+export interface SelectControlProps<T extends string = string> {
+  options: SelectOption<T>[]
+  value: T
+  onChange: (value: T) => void
+  allOptionsLabel?: string // Label de l'option "all" (défaut : "Tous")
+  disabled?: boolean
+  className?: string
 }

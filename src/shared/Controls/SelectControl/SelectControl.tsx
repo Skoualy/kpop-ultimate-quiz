@@ -1,27 +1,40 @@
 import type { SelectControlProps } from './SelectControl.types'
 import styles from './SelectControl.module.scss'
 
+/**
+ * SelectControl — wrapper générique autour de <select>.
+ *
+ * Utilise la classe CSS globale "select" du design system pour l'apparence,
+ * et expose une API typée pour éviter les casts inline dans les pages.
+ *
+ * Usage :
+ *   <SelectControl<QuizMode>
+ *     options={[{ value: 'saveOne', label: 'Save One' }, …]}
+ *     value={config.mode}
+ *     onChange={(v) => setConfig({ mode: v })}
+ *   />
+ */
 export function SelectControl<T extends string = string>({
-  options, value, onChange, label, hint, error,
-  fullWidth = false, id, className = '', ...rest
+  options,
+  allOptionsLabel = 'Tous',
+  value,
+  onChange,
+  disabled = false,
+  className,
 }: SelectControlProps<T>) {
-  const selectId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
-    <div className={[styles.field, fullWidth ? styles.fullWidth : '', className].filter(Boolean).join(' ')}>
-      {label && <label htmlFor={selectId} className={styles.label}>{label}</label>}
-      <select
-        id={selectId}
-        value={value}
-        onChange={(e) => onChange(e.target.value as T)}
-        className={[styles.select, error ? styles.selectError : ''].filter(Boolean).join(' ')}
-        {...rest}
-      >
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>{opt.label}</option>
-        ))}
-      </select>
-      {error  && <span className={styles.error}>{error}</span>}
-      {hint && !error && <span className={styles.hint}>{hint}</span>}
-    </div>
+    <select
+      className={`${styles.select} ${className || ''}`}
+      value={value}
+      disabled={disabled}
+      onChange={(e) => onChange(e.target.value as T)}
+    >
+      {allOptionsLabel && <option value="all">{allOptionsLabel}</option>}
+      {options.map((opt) => (
+        <option key={opt.value} value={opt.value} disabled={opt.disabled}>
+          {opt.label}
+        </option>
+      ))}
+    </select>
   )
 }

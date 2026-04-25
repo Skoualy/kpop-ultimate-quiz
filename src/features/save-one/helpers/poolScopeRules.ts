@@ -1,55 +1,17 @@
 /**
- * poolScopeRules.ts
- *
- * Calcul du nombre maximum de rounds jouables sans aucun round dégradé.
- *
- * Règle fondamentale :
- *   maxRounds est calculé pour que buildRounds puisse générer EXACTEMENT
- *   ce nombre de rounds complets — ni plus, ni moins.
- *
- * Algorithme "Fair Group Queue" — analyse par groupe :
- *
- *   Pour N groupes et K items/round (choicesPerRound) :
- *
- *   Si K ≤ N :
- *     Chaque groupe apparaît K/N fois par round en moyenne.
- *     maxRoundsForGroup[i] = floor(count[i] × N / K)
- *
- *   Si K > N :
- *     Certains groupes ont plus de slots/round que d'autres.
- *     On simule le pire cas : on attribue les slots extra aux groupes
- *     avec le moins d'items (bottleneck le plus rapide).
- *     sorted = counts ASC
- *     slotsForGroup[i] = floor(K/N) + (1 si i < K%N sinon 0)
- *     maxRoundsForGroup[i] = floor(sorted[i] / slotsForGroup[i])
- *
- *   maxRounds = min(general, balanced)
+ * poolScopeRules.ts — calcul du nombre max de rounds jouables.
  */
 
 import type { Group, MemberRole, SaveOneCriterion } from '@/shared/models'
-import { resolveEffectiveRoles, estimateIdolPoolSize, estimateSongPoolSize } from './poolSizeEstimator'
+import { resolveEffectiveRoles, estimateIdolPoolSize, estimateSongPoolSize, songMatchesLanguage } from './poolSizeEstimator'
 
-type SongType = 'all' | 'titles' | 'bSides' | 'debutSongs'
-
-/**
- * Mode pris en compte par les règles de scope.
- * quickVote = saveOne avec dropCount = 0 (toujours 1 item/round).
- */
-type QuizMode = 'saveOne' | 'blindTest' | 'quickVote'
+type SongType     = 'all' | 'titles' | 'bSides' | 'debutSongs'
+type LanguageOption = 'all' | 'kr' | 'jp' | 'en'
+type QuizMode     = 'saveOne' | 'blindTest' | 'quickVote'
 
 // ─── Items par round ──────────────────────────────────────────────────────────
 
-/**
- * Nombre d'items attendus par round selon le mode.
- * - quickVote : toujours 1, dropCount ignoré
- * - blindTest : 1 solo, 2 en mode 2 joueurs
- * - saveOne   : dropCount + 1
- */
-export function computeItemsPerRound(
-  mode:       QuizMode,
-  dropCount:  number,
-  twoPlayers: boolean,
-): number {
+export function computeItemsPerRound(mode: QuizMode, dropCount: number, twoPlayers: boolean): number {
   if (mode === 'quickVote') return 1
   if (mode === 'blindTest') return twoPlayers ? 2 : 1
   return dropCount + 1
@@ -66,23 +28,24 @@ function countIdolsInGroup(group: Group, effectiveRoles: MemberRole[]): number {
   return seen.size
 }
 
-function countSongsInGroup(group: Group, songType: SongType): number {
+function countSongsInGroup(
+  group:        Group,
+  songType:     SongType,
+  songLanguage: LanguageOption,
+): number {
   const { titles, bSides } = group.discography
-  if (songType === 'titles')      return titles.length
-  if (songType === 'bSides')      return bSides.length
-  if (songType === 'debutSongs')  return titles.filter((s) => s.isDebutSong).length
-  return titles.length + bSides.length
+
+  let songs: typeof titles = []
+  if (songType === 'titles')          songs = titles
+  else if (songType === 'bSides')     songs = bSides
+  else if (songType === 'debutSongs') songs = titles.filter((s) => s.isDebutSong)
+  else                                songs = [...titles, ...bSides]
+
+  return songs.filter((s) => songMatchesLanguage(s.language, songLanguage)).length
 }
 
-// ─── Calcul maxRounds par groupe ─────────────────────────────────────────────
+// ─── Fair Group Queue ─────────────────────────────────────────────────────────
 
-/**
- * Calcule le nombre max de rounds que le Fair Group Queue peut générer
- * sans jamais produire de round incomplet ou déséquilibré.
- *
- * @param groupCounts  Nombre d'items par groupe, dans l'ordre d'allocation
- * @param K            choicesPerRound
- */
 export function computeMaxRoundsForGroups(groupCounts: number[], K: number): number {
   const N = groupCounts.length
   if (N === 0 || K === 0) return 0
@@ -119,7 +82,6 @@ export interface MaxRoundsResult {
   maxRounds:     number
   scopeSize:     number
   itemsPerRound: number
-  /** true si la valeur rounds de la config a été réduite */
   wasClamped:    boolean
   clampMessage?: string
 }
@@ -134,24 +96,28 @@ export interface MaxRoundsInput {
   criterion:    SaveOneCriterion
   roleFilters:  MemberRole[]
   songType:     SongType
-  /** Optionnel — réservé pour le filtre langue futur */
-  songLanguage?: string
+  /** Filtre langue chansons (défaut : 'all') */
+  songLanguage?: LanguageOption
 }
 
 export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
-  const { mode, category, groups, drops, rounds, twoPlayers, criterion, roleFilters, songType } = input
+  const {
+    mode, category, groups, drops, rounds, twoPlayers,
+    criterion, roleFilters, songType,
+    songLanguage = 'all',
+  } = input
 
   const K = computeItemsPerRound(mode, drops, twoPlayers)
 
   const scopeSize = category === 'idols'
     ? estimateIdolPoolSize(groups, criterion, roleFilters)
-    : estimateSongPoolSize(groups, songType)
+    : estimateSongPoolSize(groups, songType, songLanguage)
 
   const effectiveRoles = resolveEffectiveRoles(criterion, roleFilters)
   const groupCounts    = groups
     .map((g) => category === 'idols'
       ? countIdolsInGroup(g, effectiveRoles)
-      : countSongsInGroup(g, songType))
+      : countSongsInGroup(g, songType, songLanguage))
     .filter((c) => c > 0)
 
   const maxRounds = groupCounts.length > 0

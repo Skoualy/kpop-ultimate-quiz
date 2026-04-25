@@ -6,10 +6,11 @@
  */
 import type { Group, MemberRole, SaveOneCriterion } from '@/shared/models'
 
-type SongType = 'all' | 'titles' | 'bSides' | 'debutSongs'
+type SongType     = 'all' | 'titles' | 'bSides' | 'debutSongs'
+type LanguageOption = 'all' | 'kr' | 'jp' | 'en'
 
 export function resolveEffectiveRoles(
-  criterion: SaveOneCriterion,
+  criterion:   SaveOneCriterion,
   roleFilters: MemberRole[],
 ): MemberRole[] {
   if (criterion === 'leadership') return ['leader']
@@ -17,8 +18,8 @@ export function resolveEffectiveRoles(
 }
 
 export function estimateIdolPoolSize(
-  groups: Group[],
-  criterion: SaveOneCriterion,
+  groups:      Group[],
+  criterion:   SaveOneCriterion,
   roleFilters: MemberRole[],
 ): number {
   const effectiveRoles = resolveEffectiveRoles(criterion, roleFilters)
@@ -32,14 +33,42 @@ export function estimateIdolPoolSize(
   return seen.size
 }
 
-export function estimateSongPoolSize(groups: Group[], songType: SongType): number {
+/**
+ * Vérifie si une chanson correspond au filtre de langue.
+ *
+ * Règle : le coréen est implicite — une chanson sans champ `language` est coréenne.
+ *   - 'all'  → inclure toutes les chansons
+ *   - 'kr'   → chansons sans language OU language === 'kr'
+ *   - 'jp'   → chansons avec language === 'jp'
+ *   - 'en'   → chansons avec language === 'en'
+ */
+export function songMatchesLanguage(
+  songLanguage: string | undefined,
+  filterLanguage: LanguageOption,
+): boolean {
+  if (filterLanguage === 'all') return true
+  if (filterLanguage === 'kr')  return !songLanguage || songLanguage === 'kr'
+  return songLanguage === filterLanguage
+}
+
+export function estimateSongPoolSize(
+  groups:       Group[],
+  songType:     SongType,
+  songLanguage: LanguageOption = 'all',
+): number {
   let count = 0
   for (const group of groups) {
     const { titles, bSides } = group.discography
-    if (songType === 'titles')          count += titles.length
-    else if (songType === 'bSides')     count += bSides.length
-    else if (songType === 'debutSongs') count += titles.filter((s) => s.isDebutSong).length
-    else                                 count += titles.length + bSides.length
+
+    let songs: typeof titles = []
+    if (songType === 'titles')          songs = titles
+    else if (songType === 'bSides')     songs = bSides
+    else if (songType === 'debutSongs') songs = titles.filter((s) => s.isDebutSong)
+    else                                songs = [...titles, ...bSides]
+
+    for (const song of songs) {
+      if (songMatchesLanguage(song.language, songLanguage)) count++
+    }
   }
   return count
 }

@@ -392,7 +392,7 @@
     "primaryGroupId": "aespa",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/giselle/portrait.webp",
+    "portrait": "/assets/idols/giselle/portrait.webp",
     "notes": null
   },
   {
@@ -1022,7 +1022,7 @@
     "primaryGroupId": "aespa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/karina/portrait.webp",
+    "portrait": "/assets/idols/karina/portrait.webp",
     "notes": null
   },
   {
@@ -1337,7 +1337,7 @@
     "primaryGroupId": "aespa",
     "gender": "f",
     "nationality": "cn",
-    "portrait": "../../assets/idols/ningning/portrait.webp",
+    "portrait": "/assets/idols/ningning/portrait.webp",
     "notes": null
   },
   {
@@ -1877,7 +1877,7 @@
     "primaryGroupId": "aespa",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/winter/portrait.webp",
+    "portrait": "/assets/idols/winter/portrait.webp",
     "notes": null
   },
   {

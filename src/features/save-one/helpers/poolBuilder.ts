@@ -18,7 +18,7 @@ import type { Group, Idol, MemberRole, SaveOneCriterion } from '@/shared/models'
 import type { IdolItem, RoundData, SongItem } from '../SaveOnePage.types'
 import { pickCanonicalTimestamp } from './timestampHelper'
 import { extractYouTubeId, getYouTubeThumbnail } from './youtubeHelpers'
-import { resolveEffectiveRoles } from './poolSizeEstimator'
+import { resolveEffectiveRoles, songMatchesLanguage } from './poolSizeEstimator'
 import {
   type SongSessionMemory,
   type SongModeKey,
@@ -54,9 +54,9 @@ interface IdolPoolFilters {
 }
 
 export function buildIdolPool(
-  groups: Group[],
-  allIdols: Idol[],
-  filters: IdolPoolFilters,
+  groups:    Group[],
+  allIdols:  Idol[],
+  filters:   IdolPoolFilters,
 ): IdolItem[] {
   const idolMap = new Map<string, Idol>(allIdols.map((i) => [i.id, i]))
   const seen    = new Set<string>()
@@ -84,26 +84,28 @@ export function buildIdolPool(
     }
   }
 
-  // Pas de mélange global — Fair Queue gère l'ordre entre groupes
   return pool
 }
 
 // ─── Song pool ───────────────────────────────────────────────────────────────
 
-type SongType = 'all' | 'titles' | 'bSides' | 'debutSongs'
+type SongType     = 'all' | 'titles' | 'bSides' | 'debutSongs'
+type LanguageOption = 'all' | 'kr' | 'jp' | 'en'
 
 interface SongPoolFilters {
   songType:     SongType
   clipDuration: number
+  /** Filtre langue (défaut : 'all') */
+  songLanguage?: LanguageOption
 }
 
 /**
  * Construit le pool brut de chansons.
- * Le timestamp est un placeholder canonique qui SERA remplacé lors du tirage
- * par le timestamp alternatif calculé via la session mémoire.
+ * Filtre par type de chanson ET par langue si spécifiée.
  */
 export function buildSongPool(groups: Group[], filters: SongPoolFilters): SongItem[] {
   const pool: SongItem[] = []
+  const lang = filters.songLanguage ?? 'all'
 
   for (const group of groups) {
     const { discography } = group
@@ -114,10 +116,12 @@ export function buildSongPool(groups: Group[], filters: SongPoolFilters): SongIt
     else if (filters.songType === 'debutSongs') songs = discography.titles.filter((s) => s.isDebutSong)
 
     for (const song of songs) {
+      // Filtre langue — implicite coréen si language absent
+      if (!songMatchesLanguage(song.language, lang)) continue
+
       const youtubeId = extractYouTubeId(song.youtubeUrl)
       if (!youtubeId) continue
 
-      // Timestamp provisoire canonique — remplacé au moment du tirage
       const startTime = pickCanonicalTimestamp()
       const endTime   = startTime + filters.clipDuration
 
@@ -140,17 +144,12 @@ export function buildSongPool(groups: Group[], filters: SongPoolFilters): SongIt
 
 // ─── Fair Group Queue ─────────────────────────────────────────────────────────
 
-/**
- * Distribue K slots entre les groupes selon leur priorité LRU.
- * Round-robin à partir du groupe le moins récemment utilisé.
- */
 function allocateGroupSlots(
   groupStats: Array<{ groupId: string; lastRoundUsed: number }>,
   K: number,
 ): Map<string, number> {
   if (groupStats.length === 0) return new Map()
 
-  // Tri stable : lastRoundUsed croissant, aléatoire pour les ex-aequo
   const sorted = [...groupStats].sort((a, b) => {
     if (a.lastRoundUsed !== b.lastRoundUsed) return a.lastRoundUsed - b.lastRoundUsed
     return Math.random() - 0.5
@@ -159,7 +158,6 @@ function allocateGroupSlots(
   const slots = new Map<string, number>()
   for (const g of sorted) slots.set(g.groupId, 0)
 
-  // Distribution round-robin
   for (let i = 0; i < K; i++) {
     const group = sorted[i % sorted.length]
     slots.set(group.groupId, (slots.get(group.groupId) ?? 0) + 1)
@@ -179,134 +177,112 @@ interface RoundConfig {
 
 /**
  * Génère tous les rounds avec garantie stricte d'intégrité.
- *
- * Règles de STOP (aucun round dégradé ne sera jamais ajouté) :
- *   1. Pool total insuffisant (totalAvailable < K)
- *   2. Un groupe qui contribuait au départ s'épuise (composition cassée)
- *   3. Un groupe ne peut pas fournir ses slots alloués
- *   4. Vérification finale : roundItems.length < K
- *
- * Le nombre de rounds produit peut être inférieur à config.totalRounds.
- * C'est normal et attendu : buildRounds ne dégénère jamais.
+ * Signature identique à l'original — l'ajout de songLanguage se fait
+ * en amont via buildSongPool (le pool est déjà filtré).
  */
 export function buildRounds(
-  rawPool: IdolItem[] | SongItem[],
-  config: RoundConfig,
+  pool:        IdolItem[] | SongItem[],
+  config:      RoundConfig,
   songMemory?: SongSessionMemory,
-  _songModeKey?: SongModeKey,
+  songModeKey?: SongModeKey,
 ): RoundData[] {
-  if (rawPool.length === 0) return []
-
-  const K       = config.dropCount + 1
-  const isSongs = rawPool[0]?.type === 'song'
-
-  // ── Initialisation des queues par groupe ──────────────────────────────────
-
-  const groupAvailable = new Map<string, (IdolItem | SongItem)[]>()
-  const groupLastUsed  = new Map<string, number>()
-
-  for (const item of rawPool) {
-    const gid = item.groupId
-    if (!groupAvailable.has(gid)) {
-      groupAvailable.set(gid, [])
-      groupLastUsed.set(gid, 0)
-    }
-    groupAvailable.get(gid)!.push(item)
-  }
-
-  // Mélanger chaque queue de groupe individuellement
-  for (const [gid, items] of groupAvailable) {
-    groupAvailable.set(gid, shuffle(items))
-  }
-
-  // Nombre initial de groupes avec des items — seuil de composition attendue
-  const initialGroupCount = [...groupAvailable.values()].filter((items) => items.length > 0).length
-
-  // ── Génération des rounds ─────────────────────────────────────────────────
-
+  const K              = config.dropCount + 1
+  const isIdolPool     = pool.length > 0 && (pool[0] as IdolItem).type === 'idol'
   const rounds: RoundData[] = []
 
-  for (let r = 0; r < config.totalRounds; r++) {
+  // Index par groupe pour le Fair Queue
+  type PoolItem = IdolItem | SongItem
+  const byGroup = new Map<string, PoolItem[]>()
+  for (const item of pool) {
+    const gid = item.groupId
+    if (!byGroup.has(gid)) byGroup.set(gid, [])
+    byGroup.get(gid)!.push(item)
+  }
 
-    // [STOP 1] — Groupes disponibles (avec items)
-    const availableGroups = [...groupAvailable.entries()]
-      .filter(([, items]) => items.length > 0)
-      .map(([groupId]) => ({ groupId, lastRoundUsed: groupLastUsed.get(groupId) ?? 0 }))
+  // Statistiques de groupes pour le Fair Queue
+  const groupStats = [...byGroup.keys()].map((gid) => ({ groupId: gid, lastRoundUsed: -1 }))
 
-    // [STOP 2] — Si un groupe qui contribuait s'est épuisé → composition cassée → stop
-    if (availableGroups.length < initialGroupCount) break
+  // Tracking des items utilisés par groupe
+  const usedByGroup = new Map<string, Set<string>>()
+  for (const gid of byGroup.keys()) usedByGroup.set(gid, new Set())
 
-    // [STOP 3] — Total insuffisant
-    const totalAvailable = availableGroups.reduce(
-      (s, g) => s + (groupAvailable.get(g.groupId)?.length ?? 0), 0
-    )
-    if (totalAvailable < K) break
+  for (let roundIndex = 0; roundIndex < config.totalRounds; roundIndex++) {
+    // Groupes encore capables de contribuer
+    const eligibleStats = groupStats.filter((gs) => {
+      const used      = usedByGroup.get(gs.groupId)!.size
+      const available = (byGroup.get(gs.groupId)?.length ?? 0) - used
+      return available > 0
+    })
 
-    // Allocation slots via Fair Queue
-    const slotsMap = allocateGroupSlots(availableGroups, K)
+    if (eligibleStats.length === 0) break
 
-    // [STOP 4] — Vérification préalable : chaque groupe peut honorer ses slots
+    const slots = allocateGroupSlots(eligibleStats, K)
+
+    // Vérifier que chaque groupe peut fournir ses slots
     let roundFeasible = true
-    for (const [groupId, slotCount] of slotsMap) {
-      if (slotCount === 0) continue
-      const available = groupAvailable.get(groupId)
-      if (!available || available.length < slotCount) {
-        roundFeasible = false
-        break
-      }
+    for (const [gid, count] of slots.entries()) {
+      const used      = usedByGroup.get(gid)!.size
+      const available = (byGroup.get(gid)?.length ?? 0) - used
+      if (available < count) { roundFeasible = false; break }
     }
     if (!roundFeasible) break
 
-    // ── Construction du round ─────────────────────────────────────────────
+    // Tirer les items pour ce round
+    const roundItems: PoolItem[] = []
 
-    const roundItems: (IdolItem | SongItem)[] = []
+    for (const [gid, count] of slots.entries()) {
+      const groupItems = byGroup.get(gid)!
+      const used       = usedByGroup.get(gid)!
 
-    for (const [groupId, slotCount] of slotsMap) {
-      if (slotCount === 0) continue
-      const available = groupAvailable.get(groupId)!
-
-      if (isSongs && songMemory) {
-        // Tirage pondéré par session pour les chansons
-        const picked = weightedPickUnique(
-          available,
-          slotCount,
-          (item) => computeSongWeight((item as SongItem).songId, songMemory),
-        )
-
-        for (const song of picked as SongItem[]) {
-          // Timestamp canonique alternatif — évite le dernier utilisé
-          const lastTs    = getLastCanonicalTimestamp(song.songId, songMemory)
-          const startTime = pickCanonicalTimestamp(lastTs)  // baseTimestamp canonique
-          const endTime   = startTime + config.clipDuration
-
-          roundItems.push({ ...song, startTime, endTime })
-          available.splice(available.indexOf(song), 1)
+      if (isIdolPool) {
+        // Idoles : tirage aléatoire simple parmi les non-utilisés
+        const available = (groupItems as IdolItem[]).filter((item) => !used.has(item.idolId))
+        const picked    = shuffle(available).slice(0, count)
+        for (const item of picked) {
+          used.add(item.idolId)
+          roundItems.push(item)
         }
       } else {
-        // Idoles : tirage séquentiel (queue déjà mélangée par groupe)
-        const picked = available.splice(0, slotCount)
-        roundItems.push(...picked)
+        // Chansons : tirage pondéré selon la mémoire de session
+        const available = (groupItems as SongItem[]).filter((item) => !used.has(item.songId))
+        const memory    = songMemory ?? { nbRounds: 0, entries: {} }
+        const picked    = weightedPickUnique(
+          available,
+          count,
+          (item) => computeSongWeight(item.songId, memory),
+        )
+        for (const item of picked) {
+          // Appliquer un timestamp alternatif depuis la session si disponible
+          const lastTs  = getLastCanonicalTimestamp(item.songId, memory)
+          const newTs   = pickCanonicalTimestamp(lastTs)
+          const updated = { ...item, startTime: newTs, endTime: newTs + config.clipDuration }
+          used.add(item.songId)
+          roundItems.push(updated)
+        }
       }
-
-      groupLastUsed.set(groupId, r + 1)
     }
 
-    // [STOP 5] — Vérification finale (ne devrait jamais déclencher si STOP 4 passe)
     if (roundItems.length < K) break
 
-    const activeCriterion: SaveOneCriterion =
-      config.criterion === 'random' ? pickRandomCriterion() : config.criterion
+    // Mélanger les items du round
+    const shuffledItems = shuffle(roundItems)
+
+    // Critère du round
+    const activeCriterion = config.criterion === 'random'
+      ? pickRandomCriterion()
+      : config.criterion
 
     rounds.push({
-      roundNumber:    r + 1,
-      items:          shuffle(roundItems) as IdolItem[] | SongItem[],
-      activeCriterion,
+      roundNumber:     roundIndex + 1,
+      items:           shuffledItems,
+      activeCriterion: activeCriterion as SaveOneCriterion,
     })
+
+    // Mettre à jour lastRoundUsed
+    for (const gs of groupStats) {
+      if (slots.has(gs.groupId)) gs.lastRoundUsed = roundIndex
+    }
   }
 
   return rounds
-}
-
-export function getItemId(item: IdolItem | SongItem): string {
-  return item.type === 'idol' ? item.idolId : item.songId
 }

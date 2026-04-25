@@ -15,7 +15,10 @@
   border: 1px solid var(--border-strong);
   background: var(--bg-pill);
   color: var(--text-secondary);
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
   white-space: nowrap;
 
   &:hover:not(.disabled) {
@@ -29,8 +32,14 @@
   }
 }
 
-.badgeSm { padding: 3px 10px; font-size: 11px; }
-.badgeMd { padding: 4px 12px; font-size: 12px; }
+.badgeSm {
+  padding: 3px 10px;
+  font-size: 11px;
+}
+.badgeMd {
+  padding: 4px 12px;
+  font-size: 12px;
+}
 
 .selected {
   background: rgba(124, 58, 237, 0.25) !important;

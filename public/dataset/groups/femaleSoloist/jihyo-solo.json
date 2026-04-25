@@ -1,8 +1,8 @@
 {
-  "id": "jihyo-solo",
-  "name": "Jihyo",
+  "id": "jihyo",
+  "name": "JIHYO",
   "category": "femaleSoloist",
-  "parentGroupId": "twice",
+  "parentGroupId": null,
   "generation": "5",
   "debutYear": 2023,
   "status": "active",
@@ -12,7 +12,7 @@
     {
       "idolId": "jihyo",
       "status": "current",
-      "roles": ["vocal"]
+      "roles": ["vocal", "mainVocal"]
     }
   ],
   "discography": {

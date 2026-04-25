@@ -1,19 +1,57 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-23T17:54:13.911941Z",
+    "lastUpdated": "2026-04-25T14:08:35.124878Z",
     "summary": {
-      "total": 111,
-      "valid": 101,
+      "total": 116,
+      "valid": 106,
       "invalid": 10,
       "bySourceType": {
-        "other": 2,
-        "wikimedia": 109
+        "wikimedia": 114,
+        "other": 2
       },
-      "validationRate": 91.0
+      "validationRate": 91.4
     }
   },
   "credits": [
+    {
+      "id": "group/aespa/cover",
+      "entityType": "group",
+      "entityId": "aespa",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": "Logo_of_Aespa_(black).svg",
+      "commonsTitle": "File:Logo of Aespa (black).svg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo_of_Aespa_(black).svg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Logo_of_Aespa_%28black%29.svg",
+      "author": "Original: SM Entertainment Vector:  Lệ Xuân",
+      "license": "Public domain",
+      "licenseUrl": null,
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": true,
+      "originalImage": {
+        "format": "image/png",
+        "width": 1280,
+        "height": 1280
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 600,
+        "height": 600
+      },
+      "attribution": "Logo_of_Aespa_(black).svg / par Original: SM Entertainment Vector:  Lệ Xuân / (Public domain)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
     {
       "id": "group/aoa/cover",
       "entityType": "group",
@@ -1211,6 +1249,44 @@
       }
     },
     {
+      "id": "idol/giselle/portrait",
+      "entityType": "idol",
+      "entityId": "giselle",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Giselle_of_Aespa,_July_25,_2024_(2).png",
+      "commonsTitle": "File:Giselle of Aespa, July 25, 2024 (2).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giselle_of_Aespa,_July_25,_2024_(2).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Giselle_of_Aespa%2C_July_25%2C_2024_%282%29.png",
+      "author": "티비텐",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 960,
+        "height": 1313
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Giselle_of_Aespa,_July_25,_2024_(2).png / par 티비텐 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/haerin/portrait",
       "entityType": "idol",
       "entityId": "haerin",
@@ -2226,6 +2302,44 @@
       }
     },
     {
+      "id": "idol/karina/portrait",
+      "entityType": "idol",
+      "entityId": "karina",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Karina_for_Eternal_Return_×_aespa_collaboration_BTS_photoshoot_(cropped).jpg",
+      "commonsTitle": "File:Karina for Eternal Return × aespa collaboration BTS photoshoot (cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_for_Eternal_Return_×_aespa_collaboration_BTS_photoshoot_(cropped).jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Karina_for_Eternal_Return_%C3%97_aespa_collaboration_BTS_photoshoot_%28cropped%29.jpg",
+      "author": "이터널 리턴",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 515,
+        "height": 618
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Karina_for_Eternal_Return_×_aespa_collaboration_BTS_photoshoot_(cropped).jpg / par 이터널 리턴 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/kim-woo-jin/portrait",
       "entityType": "idol",
       "entityId": "kim-woo-jin",
@@ -2846,6 +2960,44 @@
         "height": 533
       },
       "attribution": "Nayeon_in_November_2025.png / par TV10 / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/ningning/portrait",
+      "entityType": "idol",
+      "entityId": "ningning",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Aespa_Ningning_2024_MMA.jpg",
+      "commonsTitle": "File:Aespa Ningning 2024 MMA.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aespa_Ningning_2024_MMA.jpg",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Aespa_Ningning_2024_MMA.jpg",
+      "author": "10Asia",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/jpeg",
+        "width": 680,
+        "height": 937
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Aespa_Ningning_2024_MMA.jpg / par 10Asia / (CC BY 3.0)",
       "validation": {
         "isValid": true,
         "status": "ok",
@@ -3701,6 +3853,44 @@
         "height": 533
       },
       "attribution": "Wheein_in_2022.jpg / par THEL1VE / (CC BY 3.0)",
+      "validation": {
+        "isValid": true,
+        "status": "ok",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/winter/portrait",
+      "entityType": "idol",
+      "entityId": "winter",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": "Winter_at_Kilian_Paris_event_on_27012026_(2).png",
+      "commonsTitle": "File:Winter at Kilian Paris event on 27012026 (2).png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Winter_at_Kilian_Paris_event_on_27012026_(2).png",
+      "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Winter_at_Kilian_Paris_event_on_27012026_%282%29.png",
+      "author": "티비텐 TV10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": true,
+      "modifications": [
+        "recadrage",
+        "redimensionnement",
+        "conversion webp"
+      ],
+      "aiModified": false,
+      "originalImage": {
+        "format": "image/png",
+        "width": 960,
+        "height": 1088
+      },
+      "finalImage": {
+        "format": "image/webp",
+        "width": 400,
+        "height": 533
+      },
+      "attribution": "Winter_at_Kilian_Paris_event_on_27012026_(2).png / par 티비텐 TV10 / (CC BY 4.0)",
       "validation": {
         "isValid": true,
         "status": "ok",

@@ -92,12 +92,31 @@ export const GAME_PLAY_MODE_MAP: Record<GamePlayMode, GamePlayModeConfig> = Obje
 /** Valeurs du dropdown Timer */
 export const TIMER_OPTIONS: SegmentedControlOption[] = [
   { value: '0', label: 'Pas de timer' },
-  { value: '5', label: '5 sec' },
-  { value: '10', label: '10 sec' },
-  { value: '15', label: '15 sec' },
-  { value: '20', label: '20 sec' },
-  { value: '25', label: '25 sec' },
-  { value: '30', label: '30 sec' },
+  { value: '5', label: '5s' },
+  { value: '10', label: '10s' },
+  { value: '15', label: '15s' },
+  { value: '20', label: '20s' },
+  { value: '25', label: '25s' },
+  { value: '30', label: '30s' },
+]
+
+export const QUIZ_TYPES_OPTIONS: SegmentedControlOption[] = [
+  { value: 'saveOne', label: 'Save One' },
+  { value: 'quickVote', label: 'Quick Vote' },
+  { value: 'blindTest', label: 'Blind Test' },
+  { value: 'tournament', label: 'Tournoi', disabled: true },
+]
+
+export const QUIZ_CATEGORIES_OPTIONS: SegmentedControlOption[] = [
+  { value: 'idols', label: 'Idoles' },
+  { value: 'songs', label: 'Chansons' },
+]
+
+/** Valeurs du dropdown Drops */
+export const DROPS_OPTIONS: SegmentedControlOption[] = [
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '3', label: '3' },
 ]
 
 /**

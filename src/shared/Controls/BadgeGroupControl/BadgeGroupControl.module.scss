@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  width: 100%;
+  //width: 100%;
 }
 
 .groupLabel {
@@ -30,12 +30,16 @@
   align-items: center;
   border-radius: var(--radius-pill);
   font-family: inherit;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   border: 1px solid var(--border-strong);
   background: var(--bg-pill);
   color: var(--text-secondary);
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
   white-space: nowrap;
   user-select: none;
 
@@ -50,13 +54,20 @@
   }
 }
 
-.sm { padding: 3px 10px; font-size: 11px; }
-.md { padding: 5px 13px; font-size: 12px; }
+.sm {
+  padding: 3px 10px;
+  font-size: 12px;
+}
+.md {
+  padding: 4px 12px;
+  font-size: 13px;
+}
 
 .selected {
   background: rgba(124, 58, 237, 0.25) !important;
   border-color: rgba(124, 58, 237, 0.6) !important;
   color: #a78bfa !important;
+  font-weight: 700;
 }
 
 .disabled {
