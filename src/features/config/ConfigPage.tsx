@@ -436,7 +436,13 @@ export default function ConfigPage() {
               className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : ''].filter(Boolean).join(' ')}
             >
               <span className={styles.fieldLabel}>Timer</span>
-              <select
+              <SegmentedControl
+                value={playMode.timerEditable ? config.timerSeconds.toString() : playMode.timerDefault.toString()}
+                options={TIMER_OPTIONS}
+                //disabled={!playMode.timerEditable}
+                onChange={(newValue) => setConfig({ timerSeconds: parseInt(newValue) })}
+              />
+              {/* <select
                 className="select"
                 value={playMode.timerEditable ? config.timerSeconds : playMode.timerDefault}
                 disabled={!playMode.timerEditable}
@@ -447,7 +453,7 @@ export default function ConfigPage() {
                     {o.label}
                   </option>
                 ))}
-              </select>
+              </select> */}
               {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
             </div>
             {isSongs && (
