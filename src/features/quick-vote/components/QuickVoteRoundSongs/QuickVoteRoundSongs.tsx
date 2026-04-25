@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-// Composants réutilisés depuis save-one (cross-feature temporaire)
-// TODO refactoring : migrer YouTubePlayer, TimerBar vers @/shared/Components/
 import { YouTubePlayer } from '@/shared/Components/YouTubePlayer'
 import { TimerBar } from '@/shared/Components/TimerBar'
 import { useGameTimer } from '@/shared/hooks/useGameTimer'
 import type { QuickVoteRoundSongsProps } from './QuickVoteRoundSongs.types'
 import styles from './QuickVoteRoundSongs.module.scss'
+import { SongThumbnail } from '@/shared/Components/SongThumbnail/SongThumbnail'
 
 export function QuickVoteRoundSongs({
   song,
@@ -19,15 +18,13 @@ export function QuickVoteRoundSongs({
   const startRef = useRef(Date.now())
   const [voted, setVoted] = useState<'positive' | 'negative' | null>(null)
   const [videoError, setVideoError] = useState(false)
-  // Contrôle du remontage du player YouTube pour le replay
   const [playerKey, setPlayerKey] = useState(0)
 
-  // Reset à chaque nouveau round
   useEffect(() => {
     startRef.current = Date.now()
     setVoted(null)
     setVideoError(false)
-    setPlayerKey((k) => k + 1) // forcer le remontage du player
+    setPlayerKey((k) => k + 1)
   }, [timerKey])
 
   const { remaining, percentLeft } = useGameTimer({
@@ -51,8 +48,19 @@ export function QuickVoteRoundSongs({
 
   return (
     <div className={styles.root}>
-      {/* Player YouTube */}
-      <div className={styles.playerWrapper}>
+      {/* Timer */}
+      {timerSeconds > 0 && (
+        <div className={styles.timerSlot}>
+          <TimerBar
+            percentLeft={voted ? 100 : percentLeft}
+            remainingSeconds={voted ? timerSeconds : remaining}
+            totalSeconds={timerSeconds}
+          />
+        </div>
+      )}
+
+      {/* Player YouTube — même wrapper max-width que SaveOneRoundSongs */}
+      <div className={styles.iframeWrapper}>
         {!videoError && !voted ? (
           <YouTubePlayer
             key={`qv-yt-${timerKey}-${playerKey}`}
@@ -71,52 +79,47 @@ export function QuickVoteRoundSongs({
         ) : null}
       </div>
 
-      {/* Infos de la chanson */}
-      <div className={styles.songInfo}>
-        <p className={styles.songTitle}>{song.title}</p>
-        <p className={styles.songGroup}>{song.groupName}</p>
-        {!voted && !videoError && (
-          <button className={styles.replayBtn} onClick={handleReplay}>
-            ↺ Rejouer
-          </button>
-        )}
+      {/* Infos chanson */}
+      <div className={styles.thumbnails}>
+        <SongThumbnail
+          key={song.songId}
+          song={song}
+          revealed={true}
+          replayEnabled={true}
+          //isPlaying={idx === activeIdx}
+          //isSequencePlaying={!sequenceComplete}
+          //disabled={!sequenceComplete || !!chosen}
+          onChoose={undefined}
+          onReplay={handleReplay}
+        />
       </div>
 
-      {/* Timer — slot toujours réservé */}
-      <div className={styles.timerSlot}>
-        {timerSeconds > 0 && (
-          <TimerBar
-            percentLeft={voted ? 100 : percentLeft}
-            remainingSeconds={voted ? timerSeconds : remaining}
-            totalSeconds={timerSeconds}
-            className={styles.timer}
-          />
-        )}
-      </div>
-
-      {/* Boutons vote — négatif à gauche, positif à droite */}
+      {/* Boutons vote — POSITIF à gauche, NÉGATIF à droite */}
       <div className={styles.voteButtons}>
         <button
-          className={[
-            styles.voteBtn,
-            styles['voteBtn--negative'],
-            voted === 'negative' ? styles['voteBtn--active'] : '',
-          ].join(' ')}
-          disabled={voted !== null}
-          onClick={() => handleVote('negative')}
-        >
-          {voteLabel.negative}
-        </button>
-        <button
-          className={[
-            styles.voteBtn,
-            styles['voteBtn--positive'],
-            voted === 'positive' ? styles['voteBtn--active'] : '',
-          ].join(' ')}
+          className={[styles.voteBtn, styles.voteBtnPositive, voted === 'positive' ? styles.voteBtnActive : ''].join(
+            ' ',
+          )}
           disabled={voted !== null}
           onClick={() => handleVote('positive')}
         >
-          {voteLabel.positive}
+          <span className={styles.voteBtnIcon} aria-hidden>
+            ♥
+          </span>
+          <span className={styles.voteBtnLabel}>{voteLabel.positive}</span>
+        </button>
+
+        <button
+          className={[styles.voteBtn, styles.voteBtnNegative, voted === 'negative' ? styles.voteBtnActive : ''].join(
+            ' ',
+          )}
+          disabled={voted !== null}
+          onClick={() => handleVote('negative')}
+        >
+          <span className={styles.voteBtnIcon} aria-hidden>
+            ✕
+          </span>
+          <span className={styles.voteBtnLabel}>{voteLabel.negative}</span>
         </button>
       </div>
     </div>

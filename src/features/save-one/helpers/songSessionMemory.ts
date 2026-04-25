@@ -19,7 +19,7 @@ import { CANONICAL_TIMESTAMPS, pickCanonicalTimestamp } from './timestampHelper'
 
 /**
  * Clés de mode pour la mémoire session chansons.
- * CHANGEMENT : 'quickVote-songs' ajouté pour le nouveau mode Quick Vote.
+ * CHANGEMENT : 'quickVote-songs' ajouté pour le nouveau mode Smash or Pass.
  */
 export type SongModeKey = 'saveOne-songs' | 'blindTest-songs' | 'quickVote-songs'
 
@@ -40,8 +40,12 @@ export interface SongSessionMemory {
 
 const PREFIX = 'kpq-song-session:'
 
-function storageKey(mode: SongModeKey): string { return `${PREFIX}${mode}` }
-function emptyMemory(): SongSessionMemory { return { nbRounds: 0, entries: {} } }
+function storageKey(mode: SongModeKey): string {
+  return `${PREFIX}${mode}`
+}
+function emptyMemory(): SongSessionMemory {
+  return { nbRounds: 0, entries: {} }
+}
 
 export function getSongSessionMemory(mode: SongModeKey): SongSessionMemory {
   try {
@@ -70,7 +74,7 @@ function saveSongSessionMemory(mode: SongModeKey, memory: SongSessionMemory): vo
  * À appeler juste avant de tirer les items du round.
  */
 export function incrementSongSessionRound(mode: SongModeKey): SongSessionMemory {
-  const memory  = getSongSessionMemory(mode)
+  const memory = getSongSessionMemory(mode)
   const updated = { ...memory, nbRounds: memory.nbRounds + 1 }
   saveSongSessionMemory(mode, updated)
   return updated
@@ -95,16 +99,11 @@ export function computeSongWeight(songId: string, memory: SongSessionMemory): nu
  * Retourne le dernier baseTimestamp canonique d'une chanson.
  * Valide la canonicité au moment de la lecture — retourne undefined si invalide.
  */
-export function getLastCanonicalTimestamp(
-  songId: string,
-  memory: SongSessionMemory,
-): number | undefined {
+export function getLastCanonicalTimestamp(songId: string, memory: SongSessionMemory): number | undefined {
   const entry = memory.entries[songId]
   if (!entry) return undefined
   // Vérification : valeur stockée doit être canonique
-  return (CANONICAL_TIMESTAMPS as readonly number[]).includes(entry.lastTimestamp)
-    ? entry.lastTimestamp
-    : undefined
+  return (CANONICAL_TIMESTAMPS as readonly number[]).includes(entry.lastTimestamp) ? entry.lastTimestamp : undefined
 }
 
 // ─── Tirage pondéré ───────────────────────────────────────────────────────────
@@ -123,18 +122,14 @@ export function weightedPick<T>(items: T[], getWeight: (item: T) => number): T {
     rnd -= getWeight(item)
     if (rnd <= 0) return item
   }
-  return items[items.length - 1]  // garde-fou float
+  return items[items.length - 1] // garde-fou float
 }
 
 /**
  * Tirage pondéré sans remise pour un round entier.
  * Aucune chanson ne peut apparaître deux fois dans le même round.
  */
-export function weightedPickUnique<T>(
-  items: T[],
-  count: number,
-  getWeight: (item: T) => number,
-): T[] {
+export function weightedPickUnique<T>(items: T[], count: number, getWeight: (item: T) => number): T[] {
   const available = [...items]
   const picked: T[] = []
   const n = Math.min(count, available.length)
@@ -159,17 +154,17 @@ export function updateSongMemoryAfterRound(
   mode: SongModeKey,
   pickedSongs: Array<{ songId: string; baseTimestamp: number }>,
 ): void {
-  const memory         = getSongSessionMemory(mode)
+  const memory = getSongSessionMemory(mode)
   const updatedEntries = { ...memory.entries }
 
   for (const { songId, baseTimestamp } of pickedSongs) {
     // Validation stricte : garantir la canonicité avant stockage
     const canonicalTs = (CANONICAL_TIMESTAMPS as readonly number[]).includes(baseTimestamp)
       ? baseTimestamp
-      : pickCanonicalTimestamp()  // fallback si valeur non canonique reçue
+      : pickCanonicalTimestamp() // fallback si valeur non canonique reçue
 
     updatedEntries[songId] = {
-      lastRound:     memory.nbRounds,
+      lastRound: memory.nbRounds,
       lastTimestamp: canonicalTs,
     }
   }

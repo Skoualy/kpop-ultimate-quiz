@@ -364,8 +364,8 @@ export default function ConfigPage() {
                 onChange={(e) => setConfig({ mode: e.target.value as QuizMode })}
               >
                 <option value="saveOne">Save One</option>
-                {/* CHANGEMENT : Quick Vote ajouté entre Save One et Blind Test */}
-                <option value="quickVote">Quick Vote</option>
+                {/* CHANGEMENT : Smash or Pass ajouté entre Save One et Blind Test */}
+                <option value="quickVote">Smash or Pass</option>
                 <option value="blindTest">Blind Test</option>
                 <option value="tournament" disabled>
                   Tournoi — bientôt disponible
@@ -406,7 +406,7 @@ export default function ConfigPage() {
         <p className={styles.sectionTitle}>Options de la partie</p>
         <ConfigCard>
           <div className={styles.fieldsRow}>
-            {/* Drops — Save One uniquement (Quick Vote = 1 item/round implicite, Blind Test sans drops) */}
+            {/* Drops — Save One uniquement (Smash or Pass = 1 item/round implicite, Blind Test sans drops) */}
             {isSaveOne && (
               <div className={styles.field}>
                 <span className={styles.fieldLabel}>Drops (1–3)</span>

@@ -1,5 +1,5 @@
 /**
- * Types propres au mode Quick Vote.
+ * Types propres au mode Smash or Pass.
  *
  * Les types de pool partagés (IdolItem, SongItem, RoundData) sont réutilisés
  * directement depuis SaveOnePage.types — ils sont identiques structurellement.
@@ -14,13 +14,13 @@ export type { PlayerIndex, GamePhase, IdolItem, SongItem, RoundData } from '@/fe
 
 // ─── Types propres ────────────────────────────────────────────────────────────
 
-/** Résultat d'un round Quick Vote — stocke le vote générique, pas le wording UI. */
+/** Résultat d'un round Smash or Pass — stocke le vote générique, pas le wording UI. */
 export interface QuickVoteResult {
-  roundIndex:  number
+  roundIndex: number
   playerIndex: 0 | 1
   /** Vote générique — le wording (Smash/Pass, Top/Flop) est géré uniquement dans l'UI */
-  vote:        'positive' | 'negative'
+  vote: 'positive' | 'negative'
   /** true si le timer a expiré (vote négatif appliqué automatiquement) */
-  isTimeout:   boolean
-  timeMs:      number | null
+  isTimeout: boolean
+  timeMs: number | null
 }

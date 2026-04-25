@@ -1,3 +1,4 @@
+/* Cacher les éléments UI de YouTube qui apparaissent au survol */
 .wrapper {
   position: relative;
   width: 100%;
@@ -16,6 +17,10 @@
   height: 100%;
   border: none;
   display: block;
+
+  div[id='player-control-overlay'] {
+    display: none !important;
+  }
 }
 
 /* Transparent overlay blocks YT UI interactions (info cards, logo clicks, etc.) */
@@ -24,4 +29,8 @@
   inset: 0;
   z-index: 1;
   pointer-events: none; /* let clicks through for the replay button outside */
+}
+
+div[id='player-control-overlay'] {
+  display: none;
 }

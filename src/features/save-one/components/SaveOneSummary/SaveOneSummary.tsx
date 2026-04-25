@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { ScrollTopControl } from '@/shared/Controls/ScrollTopControl'
+import type { ReactNode } from 'react'
+import { GameSummary, type SummaryRound } from '@/shared/Components/GameSummary'
 import type { IdolItem, RoundResult, SongItem } from '../../SaveOnePage.types'
 import type { SaveOneSummaryProps } from './SaveOneSummary.types'
 import styles from './SaveOneSummary.module.scss'
@@ -8,32 +8,33 @@ import styles from './SaveOneSummary.module.scss'
 
 function getItemId(item: IdolItem | SongItem) { return item.type === 'idol' ? item.idolId : item.songId }
 function getItemLabel(item: IdolItem | SongItem) { return item.type === 'idol' ? item.name : item.title }
-function getItemGroup(item: IdolItem | SongItem) { return item.groupName }
 function getItemImage(item: IdolItem | SongItem): string | null {
   return item.type === 'idol' ? (item.portrait ?? null) : item.thumbnailUrl
 }
 
 function computeTopGroups(
-  rounds: SaveOneSummaryProps['rounds'],
-  results: RoundResult[],
+  rounds:      SaveOneSummaryProps['rounds'],
+  results:     RoundResult[],
   playerIndex: 0 | 1,
 ): Array<{ groupName: string; count: number }> {
   const filtered = results.filter((r) => r.playerIndex === playerIndex && r.chosenId)
-  const tally = new Map<string, number>()
+  const tally    = new Map<string, number>()
   for (const r of filtered) {
     const round = rounds[r.roundIndex]
     const item  = (round.items as (IdolItem | SongItem)[]).find((i) => getItemId(i) === r.chosenId)
     if (!item) continue
     tally.set(item.groupName, (tally.get(item.groupName) ?? 0) + 1)
   }
-  const entries = [...tally.entries()].sort((a, b) => b[1] - a[1]).map(([groupName, count]) => ({ groupName, count }))
+  const entries = [...tally.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([groupName, count]) => ({ groupName, count }))
   if (entries.length === 0 || entries[0].count < 2) return []
   return entries.slice(0, 3)
 }
 
 function fastestChoice(
-  rounds: SaveOneSummaryProps['rounds'],
-  results: RoundResult[],
+  rounds:      SaveOneSummaryProps['rounds'],
+  results:     RoundResult[],
   playerIndex: 0 | 1,
 ): { label: string; ms: number } | null {
   const timed = results.filter((r) => r.playerIndex === playerIndex && r.timeMs !== null && r.chosenId)
@@ -47,135 +48,63 @@ function fastestChoice(
 // ─── Item card du résumé ──────────────────────────────────────────────────────
 
 function SummaryItemCard({ item, isChosen, isPass, isTimeout }: {
-  item: IdolItem | SongItem
-  isChosen: boolean
-  isPass?: boolean
+  item:      IdolItem | SongItem
+  isChosen:  boolean
+  isPass?:   boolean
   isTimeout?: boolean
 }) {
   const img = getItemImage(item)
   return (
     <div className={[styles.summaryItem, isChosen ? styles.chosenItem : styles.droppedItem].join(' ')}>
       <div className={[styles.summaryImg, item.type === 'idol' ? styles.portraitImg : styles.thumbImg].join(' ')}>
-        {img ? (
-          <img src={img} alt={getItemLabel(item)}
-            onError={(e) => { ;(e.currentTarget as HTMLImageElement).style.display = 'none' }}
-            draggable={false} />
-        ) : <div className={styles.imgPlaceholder} />}
-        {isChosen && !isPass && !isTimeout && <span className={styles.chosenBadge}>✓</span>}
+        {img
+          ? <img src={img} alt={getItemLabel(item)} />
+          : <div className={styles.imgPlaceholder} />
+        }
+        {isChosen && !isPass && (
+          <span className={styles.chosenBadge}>✓</span>
+        )}
       </div>
-      <p className={styles.summaryLabel}>{getItemLabel(item)}</p>
-      <p className={styles.summaryGroup}>{getItemGroup(item)}</p>
-      {isPass    && <span className={[styles.statusPill, styles.passPill].join(' ')}>⏭ Pass</span>}
-      {isTimeout && <span className={[styles.statusPill, styles.timeoutPill].join(' ')}>⏱ Timeout</span>}
+      <span className={styles.summaryLabel}>{getItemLabel(item)}</span>
+      <span className={styles.summaryGroup}>{item.groupName}</span>
+      {isChosen && isPass && <span className={styles.passBadge}>{isTimeout ? 'Timeout' : 'Pass'}</span>}
     </div>
   )
 }
 
-// ─── Colonne stats joueur ─────────────────────────────────────────────────────
+// ─── Player stat column ───────────────────────────────────────────────────────
 
-function PlayerStatCol({ name, fastest, topGroups, isP2 }: {
-  name: string
-  fastest: { label: string; ms: number } | null
+function PlayerStatContent({ fastest, topGroups }: {
+  fastest:   { label: string; ms: number } | null
   topGroups: Array<{ groupName: string; count: number }>
-  isP2?: boolean
-}) {
+}): ReactNode {
   const hasStats = fastest || topGroups.length > 0
+  if (!hasStats) return <p className={styles.noStats}>Pas encore de stats</p>
+
   return (
-    <div className={styles.playerStatCol}>
-      <p className={[styles.playerColLabel, isP2 ? styles.p2Label : ''].join(' ')}>{name}</p>
-      {hasStats ? (
-        <>
-          {fastest && (
-            <div className={styles.statRow}>
-              <span className={styles.statIcon}>⚡</span>
-              <span className={styles.statValue}>{(fastest.ms / 1000).toFixed(1)}s</span>
-              <span className={styles.statSub}>{fastest.label}</span>
-            </div>
-          )}
-          {topGroups.length > 0 && (
-            <div className={styles.statRow}>
-              <span className={styles.statIcon}>🏆</span>
-              <div className={styles.podium}>
-                {topGroups.map((g, i) => (
-                  <div key={g.groupName} className={[styles.podiumItem, styles[`rank${i + 1}`]].join(' ')}>
-                    <span className={styles.podiumRank}>{i + 1}</span>
-                    <span className={styles.podiumName}>{g.groupName}</span>
-                    <span className={styles.podiumCount}>{g.count}×</span>
-                  </div>
-                ))}
+    <>
+      {fastest && (
+        <div className={styles.statRow}>
+          <span className={styles.statIcon}>⚡</span>
+          <span className={styles.statValue}>{(fastest.ms / 1000).toFixed(1)}s</span>
+          <span className={styles.statSub}>{fastest.label}</span>
+        </div>
+      )}
+      {topGroups.length > 0 && (
+        <div className={styles.statRow}>
+          <span className={styles.statIcon}>🏆</span>
+          <div className={styles.podium}>
+            {topGroups.map((g, i) => (
+              <div key={g.groupName} className={[styles.podiumItem, styles[`rank${i + 1}`]].join(' ')}>
+                <span className={styles.podiumRank}>{i + 1}</span>
+                <span className={styles.podiumName}>{g.groupName}</span>
+                <span className={styles.podiumCount}>{g.count}×</span>
               </div>
-            </div>
-          )}
-        </>
-      ) : (
-        <p className={styles.noStats}>Pas encore de stats</p>
-      )}
-    </div>
-  )
-}
-
-// ─── Round card ───────────────────────────────────────────────────────────────
-
-function RoundCard({ round, p1Result, p2Result, twoPlayer, p1Name, p2Name }: {
-  round: SaveOneSummaryProps['rounds'][0]
-  p1Result?: RoundResult
-  p2Result?: RoundResult
-  twoPlayer: boolean
-  p1Name: string
-  p2Name: string
-}) {
-  const items      = round.items as (IdolItem | SongItem)[]
-  const p1Id       = p1Result?.chosenId ?? null
-  const p2Id       = p2Result?.chosenId ?? null
-  const sameChoice = twoPlayer && p1Id && p2Id && p1Id === p2Id
-
-  return (
-    <div className={styles.roundCard}>
-      <div className={styles.roundCardHeader}>
-        <p className={styles.roundLabel}>Round {round.roundNumber}</p>
-        {sameChoice && <span className={styles.matchBanner}>★ Même choix !</span>}
-      </div>
-
-      {twoPlayer ? (
-        <div className={styles.twoColLayout}>
-          <div className={styles.playerCol}>
-            <p className={styles.playerColLabel}>{p1Name}</p>
-            <div className={styles.roundItems}>
-              {items.map((item) => {
-                const id = getItemId(item)
-                return <SummaryItemCard key={id} item={item}
-                  isChosen={p1Id === id}
-                  isPass={p1Id === id && p1Result?.isPass}
-                  isTimeout={p1Id === id && p1Result?.isTimeout} />
-              })}
-            </div>
-          </div>
-          <div className={styles.colDivider} aria-hidden />
-          <div className={styles.playerCol}>
-            <p className={[styles.playerColLabel, styles.p2Label].join(' ')}>{p2Name}</p>
-            <div className={styles.roundItems}>
-              {items.map((item) => {
-                const id = getItemId(item)
-                return <SummaryItemCard key={id} item={item}
-                  isChosen={p2Id === id}
-                  isPass={p2Id === id && p2Result?.isPass}
-                  isTimeout={p2Id === id && p2Result?.isTimeout} />
-              })}
-            </div>
+            ))}
           </div>
         </div>
-      ) : (
-        <div className={styles.roundItems}>
-          {items.map((item) => {
-            const id = getItemId(item)
-            return <SummaryItemCard key={id} item={item}
-              isChosen={p1Id === id}
-              isPass={p1Id === id && p1Result?.isPass}
-              isTimeout={p1Id === id && p1Result?.isTimeout} />
-          })}
-        </div>
       )}
-    </div>
+    </>
   )
 }
 
@@ -185,14 +114,16 @@ export function SaveOneSummary({ rounds, results, config, onRestart, onBackToCon
   const twoPlayer = config.twoPlayerMode
   const p1Name    = config.player1Name || 'Joueur 1'
   const p2Name    = config.player2Name || 'Joueur 2'
-  const pageRef   = useRef<HTMLDivElement>(null)
+
+  // ── Stats ──────────────────────────────────────────────────────────────────
 
   const p1Fastest   = fastestChoice(rounds, results, 0)
   const p1TopGroups = computeTopGroups(rounds, results, 0)
   const p2Fastest   = twoPlayer ? fastestChoice(rounds, results, 1) : null
   const p2TopGroups = twoPlayer ? computeTopGroups(rounds, results, 1) : []
 
-  // Nombre de choix identiques entre J1 et J2
+  // ── Choix communs ──────────────────────────────────────────────────────────
+
   const commonChoicesCount = twoPlayer
     ? results.reduce((acc, r1) => {
         if (r1.playerIndex !== 0 || !r1.chosenId) return acc
@@ -201,82 +132,56 @@ export function SaveOneSummary({ rounds, results, config, onRestart, onBackToCon
       }, 0)
     : 0
 
-  const hasStats = p1Fastest || p1TopGroups.length > 0 || p2Fastest || p2TopGroups.length > 0
+  // ── Rounds pour GameSummary ────────────────────────────────────────────────
 
-  return (
-    <div className={styles.page} ref={pageRef}>
+  const summaryRounds: SummaryRound[] = rounds.map((round) => {
+    const items  = round.items as (IdolItem | SongItem)[]
+    const p1Res  = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 0)
+    const p2Res  = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 1)
+    const p1Id   = p1Res?.chosenId ?? null
+    const p2Id   = p2Res?.chosenId ?? null
+    const sameChoice = twoPlayer && p1Id && p2Id && p1Id === p2Id
 
-      {/* Header */}
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Résumé de partie</h1>
-          <p className={styles.subtitle}>
-            {rounds.length} rounds · Save One · {config.category === 'idols' ? 'Idoles' : 'Chansons'}
-          </p>
-        </div>
-        <div className={styles.headerActions}>
-          <button className={styles.btnSecondary} onClick={onBackToConfig}>← Config</button>
-          <button className={styles.btnPrimary} onClick={onRestart}>▶ Rejouer</button>
-        </div>
-      </div>
-
-      {/* ── Stats — avant les rounds, même structure 1J et 2J ── */}
-      {hasStats && (
-        <div className={styles.statsCard}>
-          {/* Choix communs (2J seulement) — en haut centré */}
-          {twoPlayer && commonChoicesCount > 0 && (
-            <div className={styles.commonChoices}>
-              <span className={styles.commonChoicesIcon}>★</span>
-              <span className={styles.commonChoicesVal}>{commonChoicesCount}</span>
-              <span className={styles.commonChoicesLabel}>
-                {commonChoicesCount > 1 ? 'choix en commun' : 'choix en commun'}
-              </span>
-            </div>
-          )}
-
-          {/* Colonnes stats — 1 colonne ou 2 selon le mode */}
-          <div className={twoPlayer ? styles.statsCols2P : styles.statsCols1P}>
-            <PlayerStatCol
-              name={twoPlayer ? p1Name : ''}
-              fastest={p1Fastest}
-              topGroups={p1TopGroups}
-              isP2={false}
-            />
-            {twoPlayer && (
-              <>
-                <div className={styles.colDivider} aria-hidden />
-                <PlayerStatCol
-                  name={p2Name}
-                  fastest={p2Fastest}
-                  topGroups={p2TopGroups}
-                  isP2={true}
-                />
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* ── Rounds ── */}
-      <div className={styles.rounds}>
-        {rounds.map((round) => {
-          const p1 = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 0)
-          const p2 = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 1)
+    const renderItems = (chosenId: string | null, result?: RoundResult) => (
+      <div className={styles.roundItems}>
+        {items.map((item) => {
+          const id = getItemId(item)
           return (
-            <RoundCard
-              key={round.roundNumber}
-              round={round}
-              p1Result={p1}
-              p2Result={p2}
-              twoPlayer={twoPlayer}
-              p1Name={p1Name}
-              p2Name={p2Name}
+            <SummaryItemCard
+              key={id}
+              item={item}
+              isChosen={chosenId === id}
+              isPass={chosenId === id && result?.isPass}
+              isTimeout={chosenId === id && result?.isTimeout}
             />
           )
         })}
       </div>
+    )
 
-      <ScrollTopControl scrollTarget={pageRef.current} threshold={150} />
-    </div>
+    return {
+      roundNumber: round.roundNumber,
+      matchLabel:  sameChoice ? '★ Même choix !' : undefined,
+      p1Content:   renderItems(p1Id, p1Res),
+      p2Content:   twoPlayer ? renderItems(p2Id, p2Res) : undefined,
+    }
+  })
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+
+  return (
+    <GameSummary
+      title="Résumé de partie"
+      subtitle={`${rounds.length} rounds · Save One · ${config.category === 'idols' ? 'Idoles' : 'Chansons'}`}
+      onRestart={onRestart}
+      onBackToConfig={onBackToConfig}
+      twoPlayer={twoPlayer}
+      p1Name={p1Name}
+      p2Name={p2Name}
+      commonChoicesCount={commonChoicesCount}
+      p1Stats={<PlayerStatContent fastest={p1Fastest} topGroups={p1TopGroups} />}
+      p2Stats={twoPlayer ? <PlayerStatContent fastest={p2Fastest} topGroups={p2TopGroups} /> : undefined}
+      summaryRounds={summaryRounds}
+    />
   )
 }

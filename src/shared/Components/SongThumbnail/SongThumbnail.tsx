@@ -13,7 +13,7 @@ export function SongThumbnail({
   onSkip,
 }: SongThumbnailProps) {
   const handleChoose = () => {
-    if (!disabled && revealed) onChoose(song.songId)
+    if (!disabled && revealed && onChoose) onChoose(song.songId)
   }
 
   const handleReplay = (e: React.MouseEvent) => {
@@ -39,22 +39,24 @@ export function SongThumbnail({
    *
    *  Card choisie (disabled) : pas de bouton
    */
-  const showSkip    = isSequencePlaying
-  const showReplay  = !isSequencePlaying && !disabled
+  const showSkip = isSequencePlaying
+  const showReplay = !isSequencePlaying && !disabled
   const skipEnabled = isPlaying && !!onSkip
 
   return (
     <div
       className={[
         styles.card,
-        revealed   ? styles.revealed  : styles.hidden,
-        isPlaying  ? styles.playing   : '',
+        revealed ? styles.revealed : styles.hidden,
+        isPlaying ? styles.playing : '',
         !disabled && revealed ? styles.clickable : '',
       ].join(' ')}
       onClick={handleChoose}
       role={!disabled && revealed ? 'button' : undefined}
       tabIndex={!disabled && revealed ? 0 : -1}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleChoose() }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') handleChoose()
+      }}
     >
       {/* Thumbnail */}
       <div className={styles.imageWrap}>

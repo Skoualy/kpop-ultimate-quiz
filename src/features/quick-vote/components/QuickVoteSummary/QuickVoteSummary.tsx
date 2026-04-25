@@ -1,238 +1,222 @@
+import type { ReactNode } from 'react'
+import { GameSummary, type SummaryRound } from '@/shared/Components/GameSummary'
 import { QUICK_VOTE_LABELS } from '@/shared/constants'
 import type { QuickVoteSummaryProps } from './QuickVoteSummary.types'
 import type { IdolItem, SongItem, QuickVoteResult } from '../../QuickVotePage.types'
+import type { RoundData } from '../../QuickVotePage.types'
 import styles from './QuickVoteSummary.module.scss'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function getItemId(item: IdolItem | SongItem): string {
-  return item.type === 'idol' ? item.idolId : item.songId
-}
-
-function getItemLabel(item: IdolItem | SongItem): string {
+function getItemLabel(item: IdolItem | SongItem) {
   return item.type === 'idol' ? item.name : item.title
 }
-
 function getItemImage(item: IdolItem | SongItem): string | null {
   return item.type === 'idol' ? (item.portrait ?? null) : item.thumbnailUrl
 }
 
-/** Stats globales d'un joueur. */
-function computePlayerStats(results: QuickVoteResult[], playerIndex: 0 | 1) {
-  const filtered = results.filter((r) => r.playerIndex === playerIndex)
-  const positive = filtered.filter((r) => r.vote === 'positive').length
-  const negative = filtered.filter((r) => r.vote === 'negative').length
-  const total    = filtered.length
-  const rate     = total > 0 ? Math.round((positive / total) * 100) : 0
-  return { positive, negative, total, rate }
-}
-
-/** Top 3 groupes les plus votés positivement par un joueur. */
 function computeTopGroups(
-  rounds:      QuickVoteSummaryProps['rounds'],
-  results:     QuickVoteResult[],
+  rounds: RoundData[],
+  results: QuickVoteResult[],
   playerIndex: 0 | 1,
 ): Array<{ groupName: string; count: number }> {
   const positives = results.filter((r) => r.playerIndex === playerIndex && r.vote === 'positive')
-  const tally     = new Map<string, number>()
-
+  const tally = new Map<string, number>()
   for (const r of positives) {
     const item = rounds[r.roundIndex]?.items[0] as IdolItem | SongItem | undefined
     if (item?.groupName) tally.set(item.groupName, (tally.get(item.groupName) ?? 0) + 1)
   }
-
-  return [...tally.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([groupName, count]) => ({ groupName, count }))
+  const entries = [...tally.entries()].sort((a, b) => b[1] - a[1]).map(([groupName, count]) => ({ groupName, count }))
+  if (entries.length === 0 || entries[0].count < 2) return []
+  return entries.slice(0, 3)
 }
 
-// ─── Sous-composants ──────────────────────────────────────────────────────────
+function computeStats(results: QuickVoteResult[], playerIndex: 0 | 1) {
+  const filtered = results.filter((r) => r.playerIndex === playerIndex)
+  const positive = filtered.filter((r) => r.vote === 'positive').length
+  const negative = filtered.filter((r) => r.vote === 'negative').length
+  const total = filtered.length
+  const rate = total > 0 ? Math.round((positive / total) * 100) : 0
+  return { positive, negative, total, rate }
+}
 
-/** Bloc de stats d'un joueur. */
-function PlayerStatsBlock({
-  name,
-  stats,
-  topGroups,
-  rateLabel,
+// ─── Item row de round ────────────────────────────────────────────────────────
+
+function QVRoundItem({
+  item,
+  result,
   positiveLabel,
   negativeLabel,
-  isP2 = false,
 }: {
-  name:          string
-  stats:         ReturnType<typeof computePlayerStats>
-  topGroups:     Array<{ groupName: string; count: number }>
-  rateLabel:     string
+  item: IdolItem | SongItem
+  result?: QuickVoteResult
   positiveLabel: string
   negativeLabel: string
-  isP2?:         boolean
 }) {
+  const img = getItemImage(item)
+  const isPositive = result?.vote === 'positive'
+  //const isNegative = result?.vote === 'negative'
+
   return (
-    <div className={[styles.playerStats, isP2 ? styles.playerStats__p2 : ''].join(' ')}>
-      <p className={styles.playerName}>{name}</p>
-      <div className={styles.counters}>
-        <div className={styles.counter}>
-          <span className={`${styles.counterValue} ${styles.counterPositive}`}>{stats.positive}</span>
-          <span className={styles.counterLabel}>{positiveLabel}</span>
-        </div>
-        <div className={styles.counter}>
-          <span className={`${styles.counterValue} ${styles.counterNegative}`}>{stats.negative}</span>
-          <span className={styles.counterLabel}>{negativeLabel}</span>
-        </div>
-        <div className={styles.counter}>
-          <span className={styles.counterValue}>{stats.rate}%</span>
-          <span className={styles.counterLabel}>{rateLabel}</span>
-        </div>
+    <div className={styles.roundItemRow}>
+      {/* Image portrait ou miniature — même logique que SaveOne */}
+      <div className={[styles.itemImg, item.type === 'idol' ? styles.portraitImg : styles.thumbImg].join(' ')}>
+        {img ? <img src={img} alt={getItemLabel(item)} /> : <div className={styles.imgPlaceholder} />}
       </div>
 
-      {topGroups.length > 0 && (
-        <div className={styles.podium}>
-          <p className={styles.podiumTitle}>🏆 Top groupes</p>
-          {topGroups.map((g, i) => (
-            <div key={g.groupName} className={styles.podiumRow}>
-              <span className={styles.podiumRank}>{i + 1}</span>
-              <span className={styles.podiumName}>{g.groupName}</span>
-              <span className={styles.podiumCount}>{g.count}×</span>
-            </div>
-          ))}
-        </div>
+      {/* Infos */}
+      <div className={styles.itemInfo}>
+        <p className={styles.itemLabel}>{getItemLabel(item)}</p>
+        <p className={styles.itemGroup}>{item.groupName}</p>
+      </div>
+
+      {/* Badge vote */}
+      {result && (
+        <span
+          className={[styles.voteBadge, isPositive ? styles.voteBadgePositive : styles.voteBadgeNegative].join(' ')}
+        >
+          <span className={styles.voteBadgeIcon} aria-hidden>
+            {isPositive ? '♥' : '✕'}
+          </span>
+          {isPositive ? positiveLabel : negativeLabel}
+          {result.isTimeout && <span className={styles.timeoutMark}> ⏱</span>}
+        </span>
       )}
     </div>
   )
 }
 
-/** Card d'un round dans le récap. */
-function RoundReviewCard({ item, vote, isTimeout, positiveLabel, negativeLabel }: {
-  item:          IdolItem | SongItem
-  vote:          'positive' | 'negative'
-  isTimeout:     boolean
+// ─── Colonne stats joueur ─────────────────────────────────────────────────────
+
+function PlayerStatContent({
+  stats,
+  topGroups,
+  positiveLabel,
+  negativeLabel,
+  rateLabel,
+}: {
+  stats: ReturnType<typeof computeStats>
+  topGroups: Array<{ groupName: string; count: number }>
   positiveLabel: string
   negativeLabel: string
-}) {
-  const img = getItemImage(item)
+  rateLabel: string
+}): ReactNode {
+  const hasStats = stats.total > 0 || topGroups.length > 0
+  if (!hasStats) return <p className={styles.noStats}>Pas encore de stats</p>
+
   return (
-    <div className={[
-      styles.reviewCard,
-      vote === 'positive' ? styles.reviewCardPositive : styles.reviewCardNegative,
-    ].join(' ')}>
-      <div className={[styles.reviewImg, item.type === 'idol' ? styles.reviewImgPortrait : styles.reviewImgThumb].join(' ')}>
-        {img ? <img src={img} alt={getItemLabel(item)} /> : <div className={styles.reviewImgPlaceholder} />}
-      </div>
-      <div className={styles.reviewInfo}>
-        <p className={styles.reviewLabel}>{getItemLabel(item)}</p>
-        <p className={styles.reviewGroupName}>{item.groupName}</p>
-      </div>
-      <span className={vote === 'positive' ? styles.voteBadgePositive : styles.voteBadgeNegative}>
-        {vote === 'positive' ? positiveLabel : negativeLabel}
-        {isTimeout && <span className={styles.timeoutMark}> ⏱</span>}
-      </span>
-    </div>
+    <>
+      {/* Smash / Top rate */}
+      {stats.total > 0 && (
+        <div className={styles.statRow}>
+          <div className={styles.counter}></div>
+          <span className={`${styles.statValue} ${styles.counterPositive}`}>{stats.positive}</span>
+          <span className={styles.statSub}>{positiveLabel}</span>
+          <span className={`${styles.statValue} ${styles.counterNegative}`}>{stats.negative}</span>
+          <span className={styles.statSub}>{negativeLabel}</span>
+          <span className={styles.statIcon}>📊</span>
+          <span className={styles.statValue}>{stats.rate}%</span>
+          <span className={styles.statSub}>{rateLabel}</span>
+        </div>
+      )}
+
+      {/* Podium groupes */}
+      {topGroups.length > 0 && (
+        <div className={styles.statRow}>
+          <span className={styles.statIcon}>🏆</span>
+          <div className={styles.podium}>
+            {topGroups.map((g, i) => (
+              <div key={g.groupName} className={[styles.podiumItem, styles[`rank${i + 1}`]].join(' ')}>
+                <span className={styles.podiumRank}>{i + 1}</span>
+                <span className={styles.podiumName}>{g.groupName}</span>
+                <span className={styles.podiumCount}>{g.count}×</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
 // ─── Composant principal ──────────────────────────────────────────────────────
 
-export function QuickVoteSummary({
-  rounds,
-  results,
-  config,
-  onRestart,
-  onBackToConfig,
-}: QuickVoteSummaryProps) {
-  const twoPlayer  = config.twoPlayerMode
-  const p1Name     = config.player1Name || 'Joueur 1'
-  const p2Name     = config.player2Name || 'Joueur 2'
-  const voteLabels = QUICK_VOTE_LABELS[config.category]
+export function QuickVoteSummary({ rounds, results, config, onRestart, onBackToConfig }: QuickVoteSummaryProps) {
+  const twoPlayer = config.twoPlayerMode
+  const p1Name = config.player1Name || 'Joueur 1'
+  const p2Name = config.player2Name || 'Joueur 2'
+  const voteLabels = QUICK_VOTE_LABELS
+  const rateLabel = 'Smash rate' // config.category === 'idols' ? 'Smash rate' : 'Top rate'
 
-  // Label du taux positif selon la catégorie
-  const rateLabel = config.category === 'idols' ? 'Smash rate' : 'Top rate'
+  // ── Stats ──────────────────────────────────────────────────────────────────
 
-  const p1Stats     = computePlayerStats(results, 0)
-  const p2Stats     = twoPlayer ? computePlayerStats(results, 1) : null
+  const p1Stats = computeStats(results, 0)
+  const p2Stats = twoPlayer ? computeStats(results, 1) : null
   const p1TopGroups = computeTopGroups(rounds, results, 0)
   const p2TopGroups = twoPlayer ? computeTopGroups(rounds, results, 1) : []
 
+  // ── Rounds pour GameSummary ────────────────────────────────────────────────
+
+  const summaryRounds: SummaryRound[] = rounds.map((round) => {
+    const item = round.items[0] as IdolItem | SongItem | undefined
+    const p1Res = results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 0)
+    const p2Res = twoPlayer
+      ? results.find((r) => r.roundIndex === round.roundNumber - 1 && r.playerIndex === 1)
+      : undefined
+
+    // Même vote → "★ Même vote !" (analogue au "★ Même choix !" du Save One)
+    const sameVote = twoPlayer && p1Res && p2Res && p1Res.vote === p2Res.vote
+
+    const renderItem = (result?: QuickVoteResult) =>
+      item ? (
+        <QVRoundItem
+          item={item}
+          result={result}
+          positiveLabel={voteLabels.positive}
+          negativeLabel={voteLabels.negative}
+        />
+      ) : null
+
+    return {
+      roundNumber: round.roundNumber,
+      matchLabel: sameVote ? '★ Même vote !' : undefined,
+      p1Content: renderItem(p1Res),
+      p2Content: twoPlayer ? renderItem(p2Res) : undefined,
+    }
+  })
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+
   return (
-    <div className={styles.root}>
-      <div className={styles.inner}>
-
-        {/* Titre */}
-        <div className={styles.header}>
-          <h2 className={styles.title}>Quick Vote — {voteLabels.title}</h2>
-          <p className={styles.subtitle}>{rounds.length} rounds joués</p>
-        </div>
-
-        {/* Stats joueurs */}
-        <div className={[styles.statsRow, twoPlayer ? styles.statsRowTwoPlayer : ''].join(' ')}>
-          <PlayerStatsBlock
-            name={twoPlayer ? p1Name : 'Résultats'}
-            stats={p1Stats}
-            topGroups={p1TopGroups}
-            rateLabel={rateLabel}
+    <GameSummary
+      title="Résumé de partie"
+      subtitle={`${rounds.length} rounds · Smash or Pass — ${voteLabels.title} · ${config.category === 'idols' ? 'Idoles' : 'Chansons'}`}
+      onRestart={onRestart}
+      onBackToConfig={onBackToConfig}
+      twoPlayer={twoPlayer}
+      p1Name={p1Name}
+      p2Name={p2Name}
+      p1Stats={
+        <PlayerStatContent
+          stats={p1Stats}
+          topGroups={p1TopGroups}
+          positiveLabel={voteLabels.positive}
+          negativeLabel={voteLabels.negative}
+          rateLabel={rateLabel}
+        />
+      }
+      p2Stats={
+        twoPlayer && p2Stats ? (
+          <PlayerStatContent
+            stats={p2Stats}
+            topGroups={p2TopGroups}
             positiveLabel={voteLabels.positive}
             negativeLabel={voteLabels.negative}
+            rateLabel={rateLabel}
           />
-          {twoPlayer && p2Stats && (
-            <PlayerStatsBlock
-              name={p2Name}
-              stats={p2Stats}
-              topGroups={p2TopGroups}
-              rateLabel={rateLabel}
-              positiveLabel={voteLabels.positive}
-              negativeLabel={voteLabels.negative}
-              isP2
-            />
-          )}
-        </div>
-
-        {/* Récap round par round */}
-        <div className={styles.roundReview}>
-          <p className={styles.reviewTitle}>Récapitulatif</p>
-          {rounds.map((round, idx) => {
-            const item     = round.items[0] as IdolItem | SongItem | undefined
-            if (!item) return null
-            const p1Result = results.find((r) => r.roundIndex === idx && r.playerIndex === 0)
-            const p2Result = twoPlayer ? results.find((r) => r.roundIndex === idx && r.playerIndex === 1) : undefined
-
-            return (
-              <div key={idx} className={styles.reviewGroup}>
-                <p className={styles.reviewRoundLabel}>Round {round.roundNumber}</p>
-                {p1Result && (
-                  <div className={twoPlayer ? styles.reviewPlayerRow : undefined}>
-                    {twoPlayer && <span className={styles.reviewPlayerName}>{p1Name}</span>}
-                    <RoundReviewCard
-                      item={item}
-                      vote={p1Result.vote}
-                      isTimeout={p1Result.isTimeout}
-                      positiveLabel={voteLabels.positive}
-                      negativeLabel={voteLabels.negative}
-                    />
-                  </div>
-                )}
-                {twoPlayer && p2Result && (
-                  <div className={styles.reviewPlayerRow}>
-                    <span className={styles.reviewPlayerName}>{p2Name}</span>
-                    <RoundReviewCard
-                      item={item}
-                      vote={p2Result.vote}
-                      isTimeout={p2Result.isTimeout}
-                      positiveLabel={voteLabels.positive}
-                      negativeLabel={voteLabels.negative}
-                    />
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Actions */}
-        <div className={styles.actions}>
-          <button className="btn btn--secondary" onClick={onBackToConfig}>← Configuration</button>
-          <button className="btn btn--primary"   onClick={onRestart}>↺ Rejouer</button>
-        </div>
-
-      </div>
-    </div>
+        ) : undefined
+      }
+      summaryRounds={summaryRounds}
+    />
   )
 }

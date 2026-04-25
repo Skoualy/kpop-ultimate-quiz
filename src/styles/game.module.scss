@@ -1,0 +1,116 @@
+/**
+ * game.module.scss
+ *
+ * Styles partagés entre toutes les pages de jeu (SaveOne, QuickVote, BlindTest…).
+ * Importer dans chaque page de jeu : import g from '@/styles/game.module.scss'
+ *
+ * Seuls les composants propres à un jeu conservent leur propre .module.scss.
+ */
+
+/* ─── Shell de page ─────────────────────────────────────────────────────────── */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-base);
+  overflow: hidden;
+  position: relative;
+}
+
+/** Variante page résumé — scroll vertical autorisé */
+.pageSummary {
+  overflow-y: auto;
+}
+
+/* ─── Zone de jeu (entre le HUD et le bas de page) ──────────────────────────── */
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px 12px;
+  gap: 20px;
+  min-height: 0;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/** Espace vide pendant les transitions (maintient le layout stable) */
+.transitionBlank {
+  flex: 1;
+}
+
+/* ─── États loading / erreur / vide ─────────────────────────────────────────── */
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex: 1;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-strong);
+  border-top-color: var(--accent-purple);
+  border-radius: 50%;
+  animation: gameSpin 0.7s linear infinite;
+}
+
+.errorTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-danger);
+  margin: 0;
+}
+.errorMsg {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.emptyWarn {
+  font-size: 15px;
+  color: var(--color-warning);
+  max-width: 380px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.retryBtn {
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+@keyframes gameSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .content {
+    padding: 12px 12px 10px;
+    gap: 14px;
+  }
+}

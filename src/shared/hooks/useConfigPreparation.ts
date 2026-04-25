@@ -30,7 +30,7 @@ function buildInvalidationKey(config: GameConfig): string {
     config.mode,
     config.category,
     config.gamePlayMode,
-    // Quick Vote ignore les drops — on normalise à 0 pour la clé
+    // Smash or Pass ignore les drops — on normalise à 0 pour la clé
     config.mode === 'quickVote' ? 0 : config.drops,
     config.rounds,
     config.twoPlayerMode ? '2p' : '1p',
@@ -88,7 +88,7 @@ export function useConfigPreparation(
         groups = groups.filter((g) => config.selectedGroupIds.includes(g.id))
       }
 
-      // Quick Vote = Save One avec 1 item/round (dropCount forcé à 0)
+      // Smash or Pass = Save One avec 1 item/round (dropCount forcé à 0)
       const effectiveMode =
         config.mode === 'saveOne' ? 'saveOne' : config.mode === 'quickVote' ? 'quickVote' : 'blindTest'
 

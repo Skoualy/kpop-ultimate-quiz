@@ -14,11 +14,11 @@ import {
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
-/** Clé dédiée au Quick Vote pour la rotation de chansons en session. */
+/** Clé dédiée au Smash or Pass pour la rotation de chansons en session. */
 const SONG_MODE_KEY: SongModeKey = 'quickVote-songs'
 
 /**
- * Quick Vote = toujours 1 item par round.
+ * Smash or Pass = toujours 1 item par round.
  * dropCount = 0 → buildRounds génère K = 0 + 1 = 1 item/round.
  */
 const QUICK_VOTE_DROP_COUNT = 0
@@ -26,28 +26,28 @@ const QUICK_VOTE_DROP_COUNT = 0
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface GameState {
-  phase:             GamePhase
+  phase: GamePhase
   currentRoundIndex: number
-  currentPlayer:     PlayerIndex
-  timerKey:          number
+  currentPlayer: PlayerIndex
+  timerKey: number
 }
 
 export interface UseQuickVoteGameReturn extends GameState {
-  isLoading:            boolean
-  error:                string | null
-  rounds:               RoundData[]
-  results:              QuickVoteResult[]
-  vote:                 (v: 'positive' | 'negative', timeMs: number) => void
-  timeout:              () => void
+  isLoading: boolean
+  error: string | null
+  rounds: RoundData[]
+  results: QuickVoteResult[]
+  vote: (v: 'positive' | 'negative', timeMs: number) => void
+  timeout: () => void
   skipPlayerTransition: () => void
-  skipRoundTransition:  () => void
-  restart:              () => void
+  skipRoundTransition: () => void
+  restart: () => void
 }
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
 /**
- * Hook principal du mode Quick Vote.
+ * Hook principal du mode Smash or Pass.
  *
  * Calqué sur useSaveOneGame avec une seule différence structurelle :
  * `dropCount` est toujours 0 (1 item/round).
@@ -56,117 +56,128 @@ export interface UseQuickVoteGameReturn extends GameState {
  */
 export function useQuickVoteGame(config: GameConfig): UseQuickVoteGameReturn {
   const [isLoading, setIsLoading] = useState(true)
-  const [error,     setError]     = useState<string | null>(null)
-  const [rounds,    setRounds]    = useState<RoundData[]>([])
-  const [results,   setResults]   = useState<QuickVoteResult[]>([])
-  const [state,     setState]     = useState<GameState>({
-    phase:             'loading',
+  const [error, setError] = useState<string | null>(null)
+  const [rounds, setRounds] = useState<RoundData[]>([])
+  const [results, setResults] = useState<QuickVoteResult[]>([])
+  const [state, setState] = useState<GameState>({
+    phase: 'loading',
     currentRoundIndex: 0,
-    currentPlayer:     0,
-    timerKey:          0,
+    currentPlayer: 0,
+    timerKey: 0,
   })
 
   // Refs stables pour éviter les closures stale dans les callbacks
   const roundsRef = useRef<RoundData[]>([])
-  const stateRef  = useRef<GameState>(state)
-  useEffect(() => { roundsRef.current = rounds }, [rounds])
-  useEffect(() => { stateRef.current  = state  }, [state])
+  const stateRef = useRef<GameState>(state)
+  useEffect(() => {
+    roundsRef.current = rounds
+  }, [rounds])
+  useEffect(() => {
+    stateRef.current = state
+  }, [state])
 
   // ─── Chargement ────────────────────────────────────────────────────────────
 
-  const loadGame = useCallback(async (cancelled: { value: boolean }) => {
-    setIsLoading(true)
-    setError(null)
+  const loadGame = useCallback(
+    async (cancelled: { value: boolean }) => {
+      setIsLoading(true)
+      setError(null)
 
-    try {
-      // Scope groupes — identique à Save One
-      let groups: Group[]
-      if (config.gamePlayMode === 'custom' && config.selectedGroupIds.length > 0) {
-        const all = await groupService.getAll()
-        groups = all.filter((g) => config.selectedGroupIds.includes(g.id))
-      } else {
-        groups = await groupService.getAll()
-      }
-      if (cancelled.value) return
-
-      let builtRounds: RoundData[]
-
-      if (config.category === 'idols') {
-        const allIdols: Idol[] = await idolService.getAll()
+      try {
+        // Scope groupes — identique à Save One
+        let groups: Group[]
+        if (config.gamePlayMode === 'custom' && config.selectedGroupIds.length > 0) {
+          const all = await groupService.getAll()
+          groups = all.filter((g) => config.selectedGroupIds.includes(g.id))
+        } else {
+          groups = await groupService.getAll()
+        }
         if (cancelled.value) return
 
-        const pool = buildIdolPool(groups, allIdols, {
-          roleFilters: config.roleFilters,
-          criterion:   config.criterion,
-        })
+        let builtRounds: RoundData[]
 
-        builtRounds = buildRounds(pool, {
-          totalRounds:  config.rounds,
-          dropCount:    QUICK_VOTE_DROP_COUNT, // ← toujours 0 → 1 item/round
-          criterion:    config.criterion,
-          clipDuration: config.clipDuration,
-        })
+        if (config.category === 'idols') {
+          const allIdols: Idol[] = await idolService.getAll()
+          if (cancelled.value) return
 
-      } else {
-        // Chansons — mémoire de session dédiée
-        const songMemory = getSongSessionMemory(SONG_MODE_KEY)
+          const pool = buildIdolPool(groups, allIdols, {
+            roleFilters: config.roleFilters,
+            criterion: config.criterion,
+          })
 
-        const pool = buildSongPool(groups, {
-          songType:     config.songType,
-          clipDuration: config.clipDuration,
-        })
-
-        builtRounds = buildRounds(
-          pool,
-          {
-            totalRounds:  config.rounds,
-            dropCount:    QUICK_VOTE_DROP_COUNT,
-            criterion:    config.criterion,
+          builtRounds = buildRounds(pool, {
+            totalRounds: config.rounds,
+            dropCount: QUICK_VOTE_DROP_COUNT, // ← toujours 0 → 1 item/round
+            criterion: config.criterion,
             clipDuration: config.clipDuration,
-          },
-          songMemory,
-          SONG_MODE_KEY,
-        )
+          })
+        } else {
+          // Chansons — mémoire de session dédiée
+          const songMemory = getSongSessionMemory(SONG_MODE_KEY)
+
+          const pool = buildSongPool(groups, {
+            songType: config.songType,
+            clipDuration: config.clipDuration,
+          })
+
+          builtRounds = buildRounds(
+            pool,
+            {
+              totalRounds: config.rounds,
+              dropCount: QUICK_VOTE_DROP_COUNT,
+              criterion: config.criterion,
+              clipDuration: config.clipDuration,
+            },
+            songMemory,
+            SONG_MODE_KEY,
+          )
+        }
+
+        if (cancelled.value) return
+
+        setRounds(builtRounds)
+        setResults([])
+        setState({
+          phase: builtRounds.length === 0 ? 'summary' : 'roundTransition',
+          currentRoundIndex: 0,
+          currentPlayer: 0,
+          timerKey: 0,
+        })
+      } catch (e) {
+        if (!cancelled.value) setError(e instanceof Error ? e.message : 'Erreur de chargement')
+      } finally {
+        if (!cancelled.value) setIsLoading(false)
       }
-
-      if (cancelled.value) return
-
-      setRounds(builtRounds)
-      setResults([])
-      setState({
-        phase:             builtRounds.length === 0 ? 'summary' : 'roundTransition',
-        currentRoundIndex: 0,
-        currentPlayer:     0,
-        timerKey:          0,
-      })
-    } catch (e) {
-      if (!cancelled.value) setError(e instanceof Error ? e.message : 'Erreur de chargement')
-    } finally {
-      if (!cancelled.value) setIsLoading(false)
-    }
-  }, [config])
+    },
+    [config],
+  )
 
   useEffect(() => {
     const cancelled = { value: false }
     loadGame(cancelled)
-    return () => { cancelled.value = true }
+    return () => {
+      cancelled.value = true
+    }
   }, [loadGame])
 
   // ─── Mise à jour mémoire chansons ──────────────────────────────────────────
 
-  const handleSongMemoryUpdate = useCallback((roundIndex: number) => {
-    if (config.category !== 'songs') return
-    const round = roundsRef.current[roundIndex]
-    if (!round) return
+  const handleSongMemoryUpdate = useCallback(
+    (roundIndex: number) => {
+      if (config.category !== 'songs') return
+      const round = roundsRef.current[roundIndex]
+      if (!round) return
 
-    incrementSongSessionRound(SONG_MODE_KEY)
+      incrementSongSessionRound(SONG_MODE_KEY)
 
-    const songsInRound = (round.items as SongItem[]).map((song) => ({
-      songId:        song.songId,
-      baseTimestamp: song.startTime,
-    }))
-    updateSongMemoryAfterRound(SONG_MODE_KEY, songsInRound)
-  }, [config.category])
+      const songsInRound = (round.items as SongItem[]).map((song) => ({
+        songId: song.songId,
+        baseTimestamp: song.startTime,
+      }))
+      updateSongMemoryAfterRound(SONG_MODE_KEY, songsInRound)
+    },
+    [config.category],
+  )
 
   // ─── Enregistrement du vote + transitions ──────────────────────────────────
 
@@ -195,10 +206,10 @@ export function useQuickVoteGame(config: GameConfig): UseQuickVoteGameReturn {
 
         return {
           ...prev,
-          phase:             'roundTransition',
+          phase: 'roundTransition',
           currentRoundIndex: nextIndex,
-          currentPlayer:     0 as PlayerIndex,
-          timerKey:          prev.timerKey + 1,
+          currentPlayer: 0 as PlayerIndex,
+          timerKey: prev.timerKey + 1,
         }
       })
     },
@@ -208,16 +219,10 @@ export function useQuickVoteGame(config: GameConfig): UseQuickVoteGameReturn {
   // ─── Actions publiques ─────────────────────────────────────────────────────
 
   /** Vote positif ou négatif avec temps de réaction. */
-  const vote = useCallback(
-    (v: 'positive' | 'negative', timeMs: number) => recordVote(v, false, timeMs),
-    [recordVote],
-  )
+  const vote = useCallback((v: 'positive' | 'negative', timeMs: number) => recordVote(v, false, timeMs), [recordVote])
 
   /** Timeout = vote négatif automatique (conforme à la spec). */
-  const timeout = useCallback(
-    () => recordVote('negative', true, null),
-    [recordVote],
-  )
+  const timeout = useCallback(() => recordVote('negative', true, null), [recordVote])
 
   const skipPlayerTransition = useCallback(() => {
     setState((prev) => ({ ...prev, phase: 'playing', currentPlayer: 1 as PlayerIndex, timerKey: prev.timerKey + 1 }))

@@ -1,121 +1,214 @@
 .root {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  align-items:    center;
-  gap:            1.25rem;
-  padding:        1rem 1.5rem 2rem;
-  width:          100%;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
-.playerWrapper {
-  width:         100%;
-  max-width:     640px;
-  aspect-ratio:  16 / 9;
-  border-radius: 12px;
-  overflow:      hidden;
-  background:    rgba(0, 0, 0, 0.4);
+/* ─── Player — identique à SaveOneRoundSongs ──────────────────────────────── */
+
+.iframeWrapper {
+  width: 100%;
+  max-width: 720px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.player { width: 100%; height: 100%; }
+.player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
 
 .videoError {
-  display:         flex;
-  flex-direction:  column;
-  align-items:     center;
-  justify-content: center;
-  height:          100%;
-  gap:             0.5rem;
-  color:           var(--color-text-muted, #888);
-
-  span { font-size: 2rem; }
-  p    { font-size: 0.9rem; }
-}
-
-.songInfo {
-  display:        flex;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  display: flex;
   flex-direction: column;
-  align-items:    center;
-  gap:            0.25rem;
-  text-align:     center;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
-.songTitle {
-  font-size:   1.1rem;
-  font-weight: 700;
-  color:       var(--color-text, #f0f0f0);
-  margin:      0;
+/* ─── Infos chanson ───────────────────────────────────────────────────────── */
+
+.thumbnails {
+  display: inline-flex;
+  justify-content: center;
+  max-width: 200px;
 }
 
-.songGroup {
-  font-size: 0.9rem;
-  color:     var(--color-text-muted, #aaa);
-  margin:    0;
-}
+// .songInfo {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 3px;
+//   text-align: center;
+// }
 
-.replayBtn {
-  margin-top:   0.5rem;
-  padding:      0.3rem 0.9rem;
-  border:       1px solid rgba(255, 255, 255, 0.2);
-  border-radius:20px;
-  background:   transparent;
-  color:        var(--color-text-muted, #aaa);
-  font-size:    0.8rem;
-  cursor:       pointer;
-  transition:   border-color 0.15s, color 0.15s;
+// .songTitle {
+//   font-size: 14px;
+//   font-weight: 700;
+//   color: var(--text-primary);
+//   margin: 0;
+// }
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    color:        var(--color-text, #f0f0f0);
-  }
-}
+// .songGroup {
+//   font-size: 12px;
+//   color: var(--text-muted);
+//   margin: 0;
+// }
+
+// .replayBtn {
+//   margin-top: 6px;
+//   padding: 3px 12px;
+//   border: 1px solid var(--border-strong);
+//   border-radius: var(--radius-pill);
+//   background: transparent;
+//   color: var(--text-muted);
+//   font-size: 11px;
+//   font-family: inherit;
+//   cursor: pointer;
+//   transition:
+//     border-color 0.15s,
+//     color 0.15s;
+
+//   &:hover {
+//     border-color: var(--accent-purple);
+//     color: var(--text-primary);
+//   }
+// }
+
+/* ─── Timer slot ──────────────────────────────────────────────────────────── */
 
 .timerSlot {
-  width:      100%;
-  max-width:  640px;
-  min-height: 12px;
+  width: 100%;
+  max-width: 620px;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.timer { width: 100%; }
+/* ─── Boutons vote — identiques à QuickVoteRoundIdols ───────────────────── */
 
-/* Boutons identiques à QuickVoteRoundIdols */
 .voteButtons {
-  display:   flex;
-  gap:       1.5rem;
-  width:     100%;
-  max-width: 520px;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 360px;
 }
 
 .voteBtn {
-  flex:           1;
-  padding:        1rem 1.5rem;
-  border:         2px solid transparent;
-  border-radius:  12px;
-  font-size:      1.25rem;
-  font-weight:    700;
-  letter-spacing: 0.04em;
-  cursor:         pointer;
-  transition:     transform 0.1s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius-lg, 14px);
+  border: 1.5px solid transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+  position: relative;
+  overflow: hidden;
 
-  &:not(:disabled):hover {
-    transform:  translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.15s;
   }
 
-  &:disabled { opacity: 0.45; cursor: not-allowed; }
+  &:not(:disabled):hover {
+    transform: translateY(-3px);
+    &::after {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+  }
 }
 
-.voteBtn--negative {
-  background:   rgba(220, 50, 80, 0.15);
-  border-color: rgba(220, 50, 80, 0.5);
-  color:        #ff6b8a;
-
-  &.voteBtn--active { background: rgba(220, 50, 80, 0.35); border-color: #ff6b8a; opacity: 1; }
+.voteBtnIcon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.voteBtnLabel {
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.voteBtn--positive {
-  background:   rgba(50, 200, 120, 0.15);
-  border-color: rgba(50, 200, 120, 0.5);
-  color:        #5df5a0;
+.voteBtnPositive {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.12) 100%);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #34d399;
 
-  &.voteBtn--active { background: rgba(50, 200, 120, 0.35); border-color: #5df5a0; opacity: 1; }
+  &:not(:disabled):hover {
+    border-color: rgba(16, 185, 129, 0.75);
+    box-shadow: 0 6px 24px rgba(16, 185, 129, 0.2);
+  }
+
+  &.voteBtnActive {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.25) 100%);
+    border-color: #34d399;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    opacity: 1;
+  }
+}
+
+.voteBtnNegative {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(220, 38, 38, 0.07) 100%);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+
+  &:not(:disabled):hover {
+    border-color: rgba(239, 68, 68, 0.6);
+    box-shadow: 0 6px 24px rgba(239, 68, 68, 0.15);
+  }
+
+  &.voteBtnActive {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.28) 0%, rgba(220, 38, 38, 0.2) 100%);
+    border-color: #f87171;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .voteButtons {
+    gap: 10px;
+  }
+  .voteBtnLabel {
+    font-size: 13px;
+  }
+  .voteBtnIcon {
+    font-size: 17px;
+  }
 }

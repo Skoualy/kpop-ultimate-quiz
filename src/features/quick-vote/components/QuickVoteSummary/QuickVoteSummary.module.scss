@@ -1,156 +1,190 @@
-.root {
-  width:      100%;
-  overflow-y: auto;
-  padding:    2rem 1rem;
+/**
+ * QuickVoteSummary.module.scss
+ *
+ * Styles propres aux items du résumé Smash or Pass uniquement.
+ * Le layout structurel (header, statsCard, roundCard…) est géré par GameSummary.module.scss.
+ */
+
+/* ─── Ligne d'un item de round ───────────────────────────────────────────── */
+
+.roundItemRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.inner {
-  display:        flex;
-  flex-direction: column;
-  gap:            2rem;
-  max-width:      860px;
-  margin:         0 auto;
+/* Image idole ou miniature chanson */
+.itemImg {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
-.header { text-align: center; }
-
-.title {
-  font-size:   1.6rem;
-  font-weight: 800;
-  margin:      0 0 0.25rem;
-  color:       var(--color-text, #f0f0f0);
+.portraitImg {
+  width: 60px;
+  height: 80px;
+}
+.thumbImg {
+  width: 90px;
+  height: 51px;
+}
+.imgPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-surface);
 }
 
-.subtitle {
-  font-size: 0.95rem;
-  color:     var(--color-text-muted, #aaa);
-  margin:    0;
+/* Infos texte */
+.itemInfo {
+  flex: 1;
+  overflow: hidden;
 }
 
-/* Stats */
-.statsRow {
-  display:   flex;
-  gap:       1.5rem;
-  flex-wrap: wrap;
-
-  &.statsRowTwoPlayer > * { flex: 1; min-width: 240px; }
-}
-
-.playerStats {
-  background:    rgba(255, 255, 255, 0.04);
-  border:        1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding:       1.25rem 1.5rem;
-  display:       flex;
-  flex-direction: column;
-  gap:           1rem;
-
-  &.playerStats__p2 { border-color: rgba(180, 140, 255, 0.2); }
-}
-
-.playerName { font-size: 1rem; font-weight: 700; margin: 0; color: var(--color-text, #f0f0f0); }
-
-.counters { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-.counter {
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  gap:            0.2rem;
-  flex:           1;
-  min-width:      70px;
-}
-
-.counterValue {
-  font-size:   1.6rem;
-  font-weight: 800;
-  color:       var(--color-text, #f0f0f0);
-
-  &.counterPositive { color: #5df5a0; }
-  &.counterNegative { color: #ff6b8a; }
-}
-
-.counterLabel { font-size: 0.75rem; color: var(--color-text-muted, #aaa); text-align: center; }
-
-.podium { display: flex; flex-direction: column; gap: 0.4rem; }
-
-.podiumTitle {
-  font-size:      0.8rem;
-  font-weight:    600;
-  color:          var(--color-text-muted, #aaa);
-  margin:         0 0 0.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.podiumRow { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
-.podiumRank  { width: 1.4rem; text-align: center; font-weight: 700; color: var(--color-text-muted, #aaa); }
-.podiumName  { flex: 1; color: var(--color-text, #f0f0f0); }
-.podiumCount { font-size: 0.8rem; color: var(--color-text-muted, #aaa); }
-
-/* Récap */
-.roundReview { display: flex; flex-direction: column; gap: 0.75rem; }
-.reviewTitle { font-size: 1rem; font-weight: 700; color: var(--color-text, #f0f0f0); margin: 0 0 0.25rem; }
-
-.reviewGroup { display: flex; flex-direction: column; gap: 0.4rem; }
-
-.reviewRoundLabel {
-  font-size:      0.75rem;
-  font-weight:    600;
-  color:          var(--color-text-muted, #aaa);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin:         0;
-}
-
-.reviewPlayerRow { display: flex; align-items: center; gap: 0.75rem; }
-.reviewPlayerName { font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted, #aaa); min-width: 60px; }
-
-.reviewCard {
-  display:       flex;
-  align-items:   center;
-  gap:           0.75rem;
-  padding:       0.6rem 0.9rem;
-  border-radius: 10px;
-  border:        1px solid transparent;
-  flex:          1;
-
-  &.reviewCardPositive { background: rgba(50, 200, 120, 0.06); border-color: rgba(50, 200, 120, 0.2); }
-  &.reviewCardNegative { background: rgba(220, 50, 80, 0.06);  border-color: rgba(220, 50, 80, 0.15); }
-}
-
-.reviewImg {
-  width:         44px;
-  height:        44px;
-  border-radius: 6px;
-  overflow:      hidden;
-  flex-shrink:   0;
-  background:    rgba(255, 255, 255, 0.06);
-
-  img { width: 100%; height: 100%; object-fit: cover; }
-
-  &.reviewImgPortrait img { object-position: top center; }
-}
-
-.reviewImgPlaceholder { width: 100%; height: 100%; }
-
-.reviewInfo { flex: 1; overflow: hidden; }
-
-.reviewLabel {
-  font-size:     0.9rem;
-  font-weight:   600;
-  color:         var(--color-text, #f0f0f0);
-  margin:        0;
-  white-space:   nowrap;
-  overflow:      hidden;
+.itemLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.reviewGroupName { font-size: 0.75rem; color: var(--color-text-muted, #aaa); margin: 0; }
+.itemGroup {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+}
 
-.voteBadgePositive { font-size: 0.8rem; font-weight: 700; color: #5df5a0; flex-shrink: 0; }
-.voteBadgeNegative { font-size: 0.8rem; font-weight: 700; color: #ff6b8a; flex-shrink: 0; }
+/* Badge vote — positif ou négatif */
+.voteBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
 
-.timeoutMark { font-size: 0.7rem; opacity: 0.7; }
+.voteBadgePositive {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
 
-.actions { display: flex; gap: 1rem; justify-content: center; padding-bottom: 1rem; }
+.voteBadgeNegative {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+}
+
+.voteBadgeIcon {
+  font-size: 13px;
+}
+
+.timeoutMark {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* ─── Ligne stat smash rate ──────────────────────────────────────────────── */
+
+.noStats {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statIcon {
+  font-size: 16px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.statValue {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  flex-shrink: 0;
+
+  &.counterPositive {
+    color: #5df5a0;
+  }
+  &.counterNegative {
+    color: #ff6b8a;
+  }
+}
+.statSub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Podium */
+.podium {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.podiumItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+}
+
+.podiumRank {
+  font-size: 12px;
+  font-weight: 800;
+  width: 16px;
+  text-align: center;
+}
+.podiumName {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.podiumCount {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.rank1 .podiumRank {
+  color: var(--color-warning);
+}
+.rank2 .podiumRank {
+  color: var(--text-muted);
+}
+.rank3 .podiumRank {
+  color: #cd7f32;
+}

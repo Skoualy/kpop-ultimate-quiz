@@ -1,79 +1,153 @@
 .root {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  align-items:    center;
-  gap:            1.5rem;
-  padding:        1rem 1.5rem 2rem;
-  width:          100%;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
+/* Timer — même slot que SaveOne */
 .timerSlot {
-  width:      100%;
-  max-width:  480px;
-  min-height: 12px;
-}
-
-.timer { width: 100%; }
-
-/* Card centrée — même largeur max que les cards Save One */
-.cardWrapper {
-  display:         flex;
+  width: 100%;
+  max-width: 380px;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  width:           100%;
 }
 
-/* Boutons de vote */
+/* Card unique centrée */
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 200px;
+}
+
+/* ─── Boutons de vote ─────────────────────────────────────────────────────── */
+
 .voteButtons {
-  display:   flex;
-  gap:       1.5rem;
-  width:     100%;
-  max-width: 520px;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 360px;
 }
 
 .voteBtn {
-  flex:           1;
-  padding:        1rem 1.5rem;
-  border:         2px solid transparent;
-  border-radius:  12px;
-  font-size:      1.25rem;
-  font-weight:    700;
-  letter-spacing: 0.04em;
-  cursor:         pointer;
-  transition:     transform 0.1s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius-lg, 14px);
+  border: 1.5px solid transparent;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+  position: relative;
+  overflow: hidden;
+
+  /* Shimmer au survol */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.15s;
+  }
 
   &:not(:disabled):hover {
-    transform:  translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+
+    &::after {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
   }
 
   &:disabled {
-    opacity: 0.45;
-    cursor:  not-allowed;
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
   }
 }
 
-/* Vote négatif */
-.voteBtn--negative {
-  background:   rgba(220, 50, 80, 0.15);
-  border-color: rgba(220, 50, 80, 0.5);
-  color:        #ff6b8a;
+/* Icône + label */
+.voteBtnIcon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-  &.voteBtn--active {
-    background:   rgba(220, 50, 80, 0.35);
-    border-color: #ff6b8a;
-    opacity:      1;
+.voteBtnLabel {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ── Positif (Smash / Top) — vert émeraude ────────────────────────────────── */
+
+.voteBtnPositive {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.12) 100%);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #34d399;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+
+  &:not(:disabled):hover {
+    border-color: rgba(16, 185, 129, 0.75);
+    box-shadow: 0 6px 24px rgba(16, 185, 129, 0.2);
+  }
+
+  &.voteBtnActive {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.25) 100%);
+    border-color: #34d399;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    opacity: 1;
   }
 }
 
-/* Vote positif */
-.voteBtn--positive {
-  background:   rgba(50, 200, 120, 0.15);
-  border-color: rgba(50, 200, 120, 0.5);
-  color:        #5df5a0;
+/* ── Négatif (Pass / Flop) — rouge subtil ─────────────────────────────────── */
 
-  &.voteBtn--active {
-    background:   rgba(50, 200, 120, 0.35);
-    border-color: #5df5a0;
-    opacity:      1;
+.voteBtnNegative {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(220, 38, 38, 0.07) 100%);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+
+  &:not(:disabled):hover {
+    border-color: rgba(239, 68, 68, 0.6);
+    box-shadow: 0 6px 24px rgba(239, 68, 68, 0.15);
+  }
+
+  &.voteBtnActive {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.28) 0%, rgba(220, 38, 38, 0.2) 100%);
+    border-color: #f87171;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+    opacity: 1;
+  }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .voteButtons {
+    gap: 10px;
+  }
+  .voteBtnLabel {
+    font-size: 13px;
+  }
+  .voteBtnIcon {
+    font-size: 17px;
   }
 }

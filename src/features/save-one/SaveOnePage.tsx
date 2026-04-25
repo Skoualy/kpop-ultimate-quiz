@@ -10,7 +10,8 @@ import { SaveOneRoundSongs } from './components/SaveOneRoundSongs'
 import { SaveOneSummary } from './components/SaveOneSummary'
 import { useSaveOneGame } from './hooks/useSaveOneGame'
 import type { IdolItem, SongItem } from './SaveOnePage.types'
-import styles from './SaveOnePage.module.scss'
+// Styles de layout partagés entre tous les jeux
+import g from '@/styles/game.module.scss'
 
 // ─── Mappings ─────────────────────────────────────────────────────────────────
 
@@ -75,49 +76,42 @@ export default function SaveOnePage() {
   const goToConfig = useCallback(() => navigate('/'), [navigate])
 
   const currentRound = rounds[currentRoundIndex]
-  const totalRounds = rounds.length
-  const twoPlayer = config.twoPlayerMode
-  const p1Name = config.player1Name || 'Joueur 1'
-  const p2Name = config.player2Name || 'Joueur 2'
+  const totalRounds  = rounds.length
+  const twoPlayer    = config.twoPlayerMode
+  const p1Name       = config.player1Name || 'Joueur 1'
+  const p2Name       = config.player2Name || 'Joueur 2'
   const activePlayer = currentPlayer === 0 ? p1Name : p2Name
-  const isIdols = config.category === 'idols'
-  const isSongs = config.category === 'songs'
-  const isPlaying = phase === 'playing'
-  const isCustom = config.gamePlayMode === 'custom'
+  const isIdols      = config.category === 'idols'
+  const isSongs      = config.category === 'songs'
+  const isPlaying    = phase === 'playing'
+  const isCustom     = config.gamePlayMode === 'custom'
 
-  // ── Options HUD ──────────────────────────────────────────────────────────
+  // ── Options HUD ──────────────────────────────────────────────────────────────
 
   const hudOptions = [
     { labelOption: 'Type de quiz', optionValue: 'Save One' },
-    { labelOption: 'Catégorie', optionValue: isIdols ? 'Idoles' : 'Chansons' },
-    { labelOption: 'Mode de jeu', optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
-    { labelOption: 'Drops', optionValue: config.drops },
-    // Timer toujours affiché
-    { labelOption: 'Timer', optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
-    // Extrait uniquement pour les chansons
+    { labelOption: 'Catégorie',    optionValue: isIdols ? 'Idoles' : 'Chansons' },
+    { labelOption: 'Mode de jeu',  optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
+    { labelOption: 'Drops',        optionValue: config.drops },
+    { labelOption: 'Rounds',       optionValue: config.rounds },
+    { labelOption: 'Timer',        optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
     isSongs ? { labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
-    // Rôles (mode custom idoles)
     isCustom && isIdols && config.roleFilters.length > 0
       ? { labelOption: 'Rôles', optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', ') }
       : null,
-    // Type chansons (mode custom chansons)
     isCustom && isSongs && config.songType !== 'all'
       ? { labelOption: 'Type', optionValue: SONG_TYPE_LABELS[config.songType] ?? config.songType }
       : null,
   ]
 
-  // Critère (mode custom idoles, hors 'all')
-  // const hudCriterion =
-  //   isCustom && isIdols && config.criterion !== 'all' ? (CRITERIA_LABELS[config.criterion] ?? config.criterion) : null
-
-  // ── États de chargement / erreur / vide ──────────────────────────────────
+  // ── Chargement ────────────────────────────────────────────────────────────────
 
   if (isLoading) {
     return (
-      <div className={styles.page}>
+      <div className={g.page}>
         <AppHeader />
-        <div className={styles.center}>
-          <div className={styles.spinner} />
+        <div className={g.center}>
+          <div className={g.spinner} />
           <p>Chargement du pool…</p>
         </div>
       </div>
@@ -126,14 +120,12 @@ export default function SaveOnePage() {
 
   if (error) {
     return (
-      <div className={styles.page}>
+      <div className={g.page}>
         <AppHeader />
-        <div className={styles.center}>
-          <p className={styles.errorTitle}>Erreur</p>
-          <p className={styles.errorMsg}>{error}</p>
-          <button className={styles.retryBtn} onClick={goToConfig}>
-            ← Retour à la config
-          </button>
+        <div className={g.center}>
+          <p className={g.errorTitle}>Erreur</p>
+          <p className={g.errorMsg}>{error}</p>
+          <button className={g.retryBtn} onClick={goToConfig}>← Retour à la config</button>
         </div>
       </div>
     )
@@ -141,23 +133,21 @@ export default function SaveOnePage() {
 
   if (!isLoading && rounds.length === 0) {
     return (
-      <div className={styles.page}>
+      <div className={g.page}>
         <AppHeader />
-        <div className={styles.center}>
-          <p className={styles.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
-          <button className={styles.retryBtn} onClick={goToConfig}>
-            ← Retour à la config
-          </button>
+        <div className={g.center}>
+          <p className={g.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
+          <button className={g.retryBtn} onClick={goToConfig}>← Retour à la config</button>
         </div>
       </div>
     )
   }
 
-  // ── Résumé ────────────────────────────────────────────────────────────────
+  // ── Résumé ────────────────────────────────────────────────────────────────────
 
   if (phase === 'summary') {
     return (
-      <div className={[styles.page, styles.pageSummary].join(' ')}>
+      <div className={[g.page, g.pageSummary].join(' ')}>
         <AppHeader />
         <SaveOneSummary
           rounds={rounds}
@@ -170,13 +160,11 @@ export default function SaveOnePage() {
     )
   }
 
-  // ── Jeu ───────────────────────────────────────────────────────────────────
+  // ── Jeu ───────────────────────────────────────────────────────────────────────
 
   return (
-    <div className={styles.page}>
-      {/* Zone de jeu */}
-      <main className={styles.content}>
-        {/* HUD — options + critère + joueur actif 2J */}
+    <div className={g.page}>
+      <main className={g.content}>
         <GameHud
           options={hudOptions}
           twoPlayer={twoPlayer}
@@ -201,7 +189,7 @@ export default function SaveOnePage() {
           />
         )}
 
-        {/* Chansons — playerName uniquement en Songs (affiche dans iframe zone) */}
+        {/* Chansons */}
         {isPlaying && currentRound && isSongs && (
           <SaveOneRoundSongs
             songs={currentRound.items as SongItem[]}
@@ -217,13 +205,15 @@ export default function SaveOnePage() {
           />
         )}
 
-        {!isPlaying && phase !== 'summary' && <div className={styles.transitionBlank} />}
+        {!isPlaying && phase !== 'summary' && <div className={g.transitionBlank} />}
       </main>
 
       {phase === 'roundTransition' && (
         <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />
       )}
-      {phase === 'playerTransition' && <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />}
+      {phase === 'playerTransition' && (
+        <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />
+      )}
     </div>
   )
 }

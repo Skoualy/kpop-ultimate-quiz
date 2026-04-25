@@ -3,20 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
 import { AppHeader } from '@/shared/Layout/AppHeader'
 import { GameHud } from '@/shared/Components/GameHud'
-// RoundTransition et PlayerTransitionOverlay restent dans save-one pour l'instant
-// TODO refactoring : migrer vers @/shared/Components/ avec IdolCard, TimerBar, etc.
-import { RoundTransition } from '@/shared/Components/RoundTransition'
 import { PlayerTransitionOverlay } from '@/shared/Components/PlayerTransitionOverlay'
+import { RoundTransition } from '@/shared/Components/RoundTransition'
 import { QuickVoteRoundIdols } from './components/QuickVoteRoundIdols'
 import { QuickVoteRoundSongs } from './components/QuickVoteRoundSongs'
 import { QuickVoteSummary } from './components/QuickVoteSummary'
 import { useQuickVoteGame } from './hooks/useQuickVoteGame'
 import { QUICK_VOTE_LABELS, CRITERIA_LABELS, ROLE_LABELS } from '@/shared/constants'
 import type { IdolItem, SongItem } from './QuickVotePage.types'
-import styles from './QuickVotePage.module.scss'
+// Styles de layout partagés entre tous les jeux
+import g from '@/styles/game.module.scss'
 
-// ─── Labels locaux (non encore centralisés dans /shared/constants) ────────────
-// TODO : centraliser dans gameModes.ts et un futur songTypes.ts
+// ─── Labels locaux ────────────────────────────────────────────────────────────
+// TODO : centraliser dans gameModes.ts + songTypes.ts
 
 const GAMEPLAY_LABELS: Record<string, string> = {
   classic: 'Classique',
@@ -57,8 +56,6 @@ export default function QuickVotePage() {
 
   const goToConfig = useCallback(() => navigate('/'), [navigate])
 
-  // ── Dérivés ──────────────────────────────────────────────────────────────────
-
   const currentRound = rounds[currentRoundIndex]
   const totalRounds = rounds.length
   const twoPlayer = config.twoPlayerMode
@@ -69,14 +66,14 @@ export default function QuickVotePage() {
   const isSongs = config.category === 'songs'
   const isPlaying = phase === 'playing'
   const isCustom = config.gamePlayMode === 'custom'
-  const voteLabels = QUICK_VOTE_LABELS[config.category]
 
-  // ── Options HUD — identique à SaveOnePage, sans les drops ────────────────────
+  // ── Options HUD (sans Drops — 1 item/round implicite) ─────────────────────────
 
   const hudOptions = [
-    { labelOption: 'Type de quiz', optionValue: `Quick Vote — ${voteLabels.title}` },
+    { labelOption: 'Type de quiz', optionValue: `Smash or Pass` },
     { labelOption: 'Catégorie', optionValue: isIdols ? 'Idoles' : 'Chansons' },
     { labelOption: 'Mode de jeu', optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
+    { labelOption: 'Rounds', optionValue: config.rounds },
     { labelOption: 'Timer', optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
     isSongs ? { labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
     isCustom && isIdols && config.roleFilters.length > 0
@@ -87,16 +84,60 @@ export default function QuickVotePage() {
       : null,
   ].filter(Boolean) as { labelOption: string; optionValue: string | number }[]
 
-  // const hudCriterion =
-  //   isCustom && isIdols && config.criterion !== 'all'
-  //     ? (CRITERIA_LABELS[config.criterion] ?? config.criterion)
-  //     : undefined
+  const hudCriterion =
+    isCustom && isIdols && config.criterion !== 'all'
+      ? (CRITERIA_LABELS[config.criterion] ?? config.criterion)
+      : undefined
 
-  // ── Render : résumé ───────────────────────────────────────────────────────────
+  // ── Chargement ────────────────────────────────────────────────────────────────
+
+  if (isLoading) {
+    return (
+      <div className={g.page}>
+        <AppHeader />
+        <div className={g.center}>
+          <div className={g.spinner} />
+          <p>Chargement du pool…</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className={g.page}>
+        <AppHeader />
+        <div className={g.center}>
+          <p className={g.errorTitle}>Erreur</p>
+          <p className={g.errorMsg}>{error}</p>
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  if (!isLoading && rounds.length === 0) {
+    return (
+      <div className={g.page}>
+        <AppHeader />
+        <div className={g.center}>
+          <p className={g.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Résumé ────────────────────────────────────────────────────────────────────
 
   if (phase === 'summary') {
     return (
-      <div className={styles.root}>
+      <div className={[g.page, g.pageSummary].join(' ')}>
+        <AppHeader />
         <QuickVoteSummary
           rounds={rounds}
           results={results}
@@ -108,35 +149,19 @@ export default function QuickVotePage() {
     )
   }
 
-  // ── Render : chargement / erreur ──────────────────────────────────────────────
-
-  if (isLoading || error) {
-    return (
-      <div className={styles.root}>
-        <AppHeader />
-        <div className={styles.stateMessage}>
-          {isLoading && <p>Chargement…</p>}
-          {error && <p className={styles.errorText}>{error}</p>}
-        </div>
-      </div>
-    )
-  }
-
-  // ── Render : jeu ─────────────────────────────────────────────────────────────
+  // ── Jeu ───────────────────────────────────────────────────────────────────────
 
   return (
-    <div className={styles.page}>
-      {/* Zone de jeu */}
-      <main className={styles.content}>
-        {/* HUD — même structure que SaveOnePage, sans le bouton Passer */}
+    <div className={g.page}>
+      <main className={g.content}>
+        {/* HUD — pas de bouton Passer en Smash or Pass */}
         <GameHud
           options={hudOptions}
-          //criterion={hudCriterion}
           twoPlayer={twoPlayer}
-          activePlayerName={twoPlayer ? activePlayer : undefined}
+          activePlayerName={twoPlayer && isPlaying ? activePlayer : undefined}
           activePlayerIndex={currentPlayer as 0 | 1}
           onBack={goToConfig}
-          onPass={undefined} // Quick Vote n'a pas de bouton "Passer"
+          onPass={undefined}
           actionDisabled={true}
           currentRound={currentRoundIndex + 1}
           totalRounds={totalRounds}
@@ -149,7 +174,7 @@ export default function QuickVotePage() {
             timerSeconds={config.timerSeconds}
             timerKey={timerKey}
             activeCriterion={currentRound.activeCriterion}
-            voteLabel={voteLabels}
+            voteLabel={QUICK_VOTE_LABELS}
             onVote={vote}
             onTimeout={timeout}
           />
@@ -162,19 +187,18 @@ export default function QuickVotePage() {
             clipDuration={config.clipDuration}
             timerSeconds={config.timerSeconds}
             timerKey={timerKey}
-            voteLabel={voteLabels}
+            voteLabel={QUICK_VOTE_LABELS}
             onVote={vote}
             onTimeout={timeout}
           />
         )}
+
+        {!isPlaying && phase !== 'summary' && <div className={g.transitionBlank} />}
       </main>
 
-      {/* Transitions inter-rounds */}
       {phase === 'roundTransition' && (
         <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />
       )}
-
-      {/* Transition inter-joueurs (mode 2J) */}
       {phase === 'playerTransition' && <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />}
     </div>
   )

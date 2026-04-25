@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-// Composants réutilisés depuis save-one (cross-feature temporaire)
-// TODO refactoring : migrer IdolCard, TimerBar, CriterionBadge vers @/shared/Components/
 import { IdolCard } from '@/shared/Components/IdolCard'
 import { TimerBar } from '@/shared/Components/TimerBar'
 import { CriterionBadge } from '@/shared/Components/CriterionBadge'
-// useGameTimer reste dans save-one/hooks — pas besoin de le déplacer
 import { useGameTimer } from '@/shared/hooks/useGameTimer'
 import type { QuickVoteRoundIdolsProps } from './QuickVoteRoundIdols.types'
 import styles from './QuickVoteRoundIdols.module.scss'
@@ -21,7 +18,6 @@ export function QuickVoteRoundIdols({
   const startRef = useRef(Date.now())
   const [voted, setVoted] = useState<'positive' | 'negative' | null>(null)
 
-  // Reset à chaque nouveau round (timerKey change)
   useEffect(() => {
     startRef.current = Date.now()
     setVoted(null)
@@ -42,49 +38,53 @@ export function QuickVoteRoundIdols({
 
   return (
     <div className={styles.root}>
-      {/* Critère actif */}
-      {activeCriterion && activeCriterion !== 'all' && <CriterionBadge criterion={activeCriterion} />}
-
       {/* Timer — slot toujours réservé pour éviter le layout shift */}
-      <div className={styles.timerSlot}>
-        {timerSeconds > 0 && (
+      {timerSeconds > 0 && (
+        <div className={styles.timerSlot}>
           <TimerBar
             percentLeft={voted ? 100 : percentLeft}
             remainingSeconds={voted ? timerSeconds : remaining}
             totalSeconds={timerSeconds}
-            className={styles.timer}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Carte idole unique — centrée */}
+      {/* Critère actif */}
+      {activeCriterion && activeCriterion !== 'all' && <CriterionBadge criterion={activeCriterion} />}
+
+      {/* Une seule card centrée — même composant que le Save One */}
       <div className={styles.cardWrapper}>
         <IdolCard idol={idol} size="lg" disabled={voted !== null} onClick={() => {}} />
       </div>
 
-      {/* Boutons vote — négatif à gauche, positif à droite */}
+      {/* Boutons vote — POSITIF à gauche, NÉGATIF à droite */}
       <div className={styles.voteButtons}>
+        {/* Positif (Smash / Top) — à gauche */}
         <button
-          className={[
-            styles.voteBtn,
-            styles['voteBtn--negative'],
-            voted === 'negative' ? styles['voteBtn--active'] : '',
-          ].join(' ')}
-          disabled={voted !== null}
-          onClick={() => handleVote('negative')}
-        >
-          {voteLabel.negative}
-        </button>
-        <button
-          className={[
-            styles.voteBtn,
-            styles['voteBtn--positive'],
-            voted === 'positive' ? styles['voteBtn--active'] : '',
-          ].join(' ')}
+          className={[styles.voteBtn, styles.voteBtnPositive, voted === 'positive' ? styles.voteBtnActive : ''].join(
+            ' ',
+          )}
           disabled={voted !== null}
           onClick={() => handleVote('positive')}
         >
-          {voteLabel.positive}
+          <span className={styles.voteBtnIcon} aria-hidden>
+            ♥
+          </span>
+          <span className={styles.voteBtnLabel}>{voteLabel.positive}</span>
+        </button>
+
+        {/* Négatif (Pass / Flop) — à droite */}
+        <button
+          className={[styles.voteBtn, styles.voteBtnNegative, voted === 'negative' ? styles.voteBtnActive : ''].join(
+            ' ',
+          )}
+          disabled={voted !== null}
+          onClick={() => handleVote('negative')}
+        >
+          <span className={styles.voteBtnIcon} aria-hidden>
+            ✕
+          </span>
+          <span className={styles.voteBtnLabel}>{voteLabel.negative}</span>
         </button>
       </div>
     </div>

@@ -12,7 +12,7 @@ export interface SongThumbnailProps {
   isSequencePlaying?: boolean
   /** Disabled = ne peut pas être cliqué pour choisir */
   disabled?: boolean
-  onChoose: (songId: string) => void
+  onChoose?: (songId: string) => void
   onReplay: (song: SongItem) => void
   /**
    * Passer l'extrait en cours — uniquement disponible quand isSequencePlaying && isPlaying.

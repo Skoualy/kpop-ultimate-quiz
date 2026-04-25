@@ -168,7 +168,7 @@ export function SaveOneRoundSongs({
     <div className={styles.root}>
       {/* Iframe YouTube */}
       <div className={styles.iframeWrapper}>
-        {currentSong && !videoError && !chosen ? (
+        {!sequenceComplete && currentSong && !videoError && !chosen ? (
           <YouTubePlayer
             key={`yt-${timerKey}-p${playerIndex}-${displayIdx}-${useAutoplay ? 'auto' : 'frozen'}`}
             videoId={currentSong.youtubeId}

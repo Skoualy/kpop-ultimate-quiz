@@ -1,0 +1,248 @@
+/**
+ * GameSummary.module.scss
+ *
+ * Styles STRUCTURELS partagés entre tous les résumés de jeu.
+ * Correspond aux anciens styles de SaveOneSummary.module.scss, mis en commun.
+ *
+ * Les styles des items individuels (portraits, miniatures, badges)
+ * restent dans les .module.scss des composants propres à chaque jeu.
+ */
+
+/* ─── Page wrapper ───────────────────────────────────────────────────────────── */
+
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── Header sticky ──────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 52px; /* hauteur de la AppHeader */
+  z-index: 10;
+  background: var(--bg-base);
+  padding: 16px 0 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: -8px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Boutons header */
+.btnSecondary {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-pill);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  &:hover { color: var(--text-primary); background: var(--bg-surface); }
+}
+
+.btnPrimary {
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-primary);
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  &:hover { opacity: 0.85; }
+}
+
+/* ─── Stats card ─────────────────────────────────────────────────────────────── */
+
+.statsCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* Bandeau choix communs — centré en haut de la stats card (2J) */
+.commonChoices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(245, 158, 11, 0.07);
+  border-bottom: 1px solid var(--border);
+}
+
+.commonChoicesIcon {
+  font-size: 16px;
+  color: var(--color-warning);
+}
+.commonChoicesVal {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-warning);
+  line-height: 1;
+}
+.commonChoicesLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Colonnes stats */
+.statsCols1P {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 14px;
+}
+
+.statsCols2P {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+}
+
+.playerStatCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+}
+
+/* Séparateur vertical entre colonnes (2J) */
+.colDivider {
+  width: 1px;
+  background: var(--border-strong);
+  align-self: stretch;
+  min-height: 40px;
+}
+
+/* Nom du joueur dans la stats card */
+.playerColLabel {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent-purple);
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.p2Label {
+  color: var(--accent-pink);
+}
+
+/* ─── Rounds ─────────────────────────────────────────────────────────────────── */
+
+.rounds {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ─── Round card ─────────────────────────────────────────────────────────────── */
+
+.roundCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.roundCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.roundLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.matchBanner {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Layout colonnes (rounds 2J) ────────────────────────────────────────────── */
+
+.twoColLayout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.playerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.playerColLabel2 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent-purple);
+  margin: 0;
+}
+
+.p2ColLabel {
+  color: var(--accent-pink);
+}

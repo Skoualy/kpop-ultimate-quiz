@@ -105,7 +105,7 @@ export const YouTubePlayer = forwardRef<YouTubePlayerHandle, YouTubePlayerProps>
         className={styles.iframe}
         allow="autoplay; encrypted-media"
         allowFullScreen={false}
-        sandbox="allow-scripts allow-same-origin allow-presentation"
+        sandbox="allow-scripts allow-same-origin"
       />
     </div>
   )
