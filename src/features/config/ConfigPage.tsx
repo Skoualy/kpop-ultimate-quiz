@@ -4,7 +4,6 @@ import { useGameContext } from '@/context/GameContext'
 import { useGroupList } from '@/shared/hooks/useGroupList'
 import { PageContainer } from '@/shared/Layout'
 import { ToggleControl } from '@/shared/Controls/ToggleControl'
-import { FilterBadgeGroupControl } from '@/shared/Controls/FilterBadgeGroupControl'
 import { BadgeGroupControl } from '@/shared/Controls/BadgeGroupControl'
 import { SegmentedControl } from '@/shared/Controls/SegmentedControl'
 import { SliderControl } from '@/shared/Controls/SliderControl'
@@ -569,11 +568,7 @@ function PrepBanner({
           <span className={styles.prepBannerIcon}>⚠️</span>
           <div className={styles.prepBannerBody}>
             <strong className={styles.prepBannerTitle}>Rounds ajustés</strong>
-            <span className={styles.prepBannerText}>
-              Nombre de rounds réduit à <strong>{result.maxRounds}</strong> pour garantir des rounds complets sans
-              répétition.
-              {result.clampMessage && <> {result.clampMessage}</>}
-            </span>
+            <span className={styles.prepBannerText}>{result.clampMessage && <> {result.clampMessage}</>}</span>
           </div>
         </div>
       </div>

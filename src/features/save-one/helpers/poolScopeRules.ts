@@ -134,7 +134,7 @@ export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
 
   const wasClamped = maxRounds < rounds
   const clampMessage = wasClamped
-    ? `Nombre de rounds réduit à ${maxRounds} (scope disponible insuffisant pour ${rounds} rounds).`
+    ? `Nombre de rounds réduit à ${maxRounds} pour éviter les doublons (scope disponible insuffisant pour ${rounds} rounds).`
     : undefined
 
   return { maxRounds, scopeSize, itemsPerRound: K, wasClamped, clampMessage }

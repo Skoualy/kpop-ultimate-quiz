@@ -91,13 +91,13 @@ export const GAME_PLAY_MODE_MAP: Record<GamePlayMode, GamePlayModeConfig> = Obje
 
 /** Valeurs du dropdown Timer */
 export const TIMER_OPTIONS: SegmentedControlOption[] = [
-  { value: '0', label: 'Pas de timer' },
+  { value: '0', label: 'Aucun' },
   { value: '5', label: '5s' },
   { value: '10', label: '10s' },
   { value: '15', label: '15s' },
   { value: '20', label: '20s' },
-  { value: '25', label: '25s' },
-  { value: '30', label: '30s' },
+  // { value: '25', label: '25s' },
+  // { value: '30', label: '30s' },
 ]
 
 export const QUIZ_TYPES_OPTIONS: SegmentedControlOption[] = [
