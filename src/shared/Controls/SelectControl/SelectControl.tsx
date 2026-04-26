@@ -16,7 +16,7 @@ import styles from './SelectControl.module.scss'
  */
 export function SelectControl<T extends string = string>({
   options,
-  allOptionsLabel = 'Tous',
+  allOptionsLabel,
   value,
   onChange,
   disabled = false,

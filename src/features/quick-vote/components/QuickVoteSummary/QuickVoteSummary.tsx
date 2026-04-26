@@ -58,7 +58,7 @@ function QVRoundItem({
   //const isNegative = result?.vote === 'negative'
 
   return (
-    <div className={styles.roundItemRow}>
+    <div className={[styles.roundItemRow, isPositive ? styles.voteItem : styles.skipItem].join(' ')}>
       {/* Image portrait ou miniature — même logique que SaveOne */}
       <div className={[styles.itemImg, item.type === 'idol' ? styles.portraitImg : styles.thumbImg].join(' ')}>
         {img ? <img src={img} alt={getItemLabel(item)} /> : <div className={styles.imgPlaceholder} />}
