@@ -1,4 +1,4 @@
-import type { BadgeGroupControlProps } from './BadgeGroupControl.types'
+import type { BadgeGroupControlProps, BadgeOption } from './BadgeGroupControl.types'
 import styles from './BadgeGroupControl.module.scss'
 
 export function BadgeGroupControl<T extends string = string>({
@@ -7,12 +7,15 @@ export function BadgeGroupControl<T extends string = string>({
   selectedBadges,
   onChange,
   groupLabel,
+  allOptionLabel,
   hintLabel,
   isMultiselect = false,
   required = false,
   disabled = false,
   size = 'md',
 }: BadgeGroupControlProps<T>) {
+  const allOptions =
+    allOptionLabel && allOptionLabel !== '' ? [{ value: 'all' as T, label: allOptionLabel }, ...options] : options
   const current = (selectedBadges ?? value ?? []) as T[]
   const sizeCls = size === 'sm' ? styles.sm : styles.md
 
@@ -23,9 +26,7 @@ export function BadgeGroupControl<T extends string = string>({
       onChange(current.includes(opt) ? [] : [opt])
       return
     }
-    const next = current.includes(opt)
-      ? current.filter((v) => v !== opt)
-      : [...current, opt]
+    const next = current.includes(opt) ? current.filter((v) => v !== opt) : [...current, opt]
     if (required && next.length === 0) return
     onChange(next)
   }
@@ -34,19 +35,17 @@ export function BadgeGroupControl<T extends string = string>({
     <div className={styles.wrapper}>
       {groupLabel && <span className={styles.groupLabel}>{groupLabel}</span>}
       <div className={styles.group}>
-        {options.map((opt) => {
-          const isSelected     = current.includes(opt.value)
+        {allOptions.map((opt) => {
+          const isSelected = current.includes(opt.value)
           const isLastRequired = required && isSelected && current.length === 1
-          const isDisabled     = disabled || opt.disabled //|| isLastRequired
+          const isDisabled = disabled || opt.disabled //|| isLastRequired
           return (
             <button
               key={opt.value}
               type="button"
-              className={[
-                styles.badge, sizeCls,
-                isSelected  ? styles.selected  : '',
-                isDisabled  ? styles.disabled  : '',
-              ].filter(Boolean).join(' ')}
+              className={[styles.badge, sizeCls, isSelected ? styles.selected : '', isDisabled ? styles.disabled : '']
+                .filter(Boolean)
+                .join(' ')}
               onClick={() => toggle(opt.value)}
               tabIndex={isDisabled ? -1 : 0}
               title={isLastRequired ? 'Au moins un élément requis' : opt.label}

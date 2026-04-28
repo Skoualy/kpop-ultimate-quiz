@@ -12,12 +12,12 @@ import { SelectControl } from '@/shared'
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
 const ARTIST_MODE_OPTIONS = [
-  { value: 'all' satisfies ArtistSelectionMode, label: 'Tous' },
+  { value: 'all'      satisfies ArtistSelectionMode, label: 'Tous' },
   { value: 'byFilter' satisfies ArtistSelectionMode, label: 'Par filtres' },
-  { value: 'manual' satisfies ArtistSelectionMode, label: 'Manuel' },
+  { value: 'manual'   satisfies ArtistSelectionMode, label: 'Manuel' },
 ] as const
 
-// ─── Til\'artiste ─────────────────────────────────────────────────────────────
+// ─── Tile artiste ─────────────────────────────────────────────────────────────
 
 function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }) {
   const coverSrc = group.coverImage
@@ -25,7 +25,7 @@ function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }
       ? group.coverImage
       : `/assets/${group.coverImage}`
     : null
-  const isSoloist = group.category === 'femaleSoloist' || group.category === 'maleSoloist'
+  const isSoloist  = group.category === 'femaleSoloist' || group.category === 'maleSoloist'
   const genderIcon = group.category === 'girlGroup' || group.category === 'femaleSoloist' ? '♀' : '♂'
 
   return (
@@ -36,9 +36,7 @@ function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }
             src={coverSrc}
             alt={group.name}
             className={styles.tileCoverImg}
-            onError={(e) => {
-              ;(e.currentTarget as HTMLImageElement).style.display = 'none'
-            }}
+            onError={(e) => { ;(e.currentTarget as HTMLImageElement).style.display = 'none' }}
             draggable={false}
           />
         ) : (
@@ -54,10 +52,7 @@ function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }
         <button
           type="button"
           className={styles.tileRemove}
-          onClick={(e) => {
-            e.stopPropagation()
-            onRemove()
-          }}
+          onClick={(e) => { e.stopPropagation(); onRemove() }}
           title={`Retirer ${group.name}`}
         >
           ×
@@ -70,17 +65,16 @@ function ArtistTile({ group, onRemove }: { group: Group; onRemove?: () => void }
 // ─── Composant principal ──────────────────────────────────────────────────────
 
 /**
- * ArtistSelector — sélection des artistes/artistes pour la configuration.
+ * ArtistSelector — sélection des artistes pour la configuration.
  *
  * 3 modes :
  * - Tous       : tous les artistes, aucune sélection personnalisée
- * - Par filtres: filtres génération / catégorie / année / label
+ * - Par filtres : filtres génération (multi) / catégorie (multi) / année / label
  * - Manuel     : EntityAutoSuggest + grille de tiles avec suppression individuelle
  *
  * Règle de mémoire :
  * - La sélection manuelle est conservée indépendamment du mode actif.
- * - Passer en mode "Tous" ou "Par filtres" ne efface pas la sélection manuelle.
- * - "Vider" efface uniquement la sélection manuelle et repasse en mode "Tous".
+ * - "Vider" efface la sélection manuelle mais RESTE en mode Manuel.
  */
 export function ArtistSelector({
   artistMode,
@@ -99,9 +93,8 @@ export function ArtistSelector({
 }: ArtistSelectorProps) {
   // Groupes affichés dans la grille selon le mode actif
   const displayedGroups = useMemo<Group[]>(() => {
-    if (artistMode === 'all') return allGroups
+    if (artistMode === 'all')      return allGroups
     if (artistMode === 'byFilter') return byFilterGroups
-    // Manual : afficher uniquement les artistes sélectionnés manuellement
     return manualSelectedIds.map((id) => allGroups.find((g) => g.id === id)).filter(Boolean) as Group[]
   }, [artistMode, allGroups, byFilterGroups, manualSelectedIds])
 
@@ -114,7 +107,7 @@ export function ArtistSelector({
           ? byFilterGroups.length
           : manualSelectedIds.length
     const suffix = n > 1 ? 's' : ''
-    if (artistMode === 'all') return `${n} artiste${suffix} inclus (tous)`
+    if (artistMode === 'all')      return `${n} artiste${suffix} inclus (tous)`
     if (artistMode === 'byFilter') return `${n} artiste${suffix} correspondant aux filtres`
     return `${n} artiste${suffix} sélectionné${n > 1 ? 's' : ''}`
   }, [artistMode, allGroups.length, byFilterGroups.length, manualSelectedIds.length])
@@ -123,9 +116,13 @@ export function ArtistSelector({
     onArtistModeChange(mode as ArtistSelectionMode)
   }
 
+  /**
+   * FIX : "Vider" efface la sélection manuelle mais reste en mode Manuel.
+   * Avant : appelait onArtistModeChange('all') → forçait le mode Tous.
+   */
   const handleClear = () => {
     onManualSelectionChange([])
-    onArtistModeChange('all')
+    // Ne PAS changer le mode — rester en 'manual' avec 0 groupes sélectionnés
   }
 
   const handleRemoveGroup = (id: string) => {
@@ -146,20 +143,29 @@ export function ArtistSelector({
       {/* Filtres — mode byFilter uniquement */}
       {artistMode === 'byFilter' && (
         <div className={styles.filters}>
+          {/*
+            FIX : génération en multi-select (pas de `single`).
+            Les options disponibles sont calculées par le parent selon les autres filtres.
+            Une sélection vide = toutes les générations.
+          */}
           <FilterBadgeGroupControl
             options={genOptions}
-            value={[filters.gen]}
-            onChange={(v) => onFilterChange({ gen: v[0] ?? 'all' })}
-            single
+            value={filters.gens}
+            onChange={(v) => onFilterChange({ gens: v })}
             size="sm"
           />
+
+          {/*
+            FIX : catégorie en multi-select (pas de `single`).
+            Idem : options intelligentes fournies par le parent.
+          */}
           <FilterBadgeGroupControl
             options={catOptions}
-            value={[filters.cat]}
-            onChange={(v) => onFilterChange({ cat: v[0] ?? 'all' })}
-            single
+            value={filters.cats}
+            onChange={(v) => onFilterChange({ cats: v })}
             size="sm"
           />
+
           <SelectControl
             className={styles.filterSelect}
             value={filters.year}
@@ -196,11 +202,10 @@ export function ArtistSelector({
         </div>
       )}
 
-      {/* En-tête */}
+      {/* En-tête avec compteur + bouton Vider */}
       {displayedGroups.length > 0 && (
         <div className={styles.header}>
           <span className={styles.headerTitle}>{countLabel}</span>
-          {/* Bouton "Vider" — visible si sélection manuelle non vide */}
           {manualSelectedIds.length > 0 && artistMode === 'manual' && (
             <button type="button" className={styles.clearBtn} onClick={handleClear} title="Vider la sélection manuelle">
               🗑 Vider

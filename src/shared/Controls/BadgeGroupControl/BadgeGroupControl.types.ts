@@ -11,6 +11,7 @@ export interface BadgeGroupControlProps<T extends string = string> {
   selectedBadges?: T[]
   onChange: (value: T[]) => void
   groupLabel?: string
+  allOptionLabel?: string
   hintLabel?: string
   isMultiselect?: boolean
   required?: boolean

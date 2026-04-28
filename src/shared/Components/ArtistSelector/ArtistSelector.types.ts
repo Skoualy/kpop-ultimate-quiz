@@ -3,35 +3,37 @@ import type { Group } from '@/shared/models'
 export type ArtistSelectionMode = 'all' | 'byFilter' | 'manual'
 
 export interface ArtistFilterState {
-  gen: string
-  cat: string
-  year: string
+  /** Générations sélectionnées — [] = toutes */
+  gens:  string[]
+  /** Catégories sélectionnées — [] = toutes */
+  cats:  string[]
+  year:  string
   label: string
 }
 
 export interface ArtistSelectorProps {
   /** Mode de sélection courant */
-  artistMode: ArtistSelectionMode
-  onArtistModeChange: (mode: ArtistSelectionMode) => void
+  artistMode:              ArtistSelectionMode
+  onArtistModeChange:      (mode: ArtistSelectionMode) => void
 
   /** IDs sélectionnés manuellement (conservés indépendamment des filtres) */
-  manualSelectedIds: string[]
+  manualSelectedIds:       string[]
   onManualSelectionChange: (ids: string[]) => void
 
   /** Tous les artistes disponibles */
   allGroups: Group[]
-  loading: boolean
+  loading:   boolean
 
   /** Filtres actifs (mode byFilter) */
-  filters: ArtistFilterState
+  filters:        ArtistFilterState
   onFilterChange: (update: Partial<ArtistFilterState>) => void
 
   /** Groupes résultant des filtres courants */
   byFilterGroups: Group[]
 
-  /** Options de filtre disponibles */
-  genOptions: { value: string; label: string }[]
-  catOptions: { value: string; label: string }[]
-  availableYears: string[]
+  /** Options de filtre disponibles — calculées par le parent selon le scope courant */
+  genOptions:      { value: string; label: string }[]
+  catOptions:      { value: string; label: string }[]
+  availableYears:  string[]
   availableLabels: string[]
 }

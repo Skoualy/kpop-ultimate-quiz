@@ -87,7 +87,7 @@
 ### 🔄 UI — Ajouts de nouveaux controls génériques
 
 - [x] Ajout d'un **SegmentedControl** réutilisable
-- [ ] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
+- [x] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
 - [ ] Ajout d'un composant **TilesGrid** réutilisable
 
 ### ✅ Config — Amélioration de la logique des pools
@@ -120,7 +120,7 @@
 ### 🔄 UI - Nommage et correctifs
 
 - [x] Introduire un **placeholder artiste** distinct du placeholder idole pour mieux différencier visuellement les visuels de logo/cover et les portraits.
-- [ ] Remplacer dans l’UI le terme **artiste** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
+- [x] Remplacer dans l’UI le terme **groupe** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
 - [ ] Mettre en place une stratégie **anti-scroll vertical** en jeu basée sur la compaction adaptative de l’interface
 
 ## v0.7 — Blind Test, Smash Or Pass & Amélioration du contributor
@@ -129,8 +129,8 @@
 
 ### Blind Test
 
-- [ ] Blind Test — idoles (révélation de portrait après réponse)
-- [ ] Blind Test — chansons (saisie texte, validation, révélation)
+- [ ] Blind Test — idoles
+- [ ] Blind Test — chansons
 - [ ] Blind Test — mode 1J & 2J
 - [ ] Résumé Blind Test (score, meilleure réponse, erreurs)
 - [ ] Blind Test — filtres catégorie / rôles / type chansons

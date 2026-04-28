@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
 import { useGroupList } from '@/shared/hooks/useGroupList'
@@ -25,8 +25,6 @@ import {
 } from '@/shared/constants'
 import type {
   Group,
-  QuizMode,
-  QuizCategory,
   SaveOneCriterion,
   MemberRole,
   SongType,
@@ -44,8 +42,7 @@ import { SelectControl } from '@/shared/Controls/SelectControl'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type GenFilter = 'all' | Generation
-type CatFilter = 'all' | 'girlGroup' | 'boyGroup' | 'femaleSoloist' | 'maleSoloist' | 'subunit'
+type CatValue = 'all' | 'girlGroup' | 'boyGroup' | 'femaleSoloist' | 'maleSoloist' | 'subunit'
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
@@ -69,8 +66,8 @@ const CRITERIA_LIST: SaveOneCriterion[] = [
   'random',
 ]
 
-const CAT_FILTER_OPTIONS: { value: CatFilter; label: string }[] = [
-  { value: 'all', label: 'Toutes catégories' },
+/** Catégories disponibles sans l'option 'all' — on est en multi-select */
+const CAT_OPTIONS: { value: CatValue; label: string }[] = [
   { value: 'girlGroup', label: 'Girls groups' },
   { value: 'boyGroup', label: 'Boys groups' },
   { value: 'femaleSoloist', label: 'Soloist (F)' },
@@ -86,20 +83,36 @@ const GAME_ROUTES: Record<string, string> = {
   quickVote: '/game/quick-vote',
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// ─── Helpers de filtrage ──────────────────────────────────────────────────────
 
-function applyGroupFilters(groups: Group[], gen: GenFilter, cat: CatFilter, year: string, label: string): Group[] {
-  return groups.filter((g) => {
-    if (gen !== 'all' && g.generation !== gen) return false
-    if (cat === 'girlGroup' && g.category !== 'girlGroup') return false
-    if (cat === 'boyGroup' && g.category !== 'boyGroup') return false
-    if (cat === 'femaleSoloist' && g.category !== 'femaleSoloist') return false
-    if (cat === 'maleSoloist' && g.category !== 'maleSoloist') return false
-    if (cat === 'subunit' && !g.parentGroupId) return false
-    if (year !== 'all' && String(g.debutYear) !== year) return false
-    if (label !== 'all' && g.company !== label) return false
-    return true
-  })
+/**
+ * Vérifie si un groupe passe les filtres gens + cats + year + label.
+ * - gens vide = toutes générations
+ * - cats vide = toutes catégories
+ * - 'subunit' dans cats = groups with parentGroupId
+ */
+function groupMatchesFilter(
+  g: Group,
+  filters: { gens: string[]; cats: string[]; year: string; label: string },
+): boolean {
+  if (filters.gens.length > 0 && !filters.gens.includes(g.generation ?? '')) return false
+
+  if (filters.cats.length > 0) {
+    const matchesCat = filters.cats.some((c) => c !== 'subunit' && c === g.category)
+    const matchesSubunit = filters.cats.includes('subunit') && !!g.parentGroupId
+    if (!matchesCat && !matchesSubunit) return false
+  }
+
+  if (filters.year !== 'all' && String(g.debutYear) !== filters.year) return false
+  if (filters.label !== 'all' && g.company !== filters.label) return false
+  return true
+}
+
+function applyGroupFilters(
+  groups: Group[],
+  filters: { gens: string[]; cats: string[]; year: string; label: string },
+): Group[] {
+  return groups.filter((g) => groupMatchesFilter(g, filters))
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -118,21 +131,19 @@ export default function ConfigPage() {
   const isCustom = config.gamePlayMode === 'custom'
 
   // ── Mode sélection artistes ───────────────────────────────────────────────
-  // artistMode : mode UI courant (ne dépend pas directement de config.selectedGroupIds)
+
   const [artistMode, setArtistMode] = useState<'all' | 'byFilter' | 'manual'>(() =>
     config.selectedGroupIds.length === 0 ? 'all' : 'manual',
   )
 
-  // FIXE BUG : La sélection manuelle est conservée en état local indépendant.
-  // Passer en mode "Tous" ou "Par filtres" NE purge plus manualSelectedIds.
-  // Seul le bouton "Vider" (dans ArtistSelector) efface cette sélection.
+  // Sélection manuelle conservée indépendamment du mode actif
   const [manualSelectedIds, setManualSelectedIds] = useState<string[]>(config.selectedGroupIds)
 
-  // ── Filtres artistes ──────────────────────────────────────────────────────
+  // ── Filtres artistes — gens et cats sont des tableaux (multi-select) ──────
 
   const [artistFilters, setArtistFilters] = useState<ArtistFilterState>({
-    gen: 'all',
-    cat: 'all',
+    gens: [], // [] = toutes génération
+    cats: [], // [] = toutes catégories
     year: 'all',
     label: 'all',
   })
@@ -151,8 +162,24 @@ export default function ConfigPage() {
     prepare,
   } = useConfigPreparation(config, patchConfig)
 
-  // max clamped pour le slider Rounds — reset dès que la config change (status != 'adjusted')
-  const roundsClampedMax = prepStatus === 'adjusted' && prepResult ? prepResult.maxRounds : undefined
+  /**
+   * FIX slider Rounds : clamp géré en état local pour persister même quand
+   * prepStatus retourne à 'idle' suite à un changement de rounds.
+   *
+   * Règle :
+   * - 'adjusted' → mémoriser le clamp
+   * - 'loading' | 'valid' | 'invalid' → effacer le clamp (nouvelle validation)
+   * - 'idle' → ne pas toucher (peut venir d'un simple changement de rounds)
+   */
+  const [roundsClampedMax, setRoundsClampedMax] = useState<number | undefined>(undefined)
+  useEffect(() => {
+    if (prepStatus === 'adjusted' && prepResult) {
+      setRoundsClampedMax(prepResult.maxRounds)
+    } else if (prepStatus === 'loading' || prepStatus === 'valid' || prepStatus === 'invalid') {
+      setRoundsClampedMax(undefined)
+    }
+    // 'idle' → ne pas toucher
+  }, [prepStatus, prepResult])
 
   // ── Validation 2 joueurs ──────────────────────────────────────────────────
 
@@ -160,53 +187,74 @@ export default function ConfigPage() {
   const p2Empty = config.twoPlayerMode && !config.player2Name.trim()
   const twoPlayerInvalid = config.twoPlayerMode && (p1Empty || p2Empty)
 
-  // ── Groupes dérivés ───────────────────────────────────────────────────────
+  // ── Groupes de base ───────────────────────────────────────────────────────
 
   const allGroups = useMemo(() => [...(groups ?? [])].sort((a, b) => a.name.localeCompare(b.name)), [groups])
 
-  const availableGens = useMemo<GenFilter[]>(() => {
-    const gens = new Set<Generation>(allGroups.map((g) => g.generation as Generation))
+  // ── Groupes filtrés ───────────────────────────────────────────────────────
+
+  const byFilterGroups = useMemo(() => applyGroupFilters(allGroups, artistFilters), [allGroups, artistFilters])
+
+  // ── Options intelligentes — chaque filtre est recalculé sans lui-même ─────
+
+  /**
+   * Générations disponibles = gens présentes dans les groupes passant
+   * [cats, year, label] — tous les filtres SAUF gens.
+   */
+  const genFilterOptions = useMemo(() => {
+    const partial = { gens: [], cats: artistFilters.cats, year: artistFilters.year, label: artistFilters.label }
+    const gens = new Set<string>()
+    for (const g of allGroups) {
+      if (groupMatchesFilter(g, partial) && g.generation) gens.add(g.generation)
+    }
     const order: Generation[] = ['1', '2', '3', '4', '5']
-    return [defaultOptionValue, ...order.filter((g) => gens.has(g))]
-  }, [allGroups])
+    return order.filter((gen) => gens.has(gen)).map((gen) => ({ value: gen, label: `Gen ${gen}` }))
+  }, [allGroups, artistFilters.cats, artistFilters.year, artistFilters.label])
 
+  /**
+   * Catégories disponibles = cats présentes dans les groupes passant
+   * [gens, year, label] — tous les filtres SAUF cats.
+   */
+  const catFilterOptions = useMemo(() => {
+    const partial = { gens: artistFilters.gens, cats: [], year: artistFilters.year, label: artistFilters.label }
+    const catSet = new Set<string>()
+    let hasSubunit = false
+    for (const g of allGroups) {
+      if (!groupMatchesFilter(g, partial)) continue
+      catSet.add(g.category)
+      if (g.parentGroupId) hasSubunit = true
+    }
+    return CAT_OPTIONS.filter((o) => {
+      if (o.value === 'subunit') return hasSubunit
+      return catSet.has(o.value)
+    })
+  }, [allGroups, artistFilters.gens, artistFilters.year, artistFilters.label])
+
+  /**
+   * Années disponibles = années présentes dans les groupes passant
+   * [gens, cats, label] — tous les filtres SAUF year.
+   */
   const availableYears = useMemo(() => {
-    const years = [...new Set(allGroups.map((g) => String(g.debutYear)))].sort()
-    return [...years]
-  }, [allGroups])
+    const partial = { gens: artistFilters.gens, cats: artistFilters.cats, year: 'all', label: artistFilters.label }
+    const years = new Set<string>()
+    for (const g of allGroups) {
+      if (groupMatchesFilter(g, partial) && g.debutYear) years.add(String(g.debutYear))
+    }
+    return [...years].sort()
+  }, [allGroups, artistFilters.gens, artistFilters.cats, artistFilters.label])
 
+  /**
+   * Labels disponibles = labels présents dans les groupes passant
+   * [gens, cats, year] — tous les filtres SAUF label.
+   */
   const availableLabels = useMemo(() => {
-    const labels = [...new Set(allGroups.map((g) => g.company).filter(Boolean))].sort()
-    return [...labels]
-  }, [allGroups])
-
-  const genFilterOptions = useMemo(
-    () => availableGens.map((g) => ({ value: g, label: g === defaultOptionValue ? 'Toutes gen.' : `Gen ${g}` })),
-    [availableGens],
-  )
-
-  const availableCatOptions = useMemo(() => {
-    const cats = new Set(allGroups.map((g) => g.category))
-    const hasSubunit = allGroups.some((g) => !!g.parentGroupId)
-    return CAT_FILTER_OPTIONS.filter(
-      (o) =>
-        o.value === defaultOptionValue ||
-        cats.has(o.value as Group['category']) ||
-        (o.value === 'subunit' && hasSubunit),
-    )
-  }, [allGroups])
-
-  const byFilterGroups = useMemo(
-    () =>
-      applyGroupFilters(
-        allGroups,
-        artistFilters.gen as GenFilter,
-        artistFilters.cat as CatFilter,
-        artistFilters.year,
-        artistFilters.label,
-      ),
-    [allGroups, artistFilters],
-  )
+    const partial = { gens: artistFilters.gens, cats: artistFilters.cats, year: artistFilters.year, label: 'all' }
+    const labels = new Set<string>()
+    for (const g of allGroups) {
+      if (groupMatchesFilter(g, partial) && g.company) labels.add(g.company)
+    }
+    return [...labels].sort()
+  }, [allGroups, artistFilters.gens, artistFilters.cats, artistFilters.year])
 
   const availableRoles = useMemo(() => getAvailableRolesForCriterion(config.criterion, ROLES), [config.criterion])
 
@@ -230,11 +278,6 @@ export default function ConfigPage() {
     setConfig({ criterion, roleFilters: filterRolesForCriterion(config.roleFilters, criterion, ROLES) })
   }
 
-  /**
-   * Gestion du changement de mode de sélection artiste.
-   * La sélection manuelle (manualSelectedIds) est toujours conservée.
-   * config.selectedGroupIds est mis à jour selon le mode actif.
-   */
   function handleArtistModeChange(mode: 'all' | 'byFilter' | 'manual') {
     setArtistMode(mode)
     if (mode === 'all') {
@@ -242,31 +285,47 @@ export default function ConfigPage() {
     } else if (mode === 'byFilter') {
       setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
     } else {
-      // Mode manuel → rétablir la sélection manuelle mémorisée
       setConfig({ selectedGroupIds: manualSelectedIds })
     }
   }
 
+  /**
+   * Changement de filtre avec nettoyage automatique des valeurs devenues hors-scope.
+   * Si on change gens/cats, on vérifie que year et label sont toujours valides.
+   * Si on change year/label, on vérifie que gens/cats sont toujours valides.
+   */
   function handleFilterChange(update: Partial<ArtistFilterState>) {
     const newFilters = { ...artistFilters, ...update }
+
+    // Nettoyage cross-filtre
+    if (update.gens !== undefined || update.cats !== undefined) {
+      // Vérifier year
+      if (newFilters.year !== 'all') {
+        const p = { gens: newFilters.gens, cats: newFilters.cats, year: 'all', label: newFilters.label }
+        const valid = new Set(allGroups.filter((g) => groupMatchesFilter(g, p)).map((g) => String(g.debutYear)))
+        if (!valid.has(newFilters.year)) newFilters.year = 'all'
+      }
+      // Vérifier label
+      if (newFilters.label !== 'all') {
+        const p = { gens: newFilters.gens, cats: newFilters.cats, year: newFilters.year, label: 'all' }
+        const valid = new Set(
+          allGroups
+            .filter((g) => groupMatchesFilter(g, p))
+            .map((g) => g.company)
+            .filter(Boolean),
+        )
+        if (!valid.has(newFilters.label)) newFilters.label = 'all'
+      }
+    }
+
     setArtistFilters(newFilters)
 
     if (artistMode === 'byFilter') {
-      const filtered = applyGroupFilters(
-        allGroups,
-        newFilters.gen as GenFilter,
-        newFilters.cat as CatFilter,
-        newFilters.year,
-        newFilters.label,
-      )
+      const filtered = applyGroupFilters(allGroups, newFilters)
       setConfig({ selectedGroupIds: filtered.map((g) => g.id) })
     }
   }
 
-  /**
-   * Mise à jour de la sélection manuelle.
-   * Met à jour manualSelectedIds ET config.selectedGroupIds (si en mode manuel).
-   */
   function handleManualSelectionChange(ids: string[]) {
     setManualSelectedIds(ids)
     if (artistMode === 'manual') {
@@ -323,7 +382,7 @@ export default function ConfigPage() {
               <span className={styles.fieldLabel}>Type de quiz</span>
               <SelectControl
                 value={config.mode}
-                onChange={(value) => setConfig({ mode: value as QuizMode })}
+                onChange={(value) => setConfig({ mode: value as GameConfig['mode'] })}
                 options={QUIZ_TYPES_OPTIONS}
               />
             </div>
@@ -331,7 +390,7 @@ export default function ConfigPage() {
               <span className={styles.fieldLabel}>Catégorie</span>
               <SelectControl
                 value={config.category}
-                onChange={(value) => setConfig({ category: value as QuizCategory })}
+                onChange={(value) => setConfig({ category: value as GameConfig['category'] })}
                 options={QUIZ_CATEGORIES_OPTIONS}
               />
             </div>
@@ -377,7 +436,7 @@ export default function ConfigPage() {
               {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
             </div>
 
-            {/* Rounds — avec feedback de bridage si la préparation a clamped */}
+            {/* Rounds — clampedMax persistant même après changement de rounds */}
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Rounds</span>
               <SliderControl
@@ -387,7 +446,7 @@ export default function ConfigPage() {
                 max={20}
                 clampedMax={roundsClampedMax}
                 onClampReset={() => {
-                  /* Le clamp est reset quand prepStatus change via useConfigPreparation */
+                  /* reset géré par useEffect prepStatus */
                 }}
               />
             </div>
@@ -408,6 +467,7 @@ export default function ConfigPage() {
                 {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
               </div>
             )}
+
             {/* Mode 2 joueurs */}
             <div>
               <div className={styles.twoPlayerRow}>
@@ -451,10 +511,8 @@ export default function ConfigPage() {
       {/* ══ OPTIONS SUPPLÉMENTAIRES (Personnalisé) ══ */}
       {isCustom && (
         <>
-          <div className={styles.section}>
-            <p className={styles.sectionTitle}>Options supplémentaires</p>
-
-            {(isIdols || isSongs) && (
+          {(isIdols || isSongs) && (
+            <div className={styles.section}>
               <ConfigCard>
                 <div className={styles.advancedSection}>
                   {isIdols && (
@@ -469,9 +527,7 @@ export default function ConfigPage() {
                         />
                       </div>
                       <div className={styles.optionGroup}>
-                        <span className={styles.fieldLabel}>
-                          Rôles <span className={styles.fieldHint}>(plusieurs sélections possible)</span>
-                        </span>
+                        <span className={styles.fieldLabel}>Rôles</span>
                         <BadgeGroupControl<RoleCriterion>
                           options={[
                             { value: defaultOptionValue, label: 'Tous' },
@@ -519,23 +575,22 @@ export default function ConfigPage() {
                   )}
                 </div>
               </ConfigCard>
-            )}
-          </div>
+            </div>
+          )}
           <div className={styles.section}>
             <p className={styles.sectionTitle}>Sélection des artistes</p>
-            {/* Sélection des artistes — composant partagé */}
             <ArtistSelector
               artistMode={artistMode}
               onArtistModeChange={handleArtistModeChange}
               manualSelectedIds={manualSelectedIds}
               onManualSelectionChange={handleManualSelectionChange}
               allGroups={allGroups}
-              loading={!!loading}
+              loading={loading}
               filters={artistFilters}
               onFilterChange={handleFilterChange}
               byFilterGroups={byFilterGroups}
               genOptions={genFilterOptions}
-              catOptions={availableCatOptions}
+              catOptions={catFilterOptions}
               availableYears={availableYears}
               availableLabels={availableLabels}
             />
