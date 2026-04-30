@@ -7,16 +7,21 @@ import { ToggleControl } from '@/shared/Controls/ToggleControl'
 import { BadgeGroupControl } from '@/shared/Controls/BadgeGroupControl'
 import { SegmentedControl } from '@/shared/Controls/SegmentedControl'
 import { SliderControl } from '@/shared/Controls/SliderControl'
+import { SelectControl } from '@/shared/Controls/SelectControl'
 import { ConfigCard } from '@/shared/PureComponents/ConfigCard'
 import { ArtistSelector } from '@/shared/Components/ArtistSelector'
 import type { ArtistFilterState } from '@/shared/Components/ArtistSelector'
 import {
+  ALL_OPTION_VALUE,
   ROLES,
   ROLE_LABELS,
+  CRITERIA,
   CRITERIA_LABELS,
+  LANGUAGE_OPTIONS,
   GAME_PLAY_MODES,
   GAME_PLAY_MODE_MAP,
   TIMER_OPTIONS,
+  SONG_TYPE_OPTIONS,
   getAvailableRolesForCriterion,
   filterRolesForCriterion,
   DROPS_OPTIONS,
@@ -25,49 +30,21 @@ import {
 } from '@/shared/constants'
 import type {
   Group,
+  GroupCategory,
   SaveOneCriterion,
   MemberRole,
   SongType,
-  Generation,
-  RoleCriterion,
-  GameConfig,
   LanguageOption,
+  GameConfig,
+  GamePlayMode,
 } from '@/shared/models'
 import { useConfigPreparation, type PreparationStatus } from '@/shared/hooks/useConfigPreparation'
 import type { MaxRoundsResult } from '@/features/save-one/helpers/poolScopeRules'
-import type { GamePlayMode } from '@/shared/constants'
 import styles from './ConfigPage.module.scss'
-import { ConfigPageServices } from './ConfigPage.services'
-import { SelectControl } from '@/shared/Controls/SelectControl'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// ─── Constantes locales ───────────────────────────────────────────────────────
 
-type CatValue = 'all' | 'girlGroup' | 'boyGroup' | 'femaleSoloist' | 'maleSoloist' | 'subunit'
-
-// ─── Constantes ───────────────────────────────────────────────────────────────
-
-const defaultOptionValue = 'all'
-
-const SONG_TYPE_OPTIONS: { value: SongType; label: string }[] = [
-  { value: 'all', label: 'Tous' },
-  { value: 'titles', label: 'Titles' },
-  { value: 'bSides', label: 'B-sides' },
-  { value: 'debutSongs', label: 'Debut songs' },
-]
-
-const CRITERIA_LIST: SaveOneCriterion[] = [
-  'all',
-  'beauty',
-  'personality',
-  'voice',
-  'performance',
-  'leadership',
-  'aegyo',
-  'random',
-]
-
-/** Catégories disponibles sans l'option 'all' — on est en multi-select */
-const CAT_OPTIONS: { value: CatValue; label: string }[] = [
+const CAT_OPTIONS: { value: GroupCategory | 'subunit'; label: string }[] = [
   { value: 'girlGroup', label: 'Girls groups' },
   { value: 'boyGroup', label: 'Boys groups' },
   { value: 'femaleSoloist', label: 'Soloist (F)' },
@@ -75,36 +52,26 @@ const CAT_OPTIONS: { value: CatValue; label: string }[] = [
   { value: 'subunit', label: 'Sub-unit' },
 ]
 
-const songLanguageOptions = ConfigPageServices.buildSongLanguageOptions()
-
 const GAME_ROUTES: Record<string, string> = {
   saveOne: '/game/save-one',
   blindTest: '/game/blind-test',
   quickVote: '/game/quick-vote',
 }
 
-// ─── Helpers de filtrage ──────────────────────────────────────────────────────
+// ─── Helpers filtrage artistes ────────────────────────────────────────────────
 
-/**
- * Vérifie si un groupe passe les filtres gens + cats + year + label.
- * - gens vide = toutes générations
- * - cats vide = toutes catégories
- * - 'subunit' dans cats = groups with parentGroupId
- */
 function groupMatchesFilter(
   g: Group,
   filters: { gens: string[]; cats: string[]; year: string; label: string },
 ): boolean {
   if (filters.gens.length > 0 && !filters.gens.includes(g.generation ?? '')) return false
-
   if (filters.cats.length > 0) {
     const matchesCat = filters.cats.some((c) => c !== 'subunit' && c === g.category)
     const matchesSubunit = filters.cats.includes('subunit') && !!g.parentGroupId
     if (!matchesCat && !matchesSubunit) return false
   }
-
-  if (filters.year !== 'all' && String(g.debutYear) !== filters.year) return false
-  if (filters.label !== 'all' && g.company !== filters.label) return false
+  if (filters.year !== ALL_OPTION_VALUE && String(g.debutYear) !== filters.year) return false
+  if (filters.label !== ALL_OPTION_VALUE && g.company !== filters.label) return false
   return true
 }
 
@@ -130,105 +97,78 @@ export default function ConfigPage() {
   const playMode = GAME_PLAY_MODE_MAP[config.gamePlayMode]
   const isCustom = config.gamePlayMode === 'custom'
 
-  // ── Mode sélection artistes ───────────────────────────────────────────────
+  // ── Sélection artistes ────────────────────────────────────────────────────
 
   const [artistMode, setArtistMode] = useState<'all' | 'byFilter' | 'manual'>(() =>
     config.selectedGroupIds.length === 0 ? 'all' : 'manual',
   )
 
-  // Sélection manuelle conservée indépendamment du mode actif
   const [manualSelectedIds, setManualSelectedIds] = useState<string[]>(config.selectedGroupIds)
 
-  // ── Filtres artistes — gens et cats sont des tableaux (multi-select) ──────
-
   const [artistFilters, setArtistFilters] = useState<ArtistFilterState>({
-    gens: [], // [] = toutes génération
-    cats: [], // [] = toutes catégories
-    year: 'all',
-    label: 'all',
+    gens: [],
+    cats: [],
+    year: ALL_OPTION_VALUE,
+    label: ALL_OPTION_VALUE,
   })
 
-  // ── Préparation ───────────────────────────────────────────────────────────
+  const allGroups = useMemo(() => [...(groups ?? [])].sort((a, b) => a.name.localeCompare(b.name)), [groups])
 
-  function patchConfig(patch: Partial<GameConfig>) {
-    setConfig(patch)
-  }
+  const byFilterGroups = useMemo(() => applyGroupFilters(allGroups, artistFilters), [allGroups, artistFilters])
+
+  // Sync selectedGroupIds dans la config selon le mode actif
+  useEffect(() => {
+    if (artistMode === 'all') setConfig({ selectedGroupIds: [] })
+    else if (artistMode === 'byFilter') setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
+    else setConfig({ selectedGroupIds: manualSelectedIds })
+  }, [artistMode, byFilterGroups, manualSelectedIds])
+
+  // ── Préparation (mode Personnalisé) ───────────────────────────────────────
+  //
+  // useConfigPreparation(config, setConfig) — signature réelle du hook :
+  //   { prepared, status, result, errorMessage, prepare }
+  // 'error' n'est PAS un PreparationStatus valide → utiliser 'invalid'
 
   const {
-    prepared,
     status: prepStatus,
     result: prepResult,
     errorMessage: prepError,
     prepare,
-  } = useConfigPreparation(config, patchConfig)
+  } = useConfigPreparation(config, setConfig)
 
-  /**
-   * FIX slider Rounds : clamp géré en état local pour persister même quand
-   * prepStatus retourne à 'idle' suite à un changement de rounds.
-   *
-   * Règle :
-   * - 'adjusted' → mémoriser le clamp
-   * - 'loading' | 'valid' | 'invalid' → effacer le clamp (nouvelle validation)
-   * - 'idle' → ne pas toucher (peut venir d'un simple changement de rounds)
-   */
-  const [roundsClampedMax, setRoundsClampedMax] = useState<number | undefined>(undefined)
-  useEffect(() => {
-    if (prepStatus === 'adjusted' && prepResult) {
-      setRoundsClampedMax(prepResult.maxRounds)
-    } else if (prepStatus === 'loading' || prepStatus === 'valid' || prepStatus === 'invalid') {
-      setRoundsClampedMax(undefined)
-    }
-    // 'idle' → ne pas toucher
-  }, [prepStatus, prepResult])
-
-  // ── Validation 2 joueurs ──────────────────────────────────────────────────
+  const canLaunch = prepStatus === 'valid' || prepStatus === 'adjusted'
 
   const p1Empty = config.twoPlayerMode && !config.player1Name.trim()
   const p2Empty = config.twoPlayerMode && !config.player2Name.trim()
   const twoPlayerInvalid = config.twoPlayerMode && (p1Empty || p2Empty)
 
-  // ── Groupes de base ───────────────────────────────────────────────────────
+  // Mémorise le max rounds clamped pour le slider
+  const [roundsClampedMax, setRoundsClampedMax] = useState<number | undefined>(undefined)
+  useEffect(() => {
+    if (prepStatus === 'adjusted' && prepResult) {
+      setRoundsClampedMax(prepResult.maxRounds)
+    } else if (['loading', 'valid', 'invalid'].includes(prepStatus)) {
+      setRoundsClampedMax(undefined)
+    }
+  }, [prepStatus, prepResult])
 
-  const allGroups = useMemo(() => [...(groups ?? [])].sort((a, b) => a.name.localeCompare(b.name)), [groups])
+  // ── Handlers ──────────────────────────────────────────────────────────────
 
-  // ── Groupes filtrés ───────────────────────────────────────────────────────
+  function handlePlayModeChange(mode: GamePlayMode) {
+    const m = GAME_PLAY_MODE_MAP[mode]
+    setConfig({ gamePlayMode: mode, timerSeconds: m.timerDefault, clipDuration: m.clipDefault })
+  }
 
-  const byFilterGroups = useMemo(() => applyGroupFilters(allGroups, artistFilters), [allGroups, artistFilters])
+  function handleCriterionChange(criterion: SaveOneCriterion) {
+    setConfig({ criterion, roleFilters: filterRolesForCriterion(config.roleFilters, criterion, ROLES) })
+  }
 
-  // ── Options intelligentes — chaque filtre est recalculé sans lui-même ─────
+  const availableRoles = useMemo(() => getAvailableRolesForCriterion(config.criterion, ROLES), [config.criterion])
 
-  /**
-   * Générations disponibles = gens présentes dans les groupes passant
-   * [cats, year, label] — tous les filtres SAUF gens.
-   */
   const genFilterOptions = useMemo(() => {
-    const partial = { gens: [], cats: artistFilters.cats, year: artistFilters.year, label: artistFilters.label }
-    const gens = new Set<string>()
-    for (const g of allGroups) {
-      if (groupMatchesFilter(g, partial) && g.generation) gens.add(g.generation)
-    }
-    const order: Generation[] = ['1', '2', '3', '4', '5']
-    return order.filter((gen) => gens.has(gen)).map((gen) => ({ value: gen, label: `Gen ${gen}` }))
-  }, [allGroups, artistFilters.cats, artistFilters.year, artistFilters.label])
-
-  /**
-   * Catégories disponibles = cats présentes dans les groupes passant
-   * [gens, year, label] — tous les filtres SAUF cats.
-   */
-  const catFilterOptions = useMemo(() => {
-    const partial = { gens: artistFilters.gens, cats: [], year: artistFilters.year, label: artistFilters.label }
-    const catSet = new Set<string>()
-    let hasSubunit = false
-    for (const g of allGroups) {
-      if (!groupMatchesFilter(g, partial)) continue
-      catSet.add(g.category)
-      if (g.parentGroupId) hasSubunit = true
-    }
-    return CAT_OPTIONS.filter((o) => {
-      if (o.value === 'subunit') return hasSubunit
-      return catSet.has(o.value)
-    })
-  }, [allGroups, artistFilters.gens, artistFilters.year, artistFilters.label])
+    const gens = new Set(allGroups.map((g) => g.generation).filter(Boolean))
+    return [...gens].sort().map((gen) => ({ value: gen as string, label: `Gen ${gen}` }))
+  }, [allGroups])
 
   /**
    * Années disponibles = années présentes dans les groupes passant
@@ -256,104 +196,35 @@ export default function ConfigPage() {
     return [...labels].sort()
   }, [allGroups, artistFilters.gens, artistFilters.cats, artistFilters.year])
 
-  const availableRoles = useMemo(() => getAvailableRolesForCriterion(config.criterion, ROLES), [config.criterion])
+  // const availableYears = useMemo(() => {
+  //   const years = new Set(allGroups.map((g) => String(g.debutYear)))
+  //   return [...years].sort((a, b) => Number(b) - Number(a))
+  // }, [allGroups])
 
-  // ── Handlers ──────────────────────────────────────────────────────────────
+  // const availableLabels = useMemo(() => {
+  //   const labels = new Set(allGroups.map((g) => g.company).filter(Boolean))
+  //   return [...labels].sort()
+  // }, [allGroups])
 
-  function handlePlayModeChange(mode: GamePlayMode) {
-    const preset = GAME_PLAY_MODE_MAP[mode]
-    setConfig({ gamePlayMode: mode, timerSeconds: preset.timerDefault, clipDuration: preset.clipDefault })
-  }
-
-  function handleTwoPlayerToggle(v: boolean) {
-    const patch: Partial<GameConfig> = { twoPlayerMode: v }
-    if (v) {
-      if (!config.player1Name.trim()) patch.player1Name = 'Joueur 1'
-      if (!config.player2Name.trim()) patch.player2Name = 'Joueur 2'
-    }
-    setConfig(patch)
-  }
-
-  function handleCriterionChange(criterion: SaveOneCriterion) {
-    setConfig({ criterion, roleFilters: filterRolesForCriterion(config.roleFilters, criterion, ROLES) })
-  }
-
-  function handleArtistModeChange(mode: 'all' | 'byFilter' | 'manual') {
-    setArtistMode(mode)
-    if (mode === 'all') {
-      setConfig({ selectedGroupIds: [] })
-    } else if (mode === 'byFilter') {
-      setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
-    } else {
-      setConfig({ selectedGroupIds: manualSelectedIds })
-    }
-  }
-
-  /**
-   * Changement de filtre avec nettoyage automatique des valeurs devenues hors-scope.
-   * Si on change gens/cats, on vérifie que year et label sont toujours valides.
-   * Si on change year/label, on vérifie que gens/cats sont toujours valides.
-   */
-  function handleFilterChange(update: Partial<ArtistFilterState>) {
-    const newFilters = { ...artistFilters, ...update }
-
-    // Nettoyage cross-filtre
-    if (update.gens !== undefined || update.cats !== undefined) {
-      // Vérifier year
-      if (newFilters.year !== 'all') {
-        const p = { gens: newFilters.gens, cats: newFilters.cats, year: 'all', label: newFilters.label }
-        const valid = new Set(allGroups.filter((g) => groupMatchesFilter(g, p)).map((g) => String(g.debutYear)))
-        if (!valid.has(newFilters.year)) newFilters.year = 'all'
-      }
-      // Vérifier label
-      if (newFilters.label !== 'all') {
-        const p = { gens: newFilters.gens, cats: newFilters.cats, year: newFilters.year, label: 'all' }
-        const valid = new Set(
-          allGroups
-            .filter((g) => groupMatchesFilter(g, p))
-            .map((g) => g.company)
-            .filter(Boolean),
-        )
-        if (!valid.has(newFilters.label)) newFilters.label = 'all'
-      }
-    }
-
-    setArtistFilters(newFilters)
-
-    if (artistMode === 'byFilter') {
-      const filtered = applyGroupFilters(allGroups, newFilters)
-      setConfig({ selectedGroupIds: filtered.map((g) => g.id) })
-    }
-  }
-
-  function handleManualSelectionChange(ids: string[]) {
-    setManualSelectedIds(ids)
-    if (artistMode === 'manual') {
-      setConfig({ selectedGroupIds: ids })
-    }
-  }
-
-  // ── canLaunch + launch ────────────────────────────────────────────────────
-
-  const canLaunch = !twoPlayerInvalid && (isCustom ? prepared : true)
+  const catFilterOptions = CAT_OPTIONS as { value: string; label: string }[]
 
   function launch() {
-    if (!canLaunch) return
-    navigate(GAME_ROUTES[config.mode] ?? '/game/save-one')
+    const route = GAME_ROUTES[config.mode]
+    if (route) navigate(route)
   }
 
   // ── Render ────────────────────────────────────────────────────────────────
 
   return (
     <PageContainer>
-      {/* ── Header ── */}
+      {/* ══ En-tête ══ */}
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Configuration</h1>
         <div className={styles.pageHeaderActions}>
-          <button className="btn btn--secondary" onClick={resetConfig}>
+          <button className="btn btn--secondary btn--md" onClick={resetConfig}>
             Reset config
           </button>
-          {isCustom && !prepared ? (
+          {!canLaunch ? (
             <button
               className="btn btn--primary"
               onClick={prepare}
@@ -363,17 +234,17 @@ export default function ConfigPage() {
               {prepStatus === 'loading' ? '⏳ Vérification…' : '🔍 Préparer la partie'}
             </button>
           ) : (
-            <button className="btn btn--primary" onClick={launch} disabled={!canLaunch} style={{ minWidth: 180 }}>
+            <button className="btn btn--primary" onClick={launch} style={{ minWidth: 180 }}>
               ▶ Lancer la partie
             </button>
           )}
         </div>
       </div>
 
-      {/* ── Bandeau préparation ── */}
-      {isCustom && <PrepBanner status={prepStatus} result={prepResult} error={prepError} styles={styles} />}
+      {/* Bandeau de préparation (mode Personnalisé uniquement) */}
+      {isCustom && <PrepBanner status={prepStatus} result={prepResult} errorMessage={prepError} styles={styles} />}
 
-      {/* ══ CHOIX DU JEU ══ */}
+      {/* ══ Choix du jeu ══ */}
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Choix du jeu</p>
         <ConfigCard>
@@ -382,7 +253,7 @@ export default function ConfigPage() {
               <span className={styles.fieldLabel}>Type de quiz</span>
               <SelectControl
                 value={config.mode}
-                onChange={(value) => setConfig({ mode: value as GameConfig['mode'] })}
+                onChange={(v) => setConfig({ mode: v as GameConfig['mode'] })}
                 options={QUIZ_TYPES_OPTIONS}
               />
             </div>
@@ -390,7 +261,7 @@ export default function ConfigPage() {
               <span className={styles.fieldLabel}>Catégorie</span>
               <SelectControl
                 value={config.category}
-                onChange={(value) => setConfig({ category: value as GameConfig['category'] })}
+                onChange={(v) => setConfig({ category: v as GameConfig['category'] })}
                 options={QUIZ_CATEGORIES_OPTIONS}
               />
             </div>
@@ -398,117 +269,114 @@ export default function ConfigPage() {
               <span className={styles.fieldLabel}>Mode de jeu</span>
               <SelectControl
                 value={config.gamePlayMode}
-                onChange={(value) => handlePlayModeChange(value as GamePlayMode)}
-                options={GAME_PLAY_MODES}
+                onChange={(v) => handlePlayModeChange(v as GamePlayMode)}
+                options={GAME_PLAY_MODES.map((m) => ({ value: m.value, label: m.label }))}
               />
             </div>
           </div>
         </ConfigCard>
       </div>
 
-      {/* ══ OPTIONS DE LA PARTIE ══ */}
+      {/* ══ Options de la partie ══ */}
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Options de la partie</p>
         <ConfigCard>
-          <div className={styles.fieldsRow}>
-            {/* Drops — Save One uniquement */}
-            {isSaveOne && (
-              <div className={styles.field}>
-                <span className={styles.fieldLabel}>Drops</span>
-                <SegmentedControl
-                  value={config.drops.toString()}
-                  options={DROPS_OPTIONS}
-                  onChange={(v) => setConfig({ drops: parseInt(v) })}
-                />
-              </div>
-            )}
-
-            {/* Timer — SegmentedControl */}
-            <div
-              className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : ''].filter(Boolean).join(' ')}
-            >
-              <span className={styles.fieldLabel}>Timer</span>
-              <SegmentedControl
-                value={playMode.timerEditable ? config.timerSeconds.toString() : playMode.timerDefault.toString()}
-                options={TIMER_OPTIONS}
-                onChange={(v) => setConfig({ timerSeconds: parseInt(v) })}
-              />
-              {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
-            </div>
-
-            {/* Rounds — clampedMax persistant même après changement de rounds */}
-            <div className={styles.field}>
-              <span className={styles.fieldLabel}>Rounds</span>
-              <SliderControl
-                value={config.rounds}
-                onChange={(v) => setConfig({ rounds: v })}
-                min={2}
-                max={20}
-                clampedMax={roundsClampedMax}
-                onClampReset={() => {
-                  /* reset géré par useEffect prepStatus */
-                }}
-              />
-            </div>
-
-            {/* Durée extrait — chansons uniquement */}
-            {isSongs && (
+          {/* Ligne 1 : compacts (Drops + Timer) + sliders (Rounds + Durée) */}
+          <div className={styles.optionsTopRow}>
+            <div className={styles.optionsCompact}>
+              {isSaveOne && (
+                <div className={styles.field}>
+                  <span className={styles.fieldLabel}>Drops</span>
+                  <SegmentedControl
+                    value={config.drops.toString()}
+                    options={DROPS_OPTIONS}
+                    onChange={(v) => setConfig({ drops: parseInt(v) })}
+                  />
+                </div>
+              )}
               <div
-                className={[styles.field, !playMode.clipEditable ? styles.fieldDisabled : ''].filter(Boolean).join(' ')}
+                className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : '']
+                  .filter(Boolean)
+                  .join(' ')}
               >
-                <span className={styles.fieldLabel}>Durée des extraits</span>
-                <SliderControl
-                  value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
-                  onChange={(v) => setConfig({ clipDuration: v })}
-                  min={1}
-                  max={15}
-                  disabled={!playMode.clipEditable}
+                <span className={styles.fieldLabel}>Timer</span>
+                <SegmentedControl
+                  value={playMode.timerEditable ? config.timerSeconds.toString() : playMode.timerDefault.toString()}
+                  options={TIMER_OPTIONS}
+                  onChange={(v) => setConfig({ timerSeconds: parseInt(v) })}
                 />
-                {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
+                {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
               </div>
-            )}
+            </div>
 
-            {/* Mode 2 joueurs */}
-            <div>
-              <div className={styles.twoPlayerRow}>
-                <div className={styles.twoPlayerLeft}>
-                  <span className={styles.fieldLabel}>Mode 2 joueurs</span>
-                  <ToggleControl checked={config.twoPlayerMode} onChange={handleTwoPlayerToggle} />
-                  <span className={styles.twoPlayerDesc}>
-                    Permet à deux joueurs de répondre chacun leur tour lors d'une partie.
-                  </span>
+            <div className={styles.optionsSliders}>
+              <div className={styles.field}>
+                <span className={styles.fieldLabel}>Rounds</span>
+                <SliderControl
+                  value={config.rounds}
+                  onChange={(v) => setConfig({ rounds: v })}
+                  min={2}
+                  max={20}
+                  clampedMax={roundsClampedMax}
+                  onClampReset={() => {}}
+                />
+              </div>
+              {isSongs && (
+                <div
+                  className={[styles.field, !playMode.clipEditable ? styles.fieldDisabled : '']
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  <span className={styles.fieldLabel}>Durée des extraits</span>
+                  <SliderControl
+                    value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
+                    onChange={(v) => setConfig({ clipDuration: v })}
+                    min={1}
+                    max={15}
+                    disabled={!playMode.clipEditable}
+                  />
+                  {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
                 </div>
-                <div className={styles.twoPlayerFields}>
-                  <div className={styles.twoPlayerField}>
-                    <span className={styles.fieldLabel}>Joueur 1</span>
-                    <input
-                      className="input"
-                      value={config.player1Name}
-                      placeholder="Joueur 1"
-                      disabled={!config.twoPlayerMode}
-                      onChange={(e) => setConfig({ player1Name: e.target.value })}
-                    />
-                    {p1Empty && <span className={styles.fieldError}>Pseudo requis</span>}
-                  </div>
-                  <div className={styles.twoPlayerField}>
-                    <span className={styles.fieldLabel}>Joueur 2</span>
-                    <input
-                      className="input"
-                      value={config.player2Name}
-                      placeholder="Joueur 2"
-                      disabled={!config.twoPlayerMode}
-                      onChange={(e) => setConfig({ player2Name: e.target.value })}
-                    />
-                    {p2Empty && <span className={styles.fieldError}>Pseudo requis</span>}
-                  </div>
-                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Ligne 2 : mode 2 joueurs */}
+          <div className={styles.twoPlayerRow}>
+            <div className={styles.twoPlayerLeft}>
+              <span className={styles.fieldLabel}>Mode 2 joueurs</span>
+              <ToggleControl checked={config.twoPlayerMode} onChange={(v) => setConfig({ twoPlayerMode: v })} />
+              <span className={styles.twoPlayerDesc}>Permet à deux joueurs de répondre chacun leur tour.</span>
+            </div>
+            <div className={styles.twoPlayerFields}>
+              <div className={styles.twoPlayerField}>
+                <span className={styles.fieldLabel}>Joueur 1</span>
+                <input
+                  className="input"
+                  value={config.player1Name}
+                  placeholder="Joueur 1"
+                  disabled={!config.twoPlayerMode}
+                  onChange={(e) => setConfig({ player1Name: e.target.value })}
+                />
+                {p1Empty && <span className={styles.fieldError}>Pseudo requis</span>}
+              </div>
+              <div className={styles.twoPlayerField}>
+                <span className={styles.fieldLabel}>Joueur 2</span>
+                <input
+                  className="input"
+                  value={config.player2Name}
+                  placeholder="Joueur 2"
+                  disabled={!config.twoPlayerMode}
+                  onChange={(e) => setConfig({ player2Name: e.target.value })}
+                />
+                {p2Empty && <span className={styles.fieldError}>Pseudo requis</span>}
               </div>
             </div>
           </div>
         </ConfigCard>
       </div>
 
-      {/* ══ OPTIONS SUPPLÉMENTAIRES (Personnalisé) ══ */}
+      {/* ══ Options supplémentaires + Sélection artistes (mode Personnalisé) ══ */}
       {isCustom && (
         <>
           {(isIdols || isSongs) && (
@@ -520,54 +388,46 @@ export default function ConfigPage() {
                       <div className={styles.optionGroup}>
                         <span className={styles.fieldLabel}>Critère</span>
                         <BadgeGroupControl<SaveOneCriterion>
-                          options={CRITERIA_LIST.map((c) => ({ value: c, label: CRITERIA_LABELS[c] }))}
-                          value={[config.criterion]}
-                          onChange={(v) => handleCriterionChange(v[0] ?? 'all')}
+                          options={CRITERIA.map((c) => ({ value: c, label: CRITERIA_LABELS[c] }))}
+                          allOptionLabel="Tous"
+                          value={config.criterion === ALL_OPTION_VALUE ? [] : [config.criterion]}
+                          onChange={(v) => handleCriterionChange((v[0] as SaveOneCriterion) ?? ALL_OPTION_VALUE)}
                           size="sm"
                         />
                       </div>
                       <div className={styles.optionGroup}>
                         <span className={styles.fieldLabel}>Rôles</span>
-                        <BadgeGroupControl<RoleCriterion>
-                          options={[
-                            { value: defaultOptionValue, label: 'Tous' },
-                            ...availableRoles.map((r) => ({ value: r as RoleCriterion, label: ROLE_LABELS[r] })),
-                          ]}
-                          value={
-                            config.roleFilters.length === 0
-                              ? [defaultOptionValue]
-                              : (config.roleFilters as RoleCriterion[])
-                          }
-                          onChange={(vals) => {
-                            if (vals.includes(defaultOptionValue) && config.roleFilters.length > 0) {
-                              setConfig({ roleFilters: [] })
-                            } else {
-                              setConfig({ roleFilters: vals.filter((v) => v !== defaultOptionValue) as MemberRole[] })
-                            }
-                          }}
+                        <BadgeGroupControl<MemberRole>
+                          options={availableRoles.map((r) => ({ value: r, label: ROLE_LABELS[r] }))}
+                          allOptionLabel="Tous"
+                          value={config.roleFilters}
+                          onChange={(v) => setConfig({ roleFilters: v as MemberRole[] })}
                           isMultiselect
                           size="sm"
                         />
                       </div>
                     </>
                   )}
+
                   {isSongs && (
                     <>
                       <div className={styles.optionGroup}>
                         <span className={styles.fieldLabel}>Type de chansons</span>
                         <BadgeGroupControl<SongType>
-                          options={SONG_TYPE_OPTIONS}
-                          value={[config.songType]}
-                          onChange={(v) => setConfig({ songType: v[0] ?? defaultOptionValue })}
+                          options={SONG_TYPE_OPTIONS as { value: SongType; label: string }[]}
+                          allOptionLabel="Tous"
+                          value={config.songType === ALL_OPTION_VALUE ? [] : [config.songType]}
+                          onChange={(v) => setConfig({ songType: (v[0] as SongType) ?? ALL_OPTION_VALUE })}
                           size="sm"
                         />
                       </div>
                       <div className={styles.optionGroup}>
                         <span className={styles.fieldLabel}>Langue</span>
                         <BadgeGroupControl<LanguageOption>
-                          options={songLanguageOptions}
-                          value={[config.songLanguage]}
-                          onChange={(v) => setConfig({ songLanguage: v[0] ?? defaultOptionValue })}
+                          options={LANGUAGE_OPTIONS as { value: LanguageOption; label: string }[]}
+                          allOptionLabel="Toutes"
+                          value={config.songLanguage === ALL_OPTION_VALUE ? [] : [config.songLanguage]}
+                          onChange={(v) => setConfig({ songLanguage: (v[0] as LanguageOption) ?? ALL_OPTION_VALUE })}
                           size="sm"
                         />
                       </div>
@@ -577,17 +437,18 @@ export default function ConfigPage() {
               </ConfigCard>
             </div>
           )}
+
           <div className={styles.section}>
             <p className={styles.sectionTitle}>Sélection des artistes</p>
             <ArtistSelector
               artistMode={artistMode}
-              onArtistModeChange={handleArtistModeChange}
+              onArtistModeChange={(m) => setArtistMode(m as 'all' | 'byFilter' | 'manual')}
               manualSelectedIds={manualSelectedIds}
-              onManualSelectionChange={handleManualSelectionChange}
+              onManualSelectionChange={setManualSelectedIds}
               allGroups={allGroups}
               loading={loading}
               filters={artistFilters}
-              onFilterChange={handleFilterChange}
+              onFilterChange={(u) => setArtistFilters((prev) => ({ ...prev, ...u }))}
               byFilterGroups={byFilterGroups}
               genOptions={genFilterOptions}
               catOptions={catFilterOptions}
@@ -606,12 +467,12 @@ export default function ConfigPage() {
 function PrepBanner({
   status,
   result,
-  error,
+  errorMessage,
   styles,
 }: {
   status: PreparationStatus
   result: MaxRoundsResult | null
-  error: string | null
+  errorMessage: string | null
   styles: Record<string, string>
 }) {
   if (status === 'idle' || status === 'loading') return null
@@ -623,31 +484,35 @@ function PrepBanner({
           <span className={styles.prepBannerIcon}>⚠️</span>
           <div className={styles.prepBannerBody}>
             <strong className={styles.prepBannerTitle}>Rounds ajustés</strong>
-            <span className={styles.prepBannerText}>{result.clampMessage && <> {result.clampMessage}</>}</span>
+            {result.clampMessage && <span className={styles.prepBannerText}>{result.clampMessage}</span>}
           </div>
         </div>
       </div>
     )
   }
+
   if (status === 'valid') {
     return (
       <div className={styles.prepBannerWrap}>
         <div className={[styles.prepBanner, styles.prepBannerSuccess].join(' ')}>
           <span className={styles.prepBannerIcon}>✓</span>
-          <span className={styles.prepBannerText}>Config validée. La partie peut être lancée.</span>
+          <span className={styles.prepBannerText}>Config validée. Vous pouvez lancer la partie.</span>
         </div>
       </div>
     )
   }
-  if (status === 'invalid' && error) {
+
+  // status === 'invalid' (pas 'error' — ce n'est pas un PreparationStatus valide)
+  if (status === 'invalid') {
     return (
       <div className={styles.prepBannerWrap}>
         <div className={[styles.prepBanner, styles.prepBannerError].join(' ')}>
-          <span className={styles.prepBannerIcon}>✗</span>
-          <span className={styles.prepBannerText}>{error}</span>
+          <span className={styles.prepBannerIcon}>✕</span>
+          <span className={styles.prepBannerText}>{errorMessage ?? 'Une erreur est survenue.'}</span>
         </div>
       </div>
     )
   }
+
   return null
 }

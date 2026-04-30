@@ -1,4 +1,7 @@
-// ─── Page header ─────────────────────────────────────────────────────────────
+@use '../../styles/breakpoints' as *;
+
+// ─── En-tête de page ──────────────────────────────────────────────────────────
+
 .pageHeader {
   display: flex;
   align-items: center;
@@ -19,7 +22,8 @@
 .pageHeaderActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 // ─── PrepBanner ───────────────────────────────────────────────────────────────
@@ -65,7 +69,6 @@
   background: rgba(245, 158, 11, 0.08);
   border-color: rgba(245, 158, 11, 0.4);
   color: #d97706;
-
   :global([data-theme='light']) & {
     color: #b45309;
   }
@@ -84,6 +87,7 @@
 }
 
 // ─── Section ──────────────────────────────────────────────────────────────────
+
 .section {
   margin-bottom: 20px;
 }
@@ -97,12 +101,19 @@
   margin: 0 0 10px;
 }
 
-// ─── Fields row ──────────────────────────────────────────────────────────────
+// ─── Ligne de champs (section Choix du jeu — 3 selects) ───────────────────────
+
 .fieldsRow {
   display: flex;
-  gap: 38px;
+  gap: 24px;
   flex-wrap: wrap;
   width: 100%;
+  align-items: flex-start;
+
+  @include sm {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .field {
@@ -111,7 +122,7 @@
   gap: 6px;
   flex: 1;
   width: 100%;
-  //min-width: 140px;
+  //min-width: 160px;
 }
 
 .fieldLabel {
@@ -142,27 +153,73 @@
   }
 }
 
+// ─── Options de la partie — layout responsive ──────────────────────────────────
+//
+// Desktop : [Drops + Timer] ──── [Rounds + Durée]
+// Tablet  : [Drops + Timer]
+//           [Rounds + Durée]
+// Mobile  : colonne unique
+
+.optionsTopRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+// Drops + Timer : taille naturelle, ne s'étire pas
+.optionsCompact {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+// Rounds + Durée : s'étire, min-width pour forcer le wrap sous les compacts
+.optionsSliders {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  min-width: 280px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  @include sm {
+    flex-direction: column;
+    min-width: 0;
+
+    .field {
+      min-width: 0;
+    }
+  }
+}
+
 // ─── Mode 2 joueurs ───────────────────────────────────────────────────────────
+
 .twoPlayerRow {
   display: flex;
   align-items: flex-start;
   gap: 24px;
   flex-wrap: wrap;
   width: 100%;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
 
 .twoPlayerLeft {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  min-width: 200px;
+  gap: 6px;
+  min-width: 180px;
 }
 
 .twoPlayerDesc {
   font-size: 12px;
   color: var(--text-muted);
   line-height: 1.4;
-  max-width: 240px;
+  max-width: 220px;
 }
 
 .twoPlayerFields {
@@ -170,8 +227,12 @@
   gap: 16px;
   flex: 1;
   flex-wrap: wrap;
-  width: 100%;
-  //min-width: 240px;
+  min-width: 240px;
+
+  @include xs {
+    flex-direction: column;
+    min-width: 0;
+  }
 }
 
 .twoPlayerField {
@@ -179,237 +240,20 @@
   flex-direction: column;
   gap: 6px;
   flex: 1;
-  //min-width: 120px;
+  min-width: 120px;
 }
 
-// ─── Options supplémentaires ──────────────────────────────────────────────────
+// ─── Options supplémentaires (mode Personnalisé) ───────────────────────────────
+
 .advancedSection {
-  display: inline-flex;
-  // grid-template-columns: 1fr auto;
-  gap: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
   width: 100%;
 }
 
 .optionGroup {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 8px;
-  //width: 100%;
-  justify-content: flex-end;
-}
-
-// ─── Artist Selector ──────────────────────────────────────────────────────────
-
-.artistSelectorHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-}
-
-.artistSelectorTitle {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.artistSelectorCount {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-.artistModeRow {
-  display: flex;
-  margin-bottom: 14px;
-}
-
-// Filtres (mode byFilter)
-.artistFilters {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 14px;
-}
-
-.artistFilterRow {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-// Autosuggest
-.artistAutosuggestRow {
-  margin-bottom: 12px;
-}
-
-.autosuggest {
-  position: relative;
-  width: 100%;
-  min-width: 250px;
-}
-
-.autosuggestInput {
-  width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  font-size: 13px;
-  color: var(--text-primary);
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.15s;
-  box-sizing: border-box;
-
-  &::placeholder {
-    color: var(--text-muted);
-  }
-  &:focus {
-    border-color: var(--accent-purple);
-  }
-}
-
-.autosuggestDropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  z-index: 50;
-  overflow: hidden;
-}
-
-.autosuggestItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  transition: background 0.1s;
-
-  &:last-child {
-    border-bottom: none;
-  }
-  &:hover {
-    background: rgba(124, 58, 237, 0.08);
-  }
-}
-
-.autosuggestMeta {
-  font-size: 11px;
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-// Grille tuiles artistes
-.artistGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  margin-bottom: 4px;
-}
-
-.artistEmpty {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-style: italic;
-  padding: 12px 0;
-  margin: 0;
-}
-
-// Tuil\'artiste
-.artistTile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 10px 5px 5px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  position: relative;
-  transition: border-color 0.15s;
-  width: 175px;
-
-  &:hover {
-    border-color: var(--accent-purple);
-  }
-}
-
-.artistTileCover {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: var(--bg-card);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.artistTileCoverImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.artistTileCoverPlaceholder {
-  font-size: 18px;
-  font-weight: 600px;
-  color: var(--text-muted);
-  opacity: 0.8;
-}
-
-.artistTileName {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: pre-wrap;
-  font-size: 13px;
-}
-
-.artistTileRemove {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  color: var(--text-muted);
-  font-size: 18px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-family: inherit;
-  transition:
-    background 0.15s,
-    color 0.15s,
-    border-color 0.15s;
-
-  &:hover {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.5);
-    color: var(--color-danger);
-  }
 }

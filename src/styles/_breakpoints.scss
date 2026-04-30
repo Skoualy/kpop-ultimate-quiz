@@ -1,0 +1,37 @@
+// ─── Breakpoints centralisés ───────────────────────────────────────────────────
+//
+// Injecté automatiquement via vite.config.ts (additionalData).
+// Ne pas importer manuellement dans les .module.scss.
+//
+// Usage dans un .module.scss :
+//   .myClass {
+//     padding: 24px;
+//     @include sm { padding: 12px; }
+//   }
+//
+// xs  < 480px  — téléphones portrait étroits
+// sm  < 640px  — téléphones portrait standard
+// md  < 768px  — tablettes portrait
+// lg  < 1024px — petits laptops
+// xl  < 1280px — desktops standard
+// ──────────────────────────────────────────────────────────────────────────────
+
+$bp-xs: 480px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// ─── Mixins max-width (desktop-first) ─────────────────────────────────────────
+
+@mixin xs { @media (max-width: #{$bp-xs - 1}) { @content; } }
+@mixin sm { @media (max-width: #{$bp-sm - 1}) { @content; } }
+@mixin md { @media (max-width: #{$bp-md - 1}) { @content; } }
+@mixin lg { @media (max-width: #{$bp-lg - 1}) { @content; } }
+@mixin xl { @media (max-width: #{$bp-xl - 1}) { @content; } }
+
+// ─── Mixins min-width (mobile-first explicite) ─────────────────────────────────
+
+@mixin from-sm { @media (min-width: #{$bp-sm})  { @content; } }
+@mixin from-md { @media (min-width: #{$bp-md})  { @content; } }
+@mixin from-lg { @media (min-width: #{$bp-lg})  { @content; } }

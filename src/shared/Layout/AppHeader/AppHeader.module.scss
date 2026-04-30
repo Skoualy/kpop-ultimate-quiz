@@ -1,4 +1,6 @@
-/* ─── Shell header ───────────────────────────────────────────────────────── */
+@use '../../../styles/breakpoints' as *;
+
+/* ─── Shell header ───────────────────────────────────────────────────────────── */
 
 .header {
   display: grid;
@@ -20,7 +22,7 @@
   border-bottom-color: rgba(124, 58, 237, 0.15);
 }
 
-/* ─── Logo ───────────────────────────────────────────────────────────────── */
+/* ─── Logo ───────────────────────────────────────────────────────────────────── */
 
 .left {
   display: flex;
@@ -32,7 +34,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: none;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity 0.15s;
   border: none;
   cursor: pointer;
   padding: 4px 0;
@@ -45,25 +51,18 @@
 }
 
 .logoIcon {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
-  /* L'emoji garde sa couleur propre */
-  -webkit-text-fill-color: initial;
 }
 
 .logoText {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.02em;
   white-space: nowrap;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: opacity 0.15s;
 }
 
-/* ─── Centre ─────────────────────────────────────────────────────────────── */
+/* ─── Centre ─────────────────────────────────────────────────────────────────── */
 
 .center {
   display: flex;
@@ -73,7 +72,7 @@
   height: 100%;
 }
 
-/* ─── Droite ─────────────────────────────────────────────────────────────── */
+/* ─── Droite desktop ─────────────────────────────────────────────────────────── */
 
 .right {
   display: flex;
@@ -82,7 +81,7 @@
   padding-left: 16px;
 }
 
-/* ─── Slot : PageHeader (nom de la page) ─────────────────────────────────── */
+/* ─── Slot : titre de page ───────────────────────────────────────────────────── */
 
 .pageTitle {
   font-size: 14px;
@@ -91,7 +90,7 @@
   letter-spacing: 0.01em;
 }
 
-/* ─── Slot : ConfigHeader (nav links) ───────────────────────────────────── */
+/* ─── Slot : nav desktop ─────────────────────────────────────────────────────── */
 
 .configNav {
   display: flex;
@@ -100,7 +99,7 @@
 }
 
 .configNavLink {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   padding: 6px 12px;
   border-radius: var(--radius-sm);
@@ -127,14 +126,14 @@
   color: var(--accent-pink) !important;
 }
 
-/* ─── Bouton thème ───────────────────────────────────────────────────────── */
+/* ─── Bouton thème ───────────────────────────────────────────────────────────── */
 
 .themeBtn {
   background: var(--bg-pill);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   padding: 5px 9px;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
   line-height: 1;
   transition: background 0.15s;
@@ -146,33 +145,152 @@
   }
 }
 
-/* ─── Responsive ─────────────────────────────────────────────────────────── */
+/* ─── Droite mobile (hamburger) ──────────────────────────────────────────────── */
 
-@media (max-width: 768px) {
-  .header {
-    padding: 0 12px;
-  }
-  .logoText {
-    font-size: 13px;
-  }
-  .configNav {
-    gap: 0;
-  }
-  .configNavLink {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
-  .roundVal {
-    font-size: 17px;
-  }
-  .navBtn {
-    font-size: 12px;
-    padding: 5px 12px;
+.mobileRight {
+  display: none;
+  position: relative;
+  padding-left: 8px;
+}
+
+/* ─── Bouton hamburger ───────────────────────────────────────────────────────── */
+
+.hamburgerBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 1px;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
   }
 }
 
-@media (max-width: 480px) {
-  .logoText {
+.hamburgerOpen {
+  span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 6px);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -6px);
+  }
+}
+
+/* ─── Menu dropdown mobile ───────────────────────────────────────────────────── */
+
+.mobileMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 210px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  z-index: 200;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  animation: menuFadeIn 0.12s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileNavLink {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition:
+    background 0.1s,
+    color 0.1s;
+
+  &:hover {
+    background: var(--bg-pill);
+    color: var(--text-primary);
+  }
+}
+
+.mobileNavLinkActive {
+  color: var(--accent-pink) !important;
+}
+
+.mobileMenuDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+.mobileThemeBtn {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition:
+    background 0.1s,
+    color 0.1s;
+
+  &:hover {
+    background: var(--bg-pill);
+    color: var(--text-primary);
+  }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@include md {
+  .header {
+    padding: 0 12px;
+  }
+
+  .right {
     display: none;
+  }
+
+  .mobileRight {
+    display: flex;
+    align-items: center;
+  }
+
+  .logoText {
+    font-size: 13px;
+  }
+}
+
+@include xs {
+  .logoText {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

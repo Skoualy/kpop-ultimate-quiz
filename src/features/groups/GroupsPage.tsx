@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { PageContainer } from '@/shared/Layout'
 import { useGroupList } from '@/shared/hooks/useGroupList'
 import { ButtonControl } from '@/shared/Controls/ButtonControl'
-import { FilterBadgeGroupControl } from '@/shared/Controls/FilterBadgeGroupControl'
 import { LoadingSpinner } from '@/shared/Components/LoadingSpinner'
 import { Card } from '@/shared/Components/Card'
 import { PaginationControl } from '@/shared/Components/PaginationControl'
@@ -149,13 +148,21 @@ export default function GroupsPage() {
           />
         </div>
 
-        <div className={styles.filters}>
+        {/* <div className={styles.filters}>
           <FilterBadgeGroupControl
             single
             options={visibleCategoryOptions}
             value={[filters.category]}
             onChange={(values) => updateFilter('category', values[0] ?? 'all')}
           />
+           <BadgeGroupControl<GroupCategory>
+                                    options={visibleCategoryOptions}
+                                    allOptionLabel="Toutes"
+                                    value={config.roleFilters}
+                                    onChange={(v) => setConfig({ roleFilters: v as MemberRole[] })}
+                                    isMultiselect
+                                    size="sm"
+                                  />
 
           <div className={styles.filterRow}>
             <FilterBadgeGroupControl
@@ -173,7 +180,7 @@ export default function GroupsPage() {
             value={[filters.status]}
             onChange={(values) => updateFilter('status', values[0] ?? 'all')}
           />
-        </div>
+        </div> */}
 
         {loading && (
           <Card className={styles.stateCard}>

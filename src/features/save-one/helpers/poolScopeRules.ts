@@ -2,7 +2,7 @@
  * poolScopeRules.ts — calcul du nombre max de rounds jouables.
  */
 
-import type { Group, MemberRole, SaveOneCriterion } from '@/shared/models'
+import type { Group, MemberRole, SaveOneCriterion, SongType, LanguageOption, QuizMode } from '@/shared/models'
 import {
   resolveEffectiveRoles,
   estimateIdolPoolSize,
@@ -10,19 +10,15 @@ import {
   songMatchesLanguage,
 } from './poolSizeEstimator'
 
-type SongType = 'all' | 'titles' | 'bSides' | 'debutSongs'
-type LanguageOption = 'all' | 'kr' | 'jp' | 'en'
-type QuizMode = 'saveOne' | 'blindTest' | 'quickVote'
-
 // ─── Items par round ──────────────────────────────────────────────────────────
 
 export function computeItemsPerRound(mode: QuizMode, dropCount: number, twoPlayers: boolean): number {
   if (mode === 'quickVote') return 1
-  if (mode === 'blindTest') return twoPlayers ? 2 : 1
+  if (mode === 'blindTest')  return twoPlayers ? 2 : 1
   return dropCount + 1
 }
 
-// ─── Counts par artiste ────────────────────────────────────────────────────────
+// ─── Counts par artiste ───────────────────────────────────────────────────────
 
 function countIdolsInGroup(group: Group, effectiveRoles: MemberRole[]): number {
   const seen = new Set<string>()
@@ -37,10 +33,10 @@ function countSongsInGroup(group: Group, songType: SongType, songLanguage: Langu
   const { titles, bSides } = group.discography
 
   let songs: typeof titles = []
-  if (songType === 'titles') songs = titles
-  else if (songType === 'bSides') songs = bSides
+  if      (songType === 'titles')     songs = titles
+  else if (songType === 'bSides')     songs = bSides
   else if (songType === 'debutSongs') songs = titles.filter((s) => s.isDebutSong)
-  else songs = [...titles, ...bSides]
+  else                                songs = [...titles, ...bSides]
 
   return songs.filter((s) => songMatchesLanguage(s.language, songLanguage)).length
 }
@@ -54,7 +50,7 @@ export function computeMaxRoundsForGroups(groupCounts: number[], K: number): num
   const validCounts = groupCounts.filter((c) => c > 0)
   if (validCounts.length === 0) return 0
 
-  const total = validCounts.reduce((s, c) => s + c, 0)
+  const total      = validCounts.reduce((s, c) => s + c, 0)
   const maxGeneral = Math.floor(total / K)
   if (maxGeneral === 0) return 0
 
@@ -64,9 +60,9 @@ export function computeMaxRoundsForGroups(groupCounts: number[], K: number): num
     maxBalanced = Math.min(...validCounts.map((c) => Math.floor((c * N) / K)))
   } else {
     const sorted = [...validCounts].sort((a, b) => a - b)
-    const base = Math.floor(K / N)
-    const extra = K % N
-    let min = Infinity
+    const base   = Math.floor(K / N)
+    const extra  = K % N
+    let min      = Infinity
     for (let i = 0; i < sorted.length; i++) {
       const slots = base + (i < extra ? 1 : 0)
       if (slots > 0) min = Math.min(min, Math.floor(sorted[i] / slots))
@@ -80,39 +76,31 @@ export function computeMaxRoundsForGroups(groupCounts: number[], K: number): num
 // ─── Interface publique ───────────────────────────────────────────────────────
 
 export interface MaxRoundsResult {
-  maxRounds: number
-  scopeSize: number
-  itemsPerRound: number
-  wasClamped: boolean
-  clampMessage?: string
+  maxRounds:      number
+  scopeSize:      number
+  itemsPerRound:  number
+  wasClamped:     boolean
+  clampMessage?:  string
 }
 
 export interface MaxRoundsInput {
-  mode: QuizMode
-  category: 'idols' | 'songs'
-  groups: Group[]
-  drops: number
-  rounds: number
-  twoPlayers: boolean
-  criterion: SaveOneCriterion
+  mode:        QuizMode
+  category:    'idols' | 'songs'
+  groups:      Group[]
+  drops:       number
+  rounds:      number
+  twoPlayers:  boolean
+  criterion:   SaveOneCriterion
   roleFilters: MemberRole[]
-  songType: SongType
+  songType:    SongType
   /** Filtre langue chansons (défaut : 'all') */
   songLanguage?: LanguageOption
 }
 
 export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
   const {
-    mode,
-    category,
-    groups,
-    drops,
-    rounds,
-    twoPlayers,
-    criterion,
-    roleFilters,
-    songType,
-    songLanguage = 'all',
+    mode, category, groups, drops, rounds, twoPlayers,
+    criterion, roleFilters, songType, songLanguage = 'all',
   } = input
 
   const K = computeItemsPerRound(mode, drops, twoPlayers)
@@ -125,14 +113,18 @@ export function computeMaxRounds(input: MaxRoundsInput): MaxRoundsResult {
   const effectiveRoles = resolveEffectiveRoles(criterion, roleFilters)
   const groupCounts = groups
     .map((g) =>
-      category === 'idols' ? countIdolsInGroup(g, effectiveRoles) : countSongsInGroup(g, songType, songLanguage),
+      category === 'idols'
+        ? countIdolsInGroup(g, effectiveRoles)
+        : countSongsInGroup(g, songType, songLanguage),
     )
     .filter((c) => c > 0)
 
   const maxRounds =
-    groupCounts.length > 0 ? computeMaxRoundsForGroups(groupCounts, K) : scopeSize > 0 ? Math.floor(scopeSize / K) : 0
+    groupCounts.length > 0
+      ? computeMaxRoundsForGroups(groupCounts, K)
+      : scopeSize > 0 ? Math.floor(scopeSize / K) : 0
 
-  const wasClamped = maxRounds < rounds
+  const wasClamped   = maxRounds < rounds
   const clampMessage = wasClamped
     ? `Nombre de rounds réduit à ${maxRounds} pour éviter les doublons (scope disponible insuffisant pour ${rounds} rounds).`
     : undefined

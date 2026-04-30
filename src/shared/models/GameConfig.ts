@@ -1,37 +1,46 @@
-import type { QuizMode, QuizCategory, SongType, SaveOneCriterion, MemberRole, LanguageOption } from './enums'
+import type {
+  QuizMode,
+  QuizCategory,
+  SongType,
+  SaveOneCriterion,
+  MemberRole,
+  LanguageOption,
+  MemberStatus,
+  GamePlayMode,
+} from './enums'
 import type { SongEntry } from './SongEntry'
-import type { Idol } from './Idol'
-import type { Group } from './Group'
-import type { MemberStatus } from './enums'
+import type { Idol }      from './Idol'
+import type { Group }     from './Group'
 
-export type GamePlayMode = 'classic' | 'chill' | 'spectator' | 'hardcore' | 'custom'
+// Re-export pour éviter de casser les imports existants depuis '@/shared/models'
+export type { GamePlayMode }
 
 export interface GameConfig {
-  mode: QuizMode
-  gamePlayMode: GamePlayMode
-  category: QuizCategory
-  rounds: number
+  mode:          QuizMode
+  gamePlayMode:  GamePlayMode
+  category:      QuizCategory
+  rounds:        number
   /** Secondes — 0 signifie "pas de timer" */
-  timerSeconds: number
-  clipDuration: number
-  drops: number
-  criterion: SaveOneCriterion
+  timerSeconds:  number
+  clipDuration:  number
+  drops:         number
+  criterion:     SaveOneCriterion
   /** Multi-select — tableau vide = tous les rôles */
-  roleFilters: MemberRole[]
-  songType: SongType
-  songLanguage: LanguageOption
+  roleFilters:   MemberRole[]
+  songType:      SongType
+  songLanguage:  LanguageOption
   twoPlayerMode: boolean
-  player1Name: string
-  player2Name: string
+  player1Name:   string
+  player2Name:   string
   selectedGroupIds: string[]
 }
 
 // ─── Types gameplay dérivés ───────────────────────────────────────────────────
 
 export interface IdolGameItem {
-  type: 'idol'
-  idol: Idol
-  group: Group
+  type:         'idol'
+  idol:         Idol
+  group:        Group
   memberStatus: MemberStatus
 }
 

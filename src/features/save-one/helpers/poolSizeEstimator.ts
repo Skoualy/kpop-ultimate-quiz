@@ -4,10 +4,7 @@
  * Estimations légères de la taille du pool (sans charger idols.json).
  * Partagé entre ConfigPage et poolScopeRules.
  */
-import type { Group, MemberRole, SaveOneCriterion } from '@/shared/models'
-
-type SongType     = 'all' | 'titles' | 'bSides' | 'debutSongs'
-type LanguageOption = 'all' | 'kr' | 'jp' | 'en'
+import type { Group, MemberRole, SaveOneCriterion, SongType, LanguageOption } from '@/shared/models'
 
 export function resolveEffectiveRoles(
   criterion:   SaveOneCriterion,
@@ -37,13 +34,13 @@ export function estimateIdolPoolSize(
  * Vérifie si une chanson correspond au filtre de langue.
  *
  * Règle : le coréen est implicite — une chanson sans champ `language` est coréenne.
- *   - 'all'  → inclure toutes les chansons
- *   - 'kr'   → chansons sans language OU language === 'kr'
- *   - 'jp'   → chansons avec language === 'jp'
- *   - 'en'   → chansons avec language === 'en'
+ *   - 'all' → inclure toutes les chansons
+ *   - 'kr'  → chansons sans language OU language === 'kr'
+ *   - 'jp'  → chansons avec language === 'jp'
+ *   - 'en'  → chansons avec language === 'en'
  */
 export function songMatchesLanguage(
-  songLanguage: string | undefined,
+  songLanguage:   string | undefined,
   filterLanguage: LanguageOption,
 ): boolean {
   if (filterLanguage === 'all') return true
@@ -61,7 +58,7 @@ export function estimateSongPoolSize(
     const { titles, bSides } = group.discography
 
     let songs: typeof titles = []
-    if (songType === 'titles')          songs = titles
+    if      (songType === 'titles')     songs = titles
     else if (songType === 'bSides')     songs = bSides
     else if (songType === 'debutSongs') songs = titles.filter((s) => s.isDebutSong)
     else                                songs = [...titles, ...bSides]
@@ -74,18 +71,23 @@ export function estimateSongPoolSize(
 }
 
 export interface PoolCheckResult {
-  poolSize: number; choicesPerRound: number; ok: boolean
-  minDrops: number; minRounds: number; maxRoundsNoRecycle: number
+  poolSize:           number
+  choicesPerRound:    number
+  ok:                 boolean
+  minDrops:           number
+  minRounds:          number
+  maxRoundsNoRecycle: number
 }
 
 export function checkPoolFeasibility(poolSize: number, drops: number, rounds: number): PoolCheckResult {
   const choicesPerRound    = drops + 1
   const maxRoundsNoRecycle = Math.floor(poolSize / choicesPerRound)
   return {
-    poolSize, choicesPerRound,
-    ok:                  poolSize >= choicesPerRound,
-    minDrops:            Math.max(0, Math.min(drops, poolSize - 1)),
-    minRounds:           Math.min(rounds, Math.max(1, maxRoundsNoRecycle)),
+    poolSize,
+    choicesPerRound,
+    ok:                 poolSize >= choicesPerRound,
+    minDrops:           Math.max(0, Math.min(drops, poolSize - 1)),
+    minRounds:          Math.min(rounds, Math.max(1, maxRoundsNoRecycle)),
     maxRoundsNoRecycle,
   }
 }
