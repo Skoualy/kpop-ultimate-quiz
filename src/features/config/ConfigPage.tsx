@@ -332,7 +332,7 @@ export default function ConfigPage() {
                     .filter(Boolean)
                     .join(' ')}
                 >
-                  <span className={styles.fieldLabel}>Durée des extraits</span>
+                  <span className={styles.fieldLabel}>Durée extraits</span>
                   <SliderControl
                     value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
                     onChange={(v) => setConfig({ clipDuration: v })}

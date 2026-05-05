@@ -88,7 +88,7 @@
 
 - [x] Ajout d'un **SegmentedControl** réutilisable
 - [x] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
-- [ ] Ajout d'un composant **TilesGrid** réutilisable
+- [x] Ajout d'un composant **TilesGrid** réutilisable
 
 ### ✅ Config — Amélioration de la logique des pools
 
@@ -135,6 +135,10 @@
 - [ ] Résumé Blind Test (score, meilleure réponse, erreurs)
 - [ ] Blind Test — filtres catégorie / rôles / type chansons
 - [ ] Conserver la règle qu’en **Blind Test** il ne doit y avoir **aucune répétition** dans une même partie, y compris en mode 2 joueurs.
+
+### Contributor
+
+- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des artistes
 
 ### Config & UX
 

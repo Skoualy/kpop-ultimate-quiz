@@ -156,8 +156,8 @@
 
 // ─── Options de la partie ─────────────────────────────────────────────────────
 //
-// Desktop : [Drops]  [Rounds + Timer + Durée]
-// ≤640px  : colonne unique, sliders pleine largeur
+// Desktop (>640px) : [Drops]  [Rounds / Timer / Durée]  côte à côte
+// Mobile  (≤640px) : colonne unique — Drops en haut, sliders en dessous
 
 .optionsTopRow {
   display: flex;
@@ -167,6 +167,12 @@
   margin-bottom: 20px;
   min-width: 0;
   width: 100%;
+
+  // Passage en colonne explicite sur mobile : plus fiable que le min-width wrapping
+  // qui dépend de la largeur calculée du conteneur et peut ne pas déclencher.
+  @include sm {
+    flex-direction: column;
+  }
 }
 
 // Drops seul — SegmentedControl compact (3 boutons, taille naturelle)
