@@ -15,6 +15,7 @@ export function SliderControl({
   min,
   max,
   step = 1,
+  labelValue,
   suffixValue,
   disabled = false,
   clampedMax,
@@ -43,8 +44,8 @@ export function SliderControl({
       {/* Valeur courante + badge bridage */}
       <div className={styles.valueRow}>
         <span className={styles.currentValue}>
-          {clampedValue}
-          {suffixValue && <span className={styles.suffix}>{suffixValue}</span>}
+          {labelValue ? labelValue : clampedValue}
+          {suffixValue && !labelValue && <span className={styles.suffix}>{suffixValue}</span>}
         </span>
         {isClamped && (
           <span className={styles.clampBadge} title={`Maximum ajusté à ${clampedMax} par la validation`}>

@@ -34,25 +34,18 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: opacity 0.15s;
+  background: none; /* Le gradient est sur .logoText, pas ici */
   border: none;
   cursor: pointer;
   padding: 4px 0;
   font-family: inherit;
   text-decoration: none;
+  /* Hover sur le bouton entier — évite les problèmes de compositing avec background-clip */
+  transition: opacity 0.15s;
 
-  &:hover .logoText {
-    opacity: 0.8;
+  &:hover {
+    opacity: 0.75;
   }
-}
-
-.logoIcon {
-  font-size: 20px;
-  line-height: 1;
 }
 
 .logoText {
@@ -60,6 +53,12 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   white-space: nowrap;
+  /* Gradient appliqué ici directement (et non sur le parent logoBtn) :
+     évite le bug où opacity sur un enfant casse le background-clip hérité */
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ─── Centre ─────────────────────────────────────────────────────────────────── */
@@ -283,14 +282,14 @@
   }
 
   .logoText {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
 @include xs {
   .logoText {
-    max-width: 140px;
+    min-width: 160px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    //text-overflow: ellipsis;
   }
 }

@@ -20,7 +20,6 @@ import {
   LANGUAGE_OPTIONS,
   GAME_PLAY_MODES,
   GAME_PLAY_MODE_MAP,
-  TIMER_OPTIONS,
   SONG_TYPE_OPTIONS,
   getAvailableRolesForCriterion,
   filterRolesForCriterion,
@@ -116,7 +115,6 @@ export default function ConfigPage() {
 
   const byFilterGroups = useMemo(() => applyGroupFilters(allGroups, artistFilters), [allGroups, artistFilters])
 
-  // Sync selectedGroupIds dans la config selon le mode actif
   useEffect(() => {
     if (artistMode === 'all') setConfig({ selectedGroupIds: [] })
     else if (artistMode === 'byFilter') setConfig({ selectedGroupIds: byFilterGroups.map((g) => g.id) })
@@ -124,10 +122,6 @@ export default function ConfigPage() {
   }, [artistMode, byFilterGroups, manualSelectedIds])
 
   // ── Préparation (mode Personnalisé) ───────────────────────────────────────
-  //
-  // useConfigPreparation(config, setConfig) — signature réelle du hook :
-  //   { prepared, status, result, errorMessage, prepare }
-  // 'error' n'est PAS un PreparationStatus valide → utiliser 'invalid'
 
   const {
     status: prepStatus,
@@ -142,7 +136,6 @@ export default function ConfigPage() {
   const p2Empty = config.twoPlayerMode && !config.player2Name.trim()
   const twoPlayerInvalid = config.twoPlayerMode && (p1Empty || p2Empty)
 
-  // Mémorise le max rounds clamped pour le slider
   const [roundsClampedMax, setRoundsClampedMax] = useState<number | undefined>(undefined)
   useEffect(() => {
     if (prepStatus === 'adjusted' && prepResult) {
@@ -207,6 +200,9 @@ export default function ConfigPage() {
   // }, [allGroups])
 
   const catFilterOptions = CAT_OPTIONS as { value: string; label: string }[]
+
+  // Valeur timer affichée : si le mode fixe le timer, utiliser sa valeur par défaut
+  const timerValue = playMode.timerEditable ? config.timerSeconds : playMode.timerDefault
 
   function launch() {
     const route = GAME_ROUTES[config.mode]
@@ -281,10 +277,10 @@ export default function ConfigPage() {
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Options de la partie</p>
         <ConfigCard>
-          {/* Ligne 1 : compacts (Drops + Timer) + sliders (Rounds + Durée) */}
           <div className={styles.optionsTopRow}>
-            <div className={styles.optionsCompact}>
-              {isSaveOne && (
+            {/* Drops (Save One uniquement) — SegmentedControl compact */}
+            {isSaveOne && (
+              <div className={styles.optionsCompact}>
                 <div className={styles.field}>
                   <span className={styles.fieldLabel}>Drops</span>
                   <SegmentedControl
@@ -293,22 +289,10 @@ export default function ConfigPage() {
                     onChange={(v) => setConfig({ drops: parseInt(v) })}
                   />
                 </div>
-              )}
-              <div
-                className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : '']
-                  .filter(Boolean)
-                  .join(' ')}
-              >
-                <span className={styles.fieldLabel}>Timer</span>
-                <SegmentedControl
-                  value={playMode.timerEditable ? config.timerSeconds.toString() : playMode.timerDefault.toString()}
-                  options={TIMER_OPTIONS}
-                  onChange={(v) => setConfig({ timerSeconds: parseInt(v) })}
-                />
-                {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
               </div>
-            </div>
+            )}
 
+            {/* Rounds + Timer + Durée extraits — SliderControls */}
             <div className={styles.optionsSliders}>
               <div className={styles.field}>
                 <span className={styles.fieldLabel}>Rounds</span>
@@ -321,6 +305,27 @@ export default function ConfigPage() {
                   onClampReset={() => {}}
                 />
               </div>
+
+              {/* Timer — slider 0–30s (step 5). 0 = Aucun. */}
+              <div
+                className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : '']
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                <span className={styles.fieldLabel}>Timer</span>
+                <SliderControl
+                  value={timerValue}
+                  onChange={(v) => setConfig({ timerSeconds: v })}
+                  min={0}
+                  max={30}
+                  step={5}
+                  labelValue={timerValue === 0 ? 'Aucun' : undefined}
+                  suffixValue={timerValue > 0 ? 's' : ''}
+                  disabled={!playMode.timerEditable}
+                />
+                {!playMode.timerEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
+              </div>
+
               {isSongs && (
                 <div
                   className={[styles.field, !playMode.clipEditable ? styles.fieldDisabled : '']
@@ -333,6 +338,7 @@ export default function ConfigPage() {
                     onChange={(v) => setConfig({ clipDuration: v })}
                     min={1}
                     max={15}
+                    suffixValue={'s'}
                     disabled={!playMode.clipEditable}
                   />
                   {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
@@ -381,6 +387,8 @@ export default function ConfigPage() {
         <>
           {(isIdols || isSongs) && (
             <div className={styles.section}>
+              <p className={styles.sectionTitle}>Options supplémentaires</p>
+
               <ConfigCard>
                 <div className={styles.advancedSection}>
                   {isIdols && (
@@ -408,7 +416,6 @@ export default function ConfigPage() {
                       </div>
                     </>
                   )}
-
                   {isSongs && (
                     <>
                       <div className={styles.optionGroup}>
@@ -502,7 +509,6 @@ function PrepBanner({
     )
   }
 
-  // status === 'invalid' (pas 'error' — ce n'est pas un PreparationStatus valide)
   if (status === 'invalid') {
     return (
       <div className={styles.prepBannerWrap}>

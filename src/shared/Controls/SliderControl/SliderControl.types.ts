@@ -5,6 +5,7 @@ export interface SliderControlProps {
   max: number
   step?: number
   disabled?: boolean
+  labelValue?: string // affiché à la place de la valeur courante
   suffixValue?: string // affiché à côté de la valeur courante (ex: "s" pour secondes)
   /**
    * Si fourni, le slider est bridé à cette valeur max (< max absolu).

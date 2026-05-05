@@ -101,7 +101,7 @@
   margin: 0 0 10px;
 }
 
-// ─── Ligne de champs (section Choix du jeu — 3 selects) ───────────────────────
+// ─── Ligne de champs (Choix du jeu — 3 selects) ───────────────────────────────
 
 .fieldsRow {
   display: flex;
@@ -116,13 +116,14 @@
   }
 }
 
+// min-width: 0 est crucial en flex pour permettre le rétrécissement sous la taille intrinsèque
 .field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   flex: 1;
+  min-width: 0;
   width: 100%;
-  //min-width: 160px;
 }
 
 .fieldLabel {
@@ -153,12 +154,10 @@
   }
 }
 
-// ─── Options de la partie — layout responsive ──────────────────────────────────
+// ─── Options de la partie ─────────────────────────────────────────────────────
 //
-// Desktop : [Drops + Timer] ──── [Rounds + Durée]
-// Tablet  : [Drops + Timer]
-//           [Rounds + Durée]
-// Mobile  : colonne unique
+// Desktop : [Drops]  [Rounds + Timer + Durée]
+// ≤640px  : colonne unique, sliders pleine largeur
 
 .optionsTopRow {
   display: flex;
@@ -166,18 +165,21 @@
   gap: 20px 28px;
   align-items: flex-start;
   margin-bottom: 20px;
+  min-width: 0;
+  width: 100%;
 }
 
-// Drops + Timer : taille naturelle, ne s'étire pas
+// Drops seul — SegmentedControl compact (3 boutons, taille naturelle)
 .optionsCompact {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   align-items: flex-start;
   flex-shrink: 0;
+  min-width: 0;
 }
 
-// Rounds + Durée : s'étire, min-width pour forcer le wrap sous les compacts
+// Rounds + Timer + Durée — sliders qui s'étirent
 .optionsSliders {
   display: flex;
   flex: 1;
@@ -189,10 +191,7 @@
   @include sm {
     flex-direction: column;
     min-width: 0;
-
-    .field {
-      min-width: 0;
-    }
+    width: 100%;
   }
 }
 
@@ -206,13 +205,21 @@
   width: 100%;
   padding-top: 16px;
   border-top: 1px solid var(--border);
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .twoPlayerLeft {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-width: 180px;
+  min-width: 160px;
+  flex-shrink: 0;
+
+  @include xs {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 .twoPlayerDesc {
@@ -227,11 +234,12 @@
   gap: 16px;
   flex: 1;
   flex-wrap: wrap;
-  min-width: 240px;
+  // min-width: 0 indispensable — sans ça flex refuse de rétrécir sous 240px
+  min-width: 0;
 
   @include xs {
     flex-direction: column;
-    min-width: 0;
+    width: 100%;
   }
 }
 
@@ -240,7 +248,14 @@
   flex-direction: column;
   gap: 6px;
   flex: 1;
-  min-width: 120px;
+  min-width: 0;
+
+  // L'input ne doit jamais déborder de son conteneur
+  input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 // ─── Options supplémentaires (mode Personnalisé) ───────────────────────────────

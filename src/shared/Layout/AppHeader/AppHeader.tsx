@@ -13,11 +13,11 @@ import styles from './AppHeader.module.scss'
  *   → Affiché uniquement si rightSlot est fourni (pages sans nav = pas de hamburger).
  */
 export function AppHeader({ centerSlot, rightSlot }: AppHeaderProps) {
-  const navigate   = useNavigate()
-  const location   = useLocation()
+  const navigate = useNavigate()
+  const location = useLocation()
   const { theme, toggleTheme } = useAppContext()
   const [menuOpen, setMenuOpen] = useState(false)
-  const menuRef    = useRef<HTMLDivElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   // Ferme le menu au changement de route
   useEffect(() => {
@@ -40,7 +40,6 @@ export function AppHeader({ centerSlot, rightSlot }: AppHeaderProps) {
 
   return (
     <header className={styles.header}>
-
       {/* Gauche : logo → retour config (home) */}
       <div className={styles.left}>
         <button
@@ -49,8 +48,7 @@ export function AppHeader({ centerSlot, rightSlot }: AppHeaderProps) {
           onClick={() => navigate('/')}
           title="Retour à la configuration"
         >
-          <span className={styles.logoIcon}>🎵</span>
-          <span className={styles.logoText}>K-Pop Ultimate Quiz</span>
+          <span className={styles.logoText}>🎵 K-Pop Ultimate Quiz</span>
         </button>
       </div>
 
@@ -120,7 +118,6 @@ export function AppHeader({ centerSlot, rightSlot }: AppHeaderProps) {
           )}
         </div>
       )}
-
     </header>
   )
 }
