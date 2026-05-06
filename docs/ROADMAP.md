@@ -74,8 +74,8 @@
 
 ### 🔄 Correctifs restants / connus
 
-- [ ] Intégration `PoolSizeWarningBanner` dans le rendu de `ConfigPage` (patch fourni dans `ConfigPage.patch.md`)
-- [ ] `GroupInfoStep` : ajouter `currentCredit={form.coverCredit}` sur l'`ImagePickerControl` de la cover
+- [x] Intégration `PoolSizeWarningBanner` dans le rendu de `ConfigPage` (patch fourni dans `ConfigPage.patch.md`)
+- [x] `GroupInfoStep` : ajouter `currentCredit={form.coverCredit}` sur l'`ImagePickerControl` de la cover
 - [ ] `aiModified` à vérifier dans le pipeline si `validate-credits.py` est appelé indépendamment de `merge-bundle.py`
 
 ---
@@ -89,6 +89,8 @@
 - [x] Ajout d'un **SegmentedControl** réutilisable
 - [x] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
 - [x] Ajout d'un composant **TilesGrid** réutilisable
+- [x] Ajout d'un **SliderControl** réutilisable
+- [x] Ajout d'un composant **GameHud** réutilisable
 
 ### ✅ Config — Amélioration de la logique des pools
 
@@ -103,24 +105,33 @@
 - [x] Appliquer un **tirage pondéré direct** pour les musiques entre parties afin de réduire les répétitions de session sans filtrage post-tirage.
 - [x] Stocker en session les **timestamps canoniques** (`60`, `90`, `120`) pour la rotation des musiques et ne jamais persister une valeur de lecture ajustée.
 
-### 🔄 Config — Amélioration UI
+### ✅ Config — Amélioration UI
 
 - [x] Ajout d'un **WarningMessage** pour afficher le feedback de validation de la partie
-- [x] Integration du **SegmentedControl** pour gérer le type de sélection des artistes avec les valeurs **Tous / Par filtres / Manuel** pour supprimer l’ambiguïté de l’ancienne dual listbox.
-- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des artistes
-- [ ] Brider le champ **rounds** après préparation en fonction du scope validé et afficher un état warning visuel tant que la limite est active.
-- [ ] Remplacer les **number inputs** de configuration les plus adaptés par des **sliders** pour rendre les options de partie plus ludiques et plus lisibles.
-- [ ] Ajouter un nouveau filtre musique **Langue** (`Tous`, `Coréen`, `Japonais`, `Anglais`) dans les options supplémentaires.
+- [x] Integration du **SegmentedControl** pour le nombre de drops et le type de sélection des artistes.
+- [x] Integration du **SliderControl** pour le nombre de rounds, la durée des extraits et le timer.
+- [x] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des artistes
+- [x] Brider le champ **rounds** après préparation en fonction du scope validé et afficher un état warning visuel tant que la limite est active.
+- [x] Remplacer les **number inputs** de configuration les plus adaptés par des **sliders** pour rendre les options de partie plus ludiques et plus lisibles.
+- [x] Ajouter un nouveau filtre musique **Langue** (`Tous`, `Coréen`, `Japonais`, `Anglais`) dans les options supplémentaires.
+- [x] Refonte du style pour rendre la page entièrement responsive
 
 ### ✅ Save One — Finalisation de la UI
 
-- [x] Ajout d'un control Game HUD génériaue et intégration dans le save one
-- [x] Ajustement et amélioration de la UI du save one
+- [x] Intégration du **GameHud**
+- [x] Ajustement et amélioration de la UI
+- [x] Fix de l'algorithme d'équilibrage des pools pour ajuster l'ordre d'apparition des groupes et éviter la redondance des choix selon les rounds
+- [ ] Etendre l'algorithme d'équilibrage des pools aux idoles
 
-### 🔄 UI - Nommage et correctifs
+### ✅ UI - Nommage et correctifs
 
 - [x] Introduire un **placeholder artiste** distinct du placeholder idole pour mieux différencier visuellement les visuels de logo/cover et les portraits.
 - [x] Remplacer dans l’UI le terme **groupe** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
+
+### 🔄 UI - Responsive CSS
+
+- [x] Centraliser les scss dédiés aux breakpoints et aux styles propres aux jeux
+- [x] Refonte du page header pour le rendre entièrement responsive
 - [ ] Mettre en place une stratégie **anti-scroll vertical** en jeu basée sur la compaction adaptative de l’interface
 
 ## v0.7 — Blind Test, Smash Or Pass & Amélioration du contributor

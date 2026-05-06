@@ -16,7 +16,9 @@
     transform 0.15s ease;
   /* Flex item : remplit l'espace disponible */
   flex: 1 1 0;
-  min-width: 135x;
+  width: 150px;
+  max-width: 200px;
+  //min-width: 135px;
   /* Pas de max-width fixe — laisse la grille décider */
 }
 

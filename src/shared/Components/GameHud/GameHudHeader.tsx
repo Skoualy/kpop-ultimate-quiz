@@ -7,15 +7,17 @@ export function GameHudHeader({
   actionDisabled = false,
   currentRound,
   totalRounds,
+  isFullscreen = false,
+  onToggleFullscreen,
 }: GameHudHeaderProps) {
   return (
     <>
-      {/* Extrémité gauche */}
+      {/* ── Gauche : retour config ── */}
       <button type="button" className={styles.navBtn} onClick={onBack}>
         ← Config
       </button>
 
-      {/* Badge Round — milieu absolu */}
+      {/* ── Centre : badge Round (absolu) ── */}
       <div className={styles.roundBadge}>
         <span className={styles.roundLabel}>Round</span>
         <span className={styles.roundVal}>{currentRound}</span>
@@ -23,17 +25,31 @@ export function GameHudHeader({
         <span className={styles.roundTotal}>{totalRounds}</span>
       </div>
 
-      {/* Extrémité droite */}
-      {onAction && (
-        <button
-          type="button"
-          className={[styles.navBtn, styles.passBtn, actionDisabled ? styles.navBtnDisabled : ''].join(' ')}
-          onClick={onAction}
-          disabled={actionDisabled}
-        >
-          ⏭ Passer
-        </button>
-      )}
+      {/* ── Droite : Passer + Fullscreen ── */}
+      <div className={styles.rightActions}>
+        {onAction && (
+          <button
+            type="button"
+            className={[styles.navBtn, styles.passBtn, actionDisabled ? styles.navBtnDisabled : ''].filter(Boolean).join(' ')}
+            onClick={onAction}
+            disabled={actionDisabled}
+          >
+            ⏭ Passer
+          </button>
+        )}
+        {onToggleFullscreen && (
+          <button
+            type="button"
+            className={styles.fullscreenBtn}
+            onClick={onToggleFullscreen}
+            title={isFullscreen ? 'Quitter le plein écran' : 'Plein écran'}
+            aria-label={isFullscreen ? 'Quitter le plein écran' : 'Plein écran'}
+          >
+            {/* ⤢ = expand  |  ⤡ = compress */}
+            {isFullscreen ? '⤡' : '⤢'}
+          </button>
+        )}
+      </div>
     </>
   )
 }

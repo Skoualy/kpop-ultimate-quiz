@@ -9,45 +9,29 @@ import { SaveOneRoundIdols } from './components/SaveOneRoundIdols'
 import { SaveOneRoundSongs } from './components/SaveOneRoundSongs'
 import { SaveOneSummary } from './components/SaveOneSummary'
 import { useSaveOneGame } from './hooks/useSaveOneGame'
+import { useFullscreen } from '@/shared/hooks/useFullscreen'
+import { GAME_OPTION_ICONS } from '@/shared/constants'
 import type { IdolItem, SongItem } from './SaveOnePage.types'
-// Styles de layout partagés entre tous les jeux
 import g from '@/styles/game.module.scss'
 
-// ─── Mappings ─────────────────────────────────────────────────────────────────
+// ─── Mappings locaux ──────────────────────────────────────────────────────────
 
 const CRITERIA_LABELS: Record<string, string> = {
-  all: 'Tous',
-  beauty: 'Beauté',
-  personality: 'Personnalité',
-  voice: 'Voix',
-  performance: 'Performance',
-  leadership: 'Leadership',
-  aegyo: 'Aegyo',
-  random: 'Aléatoire',
+  all: 'Tous', beauty: 'Beauté', personality: 'Personnalité',
+  voice: 'Voix', performance: 'Performance', leadership: 'Leadership',
+  aegyo: 'Aegyo', random: 'Aléatoire',
 }
 const ROLE_LABELS: Record<string, string> = {
-  leader: 'Leader',
-  mainVocal: 'V. Principale',
-  vocal: 'Vocal',
-  mainDancer: 'D. Principal',
-  dancer: 'Danseur',
-  mainRapper: 'R. Principal',
-  rapper: 'Rappeur',
-  visual: 'Visual',
-  maknae: 'Maknae',
+  leader: 'Leader', mainVocal: 'V. Principale', vocal: 'Vocal',
+  mainDancer: 'D. Principal', dancer: 'Danseur', mainRapper: 'R. Principal',
+  rapper: 'Rappeur', visual: 'Visual', maknae: 'Maknae',
 }
 const SONG_TYPE_LABELS: Record<string, string> = {
-  all: 'Tous types',
-  titles: 'Titres',
-  bSides: 'B-sides',
-  debutSongs: 'Débuts',
+  all: 'Tous types', titles: 'Titres', bSides: 'B-sides', debutSongs: 'Débuts',
 }
 const GAMEPLAY_LABELS: Record<string, string> = {
-  classic: 'Classique',
-  chill: 'Chill',
-  spectator: 'Spectateur',
-  hardcore: 'Hardcore',
-  custom: 'Personnalisé',
+  classic: 'Classique', chill: 'Chill', spectator: 'Spectateur',
+  hardcore: 'Hardcore', custom: 'Personnalisé',
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -55,22 +39,12 @@ const GAMEPLAY_LABELS: Record<string, string> = {
 export default function SaveOnePage() {
   const navigate = useNavigate()
   const { config } = useGameContext()
+  const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
   const {
-    phase,
-    isLoading,
-    error,
-    rounds,
-    results,
-    currentRoundIndex,
-    currentPlayer,
-    timerKey,
-    choose,
-    pass,
-    timeout,
-    skipPlayerTransition,
-    skipRoundTransition,
-    restart,
+    phase, isLoading, error, rounds, results,
+    currentRoundIndex, currentPlayer, timerKey,
+    choose, pass, timeout, skipPlayerTransition, skipRoundTransition, restart,
   } = useSaveOneGame(config)
 
   const goToConfig = useCallback(() => navigate('/'), [navigate])
@@ -86,25 +60,24 @@ export default function SaveOnePage() {
   const isPlaying    = phase === 'playing'
   const isCustom     = config.gamePlayMode === 'custom'
 
-  // ── Options HUD ──────────────────────────────────────────────────────────────
+  // ── Options HUD ───────────────────────────────────────────────────────────
 
   const hudOptions = [
-    { labelOption: 'Type de quiz', optionValue: 'Save One' },
-    { labelOption: 'Catégorie',    optionValue: isIdols ? 'Idoles' : 'Chansons' },
-    { labelOption: 'Mode de jeu',  optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
-    { labelOption: 'Drops',        optionValue: config.drops },
-    { labelOption: 'Rounds',       optionValue: config.rounds },
-    { labelOption: 'Timer',        optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
-    isSongs ? { labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
+    { icon: GAME_OPTION_ICONS['Type de quiz'], labelOption: 'Type de quiz', optionValue: 'Save One' },
+    { icon: GAME_OPTION_ICONS['Catégorie'],    labelOption: 'Catégorie',    optionValue: isIdols ? 'Idoles' : 'Chansons' },
+    { icon: GAME_OPTION_ICONS['Mode de jeu'],  labelOption: 'Mode de jeu',  optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
+    { icon: GAME_OPTION_ICONS['Drops'],        labelOption: 'Drops',        optionValue: config.drops },
+    { icon: GAME_OPTION_ICONS['Timer'],        labelOption: 'Timer',        optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
+    isSongs ? { icon: GAME_OPTION_ICONS['Extrait'], labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
     isCustom && isIdols && config.roleFilters.length > 0
-      ? { labelOption: 'Rôles', optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', ') }
+      ? { icon: GAME_OPTION_ICONS['Rôles'], labelOption: 'Rôles', optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', ') }
       : null,
     isCustom && isSongs && config.songType !== 'all'
-      ? { labelOption: 'Type', optionValue: SONG_TYPE_LABELS[config.songType] ?? config.songType }
+      ? { icon: GAME_OPTION_ICONS['Type'], labelOption: 'Type', optionValue: SONG_TYPE_LABELS[config.songType] ?? config.songType }
       : null,
   ]
 
-  // ── Chargement ────────────────────────────────────────────────────────────────
+  // ── Chargement ────────────────────────────────────────────────────────────
 
   if (isLoading) {
     return (
@@ -143,7 +116,7 @@ export default function SaveOnePage() {
     )
   }
 
-  // ── Résumé ────────────────────────────────────────────────────────────────────
+  // ── Résumé ────────────────────────────────────────────────────────────────
 
   if (phase === 'summary') {
     return (
@@ -160,7 +133,7 @@ export default function SaveOnePage() {
     )
   }
 
-  // ── Jeu ───────────────────────────────────────────────────────────────────────
+  // ── Jeu ───────────────────────────────────────────────────────────────────
 
   return (
     <div className={g.page}>
@@ -175,9 +148,11 @@ export default function SaveOnePage() {
           actionDisabled={!isPlaying}
           currentRound={currentRoundIndex + 1}
           totalRounds={totalRounds}
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={toggleFullscreen}
         />
 
-        {/* Idoles */}
+        {/* Contenu du round idoles */}
         {isPlaying && currentRound && isIdols && (
           <SaveOneRoundIdols
             idols={currentRound.items as IdolItem[]}
@@ -189,7 +164,7 @@ export default function SaveOnePage() {
           />
         )}
 
-        {/* Chansons */}
+        {/* Contenu du round chansons */}
         {isPlaying && currentRound && isSongs && (
           <SaveOneRoundSongs
             songs={currentRound.items as SongItem[]}
@@ -205,14 +180,23 @@ export default function SaveOnePage() {
           />
         )}
 
+        {/* Espace vide pendant les transitions (maintient le layout stable) */}
         {!isPlaying && phase !== 'summary' && <div className={g.transitionBlank} />}
       </main>
 
+      {/* Overlays de transition — EN DEHORS de <main> pour ne pas être clippés */}
       {phase === 'roundTransition' && (
-        <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />
+        <RoundTransition
+          roundNumber={currentRoundIndex + 1}
+          totalRounds={totalRounds}
+          onDone={skipRoundTransition}
+        />
       )}
       {phase === 'playerTransition' && (
-        <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />
+        <PlayerTransitionOverlay
+          playerName={p2Name}
+          onSkip={skipPlayerTransition}
+        />
       )}
     </div>
   )

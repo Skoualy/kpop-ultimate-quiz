@@ -95,15 +95,11 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  &:hover {
-    opacity: 0.85;
-  }
+  &:hover { opacity: 0.85; }
 }
 
 @keyframes gameSpin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */

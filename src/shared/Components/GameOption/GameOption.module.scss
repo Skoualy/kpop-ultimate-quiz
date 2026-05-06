@@ -1,16 +1,25 @@
 .option {
   display: inline-flex;
   align-items: baseline;
-  gap: 5px;
+  gap: 4px;
   white-space: nowrap;
 }
 
+/* Mode texte (rétrocompat, pas d'icône) */
 .label {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-muted);
+}
+
+/* Mode icône */
+.icon {
+  font-size: 13px;
+  line-height: 1;
+  /* Alignement vertical cohérent avec la valeur */
+  align-self: center;
 }
 
 .value {

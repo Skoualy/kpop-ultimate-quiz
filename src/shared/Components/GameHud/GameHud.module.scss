@@ -3,16 +3,18 @@
 .hud {
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
+  /* column-reverse : section2 (options) s'affiche en haut, section1 (round+nav) en bas */
+  flex-direction: column-reverse;
   gap: 0;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-strong);
   background: var(--bg-card);
   overflow: hidden;
   flex-wrap: wrap;
+  min-width: 720px;
 }
 
-/* ─── Section 1 ─────────────────────────────────────────────────── */
+/* ─── Section 1 (visuellement en bas) : nav ← Config | Round | Passer → | ⤢ ── */
 
 .section1 {
   display: grid;
@@ -20,19 +22,24 @@
   justify-content: center;
   gap: 16px;
   padding: 8px 16px;
+  /* 3 colonnes : gauche (retour) | centre (round) | droite (actions) */
   grid-template-columns: auto 3fr auto;
 }
 
-.gameCenter {
+/* ─── Section 2 (visuellement en haut) : options + joueur actif ─────────── */
+
+.section2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 0 8px;
-  gap: 32px;
+  padding: 2px 16px;
+  background: rgba(124, 58, 237, 0.15);
+  /* Avec column-reverse, section2 est en haut → border-bottom sépare des controls */
+  border-bottom: 1px solid var(--border);
 }
 
-/* Boutons nav jeu */
+/* ─── Boutons nav jeu ────────────────────────────────────────────────────── */
+
 .navBtn {
   display: inline-flex;
   align-items: center;
@@ -85,7 +92,56 @@
   pointer-events: none;
 }
 
-/* Badge round */
+/* ─── Groupe actions droite (Passer + Fullscreen) ────────────────────────── */
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ─── Bouton Fullscreen ───────────────────────────────────────────────────── */
+
+.fullscreenBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+:global([data-theme='light']) .fullscreenBtn {
+  background: rgba(124, 58, 237, 0.06);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--text-muted);
+  &:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.35);
+    color: var(--text-primary);
+  }
+}
+
+/* ─── Badge round ────────────────────────────────────────────────────────── */
+
 .roundBadge {
   display: inline-flex;
   align-items: baseline;
@@ -122,33 +178,23 @@
   color: var(--text-muted);
 }
 
+/* ─── Options (section2) ─────────────────────────────────────────────────── */
+
 .optWrapper {
   display: inline-flex;
   align-items: center;
-  //gap: 8px;
 }
 
-/* Séparateur entre badges */
 .sep {
   font-size: 18px;
-  padding: 0px 8px;
+  padding: 0 8px;
   color: var(--text-muted);
   opacity: 0.5;
   user-select: none;
   flex-shrink: 0;
 }
 
-/* ─── Section 2 : joueur actif (2J) ─────────────────────────────────────── */
-
-.section2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 16px;
-  border-top: 1px solid var(--border);
-  //color: #c4b5fd;
-  background: rgba(124, 58, 237, 0.15);
-}
+/* ─── Joueur actif (mode 2J) ─────────────────────────────────────────────── */
 
 .playerTurn {
   font-size: 12px;
@@ -179,31 +225,37 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  //padding: 2px 10px;
 }
 
 .playerP1 {
   color: #c4b5fd;
-  //background: rgba(124, 58, 237, 0.15);
-  //border: 1px solid rgba(124, 58, 237, 0.35);
 }
-
 .playerP2 {
   color: #f9a8d4;
-  //background: rgba(233, 30, 140, 0.12);
-  //border: 1px solid rgba(233, 30, 140, 0.3);
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 600px) {
-  .section1 {
-    padding: 8px 12px;
-    gap: 4px;
-    display: inline-flex;
+  .hud {
+    min-width: 0;
+    width: 100%;
   }
+  .section1 {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 6px 12px;
+    /* 3 colonnes : gauche (retour) | centre (round) | droite (actions) */
+    grid-template-columns: auto 2fr auto;
+  }
+
   .section2 {
-    padding: 5px 12px;
+    display: none;
+  }
+
+  .fullscreenBtn {
     display: none;
   }
 }

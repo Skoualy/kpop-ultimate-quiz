@@ -11,13 +11,15 @@
 
 .timerSlot {
   width: 100%;
-  max-width: 700px;
+  max-width: 540px;
   min-height: 26px;
   display: flex;
   align-items: center;
 }
 
-.timer { width: 100%; }
+.timer {
+  width: 100%;
+}
 
 /* ─── Grille — taille fixe, centrée, prend max largeur disponible ────────── */
 
@@ -33,5 +35,7 @@
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 600px) {
-  .grid { gap: 10px; }
+  .grid {
+    gap: 10px;
+  }
 }
