@@ -38,6 +38,14 @@ export function QuickVoteRoundIdols({
 
   return (
     <div className={styles.root}>
+      {/* Critère actif */}
+      {activeCriterion && activeCriterion !== 'all' && <CriterionBadge criterion={activeCriterion} />}
+
+      {/* Une seule card centrée — même composant que le Save One */}
+      <div className={styles.cardWrapper}>
+        <IdolCard idol={idol} size="lg" disabled={voted !== null} onClick={() => {}} />
+      </div>
+
       {/* Timer — slot toujours réservé pour éviter le layout shift */}
       {timerSeconds > 0 && (
         <div className={styles.timerSlot}>
@@ -48,14 +56,6 @@ export function QuickVoteRoundIdols({
           />
         </div>
       )}
-
-      {/* Critère actif */}
-      {activeCriterion && activeCriterion !== 'all' && <CriterionBadge criterion={activeCriterion} />}
-
-      {/* Une seule card centrée — même composant que le Save One */}
-      <div className={styles.cardWrapper}>
-        <IdolCard idol={idol} size="lg" disabled={voted !== null} onClick={() => {}} />
-      </div>
 
       {/* Boutons vote — POSITIF à gauche, NÉGATIF à droite */}
       <div className={styles.voteButtons}>

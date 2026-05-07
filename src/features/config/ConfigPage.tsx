@@ -183,16 +183,6 @@ export default function ConfigPage() {
     return [...labels].sort()
   }, [allGroups, artistFilters.gens, artistFilters.cats, artistFilters.year])
 
-  // const availableYears = useMemo(() => {
-  //   const years = new Set(allGroups.map((g) => String(g.debutYear)))
-  //   return [...years].sort((a, b) => Number(b) - Number(a))
-  // }, [allGroups])
-
-  // const availableLabels = useMemo(() => {
-  //   const labels = new Set(allGroups.map((g) => g.company).filter(Boolean))
-  //   return [...labels].sort()
-  // }, [allGroups])
-
   const catFilterOptions = CAT_OPTIONS as { value: string; label: string }[]
   const timerValue = playMode.timerEditable ? config.timerSeconds : playMode.timerDefault
 
@@ -244,11 +234,17 @@ export default function ConfigPage() {
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>{iconLabel('Catégorie')}</span>
-              <SelectControl
+              <SegmentedControl
+                value={config.category}
+                options={QUIZ_CATEGORIES_OPTIONS}
+                onChange={(v) => setConfig({ category: v as GameConfig['category'] })}
+                size="md"
+              />
+              {/* <SelectControl
                 value={config.category}
                 onChange={(v) => setConfig({ category: v as GameConfig['category'] })}
                 options={QUIZ_CATEGORIES_OPTIONS}
-              />
+              /> */}
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>{iconLabel('Mode de jeu')}</span>
@@ -318,12 +314,13 @@ export default function ConfigPage() {
                     .filter(Boolean)
                     .join(' ')}
                 >
-                  <span className={styles.fieldLabel}>{iconLabel('Durée des extraits')}</span>
+                  <span className={styles.fieldLabel}>{iconLabel('Extraits')}</span>
                   <SliderControl
                     value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
                     onChange={(v) => setConfig({ clipDuration: v })}
                     min={1}
                     max={15}
+                    suffixValue={'s'}
                     disabled={!playMode.clipEditable}
                   />
                   {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
@@ -372,6 +369,8 @@ export default function ConfigPage() {
         <>
           {(isIdols || isSongs) && (
             <div className={styles.section}>
+              <p className={styles.sectionTitle}>Options supplémentaires</p>
+
               <ConfigCard>
                 <div className={styles.advancedSection}>
                   {isIdols && (

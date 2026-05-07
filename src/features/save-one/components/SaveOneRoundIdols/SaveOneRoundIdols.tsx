@@ -41,17 +41,17 @@ export function SaveOneRoundIdols({
       {/* Critère — dernier, style badge gradient mis en valeur */}
       {activeCriterion && <CriterionBadge criterion={activeCriterion} />}
 
-      {/* Timer — espace toujours réservé */}
-      <div className={styles.timerSlot}>
-        {timerSeconds > 0 && (
+      {/* Timer */}
+      {timerSeconds > 0 && (
+        <div className={styles.timerSlot}>
           <TimerBar
             percentLeft={chosen ? 100 : percentLeft}
             remainingSeconds={chosen ? timerSeconds : remaining}
             totalSeconds={timerSeconds}
             className={styles.timer}
           />
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Grille — cards toujours à 260px */}
       <div className={styles.grid}>

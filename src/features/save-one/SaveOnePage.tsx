@@ -10,29 +10,9 @@ import { SaveOneRoundSongs } from './components/SaveOneRoundSongs'
 import { SaveOneSummary } from './components/SaveOneSummary'
 import { useSaveOneGame } from './hooks/useSaveOneGame'
 import { useFullscreen } from '@/shared/hooks/useFullscreen'
-import { GAME_OPTION_ICONS } from '@/shared/constants'
+import { GAME_OPTION_ICONS, GAME_PLAY_MODE_MAP, ROLE_LABELS, SONG_TYPE_OPTIONS_MAP } from '@/shared/constants'
 import type { IdolItem, SongItem } from './SaveOnePage.types'
 import g from '@/styles/game.module.scss'
-
-// ─── Mappings locaux ──────────────────────────────────────────────────────────
-
-const CRITERIA_LABELS: Record<string, string> = {
-  all: 'Tous', beauty: 'Beauté', personality: 'Personnalité',
-  voice: 'Voix', performance: 'Performance', leadership: 'Leadership',
-  aegyo: 'Aegyo', random: 'Aléatoire',
-}
-const ROLE_LABELS: Record<string, string> = {
-  leader: 'Leader', mainVocal: 'V. Principale', vocal: 'Vocal',
-  mainDancer: 'D. Principal', dancer: 'Danseur', mainRapper: 'R. Principal',
-  rapper: 'Rappeur', visual: 'Visual', maknae: 'Maknae',
-}
-const SONG_TYPE_LABELS: Record<string, string> = {
-  all: 'Tous types', titles: 'Titres', bSides: 'B-sides', debutSongs: 'Débuts',
-}
-const GAMEPLAY_LABELS: Record<string, string> = {
-  classic: 'Classique', chill: 'Chill', spectator: 'Spectateur',
-  hardcore: 'Hardcore', custom: 'Personnalisé',
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -42,38 +22,65 @@ export default function SaveOnePage() {
   const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
   const {
-    phase, isLoading, error, rounds, results,
-    currentRoundIndex, currentPlayer, timerKey,
-    choose, pass, timeout, skipPlayerTransition, skipRoundTransition, restart,
+    phase,
+    isLoading,
+    error,
+    rounds,
+    results,
+    currentRoundIndex,
+    currentPlayer,
+    timerKey,
+    choose,
+    pass,
+    timeout,
+    skipPlayerTransition,
+    skipRoundTransition,
+    restart,
   } = useSaveOneGame(config)
 
   const goToConfig = useCallback(() => navigate('/'), [navigate])
 
   const currentRound = rounds[currentRoundIndex]
-  const totalRounds  = rounds.length
-  const twoPlayer    = config.twoPlayerMode
-  const p1Name       = config.player1Name || 'Joueur 1'
-  const p2Name       = config.player2Name || 'Joueur 2'
+  const totalRounds = rounds.length
+  const twoPlayer = config.twoPlayerMode
+  const p1Name = config.player1Name || 'Joueur 1'
+  const p2Name = config.player2Name || 'Joueur 2'
   const activePlayer = currentPlayer === 0 ? p1Name : p2Name
-  const isIdols      = config.category === 'idols'
-  const isSongs      = config.category === 'songs'
-  const isPlaying    = phase === 'playing'
-  const isCustom     = config.gamePlayMode === 'custom'
+  const isIdols = config.category === 'idols'
+  const isSongs = config.category === 'songs'
+  const isPlaying = phase === 'playing'
+  const isCustom = config.gamePlayMode === 'custom'
 
   // ── Options HUD ───────────────────────────────────────────────────────────
 
   const hudOptions = [
     { icon: GAME_OPTION_ICONS['Type de quiz'], labelOption: 'Type de quiz', optionValue: 'Save One' },
-    { icon: GAME_OPTION_ICONS['Catégorie'],    labelOption: 'Catégorie',    optionValue: isIdols ? 'Idoles' : 'Chansons' },
-    { icon: GAME_OPTION_ICONS['Mode de jeu'],  labelOption: 'Mode de jeu',  optionValue: GAMEPLAY_LABELS[config.gamePlayMode] ?? config.gamePlayMode },
-    { icon: GAME_OPTION_ICONS['Drops'],        labelOption: 'Drops',        optionValue: config.drops },
-    { icon: GAME_OPTION_ICONS['Timer'],        labelOption: 'Timer',        optionValue: config.timerSeconds > 0 ? `${config.timerSeconds}s` : 'Off' },
-    isSongs ? { icon: GAME_OPTION_ICONS['Extrait'], labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
+    { icon: GAME_OPTION_ICONS['Drops'], labelOption: 'Drops', optionValue: `Drop ${config.drops}` },
+    { icon: GAME_OPTION_ICONS['Catégorie'], labelOption: 'Catégorie', optionValue: isIdols ? 'Idoles' : 'Chansons' },
+    {
+      icon: GAME_OPTION_ICONS['Mode de jeu'],
+      labelOption: 'Mode de jeu',
+      optionValue: GAME_PLAY_MODE_MAP[config.gamePlayMode].label ?? config.gamePlayMode,
+    },
+    config.timerSeconds > 0
+      ? { icon: GAME_OPTION_ICONS['Timer'], labelOption: 'Timer', optionValue: `${config.timerSeconds}s` }
+      : null,
+    isSongs
+      ? { icon: GAME_OPTION_ICONS['Extrait'], labelOption: 'Extrait', optionValue: `${config.clipDuration}s` }
+      : null,
     isCustom && isIdols && config.roleFilters.length > 0
-      ? { icon: GAME_OPTION_ICONS['Rôles'], labelOption: 'Rôles', optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', ') }
+      ? {
+          icon: GAME_OPTION_ICONS['Rôles'],
+          labelOption: 'Rôles',
+          optionValue: config.roleFilters.map((r) => ROLE_LABELS[r] ?? r).join(', '),
+        }
       : null,
     isCustom && isSongs && config.songType !== 'all'
-      ? { icon: GAME_OPTION_ICONS['Type'], labelOption: 'Type', optionValue: SONG_TYPE_LABELS[config.songType] ?? config.songType }
+      ? {
+          icon: GAME_OPTION_ICONS['Type'],
+          labelOption: 'Type',
+          optionValue: SONG_TYPE_OPTIONS_MAP[config.songType].label ?? config.songType,
+        }
       : null,
   ]
 
@@ -98,7 +105,9 @@ export default function SaveOnePage() {
         <div className={g.center}>
           <p className={g.errorTitle}>Erreur</p>
           <p className={g.errorMsg}>{error}</p>
-          <button className={g.retryBtn} onClick={goToConfig}>← Retour à la config</button>
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
+          </button>
         </div>
       </div>
     )
@@ -110,7 +119,9 @@ export default function SaveOnePage() {
         <AppHeader />
         <div className={g.center}>
           <p className={g.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
-          <button className={g.retryBtn} onClick={goToConfig}>← Retour à la config</button>
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
+          </button>
         </div>
       </div>
     )
@@ -175,7 +186,7 @@ export default function SaveOnePage() {
             playerName={undefined}
             playerIndex={currentPlayer as 0 | 1}
             onChoose={(id, ms) => choose(id, ms)}
-            onPass={(ms) => pass(ms)}
+            //onPass={(ms) => pass(ms)}
             onTimeout={timeout}
           />
         )}
@@ -183,21 +194,11 @@ export default function SaveOnePage() {
         {/* Espace vide pendant les transitions (maintient le layout stable) */}
         {!isPlaying && phase !== 'summary' && <div className={g.transitionBlank} />}
       </main>
-
-      {/* Overlays de transition — EN DEHORS de <main> pour ne pas être clippés */}
+      {/* Overlays de transition — EN DEHORS de <main> pour ne pas être clippés */}²
       {phase === 'roundTransition' && (
-        <RoundTransition
-          roundNumber={currentRoundIndex + 1}
-          totalRounds={totalRounds}
-          onDone={skipRoundTransition}
-        />
+        <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />
       )}
-      {phase === 'playerTransition' && (
-        <PlayerTransitionOverlay
-          playerName={p2Name}
-          onSkip={skipPlayerTransition}
-        />
-      )}
+      {phase === 'playerTransition' && <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />}
     </div>
   )
 }

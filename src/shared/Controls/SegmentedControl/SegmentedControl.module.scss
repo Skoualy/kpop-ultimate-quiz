@@ -58,6 +58,11 @@
   padding: 4px 12px;
 }
 
+.md .btn {
+  font-size: 14px;
+  padding: 9px 18px;
+}
+
 /* Thème clair */
 :global([data-theme='light']) {
   .btnActive {

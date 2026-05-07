@@ -9,18 +9,6 @@ export interface HudOption {
   optionValue: string | number
 }
 
-export interface GameHudHeaderProps {
-  onBack: () => void
-  onPass?: () => void
-  actionDisabled?: boolean
-  currentRound: number
-  totalRounds: number
-  /** État fullscreen courant — affiche l'icône appropriée sur le bouton */
-  isFullscreen?: boolean
-  /** Handler toggle fullscreen */
-  onToggleFullscreen?: () => void
-}
-
 export interface GameHudProps {
   /**
    * Badges de la section options (section2).

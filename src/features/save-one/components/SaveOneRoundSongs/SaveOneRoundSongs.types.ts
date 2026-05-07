@@ -9,6 +9,6 @@ export interface SaveOneRoundSongsProps {
   playerName?: string
   playerIndex?: PlayerIndex
   onChoose: (songId: string, timeMs: number) => void
-  onPass: (timeMs: number) => void
+  //onPass: (timeMs: number) => void
   onTimeout: () => void
 }

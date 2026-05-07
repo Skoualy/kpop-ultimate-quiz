@@ -55,7 +55,7 @@ function QVRoundItem({
 }) {
   const img = getItemImage(item)
   const isPositive = result?.vote === 'positive'
-  //const isNegative = result?.vote === 'negative'
+  const isPass = result?.vote === null && !result.isTimeout
 
   return (
     <div className={[styles.roundItemRow, isPositive ? styles.voteItem : styles.skipItem].join(' ')}>
@@ -71,7 +71,7 @@ function QVRoundItem({
       </div>
 
       {/* Badge vote */}
-      {result && (
+      {result && !isPass && (
         <span
           className={[styles.voteBadge, isPositive ? styles.voteBadgePositive : styles.voteBadgeNegative].join(' ')}
         >

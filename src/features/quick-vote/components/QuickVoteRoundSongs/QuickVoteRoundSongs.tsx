@@ -47,17 +47,6 @@ export function QuickVoteRoundSongs({
 
   return (
     <div className={styles.root}>
-      {/* Timer */}
-      {timerSeconds > 0 && (
-        <div className={styles.timerSlot}>
-          <TimerBar
-            percentLeft={voted ? 100 : percentLeft}
-            remainingSeconds={voted ? timerSeconds : remaining}
-            totalSeconds={timerSeconds}
-          />
-        </div>
-      )}
-
       {/* Player YouTube — même wrapper max-width que SaveOneRoundSongs */}
       <div className={styles.iframeWrapper}>
         {!videoError && !voted ? (
@@ -77,6 +66,17 @@ export function QuickVoteRoundSongs({
           </div>
         ) : null}
       </div>
+
+      {/* Timer */}
+      {timerSeconds > 0 && (
+        <div className={styles.timerSlot}>
+          <TimerBar
+            percentLeft={voted ? 100 : percentLeft}
+            remainingSeconds={voted ? timerSeconds : remaining}
+            totalSeconds={timerSeconds}
+          />
+        </div>
+      )}
 
       {/* Infos chanson */}
       <div className={styles.thumbnails}>

@@ -13,10 +13,8 @@ export function SaveOneRoundSongs({
   timerSeconds,
   timerKey,
   player2Mode = false,
-  playerName,
   playerIndex = 0,
   onChoose,
-  onPass,
   onTimeout,
 }: SaveOneRoundSongsProps) {
   const [activeIdx, setActiveIdx] = useState<number | null>(0)
@@ -186,17 +184,19 @@ export function SaveOneRoundSongs({
         ) : null}
       </div>
 
-      {/* Timer — slot toujours réservé */}
-      <div className={styles.timerSlot}>
-        {sequenceComplete && timerSeconds > 0 && (
-          <TimerBar
-            percentLeft={chosen ? 100 : percentLeft}
-            remainingSeconds={chosen ? timerSeconds : remaining}
-            totalSeconds={timerSeconds}
-            className={styles.timer}
-          />
-        )}
-      </div>
+      {/* Timer */}
+      {timerSeconds > 0 && (
+        <div className={styles.timerSlot}>
+          {sequenceComplete && (
+            <TimerBar
+              percentLeft={chosen ? 100 : percentLeft}
+              remainingSeconds={chosen ? timerSeconds : remaining}
+              totalSeconds={timerSeconds}
+              className={styles.timer}
+            />
+          )}
+        </div>
+      )}
 
       {/* Miniatures — chaque card gère son propre bouton Passer/Rejouer */}
       <div className={[styles.thumbnails, styles[`cols${songs.length}`]].join(' ')}>

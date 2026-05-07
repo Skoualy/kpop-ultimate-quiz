@@ -11,14 +11,68 @@
   line-height: 1.4;
 }
 
-.default  { background: var(--bg-pill); border-color: var(--border-strong); color: var(--text-primary); }
-.pink     { background: rgba(233, 30, 140, 0.15); border-color: rgba(233, 30, 140, 0.35); color: #f472b6; }
-.purple   { background: rgba(124, 58, 237, 0.15); border-color: rgba(124, 58, 237, 0.35); color: #a78bfa; }
-.teal     { background: rgba(6, 182, 212, 0.15);  border-color: rgba(6, 182, 212, 0.35);  color: #22d3ee; }
-.success  { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35); color: #34d399; }
-.danger   { background: rgba(239, 68, 68, 0.12);  border-color: rgba(239, 68, 68, 0.25);  color: #f87171; }
-.warning  { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3);  color: #fbbf24; }
-.girl     { background: rgba(233, 30, 140, 0.15); border-color: rgba(233, 30, 140, 0.35); color: #f472b6; }
-.boy      { background: rgba(6, 182, 212, 0.15);  border-color: rgba(6, 182, 212, 0.35);  color: #22d3ee; }
-.soloist  { background: rgba(124, 58, 237, 0.15); border-color: rgba(124, 58, 237, 0.35); color: #a78bfa; }
-.subunit  { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3);  color: #fbbf24; }
+.default {
+  background: var(--bg-pill);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+.pink {
+  background: rgba(233, 30, 140, 0.15);
+  border-color: rgba(233, 30, 140, 0.35);
+  color: #f472b6;
+}
+.purple {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.35);
+  color: #a78bfa;
+}
+.teal {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.35);
+  color: #22d3ee;
+}
+.success {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+.danger {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+}
+.warning {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+.girl {
+  background: rgba(233, 30, 140, 0.15);
+  border-color: rgba(233, 30, 140, 0.35);
+  color: #f472b6;
+}
+.boy {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.35);
+  color: #22d3ee;
+}
+.soloist {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.35);
+  color: #a78bfa;
+}
+.subunit {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+.player1 {
+  background: rgba(225, 45, 15, 0.15);
+  border-color: rgba(225, 45, 15, 0.3);
+  color: #e12d0f;
+}
+.player2 {
+  background: rgba(15, 120, 230, 0.15);
+  border-color: rgba(15, 120, 230, 0.3);
+  color: #0f78e6;
+}
