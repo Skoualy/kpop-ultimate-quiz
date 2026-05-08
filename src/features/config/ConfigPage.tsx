@@ -27,7 +27,9 @@ import {
   DROPS_OPTIONS,
   QUIZ_TYPES_OPTIONS,
   QUIZ_CATEGORIES_OPTIONS,
+  ANSWER_TOLERANCE_OPTIONS,
 } from '@/shared/constants'
+import type { AnswerTolerance } from '@/shared/constants/gameDefaults'
 import type {
   Group,
   GroupCategory,
@@ -97,11 +99,12 @@ export default function ConfigPage() {
   const { config, setConfig, resetConfig } = useGameContext()
   const { data: groups, loading } = useGroupList()
 
-  const isSaveOne = config.mode === 'saveOne'
-  const isIdols = config.category === 'idols'
-  const isSongs = config.category === 'songs'
-  const playMode = GAME_PLAY_MODE_MAP[config.gamePlayMode]
-  const isCustom = config.gamePlayMode === 'custom'
+  const isSaveOne   = config.mode === 'saveOne'
+  const isBlindTest = config.mode === 'blindTest'
+  const isIdols     = config.category === 'idols'
+  const isSongs     = config.category === 'songs'
+  const playMode    = GAME_PLAY_MODE_MAP[config.gamePlayMode]
+  const isCustom    = config.gamePlayMode === 'custom'
 
   const [artistMode, setArtistMode] = useState<'all' | 'byFilter' | 'manual'>(() =>
     config.selectedGroupIds.length === 0 ? 'all' : 'manual',
@@ -324,6 +327,18 @@ export default function ConfigPage() {
                     disabled={!playMode.clipEditable}
                   />
                   {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
+                </div>
+              )}
+
+              {isBlindTest && (
+                <div className={styles.field}>
+                  <span className={styles.fieldLabel}>🎯 Tolérance réponses</span>
+                  <BadgeGroupControl<AnswerTolerance>
+                    options={ANSWER_TOLERANCE_OPTIONS}
+                    value={[config.answerTolerance ?? 'tolerant']}
+                    onChange={(vals) => setConfig({ answerTolerance: vals[0] ?? 'tolerant' })}
+                    isMultiselect={false}
+                  />
                 </div>
               )}
             </div>

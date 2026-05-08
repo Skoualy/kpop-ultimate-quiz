@@ -93,6 +93,8 @@
   background: var(--bg-card);
   border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-lg);
+  /* position: relative required for overflow:hidden + border-radius to clip children */
+  position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }

@@ -1,0 +1,103 @@
+/* Container: constant 405px height in both disc and iframe states */
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 405px;
+}
+
+/* ─── Revealed: iframe YouTube ───────────────────────────────────────────────── */
+
+.iframeVisible {
+  width: 100%;
+  max-width: 720px;
+  height: 405px;
+  display: flex;
+}
+
+.iframeHidden {
+  /* Keep rendered for audio, but invisible and non-interactive */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.player {
+  width: 100%;
+  height: 405px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ─── Blind phase: spinning disc ─────────────────────────────────────────────── */
+
+.discArea {
+  position: relative;
+  width: 405px;
+  height: 405px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* SVG already has its own <animateTransform> rotation — no CSS needed */
+.disc {
+  width: 405px;
+  height: 405px;
+  display: block;
+  user-select: none;
+}
+
+/* ─── Replay overlay button ──────────────────────────────────────────────────── */
+
+.replayBtn {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.62);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.replayIcon {
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .root { height: auto; }
+
+  .iframeVisible {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .player { height: auto; aspect-ratio: 16 / 9; }
+
+  .discArea,
+  .disc {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}

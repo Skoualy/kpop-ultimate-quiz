@@ -11,6 +11,7 @@ import type {
 import type { SongEntry } from './SongEntry'
 import type { Idol }      from './Idol'
 import type { Group }     from './Group'
+import type { AnswerTolerance } from '../constants/gameDefaults'
 
 // Re-export pour éviter de casser les imports existants depuis '@/shared/models'
 export type { GamePlayMode }
@@ -33,6 +34,8 @@ export interface GameConfig {
   player1Name:   string
   player2Name:   string
   selectedGroupIds: string[]
+  /** Tolérance du fuzzy match — Blind Test uniquement. Défaut : 'tolerant' */
+  answerTolerance: AnswerTolerance
 }
 
 // ─── Types gameplay dérivés ───────────────────────────────────────────────────

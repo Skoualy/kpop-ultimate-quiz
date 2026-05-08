@@ -19,6 +19,7 @@ export function GameHud({
   currentRound,
   totalRounds,
   activePlayerIndex,
+  currentScore,
   isFullscreen,
   onToggleFullscreen,
 }: GameHudProps) {
@@ -83,6 +84,9 @@ export function GameHud({
       {activePlayerName && (
         <Badge variant={playerClass} className={styles.playerBadge}>
           {activePlayerName}
+          {currentScore !== undefined && (
+            <span className={styles.scoreChip}> · {currentScore} pt{currentScore !== 1 ? 's' : ''}</span>
+          )}
         </Badge>
       )}
       {/* <>

@@ -259,6 +259,14 @@
   padding: 3px 12px;
 }
 
+.scoreChip {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.85;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 600px) {
