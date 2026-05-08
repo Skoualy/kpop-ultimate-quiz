@@ -1,0 +1,139 @@
+/* Conteneur principal — hauteur fixe 405px dans les deux états */
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 405px;
+  width: 100%;
+}
+
+/* ─── YouTube iframe ────────────────────────────────────────────────────────── */
+
+.iframeVisible {
+  width: 100%;
+  max-width: 720px;
+  height: 405px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Iframe cachée visuellement mais toujours active pour l'audio */
+.iframeHidden {
+  position: absolute;
+  width: 320px;
+  height: 180px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.player {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  aspect-ratio: unset;
+}
+
+/* ─── Disque animé ──────────────────────────────────────────────────────────── */
+
+.discArea {
+  position: relative;
+  width: 405px;
+  height: 405px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    #1a1a2e 0%,
+    #16213e 25%,
+    #0f3460 50%,
+    #1a1a2e 65%,
+    #111827 100%
+  );
+  animation: spinDisc 4s linear infinite;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Rainures simulées */
+.groove1,
+.groove2 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.groove1 { width: 75%; height: 75%; }
+.groove2 { width: 55%; height: 55%; }
+
+.centerHole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14%;
+  height: 14%;
+  border-radius: 50%;
+  background: var(--bg-base);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes spinDisc {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Bouton Rejouer (overlay centré sur le disque) ────────────────────────── */
+
+.replayBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px; /* compense l'icône ▶ visuellement */
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  z-index: 10;
+  font-family: inherit;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* ─── Responsive mobile ─────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .root { height: auto; }
+  .discArea { width: 100%; height: 0; padding-bottom: 100%; }
+  .disc { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .iframeVisible { height: auto; aspect-ratio: 16 / 9; }
+}

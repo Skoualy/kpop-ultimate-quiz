@@ -27,6 +27,7 @@ import {
   DROPS_OPTIONS,
   QUIZ_TYPES_OPTIONS,
   QUIZ_CATEGORIES_OPTIONS,
+  ANSWER_TOLERANCE_OPTIONS,
 } from '@/shared/constants'
 import type {
   Group,
@@ -38,6 +39,7 @@ import type {
   GameConfig,
   GamePlayMode,
 } from '@/shared/models'
+import type { AnswerTolerance } from '@/shared/constants/gameDefaults'
 import { useConfigPreparation, type PreparationStatus } from '@/shared/hooks/useConfigPreparation'
 import type { MaxRoundsResult } from '@/features/save-one/helpers/poolScopeRules'
 import styles from './ConfigPage.module.scss'
@@ -97,7 +99,8 @@ export default function ConfigPage() {
   const { config, setConfig, resetConfig } = useGameContext()
   const { data: groups, loading } = useGroupList()
 
-  const isSaveOne = config.mode === 'saveOne'
+  const isSaveOne   = config.mode === 'saveOne'
+  const isBlindTest = config.mode === 'blindTest'
   const isIdols = config.category === 'idols'
   const isSongs = config.category === 'songs'
   const playMode = GAME_PLAY_MODE_MAP[config.gamePlayMode]
@@ -324,6 +327,18 @@ export default function ConfigPage() {
                     disabled={!playMode.clipEditable}
                   />
                   {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
+                </div>
+              )}
+
+              {isBlindTest && (
+                <div className={styles.field}>
+                  <span className={styles.fieldLabel}>🎯 Tolérance</span>
+                  <BadgeGroupControl<AnswerTolerance>
+                    options={ANSWER_TOLERANCE_OPTIONS}
+                    value={[config.answerTolerance]}
+                    onChange={(v) => setConfig({ answerTolerance: (v[0] as AnswerTolerance) ?? 'tolerant' })}
+                    size="sm"
+                  />
                 </div>
               )}
             </div>
