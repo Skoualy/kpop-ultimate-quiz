@@ -84,7 +84,7 @@
 
 > Objectif : Finaliser Save One, améliorer la logique des pools et la UI (config + jeux)
 
-### 🔄 UI — Ajouts de nouveaux controls génériques
+### ✅ UI — Ajouts de nouveaux controls génériques
 
 - [x] Ajout d'un **SegmentedControl** réutilisable
 - [x] Ajout d'un **EntitySuggestInput** réutilisable avec suggestions, callback centralisé, option de création et mode strict par ID.
@@ -114,16 +114,14 @@
 - [x] Brider le champ **rounds** après préparation en fonction du scope validé et afficher un état warning visuel tant que la limite est active.
 - [x] Remplacer les **number inputs** de configuration les plus adaptés par des **sliders** pour rendre les options de partie plus ludiques et plus lisibles.
 - [x] Ajouter un nouveau filtre musique **Langue** (`Tous`, `Coréen`, `Japonais`, `Anglais`) dans les options supplémentaires.
-- [x] Refonte du style pour rendre la page entièrement responsive
 
 ### ✅ Save One — Finalisation de la UI
 
 - [x] Intégration du **GameHud**
 - [x] Ajustement et amélioration de la UI
 - [x] Fix de l'algorithme d'équilibrage des pools pour ajuster l'ordre d'apparition des groupes et éviter la redondance des choix selon les rounds
-- [ ] Etendre l'algorithme d'équilibrage des pools aux idoles
 
-### ✅ UI - Nommage et correctifs
+### ✅ UI - Nommage, amélioration et correctifs
 
 - [x] Introduire un **placeholder artiste** distinct du placeholder idole pour mieux différencier visuellement les visuels de logo/cover et les portraits.
 - [x] Remplacer dans l’UI le terme **groupe** par **artiste** côté utilisateur tout en conservant la logique métier actuelle côté données.
@@ -132,48 +130,69 @@
 
 - [x] Centraliser les scss dédiés aux breakpoints et aux styles propres aux jeux
 - [x] Refonte du page header pour le rendre entièrement responsive
-- [ ] Mettre en place une stratégie **anti-scroll vertical** en jeu basée sur la compaction adaptative de l’interface
+- [x] Refonte du GameHud, pour rendre
 
-## v0.7 — Blind Test, Smash Or Pass & Amélioration du contributor
+---
 
-> Objectif : compléter le second mode de jeu et consolider l'UX globale.
+## v0.7 — Blind Test + Smash Or Pass, Responsive UI & Amélioration du contributor
 
-### Blind Test
+> Objectif : compléter les types de Quiz, rendre responsive l'UI globale et améliorer le contributor.
+
+### ✅ UI — Ajouts de nouveaux controls/composants génériques
+
+- [x] Ajout d'un **AnswerInputControl** réutilisable
+
+### 🔄 Config — Amélioration UI + Ajout nouvelle option
+
+- [x] Refonte du style pour rendre la page entièrement responsive
+- [x] Integration du **SegmentedControl** pour la catégorie de Quiz
+- [x] Intégration d'icônes pour toutes les options de jeu
+- [ ] Blind Test- Ajout de l'option "Validation réponse" permettant de choisir le niveau de tolérence pour la correspondance des réponses données via un **SegmentedControl**
+
+### 🔄 UI - Responsive CSS
+
+- [x] Centraliser les scss dédiés aux breakpoints et aux styles propres aux jeux
+- [x] Refonte du page header pour le rendre entièrement responsive
+- [x] Refonte du GameHud pour le rendre plus léger, visuel et responsive
+
+### 🔄 Blind Test
 
 - [ ] Blind Test — idoles
 - [ ] Blind Test — chansons
 - [ ] Blind Test — mode 1J & 2J
-- [ ] Résumé Blind Test (score, meilleure réponse, erreurs)
+- [ ] Blind Test - résumé de fin de partie
 - [ ] Blind Test — filtres catégorie / rôles / type chansons
-- [ ] Conserver la règle qu’en **Blind Test** il ne doit y avoir **aucune répétition** dans une même partie, y compris en mode 2 joueurs.
+- [ ] Implémentation du composant **SpinningDisc**
+- [ ] Intégration de la logique et de l'algorithme d'équilibrage des pools
+
+### ✅ Smash Or Pass
+
+- [x] Smash Or Pass — idoles
+- [x] Smash Or Pass — chansons
+- [x] Smash Or Pass — mode 1J & 2J
+- [x] Smash Or Pass - résumé de fin de partie
+- [x] Smash Or Pass — filtres catégorie / rôles / type chansons
+- [x] Intégration de la logique et de l'algorithme d'équilibrage des pools
 
 ### Contributor
 
-- [ ] Integration du control **EntitySuggestInput** et du composant **TilesGrid** pour remplacer le dual tab lors de la sélection des artistes
+- [ ] Integration du control **EntitySuggestInput** pour remplacer le **GeneratedIdInputControl** et sa logique séparé pour gérer la réutilisation des idoles
 
-### Config & UX
+### Page de gestion des artistes
 
-- [ ] <!-- Correctifs et améliorations ConfigPage identifiés -->
-- [ ] <!-- Correctifs et améliorations Contributor identifiés -->
-- [ ] <!-- Autres améliorations UX globale -->
+- [ ] Refonte de la page pour la rendre entièrement responsive
+- [ ] Affichage de métadonnées supplémentaires sur les cards des artistes (nombres de Membres/Ancien membres + titles/bSides)
+- [ ] Amélioration de l'ergonomie et du design des artists cards
 
-### Technique
+### Algorithme de pool
 
-- [ ] <!-- Refactors ou ajouts techniques prévus -->
-- [ ] Tests de non-régression de base (Vitest)
+- [ ] Etendre l'algorithme d'équilibrage des pools aux idoles
 
 ---
 
 ## v0.8 — Finalisation du dataset de base, Polish UI & Déploiement de la Beta
 
-> Objectif : introduire le mode de jeu et enrichir le dataset.
-
-### Mode Tournoi _(bientôt disponible)_
-
-- [ ] Définir les règles du mode Tournoi
-- [ ] Implémenter le Tournoi — idoles
-- [ ] Implémenter le Tournoi — chansons
-- [ ] Résumé Tournoi (bracket, vainqueur, historique)
+> Objectif : enrichir le dataset et rendre l'app disponible depuis le web
 
 ### Dataset & Contributor
 
@@ -189,7 +208,14 @@
 
 ## v0.9 — Profils, XP & collections _(preview)_
 
-> Objectif : ajouter une couche de progression et de personnalisation.
+> Objectif : Ajout mode Tournoi ajouter une couche de progression et de personnalisation.
+
+### Mode Tournoi _(bientôt disponible)_
+
+- [ ] Définir les règles du mode Tournoi
+- [ ] Implémenter le Tournoi — idoles
+- [ ] Implémenter le Tournoi — chansons
+- [ ] Résumé Tournoi (bracket, vainqueur, historique)
 
 ### Profils joueur
 

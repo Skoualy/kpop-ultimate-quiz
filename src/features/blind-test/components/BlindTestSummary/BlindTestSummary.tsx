@@ -15,9 +15,7 @@ function roundLabel(artistMatched: boolean, titleMatched: boolean, foundInOneTry
 }
 
 function totalScore(results: BlindTestResult[], playerIndex: PlayerIndex): number {
-  return results
-    .filter((r) => r.playerIndex === playerIndex)
-    .reduce((sum, r) => sum + r.scoreGained, 0)
+  return results.filter((r) => r.playerIndex === playerIndex).reduce((sum, r) => sum + r.scoreGained, 0)
 }
 
 function avgTimeMs(results: BlindTestResult[], playerIndex: PlayerIndex): number | null {
@@ -30,28 +28,43 @@ function avgTimeMs(results: BlindTestResult[], playerIndex: PlayerIndex): number
 
 function RoundResultCard({ result, song }: { result: BlindTestResult | undefined; song: SongItem }) {
   const artist = result?.artistMatched ?? false
-  const title  = result?.titleMatched  ?? false
-  const one    = result?.foundInOneTry ?? false
+  const title = result?.titleMatched ?? false
+  const one = result?.foundInOneTry ?? false
 
   return (
     <div className={styles.resultCard}>
       <img src={song.thumbnailUrl} alt={song.title} className={styles.thumb} />
       <div className={styles.info}>
-        <span className={[styles.label, one ? styles.labelGold : artist && title ? styles.labelGreen : artist || title ? styles.labelAmber : styles.labelRed].join(' ')}>
-          {roundLabel(artist, title, one)}
-        </span>
         <span className={[styles.badge, artist ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Artiste : {artist ? song.groupName + ' ✅' : '???'}
+          Artiste : {artist ? song.groupName + ' ✅' : song.groupName}
         </span>
         <span className={[styles.badge, title ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Titre : {title ? song.title + ' ✅' : '???'}
+          Titre : {title ? song.title + ' ✅' : song.title}
         </span>
         {result && result.timeMs !== null && (
           <span className={styles.time}>⏱ {(result.timeMs / 1000).toFixed(1)}s</span>
         )}
       </div>
       {result && (
-        <span className={styles.score}>{result.scoreGained} pt{result.scoreGained > 1 ? 's' : ''}</span>
+        <div className={styles.result}>
+          <span
+            className={[
+              styles.label,
+              one
+                ? styles.labelGold
+                : artist && title
+                  ? styles.labelGreen
+                  : artist || title
+                    ? styles.labelAmber
+                    : styles.labelRed,
+            ].join(' ')}
+          >
+            {roundLabel(artist, title, one)}
+          </span>
+          <span className={styles.score}>
+            {result.scoreGained} pt{result.scoreGained > 1 ? 's' : ''}
+          </span>
+        </div>
       )}
     </div>
   )
@@ -60,13 +73,13 @@ function RoundResultCard({ result, song }: { result: BlindTestResult | undefined
 // ─── Colonne stats joueur ─────────────────────────────────────────────────────
 
 function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; playerIndex: PlayerIndex }): ReactNode {
-  const mine        = results.filter((r) => r.playerIndex === playerIndex)
-  const total       = mine.reduce((s, r) => s + r.scoreGained, 0)
-  const complete    = mine.filter((r) => r.artistMatched && r.titleMatched).length
-  const artists     = mine.filter((r) => r.artistMatched).length
-  const titles      = mine.filter((r) => r.titleMatched).length
-  const oneShot     = mine.filter((r) => r.foundInOneTry).length
-  const n           = mine.length
+  const mine = results.filter((r) => r.playerIndex === playerIndex)
+  const total = mine.reduce((s, r) => s + r.scoreGained, 0)
+  const complete = mine.filter((r) => r.artistMatched && r.titleMatched).length
+  const artists = mine.filter((r) => r.artistMatched).length
+  const titles = mine.filter((r) => r.titleMatched).length
+  const oneShot = mine.filter((r) => r.foundInOneTry).length
+  const n = mine.length
 
   return (
     <div className={styles.statsCol}>
@@ -77,24 +90,32 @@ function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; pla
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>✅</span>
-        <span className={styles.statVal}>{complete}/{n}</span>
-        <span className={styles.statLabel}>complètes</span>
+        <span className={styles.statVal}>
+          {complete}/{n}
+        </span>
+        <span className={styles.statLabel}>complètes ({(complete * 100) / n} %)</span>
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>🎤</span>
-        <span className={styles.statVal}>{artists}/{n}</span>
-        <span className={styles.statLabel}>artistes</span>
+        <span className={styles.statVal}>
+          {artists}/{n}
+        </span>
+        <span className={styles.statLabel}>artistes ({(artists * 100) / n} %)</span>
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>🎵</span>
-        <span className={styles.statVal}>{titles}/{n}</span>
-        <span className={styles.statLabel}>titres</span>
+        <span className={styles.statVal}>
+          {titles}/{n}
+        </span>
+        <span className={styles.statLabel}>titres ({(titles * 100) / n} %)</span>
       </div>
       {oneShot > 0 && (
         <div className={styles.statRow}>
           <span className={styles.statIcon}>⚡</span>
-          <span className={styles.statVal}>{oneShot}/{n}</span>
-          <span className={styles.statLabel}>1er coup</span>
+          <span className={styles.statVal}>
+            {oneShot}/{n}
+          </span>
+          <span className={styles.statLabel}>1er coup ({(oneShot * 100) / n} %)</span>
         </div>
       )}
     </div>
@@ -105,8 +126,8 @@ function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; pla
 
 export function BlindTestSummary({ rounds, results, config, onRestart, onBackToConfig }: BlindTestSummaryProps) {
   const twoPlayer = config.twoPlayerMode
-  const p1Name    = config.player1Name || 'Joueur 1'
-  const p2Name    = config.player2Name || 'Joueur 2'
+  const p1Name = config.player1Name || 'Joueur 1'
+  const p2Name = config.player2Name || 'Joueur 2'
 
   // Gagnant 2J (score, puis temps moyen)
   const commonChoicesLabel = twoPlayer ? '★ Même réponse !' : undefined
@@ -119,10 +140,10 @@ export function BlindTestSummary({ rounds, results, config, onRestart, onBackToC
       }, 0)
     : 0
 
-  const p1Score  = totalScore(results, 0)
-  const p2Score  = twoPlayer ? totalScore(results, 1) : 0
-  const p1Avg    = avgTimeMs(results, 0)
-  const p2Avg    = twoPlayer ? avgTimeMs(results, 1) : null
+  const p1Score = totalScore(results, 0)
+  const p2Score = twoPlayer ? totalScore(results, 1) : 0
+  const p1Avg = avgTimeMs(results, 0)
+  const p2Avg = twoPlayer ? avgTimeMs(results, 1) : null
 
   // Sous-titre avec indication du gagnant en 2J
   let subtitle = `${rounds.length} rounds · Blind Test`
@@ -141,17 +162,18 @@ export function BlindTestSummary({ rounds, results, config, onRestart, onBackToC
     const p1Res = results.find((r) => r.roundIndex === ri && r.playerIndex === 0)
     const p2Res = twoPlayer ? results.find((r) => r.roundIndex === ri && r.playerIndex === 1) : undefined
 
-    const sameResult = twoPlayer && p1Res && p2Res
-      && p1Res.artistMatched === p2Res.artistMatched
-      && p1Res.titleMatched  === p2Res.titleMatched
+    const sameResult =
+      twoPlayer &&
+      p1Res &&
+      p2Res &&
+      p1Res.artistMatched === p2Res.artistMatched &&
+      p1Res.titleMatched === p2Res.titleMatched
 
     return {
       roundNumber: round.roundNumber,
-      matchLabel:  sameResult ? '★ Même réponse !' : undefined,
-      p1Content:   <RoundResultCard result={p1Res} song={round.song1} />,
-      p2Content:   twoPlayer && round.song2
-        ? <RoundResultCard result={p2Res} song={round.song2} />
-        : undefined,
+      matchLabel: sameResult ? '★ Même réponse !' : undefined,
+      p1Content: <RoundResultCard result={p1Res} song={round.song1} />,
+      p2Content: twoPlayer && round.song2 ? <RoundResultCard result={p2Res} song={round.song2} /> : undefined,
     }
   })
 

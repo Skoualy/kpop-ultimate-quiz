@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
   flex: 1;
   min-height: 0;
@@ -52,21 +52,6 @@
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-lg);
   overflow: hidden;
-}
-
-.player2Placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--bg-card);
-  border: 1.5px dashed var(--border-strong);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  font-size: 13px;
-  text-align: center;
-  padding: 20px;
 }
 
 .videoError {

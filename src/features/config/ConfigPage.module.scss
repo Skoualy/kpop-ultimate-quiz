@@ -126,15 +126,28 @@
   width: 100%;
 }
 
+.fieldTitle {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
 .fieldLabel {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
+.fieldIcon {
+  font-size: 16px;
+  // font-weight: 600;
+  // padding-bottom: 3px;
+}
+
 .fieldHint {
   font-size: 11px;
   color: var(--text-muted);
+  padding-bottom: 2px;
 }
 
 .fieldError {
@@ -175,10 +188,10 @@
   }
 }
 
-// Drops seul — SegmentedControl compact (3 boutons, taille naturelle)
+// SegmentedControl compact (taille naturelle)
 .optionsCompact {
   display: flex;
-  gap: 24px;
+  //gap: 24px;
   flex-wrap: wrap;
   align-items: flex-start;
   flex-shrink: 0;

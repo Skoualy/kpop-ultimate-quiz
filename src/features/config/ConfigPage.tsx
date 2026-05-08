@@ -47,9 +47,16 @@ import styles from './ConfigPage.module.scss'
 // ─── Helper : icône + label ───────────────────────────────────────────────────
 
 /** Préfixe le label de l'icône correspondante si elle existe dans la map. */
-function iconLabel(label: string): string {
+function renderFieldLabel(label: string, hintLabel?: string) {
   const icon = GAME_OPTION_ICONS[label]
-  return icon ? `${icon} ${label}` : label
+
+  return (
+    <div className={styles.fieldTitle}>
+      {icon && <span className={styles.fieldIcon}>{icon}</span>}
+      <span className={styles.fieldLabel}>{label}</span>
+      {hintLabel && <span className={styles.fieldHint}>- {hintLabel}</span>}
+    </div>
+  )
 }
 
 // ─── Constantes locales ───────────────────────────────────────────────────────
@@ -99,7 +106,7 @@ export default function ConfigPage() {
   const { config, setConfig, resetConfig } = useGameContext()
   const { data: groups, loading } = useGroupList()
 
-  const isSaveOne   = config.mode === 'saveOne'
+  const isSaveOne = config.mode === 'saveOne'
   const isBlindTest = config.mode === 'blindTest'
   const isIdols = config.category === 'idols'
   const isSongs = config.category === 'songs'
@@ -228,7 +235,7 @@ export default function ConfigPage() {
         <ConfigCard>
           <div className={styles.fieldsRow}>
             <div className={styles.field}>
-              <span className={styles.fieldLabel}>{iconLabel('Type de quiz')}</span>
+              {renderFieldLabel('Type de quiz')}
               <SelectControl
                 value={config.mode}
                 onChange={(v) => setConfig({ mode: v as GameConfig['mode'] })}
@@ -236,21 +243,16 @@ export default function ConfigPage() {
               />
             </div>
             <div className={styles.field}>
-              <span className={styles.fieldLabel}>{iconLabel('Catégorie')}</span>
+              {renderFieldLabel('Catégorie')}
               <SegmentedControl
                 value={config.category}
                 options={QUIZ_CATEGORIES_OPTIONS}
                 onChange={(v) => setConfig({ category: v as GameConfig['category'] })}
                 size="md"
               />
-              {/* <SelectControl
-                value={config.category}
-                onChange={(v) => setConfig({ category: v as GameConfig['category'] })}
-                options={QUIZ_CATEGORIES_OPTIONS}
-              /> */}
             </div>
             <div className={styles.field}>
-              <span className={styles.fieldLabel}>{iconLabel('Mode de jeu')}</span>
+              {renderFieldLabel('Mode de jeu')}
               <SelectControl
                 value={config.gamePlayMode}
                 onChange={(v) => handlePlayModeChange(v as GamePlayMode)}
@@ -269,7 +271,7 @@ export default function ConfigPage() {
             {isSaveOne && (
               <div className={styles.optionsCompact}>
                 <div className={styles.field}>
-                  <span className={styles.fieldLabel}>{iconLabel('Drops')}</span>
+                  {renderFieldLabel('Drops')}
                   <SegmentedControl
                     value={config.drops.toString()}
                     options={DROPS_OPTIONS}
@@ -279,9 +281,23 @@ export default function ConfigPage() {
               </div>
             )}
 
+            {isBlindTest && (
+              <div className={styles.optionsCompact}>
+                <div className={styles.field}>
+                  {renderFieldLabel('Validation des réponses')}
+                  <SegmentedControl
+                    value={config.answerTolerance}
+                    options={ANSWER_TOLERANCE_OPTIONS}
+                    onChange={(v) => setConfig({ answerTolerance: (v as AnswerTolerance) ?? 'tolerant' })}
+                    size="md"
+                  />
+                </div>
+              </div>
+            )}
+
             <div className={styles.optionsSliders}>
               <div className={styles.field}>
-                <span className={styles.fieldLabel}>{iconLabel('Rounds')}</span>
+                {renderFieldLabel('Rounds')}
                 <SliderControl
                   value={config.rounds}
                   onChange={(v) => setConfig({ rounds: v })}
@@ -297,7 +313,7 @@ export default function ConfigPage() {
                   .filter(Boolean)
                   .join(' ')}
               >
-                <span className={styles.fieldLabel}>{iconLabel('Timer')}</span>
+                {renderFieldLabel('Timer')}
                 <SliderControl
                   value={timerValue}
                   onChange={(v) => setConfig({ timerSeconds: v })}
@@ -317,7 +333,7 @@ export default function ConfigPage() {
                     .filter(Boolean)
                     .join(' ')}
                 >
-                  <span className={styles.fieldLabel}>{iconLabel('Extraits')}</span>
+                  {renderFieldLabel('Extraits')}
                   <SliderControl
                     value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
                     onChange={(v) => setConfig({ clipDuration: v })}
@@ -329,31 +345,19 @@ export default function ConfigPage() {
                   {!playMode.clipEditable && <span className={styles.fieldHint}>Fixé par le mode de jeu.</span>}
                 </div>
               )}
-
-              {isBlindTest && (
-                <div className={styles.field}>
-                  <span className={styles.fieldLabel}>🎯 Tolérance</span>
-                  <BadgeGroupControl<AnswerTolerance>
-                    options={ANSWER_TOLERANCE_OPTIONS}
-                    value={[config.answerTolerance]}
-                    onChange={(v) => setConfig({ answerTolerance: (v[0] as AnswerTolerance) ?? 'tolerant' })}
-                    size="sm"
-                  />
-                </div>
-              )}
             </div>
           </div>
 
           {/* Mode 2 joueurs */}
           <div className={styles.twoPlayerRow}>
             <div className={styles.twoPlayerLeft}>
-              <span className={styles.fieldLabel}>{iconLabel('Mode 2 joueurs')}</span>
+              {renderFieldLabel('Mode 2 joueurs')}
               <ToggleControl checked={config.twoPlayerMode} onChange={(v) => setConfig({ twoPlayerMode: v })} />
               <span className={styles.twoPlayerDesc}>Permet à deux joueurs de répondre chacun leur tour.</span>
             </div>
             <div className={styles.twoPlayerFields}>
               <div className={styles.twoPlayerField}>
-                <span className={styles.fieldLabel}>{iconLabel('Joueur 1')}</span>
+                {renderFieldLabel('Joueur 1')}
                 <input
                   className="input"
                   value={config.player1Name}
@@ -364,7 +368,7 @@ export default function ConfigPage() {
                 {p1Empty && <span className={styles.fieldError}>Pseudo requis</span>}
               </div>
               <div className={styles.twoPlayerField}>
-                <span className={styles.fieldLabel}>{iconLabel('Joueur 2')}</span>
+                {renderFieldLabel('Joueur 2')}
                 <input
                   className="input"
                   value={config.player2Name}
@@ -391,7 +395,7 @@ export default function ConfigPage() {
                   {isIdols && (
                     <>
                       <div className={styles.optionGroup}>
-                        <span className={styles.fieldLabel}>{iconLabel('Critère')}</span>
+                        {renderFieldLabel('Critère')}
                         <BadgeGroupControl<SaveOneCriterion>
                           options={CRITERIA.map((c) => ({ value: c, label: CRITERIA_LABELS[c] }))}
                           allOptionLabel="Tous"
@@ -401,7 +405,9 @@ export default function ConfigPage() {
                         />
                       </div>
                       <div className={styles.optionGroup}>
-                        <span className={styles.fieldLabel}>{iconLabel('Rôles')}</span>
+                        <div className={styles.fieldTitle}>
+                          {renderFieldLabel('Rôles', 'Plusieurs choix possibles')}
+                        </div>
                         <BadgeGroupControl<MemberRole>
                           options={availableRoles.map((r) => ({ value: r, label: ROLE_LABELS[r] }))}
                           allOptionLabel="Tous"
@@ -416,7 +422,7 @@ export default function ConfigPage() {
                   {isSongs && (
                     <>
                       <div className={styles.optionGroup}>
-                        <span className={styles.fieldLabel}>{iconLabel('Type de chansons')}</span>
+                        {renderFieldLabel('Type de chansons')}
                         <BadgeGroupControl<SongType>
                           options={SONG_TYPE_OPTIONS as { value: SongType; label: string }[]}
                           allOptionLabel="Tous"
@@ -426,7 +432,7 @@ export default function ConfigPage() {
                         />
                       </div>
                       <div className={styles.optionGroup}>
-                        <span className={styles.fieldLabel}>{iconLabel('Langue')}</span>
+                        {renderFieldLabel('Langue')}
                         <BadgeGroupControl<LanguageOption>
                           options={LANGUAGE_OPTIONS as { value: LanguageOption; label: string }[]}
                           allOptionLabel="Toutes"

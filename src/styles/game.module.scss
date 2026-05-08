@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   padding: 12px 24px 12px;
-  gap: 20px;
+  gap: 12px;
   min-height: 0;
   overflow: hidden;
   justify-content: center;
@@ -95,11 +95,15 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  &:hover { opacity: 0.85; }
+  &:hover {
+    opacity: 0.85;
+  }
 }
 
 @keyframes gameSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */

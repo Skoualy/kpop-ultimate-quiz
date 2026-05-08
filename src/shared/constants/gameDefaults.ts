@@ -11,9 +11,9 @@ export const BLIND_TEST_MATCH_THRESHOLDS = {
 export type AnswerTolerance = keyof typeof BLIND_TEST_MATCH_THRESHOLDS
 
 export const ANSWER_TOLERANCE_OPTIONS: { value: AnswerTolerance; label: string }[] = [
-  { value: 'permissive', label: 'Permissif (≥ 80%)' },
-  { value: 'tolerant', label: 'Tolérant (≥ 90%)' },
-  { value: 'strict', label: 'Strict (100%)' },
+  { value: 'permissive', label: 'Permissive' },
+  { value: 'tolerant', label: 'Tolérante' },
+  { value: 'strict', label: 'Stricte' },
 ]
 
 // ─── Config par défaut ────────────────────────────────────────────────────────
