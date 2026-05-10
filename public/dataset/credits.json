@@ -1,16 +1,16 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "lastUpdated": "2026-04-25T14:08:35.124878Z",
+    "lastUpdated": "2026-05-09T23:02:52.202695Z",
     "summary": {
-      "total": 116,
+      "total": 136,
       "valid": 106,
-      "invalid": 10,
+      "invalid": 30,
       "bySourceType": {
-        "wikimedia": 114,
+        "wikimedia": 134,
         "other": 2
       },
-      "validationRate": 91.4
+      "validationRate": 77.9
     }
   },
   "credits": [
@@ -324,6 +324,34 @@
       }
     },
     {
+      "id": "group/illit/cover",
+      "entityType": "group",
+      "entityId": "illit",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "group/ive/cover",
       "entityType": "group",
       "entityId": "ive",
@@ -546,6 +574,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "group/seventeen/cover",
+      "entityType": "group",
+      "entityId": "seventeen",
+      "assetType": "cover",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -1072,6 +1128,62 @@
       }
     },
     {
+      "id": "idol/dino/portrait",
+      "entityType": "idol",
+      "entityId": "dino",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/dk/portrait",
+      "entityType": "idol",
+      "entityId": "dk",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/donghyuk/portrait",
       "entityType": "idol",
       "entityId": "donghyuk",
@@ -1438,6 +1550,34 @@
       }
     },
     {
+      "id": "idol/hoshi/portrait",
+      "entityType": "idol",
+      "entityId": "hoshi",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/hwasa/portrait",
       "entityType": "idol",
       "entityId": "hwasa",
@@ -1702,6 +1842,34 @@
       }
     },
     {
+      "id": "idol/iroha/portrait",
+      "entityType": "idol",
+      "entityId": "iroha",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/j/portrait",
       "entityType": "idol",
       "entityId": "j",
@@ -1890,6 +2058,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jeonghan/portrait",
+      "entityType": "idol",
+      "entityId": "jeonghan",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -2196,6 +2392,34 @@
       }
     },
     {
+      "id": "idol/joshua/portrait",
+      "entityType": "idol",
+      "entityId": "joshua",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/joy/portrait",
       "entityType": "idol",
       "entityId": "joy",
@@ -2230,6 +2454,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/jun/portrait",
+      "entityType": "idol",
+      "entityId": "jun",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -2754,6 +3006,34 @@
       }
     },
     {
+      "id": "idol/mingyu/portrait",
+      "entityType": "idol",
+      "entityId": "mingyu",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/minji/portrait",
       "entityType": "idol",
       "entityId": "minji",
@@ -2776,6 +3056,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/minju/portrait",
+      "entityType": "idol",
+      "entityId": "minju",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -2852,6 +3160,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/moka/portrait",
+      "entityType": "idol",
+      "entityId": "moka",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -3158,6 +3494,34 @@
       }
     },
     {
+      "id": "idol/s-coups/portrait",
+      "entityType": "idol",
+      "entityId": "s-coups",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/sana/portrait",
       "entityType": "idol",
       "entityId": "sana",
@@ -3305,6 +3669,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/seungkwan/portrait",
+      "entityType": "idol",
+      "entityId": "seungkwan",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -3673,6 +4065,34 @@
       }
     },
     {
+      "id": "idol/the8/portrait",
+      "entityType": "idol",
+      "entityId": "the8",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/tzuyu/portrait",
       "entityType": "idol",
       "entityId": "tzuyu",
@@ -3781,6 +4201,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/vernon/portrait",
+      "entityType": "idol",
+      "entityId": "vernon",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -3899,6 +4347,62 @@
       }
     },
     {
+      "id": "idol/wonhee/portrait",
+      "entityType": "idol",
+      "entityId": "wonhee",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/wonwoo/portrait",
+      "entityType": "idol",
+      "entityId": "wonwoo",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
+        "warnings": []
+      }
+    },
+    {
       "id": "idol/wonyoung/portrait",
       "entityType": "idol",
       "entityId": "wonyoung",
@@ -3932,6 +4436,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/woozi/portrait",
+      "entityType": "idol",
+      "entityId": "woozi",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },
@@ -4232,6 +4764,34 @@
         "isValid": true,
         "status": "ok",
         "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "idol/yunah/portrait",
+      "entityType": "idol",
+      "entityId": "yunah",
+      "assetType": "portrait",
+      "sourceType": "wikimedia",
+      "originalFileName": null,
+      "commonsTitle": null,
+      "sourceUrl": null,
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null,
+      "modified": false,
+      "modifications": [],
+      "aiModified": false,
+      "originalImage": null,
+      "finalImage": null,
+      "attribution": null,
+      "validation": {
+        "isValid": false,
+        "status": "missing_original_filename",
+        "errors": [
+          "originalFileName requis pour source wikimedia"
+        ],
         "warnings": []
       }
     },

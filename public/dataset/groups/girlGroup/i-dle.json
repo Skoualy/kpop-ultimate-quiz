@@ -73,6 +73,11 @@
         "isDebutSong": true
       },
       {
+        "id": "the-good-thing",
+        "title": "The Good Thing",
+        "youtubeUrl": "https://youtu.be/hAONx6nuEgI?si=M_PWPvtXERWXINcp"
+      },
+      {
         "id": "mono-en",
         "title": "MONO",
         "youtubeUrl": "https://youtu.be/DYgE3SGPEqk?si=o3HuZxi8oV84qJFe",
@@ -137,20 +142,15 @@
         "youtubeUrl": "https://youtu.be/z3szNvgQxHo?si=pFcDp2QUI8d0Zeze"
       },
       {
-        "id": "my-bag",
-        "title": "My Bag",
-        "youtubeUrl": "https://youtu.be/cnBV09Ux2S0?si=31ANfiHrUoQj-6m4"
-      },
-      {
         "id": "super-lady",
         "title": "Super Lady",
         "youtubeUrl": "https://youtu.be/6f3RzjXPQwA?si=_uygwzl2_IwDPIoQ"
       },
       {
-        "id": "tomboy-en",
+        "id": "tomboy-kr",
         "title": "Tomboy",
         "youtubeUrl": "https://youtu.be/Jh4QFaPmdss?si=n104tuCePIcwO4Uh",
-        "language": "en"
+        "language": "kr"
       },
       {
         "id": "nxde",
@@ -158,13 +158,58 @@
         "youtubeUrl": "https://youtu.be/fCO7f0SmrDc?si=5ksv18ScUVZbp3vW"
       },
       {
-        "id": "queencard-en",
+        "id": "queencard-kr",
         "title": "Queencard",
         "youtubeUrl": "https://youtu.be/7HDeem-JaSY?si=GU1miHEnS8Vj_NRI",
-        "language": "en"
+        "language": "kr"
       }
     ],
     "bSides": [
+      {
+        "id": "my-bag",
+        "title": "My Bag",
+        "youtubeUrl": "https://youtu.be/cnBV09Ux2S0?si=31ANfiHrUoQj-6m4"
+      },
+      {
+        "id": "maze",
+        "title": "MAZE",
+        "youtubeUrl": "https://youtu.be/aRfqzT84rYg?si=8ynMvkaQIwQxaX5f"
+      },
+      {
+        "id": "already",
+        "title": "Already",
+        "youtubeUrl": "https://youtu.be/9Bp42n1hxOY?si=1QmK-RDvadZJwJQ8"
+      },
+      {
+        "id": "paradise",
+        "title": "Paradise",
+        "youtubeUrl": "https://youtu.be/PCbx5U-S5ec?si=rl4CpknY67DWPI3Y"
+      },
+      {
+        "id": "dahlia",
+        "title": "Dahlia",
+        "youtubeUrl": "https://youtu.be/adl0yFg8Ntc?si=upG-2s-ZbL1VUw4x"
+      },
+      {
+        "id": "lost",
+        "title": "Lost",
+        "youtubeUrl": "https://youtu.be/ILmHLmZiVG0?si=xyzMgd22A90MW0uh"
+      },
+      {
+        "id": "moon",
+        "title": "Moon",
+        "youtubeUrl": "https://youtu.be/OYtjo3CTAOM?si=lyvTw_IlOv1Ydt1j"
+      },
+      {
+        "id": "where-is-love",
+        "title": "Where Is Love",
+        "youtubeUrl": "https://youtu.be/L4WnbelD60E?si=YPbBszQCqs9B8UGh"
+      },
+      {
+        "id": "hann-alone-in-winter",
+        "title": " HANN (Alone in winter)",
+        "youtubeUrl": "https://youtu.be/HwC58-_VIpo?si=YftYrgUZSzBhDEqG"
+      },
       {
         "id": "put-it-straight",
         "title": "Put It Straight",

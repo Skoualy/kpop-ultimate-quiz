@@ -13,7 +13,8 @@
       "idolId": "s-coups",
       "status": "current",
       "roles": [
-        "vocal"
+        "vocal",
+        "leader"
       ]
     },
     {
@@ -106,95 +107,90 @@
       {
         "id": "adore-u",
         "title": "Adore U",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Adore+U+MV",
+        "youtubeUrl": "https://youtu.be/9rUFQJrCT7M?si=RCdcLUFKifHFqakU",
         "isDebutSong": true
+      },
+      {
+        "id": "hit",
+        "title": "Hit",
+        "youtubeUrl": "https://youtu.be/F9CrRG6j2SM?si=iNyG6gMNM8lyPXp5"
       },
       {
         "id": "mansae",
         "title": "Mansae",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Mansae+MV"
+        "youtubeUrl": "https://youtu.be/9M7k9ZV67c0?si=4xzzXv8mHwVlbnzO"
       },
       {
         "id": "pretty-u",
         "title": "Pretty U",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Pretty+U+MV"
+        "youtubeUrl": "https://youtu.be/J5juKw-mnGw?si=mCGS58DY3xaCf0nA"
       },
       {
         "id": "very-nice",
         "title": "Very Nice",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Very+Nice+MV"
+        "youtubeUrl": "https://youtu.be/J-wFp43XOrA?si=zZjulWy1trk17r-x"
       },
       {
         "id": "boom-boom",
         "title": "Boom Boom",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Boom+Boom+MV"
+        "youtubeUrl": "https://youtu.be/CNEeAaH3bFc?si=ULDQpraipuxeOQVl"
       },
       {
         "id": "don-t-wanna-cry",
         "title": "Don't Wanna Cry",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Don%27t+Wanna+Cry+MV"
+        "youtubeUrl": "https://youtu.be/zEkg4GBQumc?si=e4nRWsdVGzegJnlz"
       },
       {
         "id": "clap",
         "title": "Clap",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Clap+MV"
+        "youtubeUrl": "https://youtu.be/CyzEtbG-sxY?si=uhj0uc64G4e7kgnJ"
       },
       {
         "id": "thanks",
         "title": "Thanks",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Thanks+MV"
+        "youtubeUrl": "https://youtu.be/gZItyr1SNjU?si=QrYMq535tmbi_eDy"
       },
       {
         "id": "home",
         "title": "Home",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Home+MV"
+        "youtubeUrl": "https://youtu.be/R9VDPMk5ls0?si=RwOclK_h5kx1VJ9z"
       },
       {
         "id": "fear",
         "title": "Fear",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Fear+MV"
+        "youtubeUrl": "https://youtu.be/ap14O5-G7UA?si=R2nCrSWUQsyyLnge"
       },
       {
-        "id": "left-right",
+        "id": "left-and-right",
         "title": "Left & Right",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Left+%26+Right+MV"
+        "youtubeUrl": "https://youtu.be/HdZdxocqzq4?si=vMZrqmhjHsp7B4ti"
       },
       {
         "id": "hot",
         "title": "Hot",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Hot+MV"
+        "youtubeUrl": "https://youtu.be/gRnuFC4Ualw?si=6ta2IiZLdWNCIRF2"
       },
       {
         "id": "super",
         "title": "Super",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Super+MV"
+        "youtubeUrl": "https://youtu.be/-GQg25oP0S4?si=4e7VGs4MtgucUmxv"
       }
     ],
     "bSides": [
       {
-        "id": "lilili-yabbay",
-        "title": "Lilili Yabbay",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Lilili+Yabbay+MV"
-      },
-      {
         "id": "run-to-you",
         "title": "Run To You",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Run+To+You+MV"
-      },
-      {
-        "id": "change-up",
-        "title": "Change Up",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Change+Up+MV"
+        "youtubeUrl": "https://youtu.be/O6zNnozMJfM?si=pc5J6_oKN-W-EAhj"
       },
       {
         "id": "snap-shoot",
         "title": "Snap Shoot",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+Snap+Shoot+MV"
+        "youtubeUrl": "https://youtu.be/VqfiJCCbTjY?si=hkg2NgFV2hBXAYZX"
       },
       {
         "id": "my-my",
         "title": "My My",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=Seventeen+My+My+MV"
+        "youtubeUrl": "https://youtu.be/PQOJJ037ys8?si=ojjgl17RUHNJ11-q"
       }
     ]
   },

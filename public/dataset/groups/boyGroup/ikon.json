@@ -161,6 +161,12 @@
     ],
     "bSides": [
       {
+        "id": "worldwide-jp",
+        "title": "Worldwide",
+        "youtubeUrl": "https://youtu.be/slrzwQFFXR4?si=SqLhgQ-16TsV_IlK",
+        "language": "jp"
+      },
+      {
         "id": "best-friend",
         "title": "Best Friend",
         "youtubeUrl": "https://youtu.be/k71q9jOuYIo?si=UGpMUwPtliX7fk-t"
