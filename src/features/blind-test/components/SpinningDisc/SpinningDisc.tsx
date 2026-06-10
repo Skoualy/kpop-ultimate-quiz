@@ -5,34 +5,25 @@ import type { SongItem } from '@/features/save-one/SaveOnePage.types'
 import styles from './SpinningDisc.module.scss'
 
 export interface SpinningDiscProps {
-  song:        SongItem
-  isRevealed:  boolean
-  /** Afficher le bouton Rejouer sur le disque (false en mode Hardcore) */
-  canReplay:   boolean
-  timerKey:    number
-  onClipEnd?:  () => void
+  song: SongItem
+  isRevealed: boolean
+  /** Show replay button — false in Hardcore mode */
+  canReplay: boolean
+  timerKey: number
+  onClipEnd?: () => void
   onClipStart?: () => void
 }
 
 /**
- * Bloc média central du Blind Test.
- * - Avant révélation : disque animé + YouTube en fond (audio seul).
- * - Après révélation  : iframe YouTube visible (16:9, max-width 720px).
- *
- * Hauteur constante 405px dans les deux états pour éviter les sauts de layout.
+ * Central media block for Blind Test (songs).
+ * - Hidden phase: SVG spinning disc (405×405) with optional replay overlay.
+ * - Revealed phase: YouTube iframe (max-width 720px, height 405px, 16/9).
+ * Both states share the same 405px height to avoid layout shifts.
  */
-export function SpinningDisc({
-  song,
-  isRevealed,
-  canReplay,
-  timerKey,
-  onClipEnd,
-  onClipStart,
-}: SpinningDiscProps) {
+export function SpinningDisc({ song, isRevealed, canReplay, timerKey, onClipEnd, onClipStart }: SpinningDiscProps) {
   const playerRef = useRef<YouTubePlayerHandle>(null)
 
-  // Rejoue le clip depuis le début à chaque révélation
-  // (le clip peut avoir expiré pendant la phase aveugle)
+  // Replay the clip from startTime when revealed (clip may have ended during blind phase)
   useEffect(() => {
     if (isRevealed) playerRef.current?.replay()
   }, [isRevealed])
@@ -43,7 +34,7 @@ export function SpinningDisc({
 
   return (
     <div className={styles.root}>
-      {/* YouTube — toujours rendu pour l'audio ; visible seulement après révélation */}
+      {/* YouTube — always rendered for audio; visible only after reveal */}
       <div className={isRevealed ? styles.iframeVisible : styles.iframeHidden}>
         <YouTubePlayer
           ref={playerRef}
@@ -57,24 +48,16 @@ export function SpinningDisc({
         />
       </div>
 
-      {/* Disque animé — visible uniquement avant révélation */}
+      {/* SVG disc — visible only during blind phase */}
       {!isRevealed && (
         <div className={styles.discArea}>
-          <div className={styles.disc}>
-            {/* Rainures concentriques */}
-            <div className={styles.groove1} />
-            <div className={styles.groove2} />
-            <div className={styles.centerHole} />
-          </div>
+          <img src="/assets/spinning-disc.svg" alt="Disque tournant" className={styles.disc} draggable={false} />
           {canReplay && (
-            <button
-              type="button"
-              className={styles.replayBtn}
-              onClick={handleReplay}
-              title="Rejouer l'extrait"
-              aria-label="Rejouer l'extrait"
-            >
-              ▶
+            <button type="button" className={styles.replayBtn} onClick={handleReplay} title="Rejouer l'extrait" aria-label="Rejouer l'extrait">
+              {/* Material Icons "replay" path */}
+              <svg viewBox="0 0 24 24" className={styles.replayIcon} aria-hidden>
+                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
+              </svg>
             </button>
           )}
         </div>

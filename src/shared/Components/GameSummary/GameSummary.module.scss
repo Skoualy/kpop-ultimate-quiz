@@ -48,7 +48,7 @@
 }
 
 .subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
   margin: 0;
 }
@@ -98,6 +98,8 @@
   background: var(--bg-card);
   border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-lg);
+  /* position: relative required for overflow:hidden + border-radius to clip children */
+  position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }
@@ -160,7 +162,7 @@
 
 /* Nom du joueur dans la stats card */
 .playerColLabel {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
@@ -202,10 +204,12 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
 }
 
 .roundLabel {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -214,7 +218,7 @@
 }
 
 .matchBanner {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-warning);
   background: rgba(245, 158, 11, 0.12);
@@ -240,7 +244,7 @@
 }
 
 .playerColLabel2 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;

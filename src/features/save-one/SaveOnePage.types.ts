@@ -1,13 +1,8 @@
-import type { MemberRole, SaveOneCriterion } from '@/shared/models'
+import type { IdolGender, MemberRole, SaveOneCriterion } from '@/shared/models'
 
 export type PlayerIndex = 0 | 1
 
-export type GamePhase =
-  | 'loading'
-  | 'roundTransition'
-  | 'playing'
-  | 'playerTransition'
-  | 'summary'
+export type GamePhase = 'loading' | 'roundTransition' | 'playing' | 'playerTransition' | 'summary'
 
 export interface IdolItem {
   type: 'idol'
@@ -18,6 +13,7 @@ export interface IdolItem {
   portrait: string | null
   isFormer: boolean
   roles: MemberRole[]
+  gender: IdolGender
 }
 
 export interface SongItem {

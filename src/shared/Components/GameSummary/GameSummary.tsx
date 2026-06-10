@@ -5,24 +5,12 @@ import styles from './GameSummary.module.scss'
 
 // ─── Round card ───────────────────────────────────────────────────────────────
 
-function RoundCard({
-  round,
-  twoPlayer,
-  p1Name,
-  p2Name,
-}: {
-  round:     SummaryRound
-  twoPlayer: boolean
-  p1Name:    string
-  p2Name:    string
-}) {
+function RoundCard({ round, twoPlayer, p1Name, p2Name }: { round: SummaryRound; twoPlayer: boolean; p1Name: string; p2Name: string }) {
   return (
     <div className={styles.roundCard}>
       <div className={styles.roundCardHeader}>
         <p className={styles.roundLabel}>Round {round.roundNumber}</p>
-        {round.matchLabel && (
-          <span className={styles.matchBanner}>{round.matchLabel}</span>
-        )}
+        {round.matchLabel && <span className={styles.matchBanner}>{round.matchLabel}</span>}
       </div>
 
       {twoPlayer && round.p2Content ? (
@@ -80,7 +68,6 @@ export function GameSummary({
 
   return (
     <div className={styles.page} ref={pageRef}>
-
       {/* ── Header sticky ── */}
       <div className={styles.header}>
         <div>
@@ -88,8 +75,12 @@ export function GameSummary({
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
         <div className={styles.headerActions}>
-          <button className={styles.btnSecondary} onClick={onBackToConfig}>← Config</button>
-          <button className={styles.btnPrimary}   onClick={onRestart}>▶ Rejouer</button>
+          <button className={styles.btnSecondary} onClick={onBackToConfig}>
+            ← Config
+          </button>
+          <button className={styles.btnPrimary} onClick={onRestart}>
+            ▶ Rejouer
+          </button>
         </div>
       </div>
 
@@ -108,9 +99,7 @@ export function GameSummary({
           {/* Colonnes stats */}
           <div className={twoPlayer ? styles.statsCols2P : styles.statsCols1P}>
             <div className={styles.playerStatCol}>
-              {twoPlayer && (
-                <p className={styles.playerColLabel}>{p1Name}</p>
-              )}
+              {twoPlayer && <p className={styles.playerColLabel}>{p1Name}</p>}
               {p1Stats}
             </div>
 
@@ -130,13 +119,7 @@ export function GameSummary({
       {/* ── Rounds ── */}
       <div className={styles.rounds}>
         {summaryRounds.map((round) => (
-          <RoundCard
-            key={round.roundNumber}
-            round={round}
-            twoPlayer={twoPlayer}
-            p1Name={p1Name}
-            p2Name={p2Name}
-          />
+          <RoundCard key={round.roundNumber} round={round} twoPlayer={twoPlayer} p1Name={p1Name} p2Name={p2Name} />
         ))}
       </div>
 

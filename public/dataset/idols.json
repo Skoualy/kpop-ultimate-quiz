@@ -266,7 +266,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/dino/portrait.webp",
+    "portrait": "/assets/idols/dino/portrait.webp",
     "notes": null
   },
   {
@@ -275,7 +275,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/dk/portrait.webp",
+    "portrait": "/assets/idols/dk/portrait.webp",
     "notes": null
   },
   {
@@ -491,7 +491,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/hoshi/portrait.webp",
+    "portrait": "/assets/idols/hoshi/portrait.webp",
     "notes": null
   },
   {
@@ -617,7 +617,7 @@
     "primaryGroupId": "illit",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/iroha/portrait.webp",
+    "portrait": "/assets/idols/iroha/portrait.webp",
     "notes": null
   },
   {
@@ -743,7 +743,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/jeonghan/portrait.webp",
+    "portrait": "/assets/idols/jeonghan/portrait.webp",
     "notes": null
   },
   {
@@ -932,7 +932,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "us",
-    "portrait": "../../assets/idols/joshua/portrait.webp",
+    "portrait": "/assets/idols/joshua/portrait.webp",
     "notes": null
   },
   {
@@ -950,7 +950,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "cn",
-    "portrait": "../../assets/idols/jun/portrait.webp",
+    "portrait": "/assets/idols/jun/portrait.webp",
     "notes": null
   },
   {
@@ -1220,7 +1220,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/mingyu/portrait.webp",
+    "portrait": "/assets/idols/mingyu/portrait.webp",
     "notes": null
   },
   {
@@ -1256,7 +1256,7 @@
     "primaryGroupId": "illit",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/minju/portrait.webp",
+    "portrait": "/assets/idols/minju/portrait.webp",
     "notes": null
   },
   {
@@ -1292,7 +1292,7 @@
     "primaryGroupId": "illit",
     "gender": "f",
     "nationality": "jp",
-    "portrait": "../../assets/idols/moka/portrait.webp",
+    "portrait": "/assets/idols/moka/portrait.webp",
     "notes": null
   },
   {
@@ -1445,7 +1445,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/s-coups/portrait.webp",
+    "portrait": "/assets/idols/s-coups/portrait.webp",
     "notes": null
   },
   {
@@ -1544,7 +1544,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/seungkwan/portrait.webp",
+    "portrait": "/assets/idols/seungkwan/portrait.webp",
     "notes": null
   },
   {
@@ -1796,7 +1796,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "cn",
-    "portrait": "../../assets/idols/the8/portrait.webp",
+    "portrait": "/assets/idols/the8/portrait.webp",
     "notes": null
   },
   {
@@ -1850,7 +1850,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "us",
-    "portrait": "../../assets/idols/vernon/portrait.webp",
+    "portrait": "/assets/idols/vernon/portrait.webp",
     "notes": null
   },
   {
@@ -1886,7 +1886,7 @@
     "primaryGroupId": "illit",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wonhee/portrait.webp",
+    "portrait": "/assets/idols/wonhee/portrait.webp",
     "notes": null
   },
   {
@@ -1904,7 +1904,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/wonwoo/portrait.webp",
+    "portrait": "/assets/idols/wonwoo/portrait.webp",
     "notes": null
   },
   {
@@ -1931,7 +1931,7 @@
     "primaryGroupId": "seventeen",
     "gender": "m",
     "nationality": "kr",
-    "portrait": "../../assets/idols/woozi/portrait.webp",
+    "portrait": "/assets/idols/woozi/portrait.webp",
     "notes": null
   },
   {
@@ -2129,7 +2129,7 @@
     "primaryGroupId": "illit",
     "gender": "f",
     "nationality": "kr",
-    "portrait": "../../assets/idols/yunah/portrait.webp",
+    "portrait": "/assets/idols/yunah/portrait.webp",
     "notes": null
   },
   {

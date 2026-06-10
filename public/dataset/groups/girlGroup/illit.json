@@ -50,28 +50,73 @@
       {
         "id": "magnetic",
         "title": "Magnetic",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Magnetic+MV",
+        "youtubeUrl": "https://youtu.be/Vk5-c_v4gMU?si=ZFU54aAyw8cOecWA",
         "isDebutSong": true
+      },
+      {
+        "id": "toki-yo-tomare",
+        "title": "Toki Yo Tomare",
+        "youtubeUrl": "https://youtu.be/HeqsjDF7Lw0?si=H51AUyWCT3cz5e8t"
+      },
+      {
+        "id": "cherish-my-love",
+        "title": "Cherish (My Love)",
+        "youtubeUrl": "https://youtu.be/tbDGl7jEazA?si=oS9TGVhmzTIq6gVy"
+      },
+      {
+        "id": "do-the-dance",
+        "title": "Do the Dance",
+        "youtubeUrl": "https://youtu.be/negtrQu5mTA?si=2NjPxLV2yRUloD16"
+      },
+      {
+        "id": "jeallyous",
+        "title": "Jeallyous",
+        "youtubeUrl": "https://youtu.be/GkG60kISnfc?si=AP8Nn8FaxaH4TOCr"
+      },
+      {
+        "id": "not-me",
+        "title": "Not Me",
+        "youtubeUrl": "https://youtu.be/9nEp9eeGaJk?si=rdpNx5CDeCGZUPWY"
+      },
+      {
+        "id": "it-s-me",
+        "title": "It's me",
+        "youtubeUrl": "https://youtu.be/bMhDJ0S0OBA?si=jgy-4_7pa09Jg8PZ"
+      },
+      {
+        "id": "not-cute-anymore",
+        "title": "Not Cute Anymore",
+        "youtubeUrl": "https://youtu.be/x_RYZsOfpKY?si=LxIJyU4a5-8pPWVW"
+      },
+      {
+        "id": "tic-tack",
+        "title": "Tic-Tack",
+        "youtubeUrl": "https://youtu.be/-nEGVrzPaiU?si=9M4pTUqdhm0U8m0j"
       }
     ],
     "bSides": [
       {
+        "id": "bamsopoong",
+        "title": "Bamsopoong",
+        "youtubeUrl": "https://youtu.be/t1wYS2aiQaI?si=iK4MSPucpGQ9PG4L"
+      },
+      {
         "id": "lucky-girl-syndrome",
         "title": "Lucky Girl Syndrome",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Lucky+Girl+Syndrome+MV"
+        "youtubeUrl": "https://youtu.be/UCmgGZbfjmk?si=ZS2V6ea20EY-VmEc"
       },
       {
         "id": "midnight-fiction",
         "title": "Midnight Fiction",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+Midnight+Fiction+MV"
+        "youtubeUrl": "https://youtu.be/ME7nQsZF53Y?si=OJidEGo9gn7kc6NH"
       },
       {
         "id": "my-world",
         "title": "My World",
-        "youtubeUrl": "https://www.youtube.com/results?search_query=ILLIT+My+World+MV"
+        "youtubeUrl": "https://youtu.be/N0523-cd2H8?si=WXq2sakIAHfBdpgW"
       }
     ]
   },
-  "fandomName": null,
+  "fandomName": "LILLY",
   "notes": null
 }

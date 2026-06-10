@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs>
+  <radialGradient id="discGrad" cx="42%" cy="36%" r="68%">
+    <stop offset="0%"   stop-color="#1e1e30"/>
+    <stop offset="60%"  stop-color="#0e0e1a"/>
+    <stop offset="100%" stop-color="#07070f"/>
+  </radialGradient>
+  <radialGradient id="labelGrad" cx="38%" cy="32%" r="68%">
+    <stop offset="0%"   stop-color="#6b35b8"/>
+    <stop offset="50%"  stop-color="#3a1580"/>
+    <stop offset="100%" stop-color="#180840"/>
+  </radialGradient>
+  <radialGradient id="discSheen" cx="28%" cy="20%" r="55%">
+    <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.11"/>
+    <stop offset="40%"  stop-color="#ffffff" stop-opacity="0.02"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="labelSheen" cx="35%" cy="28%" r="62%">
+    <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.18"/>
+    <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.03"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="noteGlow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <filter id="discShadow" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#cc44ff" flood-opacity="0.25"/>
+  </filter>
+</defs>
+<g filter="url(#discShadow)">
+  <animateTransform attributeName="transform" attributeType="XML"
+    type="rotate" from="0 200 200" to="360 200 200"
+    dur="4s" repeatCount="indefinite"/>
+  <circle cx="200" cy="200" r="196" fill="#11111c"/>
+  <circle cx="200" cy="200" r="192" fill="url(#discGrad)"/>
+  <circle cx="200" cy="200" r="76" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="80" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="84" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="88" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="92" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="96" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="100" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="104" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="108" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="112" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="116" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="120" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="124" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="128" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="132" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="136" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="144" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="148" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="152" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="156" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="160" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="164" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="168" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="172" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="176" fill="none" stroke="#1c1c2c" stroke-width="0.5" opacity="0.50"/>
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#323248" stroke-width="0.6" opacity="0.60"/>
+  <circle cx="200" cy="200" r="184" fill="none" stroke="#28283c" stroke-width="0.9" opacity="0.75"/>
+  <circle cx="200" cy="200" r="80" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="98" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="116" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="134" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="152" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#4a4a6a" stroke-width="0.35" opacity="0.28"/>
+  <circle cx="200" cy="200" r="74" fill="url(#labelGrad)"/>
+  <circle cx="200" cy="200" r="74" fill="url(#labelSheen)"/>
+  <circle cx="200" cy="200" r="74" fill="none" stroke="rgba(180,120,255,0.18)" stroke-width="1.2"/>
+  <circle cx="200" cy="200" r="7.5" fill="#020208"/>
+  <circle cx="200" cy="200" r="7.5" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+  <circle cx="200" cy="200" r="192" fill="url(#discSheen)"/>
+  <ellipse cx="148" cy="148" rx="55" ry="32" fill="rgba(255,255,255,0.06)" transform="rotate(-38 148 148)"/>
+  <text x="200" y="208" text-anchor="middle" dominant-baseline="middle"
+    font-size="90" fill="rgba(255,100,220,0.40)" font-family="serif"
+    style="user-select:none">♪</text>
+  <text x="200" y="208" text-anchor="middle" dominant-baseline="middle"
+    font-size="72" fill="rgba(255,235,255,0.88)" font-family="serif"
+    filter="url(#noteGlow)" style="user-select:none">♪</text>
+</g>
+</svg>

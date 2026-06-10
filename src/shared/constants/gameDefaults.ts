@@ -1,6 +1,6 @@
 import type { GameConfig } from '@/shared/models'
 
-// ─── Blind Test — tolérance de matching ──────────────────────────────────────
+// ─── Blind Test — fuzzy match thresholds ─────────────────────────────────────
 
 export const BLIND_TEST_MATCH_THRESHOLDS = {
   permissive: 0.8,
@@ -14,6 +14,9 @@ export const ANSWER_TOLERANCE_OPTIONS: { value: AnswerTolerance; label: string }
   { value: 'permissive', label: 'Permissive' },
   { value: 'tolerant', label: 'Tolérante' },
   { value: 'strict', label: 'Stricte' },
+  // { value: 'permissive', label: 'Permissif (≥ 80%)' },
+  // { value: 'tolerant',   label: 'Tolérant (≥ 90%)' },
+  // { value: 'strict',     label: 'Strict (100%)' },
 ]
 
 // ─── Config par défaut ────────────────────────────────────────────────────────

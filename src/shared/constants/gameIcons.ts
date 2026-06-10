@@ -16,6 +16,7 @@ export const GAME_OPTION_ICONS: Record<string, string> = {
   Extrait: '🎥',
   'Durée des extraits': '🎥',
   'Durée extraits': '🎥',
+  'Validation des réponses': '👌',
   Extraits: '🎥',
   Critère: '🎯',
   Rôles: '🎭',

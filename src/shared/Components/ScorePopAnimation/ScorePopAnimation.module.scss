@@ -1,0 +1,28 @@
+/* Full-screen fixed overlay — pointer-events none to not block clicks */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 200;
+}
+
+.label {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    0 0 20px rgba(167, 90, 255, 0.9),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+  animation: scorePop 0.8s ease forwards;
+  line-height: 1;
+}
+
+@keyframes scorePop {
+  0%   { opacity: 0;   transform: scale(0.5) translateY(0); }
+  25%  { opacity: 1;   transform: scale(1.2) translateY(0); }
+  60%  { opacity: 1;   transform: scale(1.0) translateY(-10px); }
+  100% { opacity: 0;   transform: scale(0.9) translateY(-60px); }
+}

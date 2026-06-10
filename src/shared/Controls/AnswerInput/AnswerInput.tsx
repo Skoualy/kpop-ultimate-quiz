@@ -1,76 +1,58 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './AnswerInput.module.scss'
 
+const ERROR_MESSAGES = ['Mauvaise réponse !', "Malheureusement, ce n'est pas la bonne réponse !", 'Réponse incorrecte ! Essaie encore...']
+
 export interface AnswerInputProps {
   onSubmit: (value: string) => void
   disabled?: boolean
-  /** Résultat du dernier submit — déclenche le feedback visuel. */
   lastResult?: 'correct' | 'wrong' | null
   placeholder?: string
 }
 
-const ERROR_MESSAGES = [
-  'Mauvaise réponse !',
-  "Malheureusement, ce n'est pas la bonne réponse !",
-  'Réponse incorrecte ! Essaie encore...',
-]
+export function AnswerInput({ onSubmit, disabled = false, lastResult, placeholder }: AnswerInputProps) {
+  const [value, setValue] = useState('')
+  const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
+  const [errorMsg, setErrorMsg] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+  const msgIndexRef = useRef(0) // cycles through error messages
 
-/** Input de réponse pour le Blind Test. Aucune logique de matching interne. */
-export function AnswerInput({
-  onSubmit,
-  disabled = false,
-  lastResult = null,
-  placeholder = 'Ta réponse…',
-}: AnswerInputProps) {
-  const inputRef    = useRef<HTMLInputElement>(null)
-  const msgIndexRef = useRef(0)
-
-  const [value,      setValue]      = useState('')
-  const [isShaking,  setIsShaking]  = useState(false)
-  const [feedbackMsg, setFeedbackMsg] = useState<string | null>(null)
-  const [isSuccess,  setIsSuccess]  = useState(false)
-
-  // Feedback visuel déclenché par lastResult
+  // React to lastResult changes driven by the parent
   useEffect(() => {
+    if (!lastResult) return
+
     if (lastResult === 'wrong') {
       const msg = ERROR_MESSAGES[msgIndexRef.current % ERROR_MESSAGES.length]
       msgIndexRef.current++
-      setIsShaking(true)
-      setFeedbackMsg(msg)
-      setIsSuccess(false)
-      const t = setTimeout(() => {
-        setIsShaking(false)
-        setFeedbackMsg(null)
-      }, 1500)
-      return () => clearTimeout(t)
+      setErrorMsg(msg)
+      setFeedback('wrong')
+      const id = setTimeout(() => setFeedback(null), 1500)
+      return () => clearTimeout(id)
     }
+
     if (lastResult === 'correct') {
-      setIsSuccess(true)
-      setFeedbackMsg(null)
-      const t = setTimeout(() => setIsSuccess(false), 800)
-      return () => clearTimeout(t)
+      setFeedback('correct')
+      const id = setTimeout(() => setFeedback(null), 800)
+      return () => clearTimeout(id)
     }
   }, [lastResult])
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key !== 'Enter' || disabled) return
+    if (e.key !== 'Enter') return
+    e.preventDefault()
     const trimmed = value.trim()
-    if (!trimmed) return
-    onSubmit(trimmed)
     setValue('')
+    if (!trimmed || disabled) return
+    onSubmit(trimmed)
+    // Keep focus after clearing
     requestAnimationFrame(() => inputRef.current?.focus())
   }
 
-  const wrapperCls = [
-    styles.inputWrapper,
-    isShaking ? styles.shake   : '',
-    isSuccess  ? styles.success : '',
-    disabled   ? styles.disabled : '',
-  ].filter(Boolean).join(' ')
+  const wrapClass = [styles.wrap, feedback === 'correct' ? styles.success : '', feedback === 'wrong' ? styles.error : ''].filter(Boolean).join(' ')
 
   return (
     <div className={styles.root}>
-      <div className={wrapperCls}>
+      <div className={wrapClass}>
         <input
           ref={inputRef}
           type="text"
@@ -78,16 +60,14 @@ export function AnswerInput({
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
           disabled={disabled}
+          placeholder={placeholder ?? 'Artiste ou titre… puis Entrée'}
           autoComplete="off"
-          autoCorrect="off"
           spellCheck={false}
+          autoFocus
         />
       </div>
-      <p className={[styles.hint, feedbackMsg ? styles.hintError : ''].filter(Boolean).join(' ')}>
-        {feedbackMsg ?? 'Appuie sur Entrée pour valider'}
-      </p>
+      {feedback === 'wrong' && <p className={styles.errorMsg}>{errorMsg}</p>}
     </div>
   )
 }

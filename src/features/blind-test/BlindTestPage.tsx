@@ -1,54 +1,16 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '@/context/GameContext'
 import { AppHeader } from '@/shared/Layout/AppHeader'
 import { GameHud } from '@/shared/Components/GameHud'
-import { TimerBar } from '@/shared/Components/TimerBar'
 import { RoundTransition } from '@/shared/Components/RoundTransition'
 import { PlayerTransitionOverlay } from '@/shared/Components/PlayerTransitionOverlay'
-import { Badge } from '@/shared/PureComponents/Badge'
-import { AnswerInput } from '@/shared/Controls/AnswerInput'
-import { useGameTimer } from '@/shared/hooks/useGameTimer'
-import { GAME_OPTION_ICONS, GAME_PLAY_MODE_MAP } from '@/shared/constants'
-import { SpinningDisc } from './components/SpinningDisc'
+import { BlindTestSongs } from './components/BlindTestSongs'
+import { BlindTestIdols } from './components/BlindTestIdols'
 import { BlindTestSummary } from './components/BlindTestSummary'
 import { useBlindTestGame } from './hooks/useBlindTestGame'
+import { GAME_OPTION_ICONS, GAME_PLAY_MODE_MAP } from '@/shared/constants'
 import g from '@/styles/game.module.scss'
-import styles from './BlindTestPage.module.scss'
-
-// ─── Badges de réponse ────────────────────────────────────────────────────────
-
-function AnswerBadges({
-  artistMatched,
-  titleMatched,
-  isRevealed,
-  artistName,
-  songTitle,
-}: {
-  artistMatched: boolean
-  titleMatched: boolean
-  isRevealed: boolean
-  artistName: string
-  songTitle: string
-}) {
-  const artistLabel = artistMatched
-    ? `Artiste : ${artistName} ✅`
-    : isRevealed
-      ? `Artiste : ${artistName} ❌`
-      : 'Artiste : ???'
-
-  const titleLabel = titleMatched ? `Titre : ${songTitle} ✅` : isRevealed ? `Titre : ${songTitle} ❌` : 'Titre : ???'
-
-  const artistVariant = artistMatched ? 'success' : isRevealed ? 'danger' : 'default'
-  const titleVariant = titleMatched ? 'success' : isRevealed ? 'danger' : 'default'
-
-  return (
-    <div className={styles.badges}>
-      <Badge variant={artistVariant}>{artistLabel}</Badge>
-      <Badge variant={titleVariant}>{titleLabel}</Badge>
-    </div>
-  )
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -57,69 +19,54 @@ export default function BlindTestPage() {
   const { config } = useGameContext()
 
   const {
-    phase,
     isLoading,
     error,
+    phase,
     rounds,
     results,
     currentRoundIndex,
     currentPlayer,
     timerKey,
     turnState,
+    p1Score,
+    p2Score,
     submitAnswer,
     reveal,
-    pass,
     timeout,
+    pass,
     onClipEnd,
     skipPlayerTransition,
     skipRoundTransition,
     restart,
   } = useBlindTestGame(config)
 
-  const [lastInputResult, setLastInputResult] = useState<'correct' | 'wrong' | null>(null)
-
   const goToConfig = useCallback(() => navigate('/'), [navigate])
 
   const currentRound = rounds[currentRoundIndex]
+  const totalRounds = rounds.length
   const twoPlayer = config.twoPlayerMode
   const p1Name = config.player1Name || 'Joueur 1'
   const p2Name = config.player2Name || 'Joueur 2'
   const activePlayer = currentPlayer === 0 ? p1Name : p2Name
   const isPlaying = phase === 'playing'
+  const isIdols = config.category === 'idols'
+  const modeConfig = GAME_PLAY_MODE_MAP[config.gamePlayMode]
+  const isHardcore = config.gamePlayMode === 'hardcore'
 
-  const playModeConfig = GAME_PLAY_MODE_MAP[config.gamePlayMode]
-  const canReplay = playModeConfig.canReplay
-  const canReveal = config.gamePlayMode !== 'hardcore'
+  // Score shown next to player name in the HUD
+  const currentScore = twoPlayer ? (currentPlayer === 0 ? p1Score : p2Score) : p1Score
 
-  // Timer (actif uniquement pendant la phase playing et non révélée)
-  const { remaining, percentLeft } = useGameTimer({
-    totalSeconds: !turnState.isRevealed && isPlaying ? config.timerSeconds : 0,
-    active: isPlaying && !turnState.isRevealed && !(turnState.artistMatched && turnState.titleMatched),
-    onTimeout: timeout,
-    resetKey: timerKey,
-  })
-
-  // ── Options HUD ─────────────────────────────────────────────────────────────
+  // ── HUD options ───────────────────────────────────────────────────────────
 
   const hudOptions = [
     { icon: GAME_OPTION_ICONS['Type de quiz'], labelOption: 'Type de quiz', optionValue: 'Blind Test' },
-    { icon: GAME_OPTION_ICONS['Mode de jeu'], labelOption: 'Mode de jeu', optionValue: playModeConfig.label },
-    config.timerSeconds > 0
-      ? { icon: GAME_OPTION_ICONS['Timer'], labelOption: 'Timer', optionValue: `${config.timerSeconds}s` }
-      : null,
-    { icon: GAME_OPTION_ICONS['Extrait'], labelOption: 'Extrait', optionValue: `${config.clipDuration}s` },
+    { icon: GAME_OPTION_ICONS['Catégorie'], labelOption: 'Catégorie', optionValue: isIdols ? 'Idoles' : 'Chansons' },
+    { icon: GAME_OPTION_ICONS['Mode de jeu'], labelOption: 'Mode de jeu', optionValue: modeConfig.label },
+    config.timerSeconds > 0 ? { icon: GAME_OPTION_ICONS['Timer'], labelOption: 'Timer', optionValue: `${config.timerSeconds}s` } : null,
+    !isIdols ? { icon: GAME_OPTION_ICONS['Extrait'], labelOption: 'Extrait', optionValue: `${config.clipDuration}s` } : null,
   ]
 
-  // ── Soumission réponse ───────────────────────────────────────────────────────
-
-  function handleSubmit(value: string) {
-    const result = submitAnswer(value)
-    setLastInputResult(result)
-    // Réinitialise pour permettre de re-déclencher le feedback sur la même réponse
-    setTimeout(() => setLastInputResult(null), 50)
-  }
-
-  // ── Chargement ───────────────────────────────────────────────────────────────
+  // ── Loading / error ───────────────────────────────────────────────────────
 
   if (isLoading) {
     return (
@@ -127,7 +74,7 @@ export default function BlindTestPage() {
         <AppHeader />
         <div className={g.center}>
           <div className={g.spinner} />
-          <p>Chargement du pool…</p>
+          <p>Chargement…</p>
         </div>
       </div>
     )
@@ -140,122 +87,102 @@ export default function BlindTestPage() {
         <div className={g.center}>
           <p className={g.errorTitle}>Erreur</p>
           <p className={g.errorMsg}>{error}</p>
-          <button className={g.retryBtn} onClick={() => navigate('/')}>
-            ← Config
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
           </button>
         </div>
       </div>
     )
   }
 
-  // ── Résumé ───────────────────────────────────────────────────────────────────
+  if (!isLoading && rounds.length === 0) {
+    return (
+      <div className={g.page}>
+        <AppHeader />
+        <div className={g.center}>
+          <p className={g.emptyWarn}>⚠️ Pool vide — aucun élément ne correspond aux filtres configurés.</p>
+          <button className={g.retryBtn} onClick={goToConfig}>
+            ← Retour à la config
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Summary ───────────────────────────────────────────────────────────────
 
   if (phase === 'summary') {
     return (
       <div className={[g.page, g.pageSummary].join(' ')}>
-        <BlindTestSummary
-          rounds={rounds}
-          results={results}
-          config={config}
-          onRestart={restart}
-          onBackToConfig={goToConfig}
-        />
+        <AppHeader />
+        <BlindTestSummary rounds={rounds} results={results} config={config} onRestart={restart} onBackToConfig={goToConfig} />
       </div>
     )
   }
 
-  // ── Round transition ─────────────────────────────────────────────────────────
+  // ── Game ──────────────────────────────────────────────────────────────────
 
-  if (phase === 'roundTransition') {
-    return (
-      <div className={g.page}>
-        <div className={g.transitionBlank} />
-        <RoundTransition
-          roundNumber={currentRound?.roundNumber ?? currentRoundIndex + 1}
-          totalRounds={rounds.length}
-          onDone={skipRoundTransition}
-        />
-      </div>
-    )
-  }
-
-  // ── Transition joueur ────────────────────────────────────────────────────────
-
-  if (phase === 'playerTransition') {
-    return (
-      <div className={g.page}>
-        <div className={g.transitionBlank} />
-        <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />
-      </div>
-    )
-  }
-
-  // ── Phase de jeu ────────────────────────────────────────────────────────────
-
-  if (!currentRound) return null
-
-  const currentSong = currentPlayer === 0 ? currentRound.song1 : (currentRound.song2 ?? currentRound.song1)
-  const roundComplete = turnState.artistMatched && turnState.titleMatched
+  const activeItem = currentRound
+    ? isIdols
+      ? currentPlayer === 0
+        ? currentRound.idol1
+        : currentRound.idol2
+      : currentPlayer === 0
+        ? currentRound.song1
+        : currentRound.song2
+    : null
 
   return (
     <div className={g.page}>
       <main className={g.content}>
         <GameHud
           options={hudOptions}
+          twoPlayer={twoPlayer}
+          activePlayerName={isPlaying ? activePlayer : undefined}
+          activePlayerIndex={currentPlayer as 0 | 1}
+          currentScore={currentScore}
           onBack={goToConfig}
           onPass={pass}
-          actionDisabled={false}
-          currentRound={currentRound.roundNumber}
-          totalRounds={rounds.length}
-          twoPlayer={twoPlayer}
-          activePlayerName={twoPlayer ? activePlayer : undefined}
-          activePlayerIndex={currentPlayer}
+          actionDisabled={!isPlaying}
+          currentRound={currentRoundIndex + 1}
+          totalRounds={totalRounds}
         />
 
-        {/* Bloc média central */}
-        <SpinningDisc
-          song={currentSong}
-          isRevealed={turnState.isRevealed}
-          canReplay={canReplay && !turnState.isRevealed}
-          timerKey={timerKey}
-          onClipEnd={onClipEnd}
-        />
-
-        {/* TimerBar */}
-        {config.timerSeconds > 0 && !turnState.isRevealed && (
-          <TimerBar
-            percentLeft={roundComplete ? 100 : percentLeft}
-            remainingSeconds={roundComplete ? config.timerSeconds : remaining}
-            totalSeconds={config.timerSeconds}
-            className={styles.timerBar}
+        {/* BlindTestSongs */}
+        {isPlaying && currentRound && !isIdols && activeItem?.type === 'song' && (
+          <BlindTestSongs
+            song={activeItem}
+            timerSeconds={config.timerSeconds}
+            timerKey={timerKey}
+            turnState={turnState}
+            canReplay={modeConfig.canReplay}
+            canReveal={!isHardcore}
+            onSubmit={submitAnswer}
+            onReveal={reveal}
+            onTimeout={timeout}
+            onClipEnd={onClipEnd}
           />
         )}
 
-        {/* Badges artiste / titre */}
-        <AnswerBadges
-          artistMatched={turnState.artistMatched}
-          titleMatched={turnState.titleMatched}
-          isRevealed={turnState.isRevealed}
-          artistName={currentSong.groupName}
-          songTitle={currentSong.title}
-        />
-
-        {/* Input de réponse */}
-        {!turnState.isRevealed && !roundComplete && (
-          <AnswerInput
-            onSubmit={handleSubmit}
-            lastResult={lastInputResult}
-            disabled={turnState.isRevealed || roundComplete}
+        {/* BlindTestIdols */}
+        {isPlaying && currentRound && isIdols && activeItem?.type === 'idol' && (
+          <BlindTestIdols
+            idol={activeItem}
+            timerSeconds={config.timerSeconds}
+            timerKey={timerKey}
+            turnState={turnState}
+            canReveal={!isHardcore}
+            onSubmit={submitAnswer}
+            onReveal={reveal}
+            onTimeout={timeout}
           />
         )}
 
-        {/* Bouton Révéler (si mode le permet et non encore révélé) */}
-        {canReveal && !turnState.isRevealed && !roundComplete && (
-          <button type="button" className={styles.revealBtn} onClick={reveal}>
-            Révéler la réponse
-          </button>
-        )}
+        {!isPlaying && <div className={g.transitionBlank} />}
       </main>
+
+      {phase === 'roundTransition' && <RoundTransition roundNumber={currentRoundIndex + 1} totalRounds={totalRounds} onDone={skipRoundTransition} />}
+      {phase === 'playerTransition' && <PlayerTransitionOverlay playerName={p2Name} onSkip={skipPlayerTransition} />}
     </div>
   )
 }

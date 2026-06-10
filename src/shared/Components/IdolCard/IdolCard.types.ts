@@ -5,5 +5,6 @@ export interface IdolCardProps {
   /** Size variant driven by number of choices in the round */
   size: 'sm' | 'md' | 'lg'
   disabled?: boolean
+  hideInfos?: boolean
   onClick: (idolId: string) => void
 }

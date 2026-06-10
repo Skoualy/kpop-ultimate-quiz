@@ -29,17 +29,8 @@ import {
   QUIZ_CATEGORIES_OPTIONS,
   ANSWER_TOLERANCE_OPTIONS,
 } from '@/shared/constants'
-import type {
-  Group,
-  GroupCategory,
-  SaveOneCriterion,
-  MemberRole,
-  SongType,
-  LanguageOption,
-  GameConfig,
-  GamePlayMode,
-} from '@/shared/models'
 import type { AnswerTolerance } from '@/shared/constants/gameDefaults'
+import type { Group, GroupCategory, SaveOneCriterion, MemberRole, SongType, LanguageOption, GameConfig, GamePlayMode } from '@/shared/models'
 import { useConfigPreparation, type PreparationStatus } from '@/shared/hooks/useConfigPreparation'
 import type { MaxRoundsResult } from '@/features/save-one/helpers/poolScopeRules'
 import styles from './ConfigPage.module.scss'
@@ -77,10 +68,7 @@ const GAME_ROUTES: Record<string, string> = {
 
 // ─── Helpers filtrage artistes ────────────────────────────────────────────────
 
-function groupMatchesFilter(
-  g: Group,
-  filters: { gens: string[]; cats: string[]; year: string; label: string },
-): boolean {
+function groupMatchesFilter(g: Group, filters: { gens: string[]; cats: string[]; year: string; label: string }): boolean {
   if (filters.gens.length > 0 && !filters.gens.includes(g.generation ?? '')) return false
   if (filters.cats.length > 0) {
     const matchesCat = filters.cats.some((c) => c !== 'subunit' && c === g.category)
@@ -92,10 +80,7 @@ function groupMatchesFilter(
   return true
 }
 
-function applyGroupFilters(
-  groups: Group[],
-  filters: { gens: string[]; cats: string[]; year: string; label: string },
-): Group[] {
+function applyGroupFilters(groups: Group[], filters: { gens: string[]; cats: string[]; year: string; label: string }): Group[] {
   return groups.filter((g) => groupMatchesFilter(g, filters))
 }
 
@@ -113,9 +98,7 @@ export default function ConfigPage() {
   const playMode = GAME_PLAY_MODE_MAP[config.gamePlayMode]
   const isCustom = config.gamePlayMode === 'custom'
 
-  const [artistMode, setArtistMode] = useState<'all' | 'byFilter' | 'manual'>(() =>
-    config.selectedGroupIds.length === 0 ? 'all' : 'manual',
-  )
+  const [artistMode, setArtistMode] = useState<'all' | 'byFilter' | 'manual'>(() => (config.selectedGroupIds.length === 0 ? 'all' : 'manual'))
   const [manualSelectedIds, setManualSelectedIds] = useState<string[]>(config.selectedGroupIds)
   const [artistFilters, setArtistFilters] = useState<ArtistFilterState>({
     gens: [],
@@ -133,12 +116,7 @@ export default function ConfigPage() {
     else setConfig({ selectedGroupIds: manualSelectedIds })
   }, [artistMode, byFilterGroups, manualSelectedIds])
 
-  const {
-    status: prepStatus,
-    result: prepResult,
-    errorMessage: prepError,
-    prepare,
-  } = useConfigPreparation(config, setConfig)
+  const { status: prepStatus, result: prepResult, errorMessage: prepError, prepare } = useConfigPreparation(config, setConfig)
 
   const canLaunch = prepStatus === 'valid' || prepStatus === 'adjusted'
   const p1Empty = config.twoPlayerMode && !config.player1Name.trim()
@@ -211,12 +189,7 @@ export default function ConfigPage() {
             Reset config
           </button>
           {!canLaunch ? (
-            <button
-              className="btn btn--primary"
-              onClick={prepare}
-              disabled={prepStatus === 'loading' || twoPlayerInvalid}
-              style={{ minWidth: 180 }}
-            >
+            <button className="btn btn--primary" onClick={prepare} disabled={prepStatus === 'loading' || twoPlayerInvalid} style={{ minWidth: 180 }}>
               {prepStatus === 'loading' ? '⏳ Vérification…' : '🔍 Préparer la partie'}
             </button>
           ) : (
@@ -235,15 +208,11 @@ export default function ConfigPage() {
         <ConfigCard>
           <div className={styles.fieldsRow}>
             <div className={styles.field}>
-              {renderFieldLabel('Type de quiz')}
-              <SelectControl
-                value={config.mode}
-                onChange={(v) => setConfig({ mode: v as GameConfig['mode'] })}
-                options={QUIZ_TYPES_OPTIONS}
-              />
+              <span className={styles.fieldLabel}>{renderFieldLabel('Type de quiz')}</span>
+              <SelectControl value={config.mode} onChange={(v) => setConfig({ mode: v as GameConfig['mode'] })} options={QUIZ_TYPES_OPTIONS} />
             </div>
             <div className={styles.field}>
-              {renderFieldLabel('Catégorie')}
+              <span className={styles.fieldLabel}>{renderFieldLabel('Catégorie')}</span>
               <SegmentedControl
                 value={config.category}
                 options={QUIZ_CATEGORIES_OPTIONS}
@@ -252,7 +221,7 @@ export default function ConfigPage() {
               />
             </div>
             <div className={styles.field}>
-              {renderFieldLabel('Mode de jeu')}
+              <span className={styles.fieldLabel}>{renderFieldLabel('Mode de jeu')}</span>
               <SelectControl
                 value={config.gamePlayMode}
                 onChange={(v) => handlePlayModeChange(v as GamePlayMode)}
@@ -271,12 +240,8 @@ export default function ConfigPage() {
             {isSaveOne && (
               <div className={styles.optionsCompact}>
                 <div className={styles.field}>
-                  {renderFieldLabel('Drops')}
-                  <SegmentedControl
-                    value={config.drops.toString()}
-                    options={DROPS_OPTIONS}
-                    onChange={(v) => setConfig({ drops: parseInt(v) })}
-                  />
+                  <span className={styles.fieldLabel}>{renderFieldLabel('Drops')}</span>
+                  <SegmentedControl value={config.drops.toString()} options={DROPS_OPTIONS} onChange={(v) => setConfig({ drops: parseInt(v) })} />
                 </div>
               </div>
             )}
@@ -284,7 +249,7 @@ export default function ConfigPage() {
             {isBlindTest && (
               <div className={styles.optionsCompact}>
                 <div className={styles.field}>
-                  {renderFieldLabel('Validation des réponses')}
+                  <span className={styles.fieldLabel}>{renderFieldLabel('Validation des réponses')}</span>
                   <SegmentedControl
                     value={config.answerTolerance}
                     options={ANSWER_TOLERANCE_OPTIONS}
@@ -297,7 +262,7 @@ export default function ConfigPage() {
 
             <div className={styles.optionsSliders}>
               <div className={styles.field}>
-                {renderFieldLabel('Rounds')}
+                <span className={styles.fieldLabel}>{renderFieldLabel('Rounds')}</span>
                 <SliderControl
                   value={config.rounds}
                   onChange={(v) => setConfig({ rounds: v })}
@@ -308,12 +273,8 @@ export default function ConfigPage() {
                 />
               </div>
 
-              <div
-                className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : '']
-                  .filter(Boolean)
-                  .join(' ')}
-              >
-                {renderFieldLabel('Timer')}
+              <div className={[styles.field, !playMode.timerEditable ? styles.fieldDisabled : ''].filter(Boolean).join(' ')}>
+                <span className={styles.fieldLabel}>{renderFieldLabel('Timer')}</span>
                 <SliderControl
                   value={timerValue}
                   onChange={(v) => setConfig({ timerSeconds: v })}
@@ -328,12 +289,8 @@ export default function ConfigPage() {
               </div>
 
               {isSongs && (
-                <div
-                  className={[styles.field, !playMode.clipEditable ? styles.fieldDisabled : '']
-                    .filter(Boolean)
-                    .join(' ')}
-                >
-                  {renderFieldLabel('Extraits')}
+                <div className={[styles.field, !playMode.clipEditable ? styles.fieldDisabled : ''].filter(Boolean).join(' ')}>
+                  <span className={styles.fieldLabel}>{renderFieldLabel('Extraits')}</span>
                   <SliderControl
                     value={playMode.clipEditable ? config.clipDuration : playMode.clipDefault}
                     onChange={(v) => setConfig({ clipDuration: v })}
@@ -351,13 +308,13 @@ export default function ConfigPage() {
           {/* Mode 2 joueurs */}
           <div className={styles.twoPlayerRow}>
             <div className={styles.twoPlayerLeft}>
-              {renderFieldLabel('Mode 2 joueurs')}
+              <span className={styles.fieldLabel}>{renderFieldLabel('Mode 2 joueurs')}</span>
               <ToggleControl checked={config.twoPlayerMode} onChange={(v) => setConfig({ twoPlayerMode: v })} />
               <span className={styles.twoPlayerDesc}>Permet à deux joueurs de répondre chacun leur tour.</span>
             </div>
             <div className={styles.twoPlayerFields}>
               <div className={styles.twoPlayerField}>
-                {renderFieldLabel('Joueur 1')}
+                <span className={styles.fieldLabel}>{renderFieldLabel('Joueur 1')}</span>
                 <input
                   className="input"
                   value={config.player1Name}
@@ -368,7 +325,7 @@ export default function ConfigPage() {
                 {p1Empty && <span className={styles.fieldError}>Pseudo requis</span>}
               </div>
               <div className={styles.twoPlayerField}>
-                {renderFieldLabel('Joueur 2')}
+                <span className={styles.fieldLabel}>{renderFieldLabel('Joueur 2')}</span>
                 <input
                   className="input"
                   value={config.player2Name}
@@ -395,7 +352,7 @@ export default function ConfigPage() {
                   {isIdols && (
                     <>
                       <div className={styles.optionGroup}>
-                        {renderFieldLabel('Critère')}
+                        <span className={styles.fieldLabel}>{renderFieldLabel('Critère')}</span>
                         <BadgeGroupControl<SaveOneCriterion>
                           options={CRITERIA.map((c) => ({ value: c, label: CRITERIA_LABELS[c] }))}
                           allOptionLabel="Tous"
@@ -405,9 +362,7 @@ export default function ConfigPage() {
                         />
                       </div>
                       <div className={styles.optionGroup}>
-                        <div className={styles.fieldTitle}>
-                          {renderFieldLabel('Rôles', 'Plusieurs choix possibles')}
-                        </div>
+                        <span className={styles.fieldLabel}>{renderFieldLabel('Rôles')}</span>
                         <BadgeGroupControl<MemberRole>
                           options={availableRoles.map((r) => ({ value: r, label: ROLE_LABELS[r] }))}
                           allOptionLabel="Tous"
@@ -422,7 +377,7 @@ export default function ConfigPage() {
                   {isSongs && (
                     <>
                       <div className={styles.optionGroup}>
-                        {renderFieldLabel('Type de chansons')}
+                        <span className={styles.fieldLabel}>{renderFieldLabel('Type de chansons')}</span>
                         <BadgeGroupControl<SongType>
                           options={SONG_TYPE_OPTIONS as { value: SongType; label: string }[]}
                           allOptionLabel="Tous"
@@ -432,7 +387,7 @@ export default function ConfigPage() {
                         />
                       </div>
                       <div className={styles.optionGroup}>
-                        {renderFieldLabel('Langue')}
+                        <span className={styles.fieldLabel}>{renderFieldLabel('Langue')}</span>
                         <BadgeGroupControl<LanguageOption>
                           options={LANGUAGE_OPTIONS as { value: LanguageOption; label: string }[]}
                           allOptionLabel="Toutes"

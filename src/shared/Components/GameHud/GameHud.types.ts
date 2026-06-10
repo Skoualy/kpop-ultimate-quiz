@@ -24,6 +24,8 @@ export interface GameHudProps {
   twoPlayer?: boolean
   activePlayerName?: string
   activePlayerIndex?: 0 | 1
+  /** Score cumulé du joueur actif — affiché à côté du nom si fourni */
+  currentScore?: number
   isFullscreen?: boolean
   onToggleFullscreen?: () => void
 }
