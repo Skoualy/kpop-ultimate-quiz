@@ -6,20 +6,12 @@
   width: 100%;
 }
 
-/* ─── Portrait block (405px height, same as SpinningDisc) ────────────────────── */
-
-.portraitBlock {
-  position: relative;
-  width: 405px;
-  height: 405px;
-  flex-shrink: 0;
+/* Card unique centrée */
+.cardWrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--bg-card);
-  border: 1.5px solid var(--border-strong);
+  width: 100%;
+  min-width: 200px;
 }
 
 .portrait {
@@ -63,17 +55,19 @@
 .badges {
   display: flex;
   gap: 12px;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
 .badge {
-  padding: 10px 22px;
+  padding: 6px 18px;
   border-radius: var(--radius-pill);
   font-size: 15px;
   font-weight: 700;
   border: 2px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .badgeNeutral {
@@ -97,16 +91,18 @@
 /* ─── Reveal button ──────────────────────────────────────────────────────────── */
 
 .revealBtn {
-  padding: 9px 26px;
+  padding: 8px 24px;
   border-radius: var(--radius-pill);
   background: transparent;
   border: 1.5px solid var(--border-strong);
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
     border-color: var(--accent-purple);
@@ -117,7 +113,7 @@
 /* ─── Mobile ─────────────────────────────────────────────────────────────────── */
 
 @media (max-width: 480px) {
-  .portraitBlock {
+  .cardWrapper {
     width: 100%;
     max-width: 320px;
     height: 320px;

@@ -8,7 +8,7 @@ import styles from './BlindTestSummary.module.scss'
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function roundLabel(artistMatched: boolean, titleMatched: boolean, foundInOneTry: boolean): string {
-  if (foundInOneTry)           return '⚡ Bonne réponse !'
+  if (foundInOneTry) return '⚡ Bonne réponse !'
   if (artistMatched && titleMatched) return '✅ Bonne réponse'
   if (artistMatched || titleMatched) return '🟡 Réponse incomplète'
   return '❌ Non trouvée'
@@ -28,30 +28,37 @@ function avgTimeMs(results: BlindTestResult[], playerIndex: PlayerIndex): number
 
 function SongResultCard({ result, song }: { result: BlindTestResult | undefined; song: SongItem }) {
   const artist = result?.artistMatched ?? false
-  const title  = result?.titleMatched  ?? false
-  const one    = result?.foundInOneTry ?? false
+  const title = result?.titleMatched ?? false
+  const one = result?.foundInOneTry ?? false
 
   return (
-    <div className={styles.resultCard}>
-      <img src={song.thumbnailUrl} alt={song.title} className={styles.thumb} />
-      <div className={styles.info}>
-        <span className={[styles.label, one ? styles.labelGold : artist && title ? styles.labelGreen : artist || title ? styles.labelAmber : styles.labelRed].join(' ')}>
-          {roundLabel(artist, title, one)}
-        </span>
-        <span className={[styles.badge, artist ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Artiste : {artist ? `${song.groupName} ✅` : '???'}
-        </span>
-        <span className={[styles.badge, title ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Titre : {title ? `${song.title} ✅` : '???'}
-        </span>
-        {result?.timeMs != null && (
-          <span className={styles.time}>⏱ {(result.timeMs / 1000).toFixed(1)}s</span>
-        )}
+    <>
+      <div className={styles.resultCard}>
+        <img src={song.thumbnailUrl} alt={song.title} className={styles.thumbSong} />
+        <div className={styles.info}>
+          <span className={[styles.badge, artist ? styles.badgeGreen : styles.badgeRed].join(' ')}>
+            Artiste : {artist ? `${song.groupName} ✅` : '???'}
+          </span>
+          <span className={[styles.badge, title ? styles.badgeGreen : styles.badgeRed].join(' ')}>Titre : {title ? `${song.title} ✅` : '???'}</span>
+          {result?.timeMs != null && <span className={styles.time}>⏱ {(result.timeMs / 1000).toFixed(1)}s</span>}
+        </div>
       </div>
       {result && (
-        <span className={styles.score}>{result.scoreGained} pt{result.scoreGained !== 1 ? 's' : ''}</span>
+        <div className={styles.result}>
+          <span
+            className={[
+              styles.label,
+              one ? styles.labelGold : artist && title ? styles.labelGreen : artist || title ? styles.labelAmber : styles.labelRed,
+            ].join(' ')}
+          >
+            {roundLabel(artist, title, one)}
+          </span>
+          <span className={styles.score}>
+            {result.scoreGained} pt{result.scoreGained !== 1 ? 's' : ''}
+          </span>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
@@ -59,46 +66,60 @@ function SongResultCard({ result, song }: { result: BlindTestResult | undefined;
 
 function IdolResultCard({ result, idol }: { result: BlindTestResult | undefined; idol: IdolItem }) {
   const artist = result?.artistMatched ?? false
-  const title  = result?.titleMatched  ?? false
-  const one    = result?.foundInOneTry ?? false
-  const portrait = idol.portrait ?? '/assets/placeholders/idol-female.webp'
+  const title = result?.titleMatched ?? false
+  const one = result?.foundInOneTry ?? false
 
   return (
-    <div className={styles.resultCard}>
-      <img src={portrait} alt={idol.name} className={styles.thumb} onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/assets/placeholders/idol-female.webp' }} />
-      <div className={styles.info}>
-        <span className={[styles.label, one ? styles.labelGold : artist && title ? styles.labelGreen : artist || title ? styles.labelAmber : styles.labelRed].join(' ')}>
-          {roundLabel(artist, title, one)}
-        </span>
-        <span className={[styles.badge, artist ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Groupe : {artist ? `${idol.groupName} ✅` : '???'}
-        </span>
-        <span className={[styles.badge, title ? styles.badgeGreen : styles.badgeRed].join(' ')}>
-          Idole : {title ? `${idol.name} ✅` : '???'}
-        </span>
-        {result?.timeMs != null && (
-          <span className={styles.time}>⏱ {(result.timeMs / 1000).toFixed(1)}s</span>
-        )}
+    <>
+      <div className={styles.resultCard}>
+        <img
+          src={idol.portrait as string}
+          alt={idol.name}
+          className={styles.thumbIdol}
+          onError={(e) => {
+            ;(e.currentTarget as HTMLImageElement).src = '/assets/placeholders/idol-female.webp'
+          }}
+        />
+        <div className={styles.info}>
+          <span className={[styles.badge, artist ? styles.badgeGreen : styles.badgeRed].join(' ')}>
+            Groupe : {artist ? `${idol.groupName} ✅` : '???'}
+          </span>
+          <span className={[styles.badge, title ? styles.badgeGreen : styles.badgeRed].join(' ')}>Idole : {title ? `${idol.name} ✅` : '???'}</span>
+          {result?.timeMs != null && <span className={styles.time}>⏱ {(result.timeMs / 1000).toFixed(1)}s</span>}
+        </div>
       </div>
+
       {result && (
-        <span className={styles.score}>{result.scoreGained} pt{result.scoreGained !== 1 ? 's' : ''}</span>
+        <div className={styles.result}>
+          <span
+            className={[
+              styles.label,
+              one ? styles.labelGold : artist && title ? styles.labelGreen : artist || title ? styles.labelAmber : styles.labelRed,
+            ].join(' ')}
+          >
+            {roundLabel(artist, title, one)}
+          </span>
+          <span className={styles.score}>
+            {result.scoreGained} pt{result.scoreGained > 1 ? 's' : ''}
+          </span>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
 // ─── Player stats column ──────────────────────────────────────────────────────
 
 function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; playerIndex: PlayerIndex }): ReactNode {
-  const mine     = results.filter((r) => r.playerIndex === playerIndex)
-  const total    = mine.reduce((s, r) => s + r.scoreGained, 0)
+  const mine = results.filter((r) => r.playerIndex === playerIndex)
+  const total = mine.reduce((s, r) => s + r.scoreGained, 0)
   const complete = mine.filter((r) => r.artistMatched && r.titleMatched).length
-  const artists  = mine.filter((r) => r.artistMatched).length
-  const titles   = mine.filter((r) => r.titleMatched).length
-  const oneShot  = mine.filter((r) => r.foundInOneTry).length
-  const n        = mine.length
+  const artists = mine.filter((r) => r.artistMatched).length
+  const titles = mine.filter((r) => r.titleMatched).length
+  const oneShot = mine.filter((r) => r.foundInOneTry).length
+  const n = mine.length
   const artistPct = n > 0 ? Math.round((artists / n) * 100) : 0
-  const titlePct  = n > 0 ? Math.round((titles  / n) * 100) : 0
+  const titlePct = n > 0 ? Math.round((titles / n) * 100) : 0
 
   return (
     <div className={styles.statsCol}>
@@ -109,23 +130,31 @@ function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; pla
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>✅</span>
-        <span className={styles.statVal}>{complete}/{n}</span>
+        <span className={styles.statVal}>
+          {complete}/{n}
+        </span>
         <span className={styles.statLabel}>complètes</span>
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>🎤</span>
-        <span className={styles.statVal}>{artists}/{n}</span>
+        <span className={styles.statVal}>
+          {artists}/{n}
+        </span>
         <span className={styles.statLabel}>artistes ({artistPct}%)</span>
       </div>
       <div className={styles.statRow}>
         <span className={styles.statIcon}>🎵</span>
-        <span className={styles.statVal}>{titles}/{n}</span>
+        <span className={styles.statVal}>
+          {titles}/{n}
+        </span>
         <span className={styles.statLabel}>titres ({titlePct}%)</span>
       </div>
       {oneShot > 0 && (
         <div className={styles.statRow}>
           <span className={styles.statIcon}>⚡</span>
-          <span className={styles.statVal}>{oneShot}/{n}</span>
+          <span className={styles.statVal}>
+            {oneShot}/{n}
+          </span>
           <span className={styles.statLabel}>1er coup</span>
         </div>
       )}
@@ -137,19 +166,19 @@ function PlayerStats({ results, playerIndex }: { results: BlindTestResult[]; pla
 
 export function BlindTestSummary({ rounds, results, config, onRestart, onBackToConfig }: BlindTestSummaryProps) {
   const twoPlayer = config.twoPlayerMode
-  const isIdols   = config.category === 'idols'
-  const p1Name    = config.player1Name || 'Joueur 1'
-  const p2Name    = config.player2Name || 'Joueur 2'
+  const isIdols = config.category === 'idols'
+  const p1Name = config.player1Name || 'Joueur 1'
+  const p2Name = config.player2Name || 'Joueur 2'
 
   const p1Score = totalScore(results, 0)
   const p2Score = twoPlayer ? totalScore(results, 1) : 0
-  const p1Avg   = avgTimeMs(results, 0)
-  const p2Avg   = twoPlayer ? avgTimeMs(results, 1) : null
+  const p1Avg = avgTimeMs(results, 0)
+  const p2Avg = twoPlayer ? avgTimeMs(results, 1) : null
 
   // Subtitle with winner indicator in 2P
   let subtitle = `${rounds.length} rounds · Blind Test · ${isIdols ? 'Idoles' : 'Chansons'}`
   if (twoPlayer) {
-    if      (p1Score > p2Score) subtitle += ` · 🏆 ${p1Name} (+${p1Score - p2Score} pts)`
+    if (p1Score > p2Score) subtitle += ` · 🏆 ${p1Name} (+${p1Score - p2Score} pts)`
     else if (p2Score > p1Score) subtitle += ` · 🏆 ${p2Name} (+${p2Score - p1Score} pts)`
     else if (p1Avg !== null && p2Avg !== null) subtitle += ` · 🏆 ${p1Avg <= p2Avg ? p1Name : p2Name} (temps)`
     else subtitle += ' · Égalité !'
@@ -170,9 +199,7 @@ export function BlindTestSummary({ rounds, results, config, onRestart, onBackToC
     const p1Res = results.find((r) => r.roundIndex === ri && r.playerIndex === 0)
     const p2Res = twoPlayer ? results.find((r) => r.roundIndex === ri && r.playerIndex === 1) : undefined
 
-    const sameResult = twoPlayer && p1Res && p2Res
-      && p1Res.artistMatched === p2Res.artistMatched
-      && p1Res.titleMatched  === p2Res.titleMatched
+    const sameResult = twoPlayer && p1Res && p2Res && p1Res.artistMatched === p2Res.artistMatched && p1Res.titleMatched === p2Res.titleMatched
 
     let p1Content: ReactNode
     let p2Content: ReactNode | undefined
@@ -187,7 +214,7 @@ export function BlindTestSummary({ rounds, results, config, onRestart, onBackToC
 
     return {
       roundNumber: round.roundNumber,
-      matchLabel:  sameResult ? '★ Même réponse !' : undefined,
+      matchLabel: sameResult ? '★ Même réponse !' : undefined,
       p1Content,
       p2Content,
     }

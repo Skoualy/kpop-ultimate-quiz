@@ -23,19 +23,19 @@ export function BlindTestSongs({
   onTimeout,
   onClipEnd,
 }: BlindTestSongsProps) {
-  const [lastResult, setLastResult]   = useState<'correct' | 'wrong' | null>(null)
+  const [lastResult, setLastResult] = useState<'correct' | 'wrong' | null>(null)
   const [scorePopPts, setScorePopPts] = useState<number | null>(null)
 
   const { remaining, percentLeft } = useGameTimer({
     totalSeconds: timerSeconds,
-    active:       !turnState.isRevealed && timerSeconds > 0,
+    active: !turnState.isRevealed && timerSeconds > 0,
     onTimeout,
-    resetKey:     timerKey,
+    resetKey: timerKey,
   })
 
   function handleSubmit(input: string) {
     const prevScore = turnState.scoreGained
-    const result    = onSubmit(input)
+    const result = onSubmit(input)
     setLastResult(result)
     // Reset feedback quickly so re-submitting cycles the shake
     setTimeout(() => setLastResult(null), 50)
@@ -51,23 +51,12 @@ export function BlindTestSongs({
   return (
     <div className={styles.root}>
       {/* Central media block — 405px constant height */}
-      <SpinningDisc
-        song={song}
-        isRevealed={isRevealed}
-        canReplay={canReplay}
-        timerKey={timerKey}
-        onClipEnd={onClipEnd}
-      />
+      <SpinningDisc song={song} isRevealed={isRevealed} canReplay={canReplay} timerKey={timerKey} onClipEnd={onClipEnd} />
 
       {/* Timer bar */}
-      {timerSeconds > 0 && (
-        <TimerBar
-          percentLeft={percentLeft}
-          remainingSeconds={remaining}
-          totalSeconds={timerSeconds}
-          className={styles.timer}
-        />
-      )}
+      {timerSeconds > 0 && <TimerBar percentLeft={percentLeft} remainingSeconds={remaining} totalSeconds={timerSeconds} className={styles.timer} />}
+
+      <AnswerInput onSubmit={handleSubmit} disabled={inputDisabled} lastResult={lastResult} />
 
       {/* Answer badges */}
       <div className={styles.badges}>
@@ -77,26 +66,17 @@ export function BlindTestSongs({
         <span className={[styles.badge, titleMatched ? styles.badgeGreen : isRevealed ? styles.badgeRed : styles.badgeNeutral].join(' ')}>
           Titre : {titleMatched ? `${song.title} ✅` : isRevealed ? `${song.title} ❌` : '???'}
         </span>
+        {/* Text input */}
+        {/* Reveal button — hidden when already revealed or in hardcore */}
+        {canReveal && !isRevealed && (
+          <button type="button" className={styles.revealBtn} onClick={onReveal}>
+            Révéler la réponse
+          </button>
+        )}
       </div>
 
-      {/* Text input */}
-      <AnswerInput
-        onSubmit={handleSubmit}
-        disabled={inputDisabled}
-        lastResult={lastResult}
-      />
-
-      {/* Reveal button — hidden when already revealed or in hardcore */}
-      {canReveal && !isRevealed && (
-        <button type="button" className={styles.revealBtn} onClick={onReveal}>
-          Révéler la réponse
-        </button>
-      )}
-
       {/* Score pop animation */}
-      {scorePopPts !== null && (
-        <ScorePopAnimation points={scorePopPts} onDone={() => setScorePopPts(null)} />
-      )}
+      {scorePopPts !== null && <ScorePopAnimation points={scorePopPts} onDone={() => setScorePopPts(null)} />}
     </div>
   )
 }
